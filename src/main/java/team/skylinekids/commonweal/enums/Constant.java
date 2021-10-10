@@ -1,0 +1,14 @@
+package team.skylinekids.commonweal.enums;
+
+/**
+ * 常量定义
+ *
+ * @author MysticalDream
+ */
+public interface Constant {
+    /**
+     * 头像客户端显示基路径
+     */
+    String IMG_URL_BASE = "/upload/images/avatar/";
+
+}
