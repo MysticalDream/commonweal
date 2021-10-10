@@ -4,10 +4,7 @@ import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.MediaType;
 import team.skylinekids.commonweal.pojo.po.User;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -40,6 +37,10 @@ public class HttpInfoWrapper {
      * 保存part的映射
      */
     private Map<String, Part> partMap = new ConcurrentHashMap<>();
+    /**
+     * 保存Cookie的map,键为cookie的键
+     */
+    private Map<String, Cookie> cookieMap = new ConcurrentHashMap<>();
     /**
      * 参数map
      */
@@ -81,6 +82,17 @@ public class HttpInfoWrapper {
         }
         //请求参数map
         parameterMap = httpServletRequest.getParameterMap();
+        //获取Cookies
+        initCookie();
+    }
+
+    private void initCookie() {
+        //86400s一天
+        Cookie[] cookies = httpServletRequest.getCookies();
+        for (Cookie cookie :
+                cookies) {
+            cookieMap.putIfAbsent(cookie.getName(), cookie);
+        }
     }
 
     public HttpServletResponse getHttpServletResponse() {
@@ -132,4 +144,18 @@ public class HttpInfoWrapper {
     public String getParameter(String name) {
         return parameterMap.get(name)[0];
     }
+
+    /**
+     * 设置Cookie
+     *
+     * @param key
+     * @param value
+     * @param expiry
+     */
+    public void setCookie(String key, String value, int expiry) {
+        Cookie cookie = new Cookie(key, value);
+        cookie.setMaxAge(expiry);
+        httpServletResponse.addCookie(cookie);
+    }
+
 }

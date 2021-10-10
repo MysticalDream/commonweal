@@ -37,6 +37,10 @@ public class UserController {
         if (user2 == null) {
             return ResultUtils.getResult(ApiResultCode.PASSWORD_OR_USER_NAME_IS_INCORRECT);
         }
+        //设置登录用户到session会话
+        httpWrapper.setUserToSession(user2);
+
+        //登录成功
         return ResultUtils.getResult(ApiResultCode.SUCCESS, ConversionUtils.convert(user2, UserDTO.class));
     }
 

@@ -4,6 +4,8 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
     <!--    没有请求操作后一天后失效-->
+    <!--    分钟-->
+    <!--    如果超时为 0 或更少，则容器确保会话的默认行为永远不会超时-->
     <session-config>
         <session-timeout>1440</session-timeout>
     </session-config>

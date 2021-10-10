@@ -1,6 +1,5 @@
 package team.skylinekids.commonweal.service;
 
-import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 
 /**
