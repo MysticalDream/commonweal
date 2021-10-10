@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.pojo.po;
 
+import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class Item {
      * 项目id
      */
     @TableId
+    @TableField(value = "item_id", insert = false, update = false)
     private Integer itemId;
     /**
      * 项目标题
@@ -38,13 +40,26 @@ public class Item {
     /**
      * 项目是否可用
      */
-    private boolean isAvailable;
+    private Boolean isAvailable;
     /**
      * 项目封面地址
      */
     private String coverUrl;
+    /**
+     * 项目进行地址
+     */
+    private String location;
 
-    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, boolean isAvailable, String coverUrl) {
+    /**
+     * 项目预计持续时间最小单位是小时
+     */
+    private Long duration;
+    /**
+     * 项目分类
+     */
+    private Integer itemCategoryId;
+
+    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean isAvailable, String coverUrl, String location, Long duration, Integer itemCategoryId) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemIntroduction = itemIntroduction;
@@ -53,13 +68,12 @@ public class Item {
         this.userId = userId;
         this.isAvailable = isAvailable;
         this.coverUrl = coverUrl;
+        this.location = location;
+        this.duration = duration;
+        this.itemCategoryId = itemCategoryId;
     }
 
-    /**
-     * 默认创建空项目
-     */
     public Item() {
-        this.isAvailable = true;
     }
 
     public Integer getItemId() {
@@ -110,11 +124,11 @@ public class Item {
         this.userId = userId;
     }
 
-    public boolean isAvailable() {
+    public Boolean getAvailable() {
         return isAvailable;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(Boolean available) {
         isAvailable = available;
     }
 
@@ -124,5 +138,29 @@ public class Item {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+    }
+
+    public Integer getItemCategoryId() {
+        return itemCategoryId;
+    }
+
+    public void setItemCategoryId(Integer itemCategoryId) {
+        this.itemCategoryId = itemCategoryId;
     }
 }
