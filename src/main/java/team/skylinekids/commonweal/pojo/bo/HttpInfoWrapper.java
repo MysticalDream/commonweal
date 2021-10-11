@@ -3,6 +3,7 @@ package team.skylinekids.commonweal.pojo.bo;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.MediaType;
 import team.skylinekids.commonweal.pojo.po.User;
+import team.skylinekids.commonweal.utils.GsonUtils;
 
 import javax.servlet.http.*;
 import java.util.Collection;
@@ -49,11 +50,15 @@ public class HttpInfoWrapper {
      * 会话中保存的用户信息的键值
      */
     private final String USER_STRING = "USER";
+    /**
+     * 路径参数
+     */
+    private String pathVariable;
 
-
-    public HttpInfoWrapper(HttpServletResponse httpServletResponse, HttpServletRequest httpServletRequest) {
+    public HttpInfoWrapper(HttpServletResponse httpServletResponse, HttpServletRequest httpServletRequest, String pathVariable) {
         this.httpServletResponse = httpServletResponse;
         this.httpServletRequest = httpServletRequest;
+        this.pathVariable = pathVariable;
         init();
     }
 
@@ -89,6 +94,9 @@ public class HttpInfoWrapper {
     private void initCookie() {
         //86400s一天
         Cookie[] cookies = httpServletRequest.getCookies();
+        if (cookies == null) {
+            return;
+        }
         for (Cookie cookie :
                 cookies) {
             cookieMap.putIfAbsent(cookie.getName(), cookie);
@@ -156,6 +164,17 @@ public class HttpInfoWrapper {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(expiry);
         httpServletResponse.addCookie(cookie);
+    }
+
+    /**
+     * 获取路径参数值
+     *
+     * @param clazz   路径参数的类类型
+     * @param <T>参数类型
+     * @return
+     */
+    public <T> T getPathVariable(Class<T> clazz) {
+        return pathVariable == null ? null : GsonUtils.j2O(pathVariable, clazz);
     }
 
 }

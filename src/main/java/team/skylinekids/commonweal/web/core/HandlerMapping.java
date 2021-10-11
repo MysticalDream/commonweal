@@ -38,7 +38,7 @@ public final class HandlerMapping {
      *
      * @param classSet
      */
-    public static void handler(Set<Class<?>> classSet) {
+    public static void handle(Set<Class<?>> classSet) {
 
         try {
             for (Class<? extends Object> clazz :
@@ -48,10 +48,8 @@ public final class HandlerMapping {
 
                 //获取类上的注解的路径
                 String value = getURLString(clazzDeclaredAnnotation);
-                if (value == null) {
-                    continue;
-                }
-                String root = value;
+                //根路径
+                String root = value == null ? "" : value;
                 /**
                  * 实例化对象
                  */
@@ -67,6 +65,7 @@ public final class HandlerMapping {
                     MyRequestPath methodDeclaredAnnotation = method.getDeclaredAnnotation(MyRequestPath.class);
 
                     if (methodDeclaredAnnotation != null) {
+                        //该注解上的路径
                         String urlString = getURLString(methodDeclaredAnnotation);
                         //地址
                         String urlMapping = root + urlString;
@@ -77,8 +76,11 @@ public final class HandlerMapping {
 
                         MyMethodInfo myMethodInfo = new MyMethodInfo(o, method, type);
 
-                        if (mapData.put(urlMapping, myMethodInfo) != null) {
-                            throw new HandlerException("请求地址重复:" + urlMapping);
+                        if ((myMethodInfo = mapData.putIfAbsent(urlMapping, myMethodInfo)) != null) {
+                            //地址相同，看看请求类型是否相同
+                            if (!myMethodInfo.insertRequestTypeMethodMap(type, method)) {
+                                throw new HandlerException("同一个请求地址:" + urlMapping + "中有同一个请求类型对应了多个方法");
+                            }
                         }
                     }
                 }
@@ -89,7 +91,7 @@ public final class HandlerMapping {
     }
 
     /**
-     * 获取RequestMapping注解上的路径
+     * 获取MyRequestPath注解上的路径
      *
      * @param clazzDeclaredAnnotation
      * @return
@@ -106,7 +108,7 @@ public final class HandlerMapping {
             value = clazzDeclaredAnnotation.urlPattern();
             //还是空时抛出异常
             if (value == null || "".equals(value.trim())) {
-                throw new HandlerException("RequestMapping没有配置url");
+                throw new HandlerException("MyRequestPath没有配置url");
             }
         }
         return value;

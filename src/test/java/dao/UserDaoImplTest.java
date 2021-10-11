@@ -3,7 +3,6 @@ package dao;
 import org.junit.jupiter.api.Test;
 import team.skylinekids.commonweal.dao.UserDao;
 import team.skylinekids.commonweal.dao.impl.UserDaoImpl;
-import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 
 class UserDaoImplTest {

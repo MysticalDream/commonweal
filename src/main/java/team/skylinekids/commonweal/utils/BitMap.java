@@ -2,6 +2,8 @@ package team.skylinekids.commonweal.utils;
 
 /**
  * 位图
+ * 点赞统计
+ * 数据结构
  *
  * @author MysticalDream
  */
@@ -24,7 +26,7 @@ public class BitMap {
     public boolean isExist(int num) {
         //num/32
         int arrayIndex = num >> 5;
-        //num%32 该方法只对2的N次方数系有效
+        //num%32 该方法只对2的N次方数系有效 hashmap中的容量也是2的N次方
         int bitIndex = num & 31;
         return (bitArray[arrayIndex] & (1 << bitIndex)) != 0 ? true : false;
     }

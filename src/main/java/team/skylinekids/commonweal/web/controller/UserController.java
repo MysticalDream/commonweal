@@ -49,7 +49,7 @@ public class UserController {
         return "register";
     }
 
-    @MyRequestPath("/test")
+    @MyRequestPath("/testD")
     public String test(HttpInfoWrapper httpInfoWrapper) {
         httpInfoWrapper.getParameterMap();
         Part part = httpInfoWrapper.getPart("file");
@@ -63,6 +63,17 @@ public class UserController {
             logger.error("头像图片文件保存异常", e);
         }
         return "测试";
+    }
+
+    @MyRequestPath(value = "/test", type = {RequestType.POST})
+    public String test1(HttpInfoWrapper httpInfoWrapper) {
+        return "test1";
+    }
+
+    @MyRequestPath(value = "/test/?", type = {RequestType.GET})
+    public String test2(HttpInfoWrapper httpInfoWrapper) {
+        //向前端页面返回路径参数值
+        return httpInfoWrapper.getPathVariable(Integer.class) + "";
     }
 
 }
