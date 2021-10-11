@@ -29,7 +29,6 @@ class UserDaoImplTest {
     @Test
     void getUserById() {
         User user = userDao.getUserById(2);
-        System.out.println(new UserDTO(user));
     }
 
     @Test

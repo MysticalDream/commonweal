@@ -3,7 +3,6 @@ package team.skylinekids.commonweal.pojo.po;
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 
-import java.io.File;
 import java.time.LocalDateTime;
 
 /**
@@ -47,15 +46,20 @@ public class User {
      */
     @TableField("is_available")
     private Boolean available;
+    /**
+     * 用户地区地址
+     */
+    private String location;
 
     /**
      * 默认创建一个空的用户对象
      */
     public User() {
+        //默认可用
         this.available = true;
     }
 
-    public User(int userId, String username, String password, String tel, LocalDateTime gmtCreate, LocalDateTime gmtModified, String avatarUrl, Boolean isAvailable) {
+    public User(Integer userId, String username, String password, String tel, LocalDateTime gmtCreate, LocalDateTime gmtModified, String avatarUrl, Boolean available, String location) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -63,10 +67,11 @@ public class User {
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
         this.avatarUrl = avatarUrl;
-        this.available = isAvailable;
+        this.available = available;
+        this.location = location;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -119,15 +124,23 @@ public class User {
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = new File(avatarUrl).getName();
+        this.avatarUrl = avatarUrl;
     }
 
-    public Boolean isAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 
     public void setAvailable(Boolean available) {
         this.available = available;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
@@ -140,7 +153,8 @@ public class User {
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 ", avatarUrl='" + avatarUrl + '\'' +
-                ", isAvailable=" + available +
+                ", available=" + available +
+                ", location='" + location + '\'' +
                 '}';
     }
 }

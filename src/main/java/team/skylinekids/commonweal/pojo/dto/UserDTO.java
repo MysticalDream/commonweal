@@ -2,9 +2,10 @@ package team.skylinekids.commonweal.pojo.dto;
 
 
 import team.skylinekids.commonweal.enums.Constant;
-import team.skylinekids.commonweal.pojo.po.User;
 
 /**
+ * 用户数据传输对象
+ *
  * @author MysticalDream
  */
 public class UserDTO {
@@ -25,26 +26,21 @@ public class UserDTO {
      * 用户头像url
      */
     private String avatarUrl;
+    /**
+     * 用户地区地址
+     */
+    private String location;
 
     public UserDTO() {
 
     }
 
-    public UserDTO(Integer userId, String username, String tel, String avatarUrl) {
+    public UserDTO(Integer userId, String username, String tel, String avatarUrl, String location) {
         this.userId = userId;
         this.username = username;
         this.tel = tel;
-        this.avatarUrl = Constant.IMG_URL_BASE + avatarUrl;
-    }
-
-    public UserDTO(User user) {
-        if (user != null) {
-            this.userId = user.getUserId();
-            this.username = user.getUsername();
-            this.tel = user.getTel();
-            this.avatarUrl = Constant.IMG_URL_BASE + user.getAvatarUrl();
-        }
-
+        this.avatarUrl = avatarUrl;
+        this.location = location;
     }
 
     public Integer getUserId() {
@@ -71,12 +67,25 @@ public class UserDTO {
         this.tel = tel;
     }
 
+    /**
+     * 将用户头像名和头像路劲结合
+     *
+     * @return
+     */
     public String getAvatarUrl() {
-        return avatarUrl;
+        return Constant.USER_AVATAR_URL_BASE + avatarUrl;
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = Constant.IMG_URL_BASE + avatarUrl;
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
@@ -86,6 +95,7 @@ public class UserDTO {
                 ", username='" + username + '\'' +
                 ", tel='" + tel + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
+                ", location='" + location + '\'' +
                 '}';
     }
 }
