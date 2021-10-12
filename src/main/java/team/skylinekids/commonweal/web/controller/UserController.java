@@ -2,6 +2,7 @@ package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
+import team.skylinekids.commonweal.enums.CommonConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
@@ -55,6 +56,8 @@ public class UserController {
         httpWrapper.setUserToSession(user2);
 
         UserDTO userDTO = ConversionUtils.convert(user2, UserDTO.class);
+        //拼接头像路径
+        userDTO.setAvatarUrl(CommonConstant.USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
 
         httpWrapper.setCookies(ConversionUtils.oToStringMap(userDTO), 86400);
 

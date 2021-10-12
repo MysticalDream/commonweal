@@ -73,7 +73,7 @@ public class UserDTO {
      * @return
      */
     public String getAvatarUrl() {
-        return CommonConstant.USER_AVATAR_URL_BASE + avatarUrl;
+        return  avatarUrl;
     }
 
     public void setAvatarUrl(String avatarUrl) {
