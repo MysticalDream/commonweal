@@ -2,12 +2,8 @@ package team.skylinekids.commonweal.service.impl;
 
 import team.skylinekids.commonweal.dao.UserDao;
 import team.skylinekids.commonweal.factory.DaoFactory;
-import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.service.UserService;
-import team.skylinekids.commonweal.utils.ConversionUtils;
-
-import java.sql.SQLException;
 
 /**
  * @author MysticalDream

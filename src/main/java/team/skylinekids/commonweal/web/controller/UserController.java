@@ -99,20 +99,26 @@ public class UserController {
      */
     @MyRequestPath(value = "/users", type = {RequestMethod.POST})
     public String register(HttpInfoWrapper httpWrapper) throws Exception {
-        Cookie cookie = httpWrapper.getCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING);
 
+        Cookie cookie = httpWrapper.getCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING);
         //客户端拿不到令牌值
         if (cookie == null) {
+            //移除令牌
+            removeToken(httpWrapper);
             return ResultUtils.getResult(ApiResultCode.THE_TOKEN_ERROR);
         }
         String clientToken = cookie.getValue();
         String sessionToken = (String) httpWrapper.getHttpSessionAttribute(SessionKeyConstant.SIGNUP_TOKEN_STRING);
         //令牌失效
         if (sessionToken == null) {
+            //移除令牌
+            removeToken(httpWrapper);
             return ResultUtils.getResult(ApiResultCode.THE_TOKEN_IS_INVALID);
         }
         //客户端令牌不正确
         if (!sessionToken.equals(clientToken)) {
+            //移除令牌
+            removeToken(httpWrapper);
             return ResultUtils.getResult(ApiResultCode.THE_TOKEN_ERROR);
         }
 
@@ -122,11 +128,20 @@ public class UserController {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
         //TODO 注册信息验证
-        int register = userService.register(user1);
-        if (register == 0) {
-            return ResultUtils.getResult(ApiResultCode.SERVER_RUNNING_EXCEPTION);
-        }
+        userService.register(user1);
+        //移除令牌
+        removeToken(httpWrapper);
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
+    }
+
+    /**
+     * 移除令牌
+     *
+     * @param httpInfoWrapper
+     */
+    private void removeToken(HttpInfoWrapper httpInfoWrapper) {
+        httpInfoWrapper.removeHttpSessionAttribute(SessionKeyConstant.SIGNUP_TOKEN_STRING);
+        httpInfoWrapper.setCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING, "", 0);
     }
 
     /**

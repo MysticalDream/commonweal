@@ -137,6 +137,10 @@ public class HttpInfoWrapper {
         return httpSession.getAttribute(name);
     }
 
+    public void removeHttpSessionAttribute(String name) {
+        httpSession.removeAttribute(name);
+    }
+
     /**
      * 判断用户是否登录
      *
