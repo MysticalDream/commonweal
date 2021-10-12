@@ -5,7 +5,7 @@ package team.skylinekids.commonweal.enums;
  *
  * @author MysticalDream
  */
-public interface Constant {
+public interface CommonConstant {
     /**
      * 头像客户端显示基路径
      */

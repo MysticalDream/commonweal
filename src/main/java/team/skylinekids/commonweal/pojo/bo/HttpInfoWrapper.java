@@ -2,6 +2,7 @@ package team.skylinekids.commonweal.pojo.bo;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.MediaType;
+import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.utils.GsonUtils;
 
@@ -45,10 +46,6 @@ public class HttpInfoWrapper {
      * 参数map
      */
     private Map<String, String[]> parameterMap;
-    /**
-     * 会话中保存的用户信息的键值
-     */
-    private final String USER_STRING = "USER";
     /**
      * 路径参数
      */
@@ -132,7 +129,7 @@ public class HttpInfoWrapper {
     }
 
     public User getUser() {
-        return (User) httpSession.getAttribute(USER_STRING);
+        return (User) httpSession.getAttribute(SessionKeyConstant.USER_STRING);
     }
 
     /**
@@ -145,11 +142,11 @@ public class HttpInfoWrapper {
     }
 
     public void setUserToSession(User user) {
-        httpSession.setAttribute(USER_STRING, user);
+        httpSession.setAttribute(SessionKeyConstant.USER_STRING, user);
     }
 
     public void removeUserFromSession() {
-        httpSession.removeAttribute(USER_STRING);
+        httpSession.removeAttribute(SessionKeyConstant.USER_STRING);
     }
 
     public Part getPart(String name) {

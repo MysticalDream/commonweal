@@ -1,7 +1,7 @@
 package team.skylinekids.commonweal.pojo.dto;
 
 
-import team.skylinekids.commonweal.enums.Constant;
+import team.skylinekids.commonweal.enums.CommonConstant;
 
 /**
  * 用户数据传输对象
@@ -73,7 +73,7 @@ public class UserDTO {
      * @return
      */
     public String getAvatarUrl() {
-        return Constant.USER_AVATAR_URL_BASE + avatarUrl;
+        return CommonConstant.USER_AVATAR_URL_BASE + avatarUrl;
     }
 
     public void setAvatarUrl(String avatarUrl) {

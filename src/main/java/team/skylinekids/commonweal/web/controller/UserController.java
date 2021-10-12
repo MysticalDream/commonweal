@@ -4,17 +4,16 @@ import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.factory.ServiceFactory;
+import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
+import team.skylinekids.commonweal.service.UserService;
 import team.skylinekids.commonweal.utils.ConversionUtils;
+import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
-import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
-import team.skylinekids.commonweal.service.UserService;
-import team.skylinekids.commonweal.utils.FileUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.Part;
 import java.io.IOException;
 
@@ -94,20 +93,24 @@ public class UserController {
 
     /**
      * 注册
+     * 不幂等
      *
      * @param httpWrapper
      * @return
      */
     @MyRequestPath(value = "/user", type = {RequestMethod.POST})
     public String register(HttpInfoWrapper httpWrapper) {
-
         User user1 = FillBeanUtils.fill(httpWrapper.getParameterMap(), User.class);
         //前端提交数据的字段名称或者是字段类型和后台的实体类不一致，导致无法封装
         if (user1 == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-
-        return "register";
+        //TODO 注册信息验证
+        int register = userService.register(user1);
+        if (register == 0) {
+            return ResultUtils.getResult(ApiResultCode.SERVER_RUNNING_EXCEPTION);
+        }
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
     /**
@@ -143,6 +146,12 @@ public class UserController {
         return "deleteUserById";
     }
 
+    @MyRequestPath(value = "/tokens", type = {RequestMethod.GET})
+    public String getToken(HttpInfoWrapper httpInfoWrapper) {
+
+        return "Token";
+    }
+
     @MyRequestPath("/testD")
     public String test(HttpInfoWrapper httpInfoWrapper) {
         httpInfoWrapper.getParameterMap();
@@ -159,24 +168,5 @@ public class UserController {
         return "测试";
     }
 
-    @MyRequestPath(value = "/test", type = {RequestMethod.POST})
-    public String test1(HttpInfoWrapper httpInfoWrapper) {
-        return "test1";
-    }
-
-    @MyRequestPath(value = "/test/?", type = {RequestMethod.GET})
-    public String test2(HttpInfoWrapper httpInfoWrapper) {
-        //向前端页面返回路径参数值
-        return httpInfoWrapper.getPathVariable(Integer.class) + "";
-    }
-
-    @MyRequestPath(value = "/?", type = {RequestMethod.GET})
-    public String test3(HttpInfoWrapper httpInfoWrapper) {
-        Cookie cookie = httpInfoWrapper.getCookie("location");
-        if (cookie != null) {
-            System.out.println(cookie.getValue());
-        }
-        return httpInfoWrapper.getPathVariable(Integer.class) + "";
-    }
 
 }
