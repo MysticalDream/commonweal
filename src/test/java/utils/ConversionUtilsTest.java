@@ -13,6 +13,17 @@ class ConversionUtilsTest {
 
     @Test
     void convert() {
-        System.out.println(new File("/upload/images/avatar/1.png").getName());
+
+    }
+
+    @Test
+    void Test() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername("wcj");
+        userDTO.setUserId(1);
+        userDTO.setTel("12313");
+        userDTO.setAvatarUrl("/213/1312/");
+        userDTO.setLocation("北京");
+        System.out.println(ConversionUtils.oToStringMap(userDTO));
     }
 }

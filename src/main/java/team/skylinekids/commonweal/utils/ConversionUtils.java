@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 转换工具
@@ -49,6 +51,29 @@ public class ConversionUtils {
             logger.error("实体类转化异常", e);
         }
         return null;
+    }
+
+    /**
+     * 将对象属性放到map中
+     * 值是属性值的字符串形式
+     *
+     * @param o
+     * @return
+     */
+    public static Map oToStringMap(Object o) {
+        Map<String, String> stringMap = new HashMap<>(16);
+        Field[] fields = o.getClass().getDeclaredFields();
+        try {
+            for (Field field :
+                    fields) {
+                field.setAccessible(true);
+                stringMap.put(field.getName(), GsonUtils.o2J(field.get(o)));
+                field.setAccessible(false);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return stringMap;
     }
 
 }

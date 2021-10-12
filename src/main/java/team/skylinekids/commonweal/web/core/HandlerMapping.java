@@ -1,8 +1,9 @@
 package team.skylinekids.commonweal.web.core;
 
 import org.apache.log4j.Logger;
-import team.skylinekids.commonweal.enums.RequestType;
+import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
+import team.skylinekids.commonweal.web.core.annotation.RequireLogin;
 import team.skylinekids.commonweal.web.core.exception.HandlerException;
 
 import java.lang.reflect.Method;
@@ -26,10 +27,10 @@ public final class HandlerMapping {
     /**
      * 地址和controller中的方法信息映射
      */
-    private static Map<String, MyMethodInfo> mapData = new ConcurrentHashMap<>();
+    private static Map<String, HandleInfo> mapData = new ConcurrentHashMap<>();
 
 
-    public static MyMethodInfo get(String uri) {
+    public static HandleInfo get(String uri) {
         return mapData.get(uri);
     }
 
@@ -61,9 +62,8 @@ public final class HandlerMapping {
 
                 for (Method method :
                         methods) {
-                    //获取方法下的所有注解
+                    //获取方法下的注解
                     MyRequestPath methodDeclaredAnnotation = method.getDeclaredAnnotation(MyRequestPath.class);
-
                     if (methodDeclaredAnnotation != null) {
                         //该注解上的路径
                         String urlString = getURLString(methodDeclaredAnnotation);
@@ -72,17 +72,18 @@ public final class HandlerMapping {
                         /**
                          * 请求类型
                          */
-                        RequestType[] type = methodDeclaredAnnotation.type();
+                        RequestMethod[] type = methodDeclaredAnnotation.type();
 
-                        MyMethodInfo myMethodInfo = new MyMethodInfo(o, method, type);
+                        HandleInfo handleInfo = new HandleInfo(o, method, type);
 
-                        if ((myMethodInfo = mapData.putIfAbsent(urlMapping, myMethodInfo)) != null) {
+                        if ((handleInfo = mapData.putIfAbsent(urlMapping, handleInfo)) != null) {
                             //地址相同，看看请求类型是否相同
-                            if (!myMethodInfo.insertRequestTypeMethodMap(type, method)) {
+                            if (!handleInfo.insertRequestTypeMethodMap(type, method)) {
                                 throw new HandlerException("同一个请求地址:" + urlMapping + "中有同一个请求类型对应了多个方法");
                             }
                         }
                     }
+
                 }
             }
         } catch (Exception e) {

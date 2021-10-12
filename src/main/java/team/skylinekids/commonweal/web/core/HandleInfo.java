@@ -1,17 +1,17 @@
 package team.skylinekids.commonweal.web.core;
 
-import team.skylinekids.commonweal.enums.RequestType;
+import team.skylinekids.commonweal.enums.RequestMethod;
 
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 映射对象，每个对象带有一个方法，用于处理请求
+ * 映射处理信息
  *
  * @author MysticalDream
  */
-public class MyMethodInfo {
+public class HandleInfo {
     /**
      * 实例对象
      */
@@ -21,25 +21,25 @@ public class MyMethodInfo {
      */
     private Map<String, Method> requestTypeMethodMap = new ConcurrentHashMap<>();
 
-    public MyMethodInfo(Object object, Method method, RequestType[] requestTypes) {
+    public HandleInfo(Object object, Method method, RequestMethod[] requestMethods) {
         this.object = object;
-        handleMethodInfo(requestTypes, method);
+        handleMethodInfo(requestMethods, method);
     }
 
     /**
      * 处理请求类型和方法映射
      *
-     * @param requestTypes
+     * @param requestMethods
      * @param method
      */
-    private void handleMethodInfo(RequestType[] requestTypes, Method method) {
-        for (RequestType requestType :
-                requestTypes) {
-            requestTypeMethodMap.put(requestType.getMethod(), method);
+    private void handleMethodInfo(RequestMethod[] requestMethods, Method method) {
+        for (RequestMethod requestMethod :
+                requestMethods) {
+            requestTypeMethodMap.put(requestMethod.getMethod(), method);
         }
     }
 
-    public MyMethodInfo() {
+    public HandleInfo() {
 
     }
 
@@ -53,6 +53,7 @@ public class MyMethodInfo {
 
     /**
      * 通过请求类型获取方法
+     *
      * @param method
      * @return
      */
@@ -63,14 +64,14 @@ public class MyMethodInfo {
     /**
      * 设置将请求方法和方法对应
      *
-     * @param requestTypes
+     * @param requestMethods
      * @param method
      * @return
      */
-    public boolean insertRequestTypeMethodMap(RequestType[] requestTypes, Method method) {
-        for (RequestType requestType :
-                requestTypes) {
-            if (requestTypeMethodMap.putIfAbsent(requestType.getMethod(), method) != null) {
+    public boolean insertRequestTypeMethodMap(RequestMethod[] requestMethods, Method method) {
+        for (RequestMethod requestMethod :
+                requestMethods) {
+            if (requestTypeMethodMap.putIfAbsent(requestMethod.getMethod(), method) != null) {
                 return false;
             }
         }

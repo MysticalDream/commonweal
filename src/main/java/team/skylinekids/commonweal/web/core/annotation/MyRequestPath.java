@@ -1,6 +1,6 @@
 package team.skylinekids.commonweal.web.core.annotation;
 
-import team.skylinekids.commonweal.enums.RequestType;
+import team.skylinekids.commonweal.enums.RequestMethod;
 
 import java.lang.annotation.*;
 
@@ -33,7 +33,7 @@ public @interface MyRequestPath {
      *
      * @return
      */
-    RequestType[] type() default {RequestType.GET, RequestType.POST, RequestType.PUT, RequestType.DELETE};
+    RequestMethod[] type() default {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE};
 
 
 }

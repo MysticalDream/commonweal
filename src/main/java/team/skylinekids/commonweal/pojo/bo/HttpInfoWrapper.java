@@ -6,6 +6,9 @@ import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.utils.GsonUtils;
 
 import javax.servlet.http.*;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,10 +33,6 @@ public class HttpInfoWrapper {
      * http会话
      */
     private HttpSession httpSession;
-    /**
-     * 登录的用户
-     */
-    private User user;
     /**
      * 保存part的映射
      */
@@ -69,7 +68,6 @@ public class HttpInfoWrapper {
         //Part映射初始化
         try {
             this.httpSession = httpServletRequest.getSession();
-            this.user = (User) httpSession.getAttribute(USER_STRING);
             //获取数据类型
             String header = httpServletRequest.getHeader("Content-Type");
 
@@ -97,10 +95,16 @@ public class HttpInfoWrapper {
         if (cookies == null) {
             return;
         }
-        for (Cookie cookie :
-                cookies) {
-            cookieMap.putIfAbsent(cookie.getName(), cookie);
+        try {
+            for (Cookie cookie :
+                    cookies) {
+                cookie.setValue(URLDecoder.decode(cookie.getValue(), "UTF-8"));
+                cookieMap.putIfAbsent(cookie.getName(), cookie);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
+
     }
 
     public HttpServletResponse getHttpServletResponse() {
@@ -128,11 +132,24 @@ public class HttpInfoWrapper {
     }
 
     public User getUser() {
-        return user;
+        return (User) httpSession.getAttribute(USER_STRING);
+    }
+
+    /**
+     * 判断用户是否登录
+     *
+     * @return
+     */
+    public boolean isUserLogin() {
+        return this.getUser() != null;
     }
 
     public void setUserToSession(User user) {
         httpSession.setAttribute(USER_STRING, user);
+    }
+
+    public void removeUserFromSession() {
+        httpSession.removeAttribute(USER_STRING);
     }
 
     public Part getPart(String name) {
@@ -164,6 +181,36 @@ public class HttpInfoWrapper {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(expiry);
         httpServletResponse.addCookie(cookie);
+    }
+
+    /**
+     * 获取Cookie对象
+     *
+     * @param key
+     * @return
+     */
+    public Cookie getCookie(String key) {
+        return cookieMap.get(key);
+    }
+
+    /**
+     * 用map批量添加cookie
+     *
+     * @param map
+     * @param expiry 秒
+     */
+    public void setCookies(Map<String, String> map, int expiry) {
+        try {
+            for (Map.Entry<String, String> entry :
+                    map.entrySet()) {
+                Cookie cookie = new Cookie(entry.getKey(), URLEncoder.encode(entry.getValue(), "UTF-8"));
+                cookie.setMaxAge(expiry);
+                httpServletResponse.addCookie(cookie);
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

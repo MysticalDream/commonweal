@@ -1,12 +1,12 @@
 package team.skylinekids.commonweal.enums;
 
 /**
- * HTTP请求类型
+ * HTTP请求方法
  *
  * @author MysticalDream
  */
 
-public enum RequestType {
+public enum RequestMethod {
     /**
      * GET请求
      */
@@ -26,7 +26,7 @@ public enum RequestType {
 
     private String method;
 
-    RequestType(String method) {
+    RequestMethod(String method) {
         this.method = method;
     }
 

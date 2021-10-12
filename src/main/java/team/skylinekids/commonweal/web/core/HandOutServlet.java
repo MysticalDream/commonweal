@@ -48,15 +48,15 @@ public class HandOutServlet extends HttpServlet {
      * @param response
      */
     private void doDispatch(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        //获取请求路径 比如/test/login
+        //获取请求路径 比如/users/1
         String uri = request.getRequestURI();
 
         String pathVariable = null;
 
-        MyMethodInfo myMethodInfo = HandlerMapping.get(uri);
+        HandleInfo handleInfo = HandlerMapping.get(uri);
 
         //如果找不到该方法,将url路径的最后一个路径参数变为?再次看看有木有
-        if (myMethodInfo == null) {
+        if (handleInfo == null) {
             //路径参数的开始下标
             int i = uri.lastIndexOf("/") + 1;
             pathVariable = "".equals(uri.substring(i).trim()) ? null : uri.substring(i).trim();
@@ -73,9 +73,9 @@ public class HandOutServlet extends HttpServlet {
 //                return;
 //            }
 
-            myMethodInfo = HandlerMapping.get(uri);
+            handleInfo = HandlerMapping.get(uri);
             // 资源不存在
-            if (myMethodInfo == null) {
+            if (handleInfo == null) {
                 logger.debug("404:资源不存在:" + uri);
                 response.getWriter().write(ResultUtils.getResult(ApiResultCode.THE_PAGE_NOT_FOUND));
                 return;
@@ -84,13 +84,13 @@ public class HandOutServlet extends HttpServlet {
         /**
          * 判断是否支持该请求方法
          */
-        Method method = myMethodInfo.getMethodByRequestType(request.getMethod());
+        Method method = handleInfo.getMethodByRequestType(request.getMethod());
         if (method == null) {
             response.getWriter().write(ResultUtils.getResult(ApiResultCode.REQUEST_METHOD_NOT_ALLOWED));
             logger.debug("405:请求方法不允许");
             return;
         }
-        Object object = myMethodInfo.getObject();
+        Object object = handleInfo.getObject();
         Object result = null;
         try {
             result = method.invoke(object, new HttpInfoWrapper(response, request, pathVariable));
