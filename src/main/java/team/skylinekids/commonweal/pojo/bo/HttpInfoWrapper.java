@@ -172,11 +172,22 @@ public class HttpInfoWrapper {
      *
      * @param key
      * @param value
-     * @param expiry
+     * @param expiry 秒
      */
     public void setCookie(String key, String value, int expiry) {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(expiry);
+        httpServletResponse.addCookie(cookie);
+    }
+
+    /**
+     * 设置Cookie
+     *
+     * @param key
+     * @param value
+     */
+    public void setCookie(String key, String value) {
+        Cookie cookie = new Cookie(key, value);
         httpServletResponse.addCookie(cookie);
     }
 

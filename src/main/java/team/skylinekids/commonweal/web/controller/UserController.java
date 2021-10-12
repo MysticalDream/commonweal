@@ -16,6 +16,7 @@ import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.UUID;
 
 
 /**
@@ -146,10 +147,17 @@ public class UserController {
         return "deleteUserById";
     }
 
-    @MyRequestPath(value = "/tokens", type = {RequestMethod.GET})
+    /**
+     * 获取token
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @MyRequestPath(value = "/tokens/signup", type = {RequestMethod.GET})
     public String getToken(HttpInfoWrapper httpInfoWrapper) {
-
-        return "Token";
+        String token = UUID.randomUUID().toString().replace("-", "");
+        httpInfoWrapper.setCookie("signup_token", token);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
     @MyRequestPath("/testD")
