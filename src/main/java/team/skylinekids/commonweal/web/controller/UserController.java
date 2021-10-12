@@ -128,9 +128,13 @@ public class UserController {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
         //TODO 注册信息验证
-        userService.register(user1);
-        //移除令牌
-        removeToken(httpWrapper);
+        try {
+            userService.register(user1);
+        } catch (Exception e) {
+            //移除令牌
+            removeToken(httpWrapper);
+            throw e;
+        }
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
