@@ -43,8 +43,9 @@ window.addEventListener('load', () => {
             header: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            success: function() {
-
+            success: function(data) {
+                //王财举注释:打印返回值
+                console.log(data);
             },
             error: function() {
                 alert('密码或用户名错误');
