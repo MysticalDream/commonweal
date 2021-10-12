@@ -6,7 +6,9 @@ import team.skylinekids.commonweal.utils.JDBCUtils;
 import team.skylinekids.commonweal.utils.ReflectUtils;
 import team.skylinekids.commonweal.utils.SqlUtils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +38,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer insert(T entity) {
+    public Integer insert(T entity) throws SQLException {
 
         if (entity == null) {
             throw new NullPointerException("参数entity不能为空");
@@ -71,7 +73,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer update(T entity) {
+    public Integer update(T entity) throws SQLException {
         if (entity == null) {
             logger.error("实体对象不能为空");
             throw new NullPointerException("实体对象不能为空");
@@ -97,7 +99,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer deleteByPrimaryKey(Object key) {
+    public Integer deleteByPrimaryKey(Object key) throws SQLException {
         if (key == null) {
             logger.error("key键不能为空");
             throw new NullPointerException("key键不能为空");
@@ -120,7 +122,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer delete(T entity) {
+    public Integer delete(T entity) throws SQLException {
         //删除SQL语句
         String deleteSql = "DELETE FROM " + this.tableName + "{0}";
         //获取预编译字符串
@@ -141,7 +143,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
 
 
     @Override
-    public T selectOne(T entity) {
+    public T selectOne(T entity) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         //SQL查询语句
         String selectSql = "SELECT {0} FROM " + this.tableName + " WHERE {1}";
         //select查询语句的列
@@ -173,7 +175,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public List<T> selectList(T entity) {
+    public List<T> selectList(T entity) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         //SQL查询语句
         String selectSql = "SELECT {0} FROM " + this.tableName + "{1}";
         //select查询语句的列
@@ -194,7 +196,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer selectCount(T entity) {
+    public Integer selectCount(T entity) throws SQLException {
         //SQL查询语句
         String selectSql = "SELECT COUNT({0}) FROM " + this.tableName + "{1}";
         //非空列
@@ -231,12 +233,12 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer selectAllCount() {
+    public Integer selectAllCount() throws SQLException {
         return this.selectCount(null);
     }
 
     @Override
-    public List<T> selectAll() {
+    public List<T> selectAll() throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         //SQL查询语句
         String selectSql = "SELECT {0} from " + this.tableName;
         //select查询语句的列
@@ -253,7 +255,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public T selectByPrimaryKey(Object key) {
+    public T selectByPrimaryKey(Object key) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
         //SQL查询语句
         String selectSql = "SELECT {0} from " + this.tableName + " WHERE {1}";

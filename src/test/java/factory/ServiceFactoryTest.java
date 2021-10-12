@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ServiceFactoryTest {
 
     @Test
-    void getUserService() {
+    void getUserService() throws Exception {
 
         UserService userService = ServiceFactory.getUserService();
         userService.register(new User());

@@ -1,5 +1,7 @@
 package team.skylinekids.commonweal.dao.core;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ public interface BaseMapper<T> {
      * @param entity 实体对象
      * @return 返回影响的行数
      */
-    Integer insert(T entity);
+    Integer insert(T entity) throws SQLException;
 
 
     /**
@@ -24,7 +26,7 @@ public interface BaseMapper<T> {
      * @param entity 实体对象
      * @return
      */
-    Integer update(T entity);
+    Integer update(T entity) throws SQLException;
 
     /**
      * 根据主键删除记录
@@ -32,7 +34,7 @@ public interface BaseMapper<T> {
      * @param key 主键key
      * @return 返回影响行数
      */
-    Integer deleteByPrimaryKey(Object key);
+    Integer deleteByPrimaryKey(Object key) throws SQLException;
 
     /**
      * 根据entity条件，删除记录
@@ -40,7 +42,7 @@ public interface BaseMapper<T> {
      * @param entity 实体对象
      * @return 返回影响的行数
      */
-    Integer delete(T entity);
+    Integer delete(T entity) throws SQLException;
 
 
     /**
@@ -51,7 +53,7 @@ public interface BaseMapper<T> {
      * @param entity 实体
      * @return
      */
-    T selectOne(T entity);
+    T selectOne(T entity) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
     /**
      * 根据entity条件,查询全部记录
@@ -59,14 +61,14 @@ public interface BaseMapper<T> {
      * @param entity
      * @return
      */
-    List<T> selectList(T entity);
+    List<T> selectList(T entity) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
     /**
      * 查询全部数据
      *
      * @return
      */
-    List<T> selectAll();
+    List<T> selectAll() throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
     /**
      * 通过主键字段查询
@@ -74,7 +76,7 @@ public interface BaseMapper<T> {
      * @param key
      * @return
      */
-    T selectByPrimaryKey(Object key);
+    T selectByPrimaryKey(Object key) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
 
     /**
      * 根据entity条件，查询总记录数
@@ -82,12 +84,12 @@ public interface BaseMapper<T> {
      * @param entity
      * @return
      */
-    Integer selectCount(T entity);
+    Integer selectCount(T entity) throws SQLException;
 
     /**
      * 查询总记录数
      *
      * @return
      */
-    Integer selectAllCount();
+    Integer selectAllCount() throws SQLException;
 }

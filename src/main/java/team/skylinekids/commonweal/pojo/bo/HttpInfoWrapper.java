@@ -124,12 +124,17 @@ public class HttpInfoWrapper {
         return httpSession;
     }
 
-    public void setHttpSession(HttpSession httpSession) {
-        this.httpSession = httpSession;
-    }
 
     public User getUser() {
         return (User) httpSession.getAttribute(SessionKeyConstant.USER_STRING);
+    }
+
+    public void setHttpSessionAttribute(String name, Object value) {
+        httpSession.setAttribute(name, value);
+    }
+
+    public Object getHttpSessionAttribute(String name) {
+        return httpSession.getAttribute(name);
     }
 
     /**
@@ -190,6 +195,20 @@ public class HttpInfoWrapper {
         Cookie cookie = new Cookie(key, value);
         httpServletResponse.addCookie(cookie);
     }
+
+    /**
+     * 设置Cookie
+     *
+     * @param key
+     * @param value
+     * @param url   带回路径
+     */
+    public void setCookie(String key, String value, String url) {
+        Cookie cookie = new Cookie(key, value);
+        cookie.setPath(url);
+        httpServletResponse.addCookie(cookie);
+    }
+
 
     /**
      * 获取Cookie对象

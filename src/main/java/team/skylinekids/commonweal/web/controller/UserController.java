@@ -3,20 +3,18 @@ package team.skylinekids.commonweal.web.controller;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.RequestMethod;
+import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.service.UserService;
-import team.skylinekids.commonweal.utils.ConversionUtils;
-import team.skylinekids.commonweal.utils.FileUtils;
-import team.skylinekids.commonweal.utils.FillBeanUtils;
-import team.skylinekids.commonweal.utils.ResultUtils;
+import team.skylinekids.commonweal.utils.*;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.UUID;
 
 
 /**
@@ -37,7 +35,7 @@ public class UserController {
      * @return
      */
     @MyRequestPath(value = "/sessions", type = {RequestMethod.POST})
-    public String login(HttpInfoWrapper httpWrapper) {
+    public String login(HttpInfoWrapper httpWrapper) throws Exception {
 
         if (httpWrapper.isUserLogin()) {
             //已经登录无需登录
@@ -87,7 +85,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
-    @MyRequestPath(value = "/user", type = {RequestMethod.GET})
+    @MyRequestPath(value = "/users", type = {RequestMethod.GET})
     public String getUserList(HttpInfoWrapper httpInfoWrapper) {
         return "getUserList";
     }
@@ -99,8 +97,25 @@ public class UserController {
      * @param httpWrapper
      * @return
      */
-    @MyRequestPath(value = "/user", type = {RequestMethod.POST})
-    public String register(HttpInfoWrapper httpWrapper) {
+    @MyRequestPath(value = "/users", type = {RequestMethod.POST})
+    public String register(HttpInfoWrapper httpWrapper) throws Exception {
+        Cookie cookie = httpWrapper.getCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING);
+
+        //客户端拿不到令牌值
+        if (cookie == null) {
+            return ResultUtils.getResult(ApiResultCode.THE_TOKEN_ERROR);
+        }
+        String clientToken = cookie.getValue();
+        String sessionToken = (String) httpWrapper.getHttpSessionAttribute(SessionKeyConstant.SIGNUP_TOKEN_STRING);
+        //令牌失效
+        if (sessionToken == null) {
+            return ResultUtils.getResult(ApiResultCode.THE_TOKEN_IS_INVALID);
+        }
+        //客户端令牌不正确
+        if (!sessionToken.equals(clientToken)) {
+            return ResultUtils.getResult(ApiResultCode.THE_TOKEN_ERROR);
+        }
+
         User user1 = FillBeanUtils.fill(httpWrapper.getParameterMap(), User.class);
         //前端提交数据的字段名称或者是字段类型和后台的实体类不一致，导致无法封装
         if (user1 == null) {
@@ -120,7 +135,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
-    @MyRequestPath(value = "/user/?", type = {RequestMethod.GET})
+    @MyRequestPath(value = "/users/?", type = {RequestMethod.GET})
     public String getUseInfoById(HttpInfoWrapper httpInfoWrapper) {
         return "getUseInfoById";
     }
@@ -131,7 +146,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
-    @MyRequestPath(value = "/user/?", type = {RequestMethod.PUT})
+    @MyRequestPath(value = "/users/?", type = {RequestMethod.PUT})
     public String updateUseInfoById(HttpInfoWrapper httpInfoWrapper) {
         return "updateUseInfoById";
     }
@@ -142,7 +157,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
-    @MyRequestPath(value = "/user/?", type = {RequestMethod.DELETE})
+    @MyRequestPath(value = "/users/?", type = {RequestMethod.DELETE})
     public String deleteUserById(HttpInfoWrapper httpInfoWrapper) {
         return "deleteUserById";
     }
@@ -154,10 +169,11 @@ public class UserController {
      * @return
      */
     @MyRequestPath(value = "/tokens/signup", type = {RequestMethod.GET})
-    public String getToken(HttpInfoWrapper httpInfoWrapper) {
-        String token = UUID.randomUUID().toString().replace("-", "");
-        httpInfoWrapper.setCookie("signup_token", token);
-        return ResultUtils.getResult(ApiResultCode.SUCCESS);
+    public String getSignUpToken(HttpInfoWrapper httpInfoWrapper) {
+        String token = TokenUtils.getToken();
+        httpInfoWrapper.setCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING, token, "/");
+        httpInfoWrapper.setHttpSessionAttribute(SessionKeyConstant.SIGNUP_TOKEN_STRING, token);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, token);
     }
 
     @MyRequestPath("/testD")

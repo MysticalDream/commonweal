@@ -5,6 +5,126 @@
     <title>Test</title>
 </head>
 <body>
-<h1>你好年后</h1>
+
+<script>
+    /**
+     * ajax函数
+     * @param {object} opt
+     */
+    function ajax(opt = {}) {
+        //强制opt为对象
+        opt = opt || {};
+        //http连接的方式
+        opt.method = opt.method || 'POST';
+        //发送请求的url
+        opt.url = opt.url || '';
+        //是否为异步请求，true为异步的，false为同步的
+        opt.async = opt.async || true;
+        //发送的参数，类型为对象类型
+        opt.data = opt.data || null;
+        //预期服务器返回数据类型
+        opt.dataType = opt.dataType || 'JSON';
+        //ajax发送并接收成功调用的回调函数
+        opt.success = opt.success || function () {
+        };
+        //ajax发送并接收失败调用的回调函数
+        opt.error = opt.error || function () {
+        };
+
+
+        let xhr = null;
+        if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 代码
+            xhr = new XMLHttpRequest();
+            //针对某些特定版本的mozilla浏览器的bug进行修正。
+            if (xhr.overrideMimeType) {
+                xhr.overrideMimeType('text/xml');
+            }
+        } else {
+            // IE6, IE5 代码
+            xhr = new ActiveXObject('Microsoft.XMLHTTP');
+
+        }
+        let params = [];
+
+        // Object.keys(opt.data).forEach(key => { params.push(key + '=' + opt.data[key]) });
+        for (let key in opt.data) params.push(key + '=' + opt.data[key]);
+
+        let postData = params.join('&');
+        //跨域
+        if (opt.dataType === 'JSONP') {
+            creatScript(opt.url, postData);
+        } else {
+            if (opt.method.toUpperCase() === 'POST') {
+
+                xhr.open(opt.method, opt.url, opt.async);
+
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
+                xhr.send(postData);
+                // xhr.setRequestHeader('Content-Type', 'application/json');
+                // xhr.send(JSON.stringify(data));
+            } else if (opt.method.toUpperCase() === 'GET') {
+                xhr.open(opt.method, opt.url + '?' + postData, opt.async);
+                xhr.send(null);
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    // 信息响应(100–199)，成功响应(200–299)，重定向(300–399)，客户端错误(400–499)和服务器错误 (500–599)
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        opt.success(xhr.response);
+                    } else if (xhr.status >= 400) {
+                        opt.error(xhr.status);
+                    }
+                }
+                ;
+            }
+        }
+    }
+
+    /**
+     * 动态创建script标签
+     * --------------------------------------------
+     * 同源策略，它是由Netscape提出的一个著名的安全策略
+     * 现在所有支持JavaScript 的浏览器都会使用这个策略。
+     * 所谓同源是指
+     * >>>>>>>>>>>>域名，协议，端口相同<<<<<<<<<<<<<<<<<
+     * 当一个浏览器的两个tab页中分别打开来 百度和谷歌的页面当一个百度浏览器执行一个脚本的时候会检查这个脚本是属于哪个页面的，
+     * 即检查是否同源，只有和百度同源的脚本才会被执行
+     *
+     * @param {string} url 发送请求的url
+     * @param {object} data 发送的参数
+     */
+    function creatScript(url, data) {
+        //应用搜索接口
+        //JSONP get请求
+        //利用script标签的src属性没有同源策略限制这一特点，访问非同源数据
+        let oScript = document.createElement('script');
+        //回调函数名jsonp,远程服务上调用这个函数并且将JSON 数据形式作为参数传递，完成回调
+        oScript.src = url + '?' + data + '&callback=jsonp';
+        document.body.appendChild(oScript);
+    }
+
+    ajax({
+        method: "GET",
+        url: "http://localhost:8080/tokens/signup",
+        success: function (data) {
+            console.log(JSON.parse(data));
+            ajax({
+                method: "POST",
+                url: "http://localhost:8080/users",
+                data: {
+                    username: "Java",
+                    password: "654321Aa",
+                    tel: 10086,
+                    location: "上海"
+                },
+                success: function (data) {
+                    console.log(JSON.parse(data));
+                }
+            });
+        }
+    });
+
+</script>
 </body>
 </html>

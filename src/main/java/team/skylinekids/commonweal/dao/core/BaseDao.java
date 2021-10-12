@@ -4,10 +4,7 @@ package team.skylinekids.commonweal.dao.core;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.utils.JDBCUtils;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +86,7 @@ public abstract class BaseDao<T> {
      * (2) 0 用于不返回任何内容的SQL语句
      * @since 1.0
      */
-    public int update(Connection connection, String sql, Object... args) {
+    public int update(Connection connection, String sql, Object... args) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
             //预编译sql语句
@@ -100,11 +97,11 @@ public abstract class BaseDao<T> {
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error(e.getMessage());
+            throw e;
         } finally {
             //释放资源-----连接不能关,由创建Connection的地方关闭
             JDBCUtils.close(null, preparedStatement, null);
         }
-        return 0;
     }
 
     /**
@@ -116,7 +113,7 @@ public abstract class BaseDao<T> {
      * @return 如果数据库存在该对象则返回该对象，反之返回null
      * @since 1.0
      */
-    public T getBean(Connection connection, String sql, Object... args) {
+    public T getBean(Connection connection, String sql, Object... args) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
@@ -129,11 +126,11 @@ public abstract class BaseDao<T> {
             return this.getInstance(resultSet);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            throw e;
         } finally {
             //释放资源-----连接不能关,由创建Connection的地方关闭
             JDBCUtils.close(null, preparedStatement, resultSet);
         }
-        return null;
     }
 
     /**
@@ -146,7 +143,7 @@ public abstract class BaseDao<T> {
      * 异常返回null
      * @since 1.0
      */
-    public List<T> getListBean(Connection connection, String sql, Object... args) {
+    public List<T> getListBean(Connection connection, String sql, Object... args) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
@@ -164,11 +161,11 @@ public abstract class BaseDao<T> {
             return arrayList;
         } catch (SQLException e) {
             logger.error(e.getMessage());
+            throw e;
         } finally {
             //释放资源-----连接不能关,由创建Connection的地方关闭
             JDBCUtils.close(null, preparedStatement, resultSet);
         }
-        return null;
     }
 
     /**
@@ -180,7 +177,7 @@ public abstract class BaseDao<T> {
      * @return 如果数据库有该值则返回该值的对象，反之返回null
      * @since 1.0
      */
-    public Object getSingleValue(Connection connection, String sql, Object... args) {
+    public Object getSingleValue(Connection connection, String sql, Object... args) throws SQLException {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
@@ -197,6 +194,7 @@ public abstract class BaseDao<T> {
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
+            throw e;
         } finally {
             JDBCUtils.close(null, preparedStatement, resultSet);
         }
@@ -210,13 +208,14 @@ public abstract class BaseDao<T> {
      * @param args              sql语句参数
      * @since 1.0
      */
-    private void setParameter(PreparedStatement preparedStatement, Object... args) {
+    private void setParameter(PreparedStatement preparedStatement, Object... args) throws SQLException {
         try {
             for (int i = 0, length = args.length; i < length; i++) {
                 preparedStatement.setObject(i + 1, args[i]);
             }
         } catch (SQLException e) {
             logger.error(e.getMessage());
+            throw e;
         }
     }
 
@@ -227,7 +226,7 @@ public abstract class BaseDao<T> {
      * @return 结果集有对应值则返回初始化的对象，反之返回null
      * @since 1.0
      */
-    private T getInstance(ResultSet resultSet) {
+    private T getInstance(ResultSet resultSet) throws SQLException, NoSuchFieldException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         try {
             //获取结果集元数据
             ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
@@ -253,6 +252,7 @@ public abstract class BaseDao<T> {
             }
         } catch (Exception e) {
             logger.error(e.getMessage());
+            throw e;
         }
         return null;
     }

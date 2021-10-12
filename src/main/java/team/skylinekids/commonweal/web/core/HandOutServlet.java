@@ -96,6 +96,7 @@ public class HandOutServlet extends HttpServlet {
             result = method.invoke(object, new HttpInfoWrapper(response, request, pathVariable));
         } catch (Exception e) {
             logger.error("方法调用异常:" + e.getMessage(), e);
+            response.getWriter().write(ResultUtils.getResult(ApiResultCode.SERVER_RUNNING_EXCEPTION));
         }
         //返回值不为空时
         if (result != null) {
@@ -121,7 +122,6 @@ public class HandOutServlet extends HttpServlet {
                 outputStream.close();
                 inputStream.close();
             }
-
         }
 
     }
