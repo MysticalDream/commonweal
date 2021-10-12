@@ -2,6 +2,8 @@ package team.skylinekids.commonweal.service;
 
 import team.skylinekids.commonweal.pojo.po.User;
 
+import java.sql.SQLException;
+
 /**
  * 用户服务
  *
@@ -14,7 +16,7 @@ public interface UserService {
      * @param user 注册的用户对象
      * @return 成功返回 1 说明添加成功,反之返回 0 失败
      */
-    int register(User user);
+    int register(User user) throws SQLException, Exception;
 
     /**
      * 登录
@@ -23,14 +25,14 @@ public interface UserService {
      * @param password 密码
      * @return 登录成功返回该用户信息，反之返回null
      */
-    User login(String userName, String password);
+    User login(String userName, String password) throws SQLException, Exception;
 
     /**
      * 登录
      * @param user
      * @return
      */
-    User login(User user);
+    User login(User user) throws SQLException, Exception;
 
     /**
      * 根据用户id获取用户信息
@@ -62,7 +64,7 @@ public interface UserService {
      * @param user 用户对象
      * @return 成功返回 1 说明更新成功,反之返回 0 失败
      */
-    int updateUser(User user);
+    int updateUser(User user) throws SQLException, Exception;
 
     /**
      * 更新用户密码
@@ -71,7 +73,7 @@ public interface UserService {
      * @param password 密码
      * @return 成功返回 1 说明更新成功,反之返回 0 失败
      */
-    int updateUserPassword(Integer id, String password);
+    int updateUserPassword(Integer id, String password) throws SQLException, Exception;
 
     /**
      * 删除注销用户
@@ -79,7 +81,7 @@ public interface UserService {
      * @param user 用户对像
      * @return 成功返回 1 说明删除成功,反之返回 0 失败
      */
-    int deleteUser(User user);
+    int deleteUser(User user) throws SQLException, Exception;
 
     /**
      * 根据id删除注销用户
@@ -87,5 +89,5 @@ public interface UserService {
      * @param id
      * @return
      */
-    int deleteUserById(Integer id);
+    int deleteUserById(Integer id) throws SQLException, Exception;
 }

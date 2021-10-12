@@ -28,6 +28,17 @@ public final class Base64Utils {
     /**
      * 获取base64字符串
      *
+     * @param bytes
+     * @return
+     */
+    public static String getBase64String(byte[] bytes) {
+        Base64.Encoder encoder = Base64.getEncoder();
+        return encoder.encodeToString(bytes);
+    }
+
+    /**
+     * 获取base64字符串
+     *
      * @param src
      * @return
      */

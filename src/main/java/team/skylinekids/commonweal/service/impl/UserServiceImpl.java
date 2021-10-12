@@ -2,10 +2,8 @@ package team.skylinekids.commonweal.service.impl;
 
 import team.skylinekids.commonweal.dao.UserDao;
 import team.skylinekids.commonweal.factory.DaoFactory;
-import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.service.UserService;
-import team.skylinekids.commonweal.utils.ConversionUtils;
 
 /**
  * @author MysticalDream
@@ -15,12 +13,12 @@ public class UserServiceImpl implements UserService {
     UserDao userDao = DaoFactory.getUserDao();
 
     @Override
-    public int register(User user) {
+    public int register(User user) throws Exception {
         return userDao.addUser(user);
     }
 
     @Override
-    public User login(String userName, String password) {
+    public User login(String userName, String password) throws Exception {
         User user = userDao.getUserByUserName(userName);
         if (user == null) {
             return null;
@@ -29,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(User user) {
+    public User login(User user) throws Exception {
         User user1 = userDao.getUser(user);
         return user1;
     }
@@ -52,23 +50,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateUser(User user) {
+    public int updateUser(User user) throws Exception {
         return userDao.updateUser(user);
 
     }
 
     @Override
-    public int updateUserPassword(Integer id, String password) {
+    public int updateUserPassword(Integer id, String password) throws Exception {
         return userDao.updatePassword(id, password);
     }
 
     @Override
-    public int deleteUser(User user) {
+    public int deleteUser(User user) throws Exception {
         return userDao.removeUser(user);
     }
 
     @Override
-    public int deleteUserById(Integer id) {
+    public int deleteUserById(Integer id) throws Exception {
         return userDao.removeUserById(id);
     }
 }
