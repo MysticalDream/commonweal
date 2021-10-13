@@ -13,4 +13,11 @@ class TimeUtilsTest {
         Long aLong = TimeUtils.countHours(1, MyTimeUnit.MONTH);
         System.out.println(aLong);
     }
+
+    @Test
+    void test() {
+        Long hours = TimeUtils.countHours(3, MyTimeUnit.HOUR);
+        String descriptive = TimeUtils.getDescriptiveByAmount(hours);
+        System.out.println(descriptive);
+    }
 }

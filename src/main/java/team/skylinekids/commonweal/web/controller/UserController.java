@@ -11,11 +11,13 @@ import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.service.UserService;
 import team.skylinekids.commonweal.utils.*;
+import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.Map;
 
 
 /**
@@ -111,7 +113,9 @@ public class UserController {
             removeToken(httpWrapper);
             return ResultUtils.getResult(ApiResultCode.THE_TOKEN_ERROR);
         }
+        //客户端令牌
         String clientToken = cookie.getValue();
+        //服务端令牌
         String sessionToken = (String) httpWrapper.getHttpSessionAttribute(SessionKeyConstant.SIGNUP_TOKEN_STRING);
         //令牌失效
         if (sessionToken == null) {
@@ -125,8 +129,32 @@ public class UserController {
             removeToken(httpWrapper);
             return ResultUtils.getResult(ApiResultCode.THE_TOKEN_ERROR);
         }
+        //获取注册信息
+        Map<String, String[]> signupMap = httpWrapper.getParameterMap();
+        //用户名
+        String username = (signupMap.get("username"))[0];
+        //密码1
+        String password1 = (signupMap.get("password1"))[0];
+        //密码2
+        String password2 = (signupMap.get("password2"))[0];
 
-        User user1 = FillBeanUtils.fill(httpWrapper.getParameterMap(), User.class);
+        //用户信息验证
+        if (!VerifyUtils.verifyUsername(username)) {
+            return ResultUtils.getResult(ApiResultCode.INCORRECT_USERNAME_FORMAT);
+        }
+        //密码不一致
+        if (!password1.equals(password2)) {
+            return ResultUtils.getResult(ApiResultCode.USER_PASSWORD_NOT_EQUAL);
+        }
+        //密码格式不正确
+        if (!VerifyUtils.verifyPassword(password1)) {
+            return ResultUtils.getResult(ApiResultCode.INCORRECT_PASSWORD_FORMAT);
+        }
+        //添加password属性
+        signupMap.put("password", signupMap.remove("password1"));
+        signupMap.remove("password2");
+        User user1 = FillBeanUtils.fill(signupMap, User.class);
+
         //前端提交数据的字段名称或者是字段类型和后台的实体类不一致，导致无法封装
         if (user1 == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);

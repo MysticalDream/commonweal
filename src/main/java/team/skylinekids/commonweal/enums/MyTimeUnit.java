@@ -10,17 +10,29 @@ public enum MyTimeUnit {
     /**
      * 年
      */
-    YEAR,
+    YEAR("年"),
     /**
      * 月
      */
-    MONTH,
+    MONTH("月"),
     /**
      * 天
      */
-    DAY,
+    DAY("天"),
     /**
      * 小时
      */
-    HOUR
+    HOUR("时");
+    /**
+     * 描述词
+     */
+    String description;
+
+    MyTimeUnit(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

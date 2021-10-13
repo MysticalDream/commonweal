@@ -11,6 +11,7 @@ public enum RegularConstant {
      */
     USERNAME_REGX("^\\w{3,20}$"),
     /**
+     * 密码必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间
      * 密码匹配
      */
     PASSWORD_REGX("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,10}$");
