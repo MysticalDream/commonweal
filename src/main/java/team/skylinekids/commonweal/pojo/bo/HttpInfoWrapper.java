@@ -4,13 +4,14 @@ import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.MediaType;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.pojo.po.User;
-import team.skylinekids.commonweal.utils.GsonUtils;
+import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
 import javax.servlet.http.*;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -81,7 +82,7 @@ public class HttpInfoWrapper {
             logger.error("获取Part部分出现异常", e);
         }
         //请求参数map
-        parameterMap = httpServletRequest.getParameterMap();
+        parameterMap = new HashMap<>(httpServletRequest.getParameterMap());
         //获取Cookies
         initCookie();
     }

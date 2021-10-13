@@ -1,4 +1,4 @@
-package team.skylinekids.commonweal.utils;
+package team.skylinekids.commonweal.utils.gson;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -50,7 +50,9 @@ public class GsonUtils {
                 .registerTypeAdapter(LocalDateTime.class, localDateTimeJsonSerializer)
                 .registerTypeAdapter(LocalDate.class, localDateJsonSerializer)
                 .registerTypeAdapter(LocalDateTime.class, localDateTimeJsonDeserializer)
-                .registerTypeAdapter(LocalDate.class, localDateJsonDeserializer);
+                .registerTypeAdapter(LocalDate.class, localDateJsonDeserializer)
+                .registerTypeAdapter(new TypeToken<Map<String, Object>>() {
+                }.getType(), new MapTypeAdapter());
         //yyyy-MM-dd HH:mm:ss
         //yyyy-MM-dd
         gson = gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss").create();
@@ -92,12 +94,10 @@ public class GsonUtils {
      * 将json字符串转化为map
      *
      * @param json
-     * @param <T>
      * @return
      */
-    public static <T> Map<String, T> jsonToMap(String json) {
-        Map<String, T> map = null;
-        return gson.fromJson(json, new TypeToken<Map<String, T>>() {
+    public static Map<String, Object> jsonToMap(String json) {
+        return gson.fromJson(json, new TypeToken<Map<String, Object>>() {
         }.getType());
     }
 

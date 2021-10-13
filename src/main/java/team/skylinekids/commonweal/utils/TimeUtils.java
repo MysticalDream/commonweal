@@ -49,7 +49,27 @@ public final class TimeUtils {
                 return amount;
         }
 
-
     }
 
+    /**
+     * 根据小时转化为最小可用单位
+     *
+     * @param amount 小时
+     * @return
+     */
+    public static String getDescriptiveByAmount(long amount) {
+        if (amount < DAY_OF_HOUR) {
+            //时
+            return amount + " " + MyTimeUnit.HOUR.getDescription();
+        } else if (amount < (MONTH_OF_DAY * DAY_OF_HOUR)) {
+            //天
+            return (amount / DAY_OF_HOUR) + " " + MyTimeUnit.DAY.getDescription();
+        } else if (amount < (YEAR_OF_DAY * DAY_OF_HOUR)) {
+            //月
+            return amount / DAY_OF_HOUR / MONTH_OF_DAY + " " + MyTimeUnit.MONTH.getDescription();
+        } else {
+            //年
+            return amount / YEAR_OF_DAY / DAY_OF_HOUR + " " + MyTimeUnit.YEAR.getDescription();
+        }
+    }
 }

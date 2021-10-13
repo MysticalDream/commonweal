@@ -1,8 +1,6 @@
 package team.skylinekids.commonweal.pojo.dto;
 
 
-import team.skylinekids.commonweal.enums.CommonConstant;
-
 /**
  * 用户数据传输对象
  *
