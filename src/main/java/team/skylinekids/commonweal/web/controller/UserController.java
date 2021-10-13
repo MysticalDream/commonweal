@@ -94,11 +94,12 @@ public class UserController {
     }
 
     /**
-     * 注册
+     * 注册(先请求Token)
      * 不幂等
      *
      * @param httpWrapper
      * @return
+     * @see #getSignUpToken
      */
     @MyRequestPath(value = "/users", type = {RequestMethod.POST})
     public String register(HttpInfoWrapper httpWrapper) throws Exception {
@@ -130,7 +131,6 @@ public class UserController {
         if (user1 == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-        //TODO 注册信息验证
         try {
             userService.register(user1);
         } catch (Exception e) {

@@ -2,6 +2,7 @@ package team.skylinekids.commonweal.utils;
 
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
+import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
 import java.lang.reflect.Method;
 import java.util.Map;

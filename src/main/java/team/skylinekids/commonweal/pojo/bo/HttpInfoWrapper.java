@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.MediaType;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.pojo.po.User;
-import team.skylinekids.commonweal.utils.GsonUtils;
+import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
 import javax.servlet.http.*;
 import java.io.UnsupportedEncodingException;

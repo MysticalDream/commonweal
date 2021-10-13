@@ -1,7 +1,7 @@
 package justtest;
 
 import org.junit.jupiter.api.Test;
-import team.skylinekids.commonweal.utils.GsonUtils;
+import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
