@@ -5,7 +5,9 @@ import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -141,4 +143,25 @@ public class ConversionUtils {
         return stringMap;
     }
 
+    /**
+     * 向字符列表添加分隔符合并成字符串
+     *
+     * @param list
+     * @param delimiter
+     * @return
+     */
+    public static String listToStringWithSeparator(List<? extends CharSequence> list, String delimiter) {
+        return String.join(delimiter, list);
+    }
+
+    /**
+     * 把具有分隔符的字符串分割放到list集合
+     *
+     * @param s
+     * @param delimiter
+     * @return
+     */
+    public static List<String> stringWithSeparatorToList(String s, String delimiter) {
+        return Arrays.asList(s.split(delimiter));
+    }
 }

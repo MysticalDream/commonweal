@@ -73,7 +73,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer update(T entity) throws SQLException {
+    public Integer update(T entity) throws Exception{
         if (entity == null) {
             logger.error("实体对象不能为空");
             throw new NullPointerException("实体对象不能为空");
