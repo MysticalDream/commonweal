@@ -2,16 +2,11 @@ package utils;
 
 import org.junit.jupiter.api.Test;
 import team.skylinekids.commonweal.pojo.dto.UserDTO;
-import team.skylinekids.commonweal.pojo.po.User;
-import team.skylinekids.commonweal.utils.ConversionUtils;
+import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConversionUtilsTest {
 

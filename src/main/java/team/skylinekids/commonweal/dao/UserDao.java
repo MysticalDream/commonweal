@@ -2,8 +2,6 @@ package team.skylinekids.commonweal.dao;
 
 import team.skylinekids.commonweal.pojo.po.User;
 
-import java.sql.SQLException;
-
 /**
  * @author MysticalDream
  */

@@ -28,6 +28,7 @@ public class Item {
     /**
      * 项目创建时间
      */
+    @TableField(value = "gmt_create", update = false)
     private LocalDateTime gmtCreate;
     /**
      * 最后修改信息时间
@@ -47,10 +48,6 @@ public class Item {
      */
     private String coverUrl;
     /**
-     * 项目进行地址
-     */
-    private String location;
-    /**
      * 项目预计持续时间
      */
     private String duration;
@@ -66,12 +63,20 @@ public class Item {
      * 当前项目人数
      */
     private Integer nowMen;
+    /**
+     * 省份地区
+     */
+    private String area;
+    /**
+     * 城市
+     */
+    private String city;
+    /**
+     * 项目状态 1---进行中 2----结束
+     */
+    private Integer status;
 
-    public Item() {
-        this.available = true;
-    }
-
-    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String location, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen) {
+    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String area, String city, Integer status) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemIntroduction = itemIntroduction;
@@ -80,11 +85,17 @@ public class Item {
         this.userId = userId;
         this.available = available;
         this.coverUrl = coverUrl;
-        this.location = location;
         this.duration = duration;
         this.itemCategoryId = itemCategoryId;
         this.maxMen = maxMen;
         this.nowMen = nowMen;
+        this.area = area;
+        this.city = city;
+        this.status = status;
+    }
+
+    public Item() {
+        this.available = true;
     }
 
     public Integer getItemId() {
@@ -151,14 +162,6 @@ public class Item {
         this.coverUrl = coverUrl;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getDuration() {
         return duration;
     }
@@ -191,6 +194,30 @@ public class Item {
         this.nowMen = nowMen;
     }
 
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -202,11 +229,13 @@ public class Item {
                 ", userId=" + userId +
                 ", available=" + available +
                 ", coverUrl='" + coverUrl + '\'' +
-                ", location='" + location + '\'' +
                 ", duration='" + duration + '\'' +
                 ", itemCategoryId=" + itemCategoryId +
                 ", maxMen=" + maxMen +
                 ", nowMen=" + nowMen +
+                ", area='" + area + '\'' +
+                ", city='" + city + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

@@ -2,7 +2,7 @@ package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
-import team.skylinekids.commonweal.enums.CommonConstant;
+import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
@@ -11,6 +11,7 @@ import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.service.UserService;
 import team.skylinekids.commonweal.utils.*;
+import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Cookie;
@@ -44,6 +45,7 @@ public class UserController {
             return ResultUtils.getResult(ApiResultCode.REDIRECT, "/");
         }
         User user1 = FillBeanUtils.fill(httpWrapper.getParameterMap(), User.class);
+        System.out.println(System.currentTimeMillis() + ":" + user1);
         //前端提交数据的字段名称或者是字段类型和后台的实体类不一致，导致无法封装
         if (user1 == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
@@ -58,7 +60,7 @@ public class UserController {
 
         UserDTO userDTO = ConversionUtils.convert(user2, UserDTO.class);
         //拼接头像路径
-        userDTO.setAvatarUrl(CommonConstant.USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
+        userDTO.setAvatarUrl(ResourcePathConstant.VIRTUAL_USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
 
         httpWrapper.setCookies(ConversionUtils.oToStringMap(userDTO), 86400);
 
@@ -74,7 +76,7 @@ public class UserController {
      */
     @MyRequestPath(value = "/sessions", type = {RequestMethod.DELETE})
     public String logout(HttpInfoWrapper httpInfoWrapper) {
-        if (httpInfoWrapper.isUserLogin()) {
+        if (httpInfoWrapper.isLogin()) {
             //退出登录
             httpInfoWrapper.removeUserFromSession();
             return ResultUtils.getResult(ApiResultCode.SUCCESS);
@@ -104,7 +106,6 @@ public class UserController {
      */
     @MyRequestPath(value = "/users", type = {RequestMethod.POST})
     public String register(HttpInfoWrapper httpWrapper) throws Exception {
-
         Cookie cookie = httpWrapper.getCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING);
         //客户端拿不到令牌值
         if (cookie == null) {
@@ -165,7 +166,8 @@ public class UserController {
             removeToken(httpWrapper);
             throw e;
         }
-        return ResultUtils.getResult(ApiResultCode.SUCCESS);
+        removeToken(httpWrapper);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, ConversionUtils.convert(user1, UserDTO.class));
     }
 
     /**
@@ -179,14 +181,18 @@ public class UserController {
     }
 
     /**
-     * 获取用户信息
+     * 获取用户信息根据id
      *
      * @param httpInfoWrapper
      * @return
      */
     @MyRequestPath(value = "/users/?", type = {RequestMethod.GET})
-    public String getUseInfoById(HttpInfoWrapper httpInfoWrapper) {
-        return "getUseInfoById";
+    public String getUseInfoById(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        User userById = userService.getUserById(httpInfoWrapper.getPathVariable(Integer.class));
+        if (userById == null) {
+            return ResultUtils.getResult(ApiResultCode.UNKNOWN_USER);
+        }
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, ConversionUtils.convert(userById, UserDTO.class));
     }
 
     /**
@@ -233,13 +239,12 @@ public class UserController {
             return "part为空";
         }
         try {
-            String s = FileUtils.saveAvatarByPart(part);
+            String s = FileUtils.saveResourceByPart(part, ResourcePathConstant.DISK_AVATAR_BASE_URL);
             System.out.println(s);
         } catch (IOException e) {
             logger.error("头像图片文件保存异常", e);
         }
         return "测试";
     }
-
 
 }

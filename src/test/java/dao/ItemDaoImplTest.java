@@ -19,7 +19,8 @@ class ItemDaoImplTest {
         item.setDuration("1个月");
         item.setCoverUrl("1.png");
         item.setMaxMen(100);
-        item.setLocation("广东");
+        item.setArea("广东省");
+        item.setCity("广州市");
         item.setUserId(1);
         System.out.println(itemDao.addItem(item));
     }
@@ -43,8 +44,9 @@ class ItemDaoImplTest {
         item.setItemTitle("我的更新项目");
         item.setItemIntroduction("我的测试项目介绍");
         item.setCoverUrl("123.png");
-        item.setLocation("中国境内");
         item.setDuration("一年");
+        item.setArea("广东省");
+        item.setCity("广州市");
         item.setItemCategoryId(1);
         int i = itemDao.updateItem(item);
         System.out.println(i);

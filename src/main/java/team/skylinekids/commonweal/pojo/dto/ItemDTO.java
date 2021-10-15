@@ -1,6 +1,13 @@
 package team.skylinekids.commonweal.pojo.dto;
 
+import com.google.gson.annotations.SerializedName;
+import team.skylinekids.commonweal.utils.convert.IgnoreConvert;
+
+import java.time.LocalDateTime;
+
 /**
+ * 项目
+ *
  * @author MysticalDream
  */
 public class ItemDTO {
@@ -17,6 +24,10 @@ public class ItemDTO {
      */
     private String itemIntroduction;
     /**
+     * 项目创建时间
+     */
+    private LocalDateTime gmtCreate;
+    /**
      * 拥有者用户id 项目发起者
      */
     private Integer userId;
@@ -25,38 +36,50 @@ public class ItemDTO {
      */
     private String coverUrl;
     /**
-     * 项目进行地址
-     */
-    private String location;
-
-    /**
      * 项目预计持续时间中文描述
      */
     private String duration;
     /**
      * 项目分类 描述
      */
+    @IgnoreConvert
     private String itemCategory;
     /**
      * 最大人数限制
      */
+    @SerializedName("maximumNumberLimit")
     private Integer maxMen;
     /**
      * 当前项目人数
      */
     private Integer nowMen;
+    /**
+     * 省份地区
+     */
+    private String area;
+    /**
+     * 城市
+     */
+    private String city;
+    /**
+     * 项目状态 1---进行中 2----结束
+     */
+    private Integer status;
 
-    public ItemDTO(Integer itemId, String itemTitle, String itemIntroduction, Integer userId, String coverUrl, String location, String duration, String itemCategory, Integer maxMen, Integer nowMen) {
+    public ItemDTO(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, Integer userId, String coverUrl, String duration, String itemCategory, Integer maxMen, Integer nowMen, String area, String city, Integer status) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemIntroduction = itemIntroduction;
+        this.gmtCreate = gmtCreate;
         this.userId = userId;
         this.coverUrl = coverUrl;
-        this.location = location;
         this.duration = duration;
         this.itemCategory = itemCategory;
         this.maxMen = maxMen;
         this.nowMen = nowMen;
+        this.area = area;
+        this.city = city;
+        this.status = status;
     }
 
     public ItemDTO() {
@@ -86,6 +109,14 @@ public class ItemDTO {
         this.itemIntroduction = itemIntroduction;
     }
 
+    public LocalDateTime getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(LocalDateTime gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
     public Integer getUserId() {
         return userId;
     }
@@ -100,14 +131,6 @@ public class ItemDTO {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getDuration() {
@@ -140,5 +163,48 @@ public class ItemDTO {
 
     public void setNowMen(Integer nowMen) {
         this.nowMen = nowMen;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemDTO{" +
+                "itemId=" + itemId +
+                ", itemTitle='" + itemTitle + '\'' +
+                ", itemIntroduction='" + itemIntroduction + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", userId=" + userId +
+                ", coverUrl='" + coverUrl + '\'' +
+                ", duration='" + duration + '\'' +
+                ", itemCategory='" + itemCategory + '\'' +
+                ", maxMen=" + maxMen +
+                ", nowMen=" + nowMen +
+                ", area='" + area + '\'' +
+                ", city='" + city + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

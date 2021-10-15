@@ -5,28 +5,29 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 项目分类相关工具
+ * 拙略的解决方法
  *
  * @author MysticalDream
  */
 public class CategoryUtils {
-    private static Map<Integer, String> categoryMap = new ConcurrentHashMap<>();
+
+    private static Map<String, Integer> categoryMap = new ConcurrentHashMap<>();
 
     static {
-        putCategory(1, "测试分类1");
-        putCategory(2, "测试分类2");
-        putCategory(3, "测试分类3");
-        putCategory(4, "测试分类4");
-        putCategory(5, "测试分类5");
+        String[] s = "社区服务 卫生健康 法律服务 环境保护 科技科普 文化艺术  交通引导 志愿消防 禁毒宣传 海外志愿服务 体育健身".split(" ");
+        for (int i = 1; i <= s.length; i++) {
+            putCategory(s[i - 1], i);
+        }
     }
 
     /**
-     * 获取分类对应的描述
+     * 获取分类的id
      *
-     * @param id
+     * @param name
      * @return
      */
-    public static String getCategoryNameById(int id) {
-        return categoryMap.get(id);
+    public static int getCategoryIdByName(String name) {
+        return categoryMap.get(name);
     }
 
     /**
@@ -35,7 +36,7 @@ public class CategoryUtils {
      * @param id
      * @param name
      */
-    public static void putCategory(int id, String name) {
-        categoryMap.putIfAbsent(id, name);
+    public static void putCategory(String name, int id) {
+        categoryMap.putIfAbsent(name, id);
     }
 }

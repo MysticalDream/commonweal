@@ -52,9 +52,9 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
             return 0;
         }
         //获取要插入的列的数目
-        int count = Integer.parseInt(insertCol.substring(0, 1));
+        int count = Integer.parseInt(insertCol.substring(0, insertCol.indexOf(";")));
         //截取出要插入的列
-        insertCol = insertCol.substring(1);
+        insertCol = insertCol.substring(insertCol.indexOf(";") + 1);
 
         insertSql = MessageFormat.format(insertSql, insertCol, SqlUtils.getQMByNumber(count));
 
@@ -73,7 +73,7 @@ public abstract class GenericBaseMapper<T> extends BaseDao<T> implements BaseMap
     }
 
     @Override
-    public Integer update(T entity) throws Exception{
+    public Integer update(T entity) throws Exception {
         if (entity == null) {
             logger.error("实体对象不能为空");
             throw new NullPointerException("实体对象不能为空");

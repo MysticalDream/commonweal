@@ -1,15 +1,14 @@
-package team.skylinekids.commonweal.pojo.po;
-
-import team.skylinekids.commonweal.dao.core.annotaion.TableField;
+package team.skylinekids.commonweal.pojo.dto;
 
 import java.time.LocalDateTime;
 
 /**
- * 队伍
+ * 队伍DTO
  *
  * @author MysticalDream
  */
-public class Team {
+public class TeamDTO {
+
     /**
      * 队伍id
      */
@@ -27,18 +26,9 @@ public class Team {
      */
     private LocalDateTime gmtCreate;
     /**
-     * 队伍信息修改时间
-     */
-    private LocalDateTime gmtModified;
-    /**
      * 队长id
      */
     private Integer userId;
-    /**
-     * 队伍是否可用
-     */
-    @TableField("is_available")
-    private Boolean available;
     /**
      * 队伍最大人数限制
      */
@@ -52,20 +42,18 @@ public class Team {
      */
     private String teamAvatar;
 
-    public Team(Integer teamId, String teamName, String teamIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, Integer maxMen, Integer nowMen, String teamAvatar) {
+    public TeamDTO(Integer teamId, String teamName, String teamIntroduction, LocalDateTime gmtCreate, Integer userId, Integer maxMen, Integer nowMen, String teamAvatar) {
         this.teamId = teamId;
         this.teamName = teamName;
         this.teamIntroduction = teamIntroduction;
         this.gmtCreate = gmtCreate;
-        this.gmtModified = gmtModified;
         this.userId = userId;
-        this.available = available;
         this.maxMen = maxMen;
         this.nowMen = nowMen;
         this.teamAvatar = teamAvatar;
     }
 
-    public Team() {
+    public TeamDTO() {
     }
 
     public Integer getTeamId() {
@@ -100,28 +88,12 @@ public class Team {
         this.gmtCreate = gmtCreate;
     }
 
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
     public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
     }
 
     public Integer getMaxMen() {
@@ -150,14 +122,12 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
+        return "TeamDTO{" +
                 "teamId=" + teamId +
                 ", teamName='" + teamName + '\'' +
                 ", teamIntroduction='" + teamIntroduction + '\'' +
                 ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
                 ", userId=" + userId +
-                ", available=" + available +
                 ", maxMen=" + maxMen +
                 ", nowMen=" + nowMen +
                 ", teamAvatar='" + teamAvatar + '\'' +

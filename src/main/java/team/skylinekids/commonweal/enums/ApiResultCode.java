@@ -32,7 +32,7 @@ public enum ApiResultCode {
      * 服务器错误5000-5999
      */
     SERVER_RUNNING_EXCEPTION(5000, "服务器运行异常", false),
-
+    RESOURCE_STORAGE_FAILED(5500, "资源存储异常", false),
     /**
      * 用户错误6000-6999
      */
@@ -44,7 +44,9 @@ public enum ApiResultCode {
 
     INCORRECT_USERNAME_FORMAT(6003, "用户名只能由由数字、26个英文字母或者下划线组成，长度在3-20之间", false),
 
-    INCORRECT_PASSWORD_FORMAT(6004, "密码必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间", false);
+    INCORRECT_PASSWORD_FORMAT(6004, "密码必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间", false),
+    UNKNOWN_USER(6005, "未知用户", false);
+
 
     int code;
     String message;

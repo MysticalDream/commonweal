@@ -237,7 +237,7 @@ public final class SqlUtils {
             return null;
         }
         //将列的数量加到要插入列的字符串的第一位
-        return list.size() + String.join(",", list);
+        return list.size() + ";" + String.join(",", list);
     }
 
     /**
