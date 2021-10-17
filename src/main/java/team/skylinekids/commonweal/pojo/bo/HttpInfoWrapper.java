@@ -6,7 +6,11 @@ import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -68,8 +72,7 @@ public class HttpInfoWrapper {
             this.httpSession = httpServletRequest.getSession();
             //获取数据类型
             String header = httpServletRequest.getHeader("Content-Type");
-
-            if (MediaType.MULTIPART_FORM_DATA.equals(header) || MediaType.MULTIPART_MIXED.equals(header)) {
+            if (header.contains(MediaType.MULTIPART_FORM_DATA) || header.contains(MediaType.MULTIPART_MIXED)) {
                 Collection<Part> parts = httpServletRequest.getParts();
                 for (Part part :
                         parts) {
@@ -256,4 +259,40 @@ public class HttpInfoWrapper {
         return pathVariable == null ? null : GsonUtils.j2O(pathVariable, clazz);
     }
 
+    /**
+     * 获取json数据字符串
+     *
+     * @return
+     * @throws IOException
+     */
+    public String getJsonString() throws IOException {
+        ServletInputStream inputStream = httpServletRequest.getInputStream();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            stringBuilder.append(line);
+        }
+        bufferedReader.close();
+        return stringBuilder.toString();
+    }
+
+    /**
+     * 验证用户是否登录且登录用户id和Cookie的id是否一致
+     *
+     * @return
+     */
+    public boolean isLogin() {
+        User user = getUser();
+        if (user != null) {
+            try {
+                if (user.getUserId().equals(Integer.parseInt(getCookie("userId").getValue()))) {
+                    return true;
+                }
+            } catch (NumberFormatException e) {
+                logger.error("用户id转化错误", e);
+            }
+        }
+        return false;
+    }
 }

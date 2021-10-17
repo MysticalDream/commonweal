@@ -33,8 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Integer id) {
-        User user = this.getUserById(id);
+    public User getUserById(Integer id) throws Exception {
+        User user = userDao.getUserById(id);
         return user;
     }
 

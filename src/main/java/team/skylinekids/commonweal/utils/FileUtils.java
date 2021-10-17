@@ -2,11 +2,9 @@ package team.skylinekids.commonweal.utils;
 
 
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.math.BigInteger;
+import java.nio.channels.FileChannel;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,14 +54,6 @@ public class FileUtils {
      * 空文件数组
      */
     public static final File[] EMPTY_FILE_ARRAY = new File[0];
-    /**
-     * 头像地址
-     */
-    private static final String AVATAR_BASE_URL = "D:/commonweal/images/avatar/";
-    /**
-     * 视频地址
-     */
-    private static final String VIDEO_BASE_URL = "D:/commonweal/video/";
 
 
     /**
@@ -81,6 +71,16 @@ public class FileUtils {
      */
     public static File getFile(String path) {
         return new File(path);
+    }
+
+    /**
+     * 获取文件名
+     *
+     * @param filePath
+     * @return
+     */
+    public static String getFileName(String filePath) {
+        return new File(filePath).getName();
     }
 
     /**
@@ -177,11 +177,11 @@ public class FileUtils {
      * @return
      * @throws IOException
      */
-    public static String saveAvatarByPart(Part part) throws IOException {
+    public static String saveResourceByPart(Part part, String baseUrl) throws IOException {
         //文件名
         String fileName = getRandomFileName(getFileName(part));
         //文件对象
-        File file = new File(AVATAR_BASE_URL + fileName);
+        File file = new File(baseUrl + fileName);
         //输出流
         FileOutputStream outputStream = new FileOutputStream(file);
         //输入流
@@ -201,6 +201,17 @@ public class FileUtils {
     }
 
     /**
+     * 替换url路径中的前缀路径为prefix
+     *
+     * @param url
+     * @param prefix
+     * @return
+     */
+    public static String replaceResourcePrefixPath(String url, String prefix) {
+        return prefix + (new File(url).getName());
+    }
+
+    /**
      * 获取新的随机文件名
      *
      * @param fileName
@@ -216,6 +227,77 @@ public class FileUtils {
 
         String uuidFileName = UUID.randomUUID().toString().replace("-", "") + suffix;
         return uuidFileName;
+    }
+
+    /**
+     * 复制文件
+     *
+     * @param source
+     * @param target
+     * @return
+     * @throws IOException
+     */
+    public static boolean copyFile(String source, String target) throws IOException {
+        File sourceFile = new File(source);
+        File targetFile = new File(target);
+        FileChannel in = null;
+        FileChannel out = null;
+        if (!sourceFile.exists() || !sourceFile.isFile()) {
+            throw new IllegalArgumentException(sourceFile + "文件不存在！");
+        }
+        File parent = targetFile.getParentFile();
+        // 创建目标文件路径文件夹
+        if (!parent.exists()) {
+            parent.mkdirs();
+        }
+        // 判断目标文件是否存在
+        if (targetFile.exists()) {
+            targetFile.delete();
+        }
+        // 创建目标文件
+        if (!targetFile.exists()) {
+            targetFile.createNewFile();
+        }
+        FileInputStream inStream = null;
+        FileOutputStream outStream = null;
+        try {
+            inStream = new FileInputStream(sourceFile);
+            outStream = new FileOutputStream(targetFile);
+            in = inStream.getChannel();
+            out = outStream.getChannel();
+            in.transferTo(0, in.size(), out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            inStream.close();
+            in.close();
+            outStream.close();
+            out.close();
+        }
+        if (!targetFile.exists()) {
+            return false;
+        } else if (sourceFile.length() != targetFile.length()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * 剪切文件
+     *
+     * @param source
+     * @param target
+     * @return
+     * @throws IOException
+     */
+    public static boolean cutFile(String source, String target) throws IOException {
+        if (copyFile(source, target)) {
+            deleteQuietly(new File(source));
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

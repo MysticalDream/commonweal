@@ -1,11 +1,14 @@
-package team.skylinekids.commonweal.utils;
+package team.skylinekids.commonweal.utils.convert;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,31 +55,43 @@ public class ConversionUtils {
         if (source == null) {
             return null;
         }
+
         try {
             T target = clazz.getConstructor().newInstance();
             Field[] fields = source.getClass().getDeclaredFields();
             for (Field field :
                     fields) {
-                String fieldName = field.getName();
-                Class<?> fieldType = field.getType();
-                try {
-                    clazz.getDeclaredField(fieldName);
-                } catch (NoSuchFieldException exception) {
+                IgnoreConvert annotation = field.getDeclaredAnnotation(IgnoreConvert.class);
+                if (annotation != null) {
                     continue;
                 }
-                String common = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-                String setMethodName = "set" + common;
-                String getMethodName = "get" + common;
-                Method methodSet = clazz.getMethod(setMethodName, fieldType);
-                Method methodGet = source.getClass().getMethod(getMethodName);
-                Object result = methodGet.invoke(source);
-                methodSet.invoke(target, result);
+                if (convertField(source, clazz, target, field)) {
+                    continue;
+                }
             }
             return target;
         } catch (Exception e) {
             logger.error("实体类转化异常", e);
         }
         return null;
+    }
+
+    private static <T> boolean convertField(Object source, Class<T> clazz, T target, Field field) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+        String fieldName = field.getName();
+        Class<?> fieldType = field.getType();
+        try {
+            clazz.getDeclaredField(fieldName);
+        } catch (NoSuchFieldException exception) {
+            return true;
+        }
+        String common = fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+        String setMethodName = "set" + common;
+        String getMethodName = "get" + common;
+        Method methodSet = clazz.getMethod(setMethodName, fieldType);
+        Method methodGet = source.getClass().getMethod(getMethodName);
+        Object result = methodGet.invoke(source);
+        methodSet.invoke(target, result);
+        return false;
     }
 
     public static <T, S> T convert(Object source, Class<T> clazz, Custom<S> custom) {
@@ -141,4 +156,25 @@ public class ConversionUtils {
         return stringMap;
     }
 
+    /**
+     * 向字符列表添加分隔符合并成字符串
+     *
+     * @param list
+     * @param delimiter
+     * @return
+     */
+    public static String listToStringWithSeparator(List<? extends CharSequence> list, String delimiter) {
+        return String.join(delimiter, list);
+    }
+
+    /**
+     * 把具有分隔符的字符串分割放到list集合
+     *
+     * @param s
+     * @param delimiter
+     * @return
+     */
+    public static List<String> stringWithSeparatorToList(String s, String delimiter) {
+        return Arrays.asList(s.split(delimiter));
+    }
 }

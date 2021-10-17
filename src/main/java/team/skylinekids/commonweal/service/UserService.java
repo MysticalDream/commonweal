@@ -40,7 +40,7 @@ public interface UserService {
      * @param id 用户id
      * @return 如果用户存在返回该用户, 否则返回null
      */
-    User getUserById(Integer id);
+    User getUserById(Integer id) throws Exception;
 
     /**
      * 根据用户名获取用户信息

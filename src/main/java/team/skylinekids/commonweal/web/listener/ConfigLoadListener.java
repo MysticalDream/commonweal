@@ -20,7 +20,7 @@ public class ConfigLoadListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
-        System.out.println("Log4JInitServlet 正在初始化 log4j日志设置信息");
+        System.out.println("log4j init Servlet 正在初始化 log4j日志设置信息");
         ServletContext sc = sce.getServletContext();
 
         String log4jLocation = sc.getInitParameter("log4j-properties-location");

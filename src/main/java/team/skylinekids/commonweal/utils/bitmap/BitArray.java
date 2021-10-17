@@ -1,4 +1,6 @@
-package team.skylinekids.commonweal.utils;
+package team.skylinekids.commonweal.utils.bitmap;
+
+import java.util.Map;
 
 /**
  * 位图
@@ -7,11 +9,11 @@ package team.skylinekids.commonweal.utils;
  *
  * @author MysticalDream
  */
-public class BitMap {
+public class BitArray {
 
     private int[] bitArray;
 
-    public BitMap(int size) {
+    public BitArray(int size) {
         bitArray = new int[size / 32 + 1];
     }
 

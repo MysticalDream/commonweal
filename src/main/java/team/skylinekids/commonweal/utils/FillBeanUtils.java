@@ -52,7 +52,6 @@ public class FillBeanUtils {
                         declaredMethod.invoke(obj, o);
                     }
                 } catch (Exception e) {
-                    logger.debug("填充Bean异常", e);
                     return;
                 }
             });

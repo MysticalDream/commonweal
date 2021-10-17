@@ -3,6 +3,7 @@ package team.skylinekids.commonweal.utils;
 
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
+import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -237,7 +238,7 @@ public final class SqlUtils {
             return null;
         }
         //将列的数量加到要插入列的字符串的第一位
-        return list.size() + String.join(",", list);
+        return list.size() + ";" + String.join(",", list);
     }
 
     /**
@@ -382,11 +383,42 @@ public final class SqlUtils {
         return String.join(",", list);
     }
 
-    public static <T> List<Object> getUpdateValueList(T entity) {
+    public static <T> List<Object> getUpdateValueList(T entity) throws IllegalAccessException {
         List<Object> list = new ArrayList<>();
-        List<Object> list1 = getNotNullValueList(entity);
+        List<Object> list1 = getNotNullUpdatableValueList(entity);
         list1.add(getPrimaryKeyValues(entity));
         return list1;
+    }
+
+    /**
+     * 获取可更新的列的非空值
+     *
+     * @param entity
+     * @param <T>
+     * @return
+     */
+    public static <T> List<Object> getNotNullUpdatableValueList(T entity) throws IllegalAccessException {
+        if (entity == null) {
+            return null;
+        }
+        Field[] allFields = ReflectUtils.getAllFields(entity);
+        List<Object> list = new ArrayList<>(allFields.length - 1);
+        for (Field field :
+                allFields) {
+            Object o = field.get(entity);
+            if (o == null) {
+                continue;
+            }
+            TableField fieldDeclaredAnnotation = field.getDeclaredAnnotation(TableField.class);
+            if (fieldDeclaredAnnotation != null) {
+                if (fieldDeclaredAnnotation.update()) {
+                    list.add(o);
+                }
+            } else {
+                list.add(o);
+            }
+        }
+        return list;
     }
 
     /**

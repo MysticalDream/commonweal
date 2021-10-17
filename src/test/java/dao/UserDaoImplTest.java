@@ -51,10 +51,13 @@ class UserDaoImplTest {
     }
 
     @Test
-    void updateUserAvatar() {
+    void updateUserAvatar() throws Exception {
+        int i = userDao.updateUserAvatar(1, "/images/my/13132131/isdewihiewhuczbys.png");
+        System.out.println(i);
     }
 
     @Test
     void updatePassword() {
+
     }
 }
