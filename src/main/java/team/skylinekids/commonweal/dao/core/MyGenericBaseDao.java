@@ -260,18 +260,16 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
     public Integer selectCountByCondition(String conditionSql, List<?> value) throws Exception {
         //SQL查询语句
         String selectSql = "SELECT COUNT({0}) from " + this.tableName + " WHERE {1}";
-        //select查询语句的列
-        String columns = SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(super.type), false);
         //拼接sql语句
-        selectSql = MessageFormat.format(selectSql, columns, conditionSql);
+        selectSql = MessageFormat.format(selectSql, "*", conditionSql);
 
         logger.info("===>    Preparing:" + selectSql);
 
         Connection connection = JDBCUtils.getConnection();
+        Object[] array = value.toArray();
+        logger.info("===>    Parameters:" + Arrays.toString(array));
 
-        logger.info("===>    Parameters:" + Arrays.toString(value.toArray()));
-
-        Number singleValue = (Number) this.getSingleValue(connection, selectSql, value);
+        Number singleValue = (Number) this.getSingleValue(connection, selectSql, array);
 
         return singleValue.intValue();
     }

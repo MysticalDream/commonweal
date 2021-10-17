@@ -38,7 +38,7 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
     }
 
     @Override
-    public List<Item> getByConditionString(ItemCondition itemCondition) throws Exception {
+    public Page<Item> getByConditionString(ItemCondition itemCondition) throws Exception {
         /**
          * 省份/直辖市
          */
@@ -104,9 +104,18 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
         page.setPageSize(pageSize);
 
+        Integer total = this.selectCountByCondition(sql, values);
+
         sql += "LIMIT " + page.getStartRow() + "," + page.getPageSize();
 
-        return this.selectListByConditionString(sql, values);
+        List<Item> items = this.selectListByConditionString(sql, values);
 
+        page.setTotal(total);
+
+        page.setList(items);
+
+        page.setSize(items.size());
+
+        return page;
     }
 }
