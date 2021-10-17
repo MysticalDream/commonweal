@@ -3,7 +3,10 @@ package team.skylinekids.commonweal.service.impl;
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.factory.DaoFactory;
 import team.skylinekids.commonweal.pojo.po.Item;
+import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.service.ItemService;
+
+import java.util.List;
 
 /**
  * 项目服务实现类
@@ -27,5 +30,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public int updateItem(Item item) throws Exception {
         return itemDao.updateItem(item);
+    }
+
+    @Override
+    public List<Item> getItemByCondition(ItemCondition itemCondition) throws Exception {
+        
+        return null;
     }
 }

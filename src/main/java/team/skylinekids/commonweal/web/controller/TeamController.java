@@ -2,11 +2,10 @@ package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
-import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
+import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
-import team.skylinekids.commonweal.pojo.dto.TeamDTO;
 import team.skylinekids.commonweal.pojo.po.Team;
 import team.skylinekids.commonweal.service.TeamService;
 import team.skylinekids.commonweal.utils.FileUtils;
@@ -15,7 +14,6 @@ import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
-import java.io.IOException;
 
 /**
  * 团队Controller
@@ -53,11 +51,16 @@ public class TeamController {
         team.setTeamAvatar(fileName);
         //队伍创建者用户id
         team.setUserId(httpInfoWrapper.getUser().getUserId());
-
         teamService.createTeam(team);
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
+    /**
+     * 团队头像上传
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
     @MyRequestPath(value = "/teams/cover", type = {RequestMethod.POST})
     public String uploadTeamAvatar(HttpInfoWrapper httpInfoWrapper) {
         Part coverPart = httpInfoWrapper.getPart("team_cover");

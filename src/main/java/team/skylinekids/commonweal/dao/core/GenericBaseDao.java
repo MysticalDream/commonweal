@@ -1,6 +1,5 @@
 package team.skylinekids.commonweal.dao.core;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -9,7 +8,7 @@ import java.util.List;
  * @param <T> 对应要处理的类型
  * @author MysticalDream
  */
-public interface BaseMapper<T> {
+public interface GenericBaseDao<T> {
     /**
      * 插入一条记录
      *
@@ -55,12 +54,22 @@ public interface BaseMapper<T> {
     T selectOne(T entity) throws Exception;
 
     /**
-     * 根据entity条件,查询全部记录
+     * 根据entity条件,查询
      *
      * @param entity
      * @return
      */
     List<T> selectList(T entity) throws Exception;
+
+    /**
+     * 根据条件查询记录
+     *
+     * @param conditionSql
+     * @param value
+     * @return
+     * @throws Exception
+     */
+    List<T> selectListByConditionString(String conditionSql, List<?> value) throws Exception;
 
     /**
      * 查询全部数据
@@ -84,6 +93,16 @@ public interface BaseMapper<T> {
      * @return
      */
     Integer selectCount(T entity) throws Exception;
+
+    /**
+     * 根据条件查询记录数
+     *
+     * @param conditionSql 预编译条件查询语句
+     * @param value
+     * @return
+     * @throws Exception
+     */
+    Integer selectCountByCondition(String conditionSql, List<?> value) throws Exception;
 
     /**
      * 查询总记录数

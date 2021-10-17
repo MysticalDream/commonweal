@@ -40,6 +40,9 @@ public class Page<T> implements Serializable {
         this.list = list;
     }
 
+    public Page() {
+    }
+
     /**
      * 获取开始记录
      *

@@ -66,17 +66,21 @@ public class Item {
     /**
      * 省份地区
      */
-    private String area;
+    private String province;
     /**
      * 城市
      */
     private String city;
     /**
+     * 县区
+     */
+    private String area;
+    /**
      * 项目状态 1---进行中 2----结束
      */
     private Integer status;
 
-    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String area, String city, Integer status) {
+    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemIntroduction = itemIntroduction;
@@ -89,13 +93,13 @@ public class Item {
         this.itemCategoryId = itemCategoryId;
         this.maxMen = maxMen;
         this.nowMen = nowMen;
-        this.area = area;
+        this.province = province;
         this.city = city;
+        this.area = area;
         this.status = status;
     }
 
     public Item() {
-        this.available = true;
     }
 
     public Integer getItemId() {
@@ -194,12 +198,12 @@ public class Item {
         this.nowMen = nowMen;
     }
 
-    public String getArea() {
-        return area;
+    public String getProvince() {
+        return province;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCity() {
@@ -208,6 +212,14 @@ public class Item {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public Integer getStatus() {
@@ -233,8 +245,9 @@ public class Item {
                 ", itemCategoryId=" + itemCategoryId +
                 ", maxMen=" + maxMen +
                 ", nowMen=" + nowMen +
-                ", area='" + area + '\'' +
+                ", province='" + province + '\'' +
                 ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
                 ", status=" + status +
                 '}';
     }

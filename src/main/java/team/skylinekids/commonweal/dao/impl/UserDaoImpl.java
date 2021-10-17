@@ -1,13 +1,13 @@
 package team.skylinekids.commonweal.dao.impl;
 
 import team.skylinekids.commonweal.dao.UserDao;
-import team.skylinekids.commonweal.dao.core.GenericBaseMapper;
+import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
 import team.skylinekids.commonweal.pojo.po.User;
 
 /**
  * @author MysticalDream
  */
-public class UserDaoImpl extends GenericBaseMapper<User> implements UserDao {
+public class UserDaoImpl extends MyGenericBaseDao<User> implements UserDao {
 
     @Override
     public int addUser(User user) throws Exception {

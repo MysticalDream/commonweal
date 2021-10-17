@@ -1,4 +1,4 @@
-package team.skylinekids.commonweal.utils;
+package team.skylinekids.commonweal.utils.reflect;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -109,5 +109,33 @@ public class ReflectUtils {
         for (int i = 0; i < fields.length; i++) {
             fields[i].setAccessible(true);
         }
+    }
+
+    /**
+     * 收集非空值属性到列表
+     *
+     * @param entity
+     * @param <T>
+     * @return
+     */
+    public static <T> List<Object> collectNonNullValuesToList(T entity) {
+
+        Field[] allFields = getAllFields(entity);
+        List<Object> list = new ArrayList<>(allFields.length);
+        try {
+            for (Field field :
+                    allFields) {
+                IgnoreCollection annotation = field.getDeclaredAnnotation(IgnoreCollection.class);
+                if (annotation != null) {
+                    continue;
+                }
+                if (field.get(entity) != null) {
+                    list.add(field.get(entity));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

@@ -1,6 +1,7 @@
 package team.skylinekids.commonweal.dao;
 
 import team.skylinekids.commonweal.pojo.po.Item;
+import team.skylinekids.commonweal.pojo.query.ItemCondition;
 
 import java.util.List;
 
@@ -44,4 +45,14 @@ public interface ItemDao {
      * @return
      */
     int updateItem(Item item) throws Exception;
+
+    /**
+     * 条件查询项目
+     *
+     * @param itemCondition
+     * @return
+     * @throws Exception
+     */
+    List<Item> getByConditionString(ItemCondition itemCondition) throws Exception;
+
 }

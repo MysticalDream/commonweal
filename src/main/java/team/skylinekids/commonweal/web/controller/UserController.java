@@ -77,6 +77,8 @@ public class UserController {
     @MyRequestPath(value = "/sessions", type = {RequestMethod.DELETE})
     public String logout(HttpInfoWrapper httpInfoWrapper) {
         if (httpInfoWrapper.isLogin()) {
+            //清除Cookie
+            httpInfoWrapper.setCookies(ConversionUtils.oToStringMap(new UserDTO()), 0);
             //退出登录
             httpInfoWrapper.removeUserFromSession();
             return ResultUtils.getResult(ApiResultCode.SUCCESS);
@@ -188,6 +190,9 @@ public class UserController {
      */
     @MyRequestPath(value = "/users/?", type = {RequestMethod.GET})
     public String getUseInfoById(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
         User userById = userService.getUserById(httpInfoWrapper.getPathVariable(Integer.class));
         if (userById == null) {
             return ResultUtils.getResult(ApiResultCode.UNKNOWN_USER);
