@@ -3,10 +3,12 @@ package team.skylinekids.commonweal.dao.impl;
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.utils.ScopeUtils;
 import team.skylinekids.commonweal.utils.StringUtils;
+import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,7 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
     }
 
     @Override
-    public Page<Item> getByConditionString(ItemCondition itemCondition) throws Exception {
+    public Page<ItemDTO> getByConditionString(ItemCondition itemCondition) throws Exception {
         /**
          * 省份/直辖市
          */
@@ -98,7 +100,7 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
         String sql = String.join(" AND ", conditionSql);
         //分页
-        Page<Item> page = new Page<>();
+        Page<ItemDTO> page = new Page<>();
 
         page.setPageNum(pageNum);
 
@@ -110,12 +112,23 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
         List<Item> items = this.selectListByConditionString(sql, values);
 
+        List<ItemDTO> itemDTOs = ConversionUtils.convertList(items, ItemDTO.class);
+        /**
+         * 总记录数
+         */
         page.setTotal(total);
-
-        page.setList(items);
-
-        page.setSize(items.size());
+        /**
+         * 数据
+         */
+        page.setList(itemDTOs);
+        /**
+         * 当前页数据数量
+         */
+        page.setSize(itemDTOs.size());
+        //计算页数
+        page.setPagesAuto();
 
         return page;
     }
+
 }

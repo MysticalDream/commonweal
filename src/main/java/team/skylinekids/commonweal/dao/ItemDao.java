@@ -1,6 +1,7 @@
 package team.skylinekids.commonweal.dao;
 
 import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 
@@ -54,6 +55,8 @@ public interface ItemDao {
      * @return
      * @throws Exception
      */
-    Page<Item> getByConditionString(ItemCondition itemCondition) throws Exception;
+    Page<ItemDTO> getByConditionString(ItemCondition itemCondition) throws Exception;
+
+
 
 }

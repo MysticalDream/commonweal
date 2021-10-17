@@ -197,6 +197,7 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
     public List<T> selectListByConditionString(String conditionSql, List<?> value) throws Exception {
         //SQL查询语句
         String selectSql = "SELECT {0} FROM " + this.tableName + " WHERE {1}";
+
         //select查询语句的列
         String columns = SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(super.type), true);
 
@@ -306,7 +307,6 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
         Connection connection = JDBCUtils.getConnection();
         logger.info("===>    Parameters:" + key);
         T bean = this.getBean(connection, selectSql, key);
-
         return bean;
     }
 

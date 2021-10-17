@@ -1,15 +1,15 @@
 package team.skylinekids.commonweal.utils.convert;
 
 import org.apache.log4j.Logger;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
+import team.skylinekids.commonweal.pojo.po.Item;
+import team.skylinekids.commonweal.utils.CategoryUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 转换工具
@@ -43,6 +43,27 @@ public class ConversionUtils {
         Class<T> getType(String fieldName);
     }
 
+    /**
+     * 列表转化
+     *
+     * @param srcList
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public static <T> List<T> convertList(List<?> srcList, Class<T> clazz) {
+        List<T> tList = new ArrayList<>(srcList.size());
+        for (Object e : srcList) {
+            T convert = convert(e, clazz);
+            if (convert instanceof ItemDTO && e instanceof Item) {
+                Integer id = ((Item) e).getItemCategoryId();
+                String categoryName = CategoryUtils.getCategoryNameById(id.intValue());
+                ((ItemDTO) convert).setItemCategory(categoryName);
+            }
+            tList.add(convert);
+        }
+        return tList;
+    }
 
     /**
      * pojo类之间同名域的转化

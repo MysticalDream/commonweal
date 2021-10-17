@@ -1,9 +1,10 @@
 package team.skylinekids.commonweal.service;
 
+import team.skylinekids.commonweal.dao.ItemDao;
+import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
-
-import java.util.List;
 
 /**
  * 项目业务服务层接口
@@ -42,6 +43,6 @@ public interface ItemService {
      * @return
      * @throws Exception
      */
-    List<Item> getItemByCondition(ItemCondition itemCondition) throws Exception;
+   Page<ItemDTO> getItemByCondition(ItemCondition itemCondition) throws Exception;
 
 }

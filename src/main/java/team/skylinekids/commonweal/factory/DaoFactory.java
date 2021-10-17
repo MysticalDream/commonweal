@@ -1,9 +1,11 @@
 package team.skylinekids.commonweal.factory;
 
 import team.skylinekids.commonweal.dao.ItemDao;
+import team.skylinekids.commonweal.dao.ProvinceDao;
 import team.skylinekids.commonweal.dao.TeamDao;
 import team.skylinekids.commonweal.dao.UserDao;
 import team.skylinekids.commonweal.dao.impl.ItemDaoImpl;
+import team.skylinekids.commonweal.dao.impl.ProvinceDaoImpl;
 import team.skylinekids.commonweal.dao.impl.TeamDaoImpl;
 import team.skylinekids.commonweal.dao.impl.UserDaoImpl;
 
@@ -27,6 +29,10 @@ public class DaoFactory {
 
     public static TeamDao getTeamDao() {
         return new TeamDaoImpl();
+    }
+
+    public static ProvinceDao getProvinceDao() {
+        return new ProvinceDaoImpl();
     }
 
 }

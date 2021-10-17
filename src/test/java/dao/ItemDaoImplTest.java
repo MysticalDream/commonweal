@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.dao.impl.ItemDaoImpl;
 import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
@@ -68,7 +69,7 @@ class ItemDaoImplTest {
                 "\t\"pageNum\": \"1\"\n" +
                 "}", ItemCondition.class);
 
-        Page<Item> byConditionString = itemDao.getByConditionString(itemCondition);
+        Page<ItemDTO> byConditionString = itemDao.getByConditionString(itemCondition);
 
         byConditionString.getList().forEach(System.out::println);
     }

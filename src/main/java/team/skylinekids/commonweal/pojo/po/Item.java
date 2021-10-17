@@ -80,6 +80,7 @@ public class Item {
      */
     private Integer status;
 
+
     public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;

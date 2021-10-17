@@ -6,6 +6,7 @@ import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
+import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
@@ -74,13 +75,29 @@ public class ItemController {
      * @throws IOException
      */
     @MyRequestPath(value = "/items/conditions", type = {RequestMethod.GET})
-    public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws IOException {
+    public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
         //项目查询条件
         ItemCondition itemCondition = GsonUtils.j2O(httpInfoWrapper.getJsonString(), ItemCondition.class);
         //项目分类id设置
         itemCondition.setItemCategoryId(CategoryUtils.getCategoryIdByName(itemCondition.getItemCategory()));
+        //根据条件获取项目数据
+        Page<ItemDTO> items = itemService.getItemByCondition(itemCondition);
 
-        return "获取项目";
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, items);
+    }
+
+    /**
+     * 根据项目id获取项目信息
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @MyRequestPath(value = "/items/?", type = {RequestMethod.GET})
+    public String getItemsByItemId(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        Item item = itemService.getItemById(httpInfoWrapper.getPathVariable(Integer.class));
+        ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, itemDTO);
+
     }
 
     public String updateItem(HttpInfoWrapper httpInfoWrapper) {
