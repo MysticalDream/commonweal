@@ -18,7 +18,7 @@ public class ItemAchievement {
     @TableField(value = "id", update = false, insert = false)
     private Integer id;
     /**
-     * 成就配图,保存多张图片分割符为",",比如"1.png,2.png,3.png"
+     * 成就配图
      */
     private String coverUrl;
     /**

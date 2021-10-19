@@ -1,6 +1,11 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.TeamDTO;
 import team.skylinekids.commonweal.pojo.po.Team;
+import team.skylinekids.commonweal.pojo.query.TeamCondition;
+
+import java.util.List;
 
 /**
  * 队伍Dao
@@ -35,5 +40,23 @@ public interface TeamDao {
      * @throws Exception
      */
     int updateTeam(Team team) throws Exception;
+
+    /**
+     * 获取项目团队成员列表
+     *
+     * @param itemId
+     * @return
+     * @throws Exception
+     */
+    List<Team> getItemTeamList(Integer itemId) throws Exception;
+
+    /**
+     * 条件搜索团队
+     *
+     * @param teamCondition
+     * @return
+     * @throws Exception
+     */
+    Page<TeamDTO> getTeamByCondition(TeamCondition teamCondition) throws Exception;
 
 }

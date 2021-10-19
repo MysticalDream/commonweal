@@ -6,10 +6,14 @@ import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
+import team.skylinekids.commonweal.pojo.bo.ItemBO;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
+import team.skylinekids.commonweal.pojo.po.ItemMemberMap;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
+import team.skylinekids.commonweal.service.ItemBOService;
+import team.skylinekids.commonweal.service.ItemMemberMapService;
 import team.skylinekids.commonweal.service.ItemService;
 import team.skylinekids.commonweal.utils.CategoryUtils;
 import team.skylinekids.commonweal.utils.FileUtils;
@@ -20,6 +24,7 @@ import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 项目Controller
@@ -31,6 +36,10 @@ public class ItemController {
     private final Logger logger = Logger.getLogger(ItemController.class);
 
     ItemService itemService = ServiceFactory.getItemService();
+
+    ItemMemberMapService itemMemberMapService = ServiceFactory.getItemMemberMapService();
+
+    ItemBOService itemBOService = ServiceFactory.getItemBOService();
 
     /**
      * 添加项目
@@ -96,13 +105,32 @@ public class ItemController {
     public String getItemsByItemId(HttpInfoWrapper httpInfoWrapper) throws Exception {
         Item item = itemService.getItemById(httpInfoWrapper.getPathVariable(Integer.class));
         ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
+        itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
         return ResultUtils.getResult(ApiResultCode.SUCCESS, itemDTO);
 
     }
 
     public String updateItem(HttpInfoWrapper httpInfoWrapper) {
-
         return "更新项目";
+    }
+
+    /**
+     * 获取指定用户所创建的项目
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @MyRequestPath(value = "/items/user/?", type = {RequestMethod.GET})
+    public String getItemsByUserId(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
+        Integer pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
+        if (!httpInfoWrapper.getUser().getUserId().equals(pathVariable)) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
+        List<ItemDTO> items = itemService.getItemsByUserId(pathVariable);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, items);
     }
 
     /**
@@ -128,9 +156,45 @@ public class ItemController {
         }
     }
 
-    public String joinItem(HttpInfoWrapper httpInfoWrapper) {
-
+    /**
+     * 加入项目
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/items/enter", type = {RequestMethod.POST})
+    public String joinItem(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        String jsonString = httpInfoWrapper.getJsonString();
+        ItemMemberMap itemMemberMap = GsonUtils.j2O(jsonString, ItemMemberMap.class);
+        itemMemberMapService.addMember(itemMemberMap);
         return "加入项目";
+    }
+
+    /**
+     * 获取用户加入的项目
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/items/participated/user/?", type = {RequestMethod.GET})
+    public String getItemUserParticipates(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        List<ItemDTO> itemDTOS = itemService.getUserEnterItemList(httpInfoWrapper.getPathVariable(Integer.class));
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, itemDTOS);
+    }
+
+    /**
+     * 根据项目id获取项目成员
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/items/members/?")
+    public String getItemMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        ItemBO itemBO = itemBOService.getItemBOByItemId(httpInfoWrapper.getPathVariable(Integer.class));
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, itemBO);
     }
 
 }

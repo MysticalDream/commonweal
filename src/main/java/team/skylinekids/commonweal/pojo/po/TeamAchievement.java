@@ -18,7 +18,7 @@ public class TeamAchievement {
     @TableField(value = "id", update = false, insert = false)
     private Integer id;
     /**
-     * 成就配图,保存多张图片分割符为",",比如"1.png,2.png,3.png"
+     * 成就配图
      */
     private String coverUrl;
     /**
@@ -30,7 +30,7 @@ public class TeamAchievement {
      */
     private Integer teamId;
     /**
-     * 项目成就创建时间
+     * 团队成就创建时间
      */
     private LocalDateTime gmtCreate;
 
@@ -38,5 +38,77 @@ public class TeamAchievement {
      * 最后修改信息时间
      */
     private LocalDateTime gmtModified;
+    /**
+     * 点赞数
+     */
+    private Long loveNumber;
 
+    public TeamAchievement(Integer id, String coverUrl, String introduction, Integer teamId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber) {
+        this.id = id;
+        this.coverUrl = coverUrl;
+        this.introduction = introduction;
+        this.teamId = teamId;
+        this.gmtCreate = gmtCreate;
+        this.gmtModified = gmtModified;
+        this.loveNumber = loveNumber;
+    }
+
+    public TeamAchievement() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public Integer getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Integer teamId) {
+        this.teamId = teamId;
+    }
+
+    public LocalDateTime getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(LocalDateTime gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public LocalDateTime getGmtModified() {
+        return gmtModified;
+    }
+
+    public void setGmtModified(LocalDateTime gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public Long getLoveNumber() {
+        return loveNumber;
+    }
+
+    public void setLoveNumber(Long loveNumber) {
+        this.loveNumber = loveNumber;
+    }
 }

@@ -39,7 +39,7 @@ public class CategoryUtils {
      * @param name
      * @return
      */
-    public static int getCategoryIdByName(String name) {
+    public static Integer getCategoryIdByName(String name) {
         return categoryIdMap.get(name);
     }
 

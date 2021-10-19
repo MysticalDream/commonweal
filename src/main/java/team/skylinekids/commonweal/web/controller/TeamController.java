@@ -6,7 +6,10 @@ import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
+import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.TeamDTO;
 import team.skylinekids.commonweal.pojo.po.Team;
+import team.skylinekids.commonweal.pojo.query.TeamCondition;
 import team.skylinekids.commonweal.service.TeamService;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
@@ -74,5 +77,31 @@ public class TeamController {
             logger.error("团队封面上传处理失败", e);
             return ResultUtils.getResult(ApiResultCode.RESOURCE_STORAGE_FAILED);
         }
+    }
+
+    /**
+     * 根据条件获取团队信息
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/teams/conditions", type = {RequestMethod.GET})
+    public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        String jsonString = httpInfoWrapper.getJsonString();
+        TeamCondition teamCondition = GsonUtils.j2O(jsonString, TeamCondition.class);
+        Page<TeamDTO> teamByCondition = teamService.getTeamByCondition(teamCondition);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, teamByCondition);
+    }
+
+    /**
+     * 根据团队id获取团队成员列表
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @MyRequestPath(value = "/teams/members/?", type = {RequestMethod.GET})
+    public String getTeamMember(HttpInfoWrapper httpInfoWrapper) {
+        return "";
     }
 }

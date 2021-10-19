@@ -5,6 +5,8 @@ import team.skylinekids.commonweal.dao.UserDao;
 import team.skylinekids.commonweal.dao.impl.UserDaoImpl;
 import team.skylinekids.commonweal.pojo.po.User;
 
+import java.util.List;
+
 class UserDaoImplTest {
 
     UserDao userDao = new UserDaoImpl();
@@ -59,5 +61,11 @@ class UserDaoImplTest {
     @Test
     void updatePassword() {
 
+    }
+
+    @Test
+    void getItemUserList() throws Exception {
+        List<User> userList = userDao.getItemUserList(1);
+        userList.forEach(System.out::println);
     }
 }

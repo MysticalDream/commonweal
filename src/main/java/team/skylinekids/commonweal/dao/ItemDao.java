@@ -57,6 +57,22 @@ public interface ItemDao {
      */
     Page<ItemDTO> getByConditionString(ItemCondition itemCondition) throws Exception;
 
+    /**
+     * 根据用户id获取项目列表
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    List<Item> getItemsByUserId(Integer id) throws Exception;
 
+    /**
+     * 根据用户id获取用户参加的项目
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    List<Item> getUserEnterItemList(Integer id) throws Exception;
 
 }

@@ -1,13 +1,7 @@
 package team.skylinekids.commonweal.factory;
 
-import team.skylinekids.commonweal.service.ItemService;
-import team.skylinekids.commonweal.service.ProvinceService;
-import team.skylinekids.commonweal.service.TeamService;
-import team.skylinekids.commonweal.service.UserService;
-import team.skylinekids.commonweal.service.impl.ItemServiceImpl;
-import team.skylinekids.commonweal.service.impl.ProvinceServiceImpl;
-import team.skylinekids.commonweal.service.impl.TeamServiceImpl;
-import team.skylinekids.commonweal.service.impl.UserServiceImpl;
+import team.skylinekids.commonweal.service.*;
+import team.skylinekids.commonweal.service.impl.*;
 
 /**
  * 获取Service对象的代理工厂
@@ -30,6 +24,18 @@ public class ServiceFactory {
 
     public static ProvinceService getProvinceService() {
         return ProxyFactory.getTransactionProxy(new ProvinceServiceImpl());
+    }
+
+    public static ItemMemberMapService getItemMemberMapService() {
+        return ProxyFactory.getTransactionProxy(new ItemMemberMapServiceImpl());
+    }
+
+    public static ItemBOService getItemBOService() {
+        return ProxyFactory.getTransactionProxy(new ItemBOServiceImpl());
+    }
+
+    public static ThumbService getThumbService() {
+        return new ThumbServiceImpl();
     }
 
 }

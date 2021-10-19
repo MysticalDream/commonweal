@@ -1,10 +1,11 @@
 package team.skylinekids.commonweal.service;
 
-import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
+
+import java.util.List;
 
 /**
  * 项目业务服务层接口
@@ -43,6 +44,24 @@ public interface ItemService {
      * @return
      * @throws Exception
      */
-   Page<ItemDTO> getItemByCondition(ItemCondition itemCondition) throws Exception;
+    Page<ItemDTO> getItemByCondition(ItemCondition itemCondition) throws Exception;
+
+    /**
+     * 根据用户id获取项目列表
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    List<ItemDTO> getItemsByUserId(Integer id) throws Exception;
+
+    /**
+     * 获取用户参加的项目
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    List<ItemDTO> getUserEnterItemList(Integer id) throws Exception;
 
 }

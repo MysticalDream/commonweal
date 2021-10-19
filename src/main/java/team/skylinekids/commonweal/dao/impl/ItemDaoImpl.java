@@ -1,14 +1,18 @@
 package team.skylinekids.commonweal.dao.impl;
 
+import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
+import team.skylinekids.commonweal.utils.JDBCUtils;
 import team.skylinekids.commonweal.utils.ScopeUtils;
+import team.skylinekids.commonweal.utils.SqlUtils;
 import team.skylinekids.commonweal.utils.StringUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
+import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,8 @@ import java.util.List;
  * @author MysticalDream
  */
 public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
+    private final Logger logger = Logger.getLogger(ItemDaoImpl.class);
+
     @Override
     public int addItem(Item item) throws Exception {
         return this.insert(item);
@@ -99,6 +105,9 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         }
 
         String sql = String.join(" AND ", conditionSql);
+        if (!"".equals(sql)) {
+            sql = " WHERE " + sql;
+        }
         //分页
         Page<ItemDTO> page = new Page<>();
 
@@ -108,7 +117,7 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
         Integer total = this.selectCountByCondition(sql, values);
 
-        sql += "LIMIT " + page.getStartRow() + "," + page.getPageSize();
+        sql += " LIMIT " + page.getStartRow() + "," + page.getPageSize();
 
         List<Item> items = this.selectListByConditionString(sql, values);
 
@@ -129,6 +138,21 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         page.setPagesAuto();
 
         return page;
+    }
+
+    @Override
+    public List<Item> getItemsByUserId(Integer id) throws Exception {
+        Item itemCondition = new Item();
+        itemCondition.setUserId(id);
+        return this.selectList(itemCondition);
+    }
+
+    @Override
+    public List<Item> getUserEnterItemList(Integer id) throws Exception {
+        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Item.class), true) + " FROM " + this.getTableName() + " WHERE item_id IN(SELECT item_id FROM item_and_member_map WHERE target_id=? AND type=?)";
+        logger.info("===>   Preparing:" + sql);
+        logger.info("===>   Parameters:" + "[" + id + ",true]");
+        return this.getListBean(JDBCUtils.getConnection(), sql, id, true);
     }
 
 }

@@ -38,6 +38,8 @@ public class Page<T> implements Serializable {
     private List<T> list;
 
 
+
+
     public Page(int pageSize, int pageNum, int total, int size, List<T> list, int pages) {
         this.pageSize = pageSize;
         this.pageNum = pageNum;
