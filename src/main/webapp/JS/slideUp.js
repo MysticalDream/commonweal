@@ -32,8 +32,7 @@
 
     }
     function judge(ele) {
-        // var h = ele.getBoundingClientRect().top;
-        var h=ele.offsetTop;
+        var h = ele.getBoundingClientRect().top;
         if (h < window.innerHeight) {
             ele.classList.add('already-visible');
         }

@@ -21,9 +21,3 @@ fadeOut = function (el, time, callBack) {
     }, time);
     return this;
 }
-
-// 助农板块
-window.addEventListener('load',function(){
-  let one_d=document.querySelectorAll('one_d');
-  
-})

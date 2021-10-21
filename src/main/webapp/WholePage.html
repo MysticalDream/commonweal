@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/AJAX.js"></script>
+    <style>
+        body,
+        dl,
+        dd,
+        ul,
+        ol,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        form,
+        header,
+        section,
+        article,
+        footer {
+            margin: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: 100%
+        }
+
+        em,
+        b {
+            font-style: normal
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        img {
+            border: 0
+        }
+
+        /* body {
+            padding-top: 42px
+        } */
+
+        button,
+        input,
+        select,
+        textarea {
+            font-size: 100%;
+            outline: none
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        td,
+        th,
+        ul,
+        ol {
+            padding: 0
+        }
+
+
+
+        /* PC reset 结尾 */
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .wrap {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            transition: transform 1s cubic-bezier(0.86, 0, 0.03, 1);
+        }
+
+        .wrap>.block {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .block:first-child {
+            background-color:pink;
+        }
+
+        .block:nth-child(2) {
+            background-color: aquamarine;
+        }
+
+        .block:nth-child(3) {
+            background-color:cadetblue;
+        }
+
+        .block:nth-child(4) {
+            background-color:darkviolet;
+        }
+
+        .block:nth-child(5) {
+            background-color: skyblue;
+        }
+
+        .wrap.active0 {
+            transform: translateY(0);
+        }
+
+        .wrap.active1 {
+            transform: translateY(-100%);
+        }
+
+        .wrap.active2 {
+            transform: translateY(-200%);
+        }
+
+        .wrap.active3 {
+            transform: translateY(-300%);
+        }
+
+        .wrap.active4 {
+            transform: translateY(-400%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="block">1</div>
+        <div class="block">2</div>
+        <div class="block">3</div>
+        <div class="block">4</div>
+        <div class="block">5</div>
+    </div>
+    <script>
+        ; !function (win) {
+            var curIndex = 0;
+            function $(ele) {
+                return document.querySelectorAll(ele);
+            }
+            var al = $('.block');
+            var wrap = $('.wrap')[0];
+            wrap.addEventListener('mousewheel', mo);
+            function mo(e) {
+                e.deltaY < 0 ? up(): down();
+                go();
+                //移除监听 避免频繁触发
+                wrap.removeEventListener('mousewheel', mo);
+                setTimeout(function () { wrap.addEventListener('mousewheel', mo) }, 500);
+                
+            };
+            function up() {
+                curIndex = --curIndex < 0 ? 0 : curIndex;
+
+            }
+            function down() {
+                curIndex = ++curIndex == al.length ? al.length - 1 : curIndex;
+            }
+            function go() {
+                wrap.className = 'wrap active' + curIndex;
+            };
+
+        }(window);
+
+
+        // 获取省市
+var city;
+city={
+    type:'get',
+    url:'js/data.json',
+    data:{
+      
+    },
+    // header:{
+    //     'Content-Type':'multipart/form-data'
+    // },
+    success:function(data){
+        console.log(iwehginwb);
+        var p=JSON.parse(data);
+        console.log(p);
+    },
+    error:function(){}
+}
+ajax(city);
+    </script>
+</body>
+
+</html>
