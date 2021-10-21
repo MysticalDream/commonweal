@@ -3,6 +3,8 @@ package dao;
 import org.junit.jupiter.api.Test;
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.dao.impl.ItemDaoImpl;
+import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
@@ -56,6 +58,7 @@ class ItemDaoImplTest {
 
     @Test
     void test() throws Exception {
+
         ItemCondition itemCondition = GsonUtils.j2O("{\n" +
                 "\t\"province\": \"44\",\n" +
                 "\t\"city\": \"01\",\n" +
@@ -65,7 +68,9 @@ class ItemDaoImplTest {
                 "\t\"pageSize\": \"9\",\n" +
                 "\t\"pageNum\": \"1\"\n" +
                 "}", ItemCondition.class);
-        List<Item> byConditionString = itemDao.getByConditionString(itemCondition);
-        byConditionString.forEach(System.out::println);
+
+        Page<ItemDTO> byConditionString = itemDao.getByConditionString(itemCondition);
+
+        byConditionString.getList().forEach(System.out::println);
     }
 }

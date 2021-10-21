@@ -52,6 +52,7 @@ public class ItemDTO {
     /**
      * 当前项目人数
      */
+    @SerializedName("currentHeadcount")
     private Integer nowMen;
     /**
      * 省份地区

@@ -22,25 +22,35 @@ public class Page<T> implements Serializable {
     /**
      * 总记录数
      */
-    private long total;
+    private int total;
     /**
      * 当前页的数量<=pageSize
      */
     private int size;
     /**
+     * 总页数
+     */
+    private int pages;
+
+    /**
      * 结果集
      */
     private List<T> list;
 
-    public Page(int pageSize, int pageNum, long total, int size, List<T> list) {
+
+
+
+    public Page(int pageSize, int pageNum, int total, int size, List<T> list, int pages) {
         this.pageSize = pageSize;
         this.pageNum = pageNum;
         this.total = total;
         this.size = size;
         this.list = list;
+        this.pages = pages;
     }
 
     public Page() {
+
     }
 
     /**
@@ -83,7 +93,7 @@ public class Page<T> implements Serializable {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
@@ -101,5 +111,26 @@ public class Page<T> implements Serializable {
 
     public void setList(List<T> list) {
         this.list = list;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
+    }
+
+    /**
+     * 自动计算总页数,需要总记录数和每页显示数量
+     */
+    public void setPagesAuto() {
+        if (pageSize == 0) {
+            return;
+        }
+        pages = total / pageSize;
+        if (total % pageSize != 0) {
+            pages++;
+        }
     }
 }

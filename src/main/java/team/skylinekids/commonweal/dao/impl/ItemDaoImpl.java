@@ -1,12 +1,15 @@
 package team.skylinekids.commonweal.dao.impl;
 
+import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
-import team.skylinekids.commonweal.utils.ScopeUtils;
-import team.skylinekids.commonweal.utils.StringUtils;
+import team.skylinekids.commonweal.utils.*;
+import team.skylinekids.commonweal.utils.convert.ConversionUtils;
+import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.List;
  * @author MysticalDream
  */
 public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
+    private final Logger logger = Logger.getLogger(ItemDaoImpl.class);
+
     @Override
     public int addItem(Item item) throws Exception {
         return this.insert(item);
@@ -38,7 +43,13 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
     }
 
     @Override
-    public List<Item> getByConditionString(ItemCondition itemCondition) throws Exception {
+    public int updateItemNowMen(Integer itemId, Integer num) throws Exception {
+        String updateSql = "UPDATE " + this.getTableName() + " SET now_men=now_men+" + num + " WHERE item_id=?";
+        return this.update(JDBCUtils.getConnection(), updateSql, itemId);
+    }
+
+    @Override
+    public Page<ItemDTO> getByConditionString(ItemCondition itemCondition) throws Exception {
         /**
          * 省份/直辖市
          */
@@ -97,16 +108,57 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         }
 
         String sql = String.join(" AND ", conditionSql);
+        if (!"".equals(sql)) {
+            sql = " WHERE " + sql;
+        }
         //分页
-        Page<Item> page = new Page<>();
+        Page<ItemDTO> page = new Page<>();
 
         page.setPageNum(pageNum);
 
         page.setPageSize(pageSize);
 
-        sql += "LIMIT " + page.getStartRow() + "," + page.getPageSize();
+        Integer total = this.selectCountByCondition(sql, values);
 
-        return this.selectListByConditionString(sql, values);
+        sql += " LIMIT " + page.getStartRow() + "," + page.getPageSize();
 
+        List<Item> items = this.selectListByConditionString(sql, values);
+
+        List<ItemDTO> itemDTOs = ConversionUtils.convertList(items, ItemDTO.class);
+        //设置封面路径
+        ResourceURLUtils.setItemsURL(itemDTOs);
+        /**
+         * 总记录数
+         */
+        page.setTotal(total);
+        /**
+         * 数据
+         */
+        page.setList(itemDTOs);
+        /**
+         * 当前页数据数量
+         */
+        page.setSize(itemDTOs.size());
+        //计算页数
+        page.setPagesAuto();
+
+        return page;
     }
+
+    @Override
+    public List<Item> getItemsByUserId(Integer id) throws Exception {
+        Item itemCondition = new Item();
+        itemCondition.setUserId(id);
+        return this.selectList(itemCondition);
+    }
+
+    @Override
+    public List<Item> getUserEnterItemList(Integer id) throws Exception {
+        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Item.class), true) + " FROM " + this.getTableName() + " WHERE item_id IN(SELECT item_id FROM item_and_member_map WHERE target_id=? AND type=?)";
+        logger.info("===>   Preparing:" + sql);
+        logger.info("===>   Parameters:" + "[" + id + ",true]");
+        return this.getListBean(JDBCUtils.getConnection(), sql, id, true);
+    }
+
+
 }

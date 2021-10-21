@@ -1,11 +1,7 @@
 package team.skylinekids.commonweal.factory;
 
-import team.skylinekids.commonweal.service.ItemService;
-import team.skylinekids.commonweal.service.TeamService;
-import team.skylinekids.commonweal.service.UserService;
-import team.skylinekids.commonweal.service.impl.ItemServiceImpl;
-import team.skylinekids.commonweal.service.impl.TeamServiceImpl;
-import team.skylinekids.commonweal.service.impl.UserServiceImpl;
+import team.skylinekids.commonweal.service.*;
+import team.skylinekids.commonweal.service.impl.*;
 
 /**
  * 获取Service对象的代理工厂
@@ -24,6 +20,38 @@ public class ServiceFactory {
 
     public static TeamService getTeamService() {
         return ProxyFactory.getTransactionProxy(new TeamServiceImpl());
+    }
+
+    public static ProvinceService getProvinceService() {
+        return ProxyFactory.getTransactionProxy(new ProvinceServiceImpl());
+    }
+
+    public static ItemMemberMapService getItemMemberMapService() {
+        return ProxyFactory.getTransactionProxy(new ItemMemberMapServiceImpl());
+    }
+
+    public static ItemBOService getItemBOService() {
+        return ProxyFactory.getTransactionProxy(new ItemBOServiceImpl());
+    }
+
+    public static TeamBOService getTeamBOService() {
+        return ProxyFactory.getTransactionProxy(new TeamBOServiceImpl());
+    }
+
+    public static ThumbService getThumbService() {
+        return ProxyFactory.getTransactionProxy(new ThumbServiceImpl());
+    }
+
+    public static RecruitService getRecruitService() {
+        return ProxyFactory.getTransactionProxy(new RecruitServiceImpl());
+    }
+
+    public static TeamMemberMapService getTeamMemberMapService() {
+        return ProxyFactory.getTransactionProxy(new TeamMemberMapServiceImpl());
+    }
+
+    public static AchievementService getAchievementService() {
+        return ProxyFactory.getTransactionProxy(new AchievementServiceImpl());
     }
 
 }

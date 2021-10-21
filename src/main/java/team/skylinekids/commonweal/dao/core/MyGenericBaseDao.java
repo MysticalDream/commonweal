@@ -23,6 +23,10 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
      */
     private final String tableName;
 
+    public String getTableName() {
+        return tableName;
+    }
+
     //反射获取实体类注解的对应数据库表名
     {
         TableName tableNameAnnotation = super.type.getDeclaredAnnotation(TableName.class);
@@ -196,7 +200,8 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
     @Override
     public List<T> selectListByConditionString(String conditionSql, List<?> value) throws Exception {
         //SQL查询语句
-        String selectSql = "SELECT {0} FROM " + this.tableName + " WHERE {1}";
+        String selectSql = "SELECT {0} FROM " + this.tableName + "{1}";
+
         //select查询语句的列
         String columns = SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(super.type), true);
 
@@ -259,19 +264,17 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
     @Override
     public Integer selectCountByCondition(String conditionSql, List<?> value) throws Exception {
         //SQL查询语句
-        String selectSql = "SELECT COUNT({0}) from " + this.tableName + " WHERE {1}";
-        //select查询语句的列
-        String columns = SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(super.type), false);
+        String selectSql = "SELECT COUNT({0}) from " + this.tableName + "{1}";
         //拼接sql语句
-        selectSql = MessageFormat.format(selectSql, columns, conditionSql);
+        selectSql = MessageFormat.format(selectSql, "*", conditionSql);
 
         logger.info("===>    Preparing:" + selectSql);
 
         Connection connection = JDBCUtils.getConnection();
+        Object[] array = value.toArray();
+        logger.info("===>    Parameters:" + Arrays.toString(array));
 
-        logger.info("===>    Parameters:" + Arrays.toString(value.toArray()));
-
-        Number singleValue = (Number) this.getSingleValue(connection, selectSql, value);
+        Number singleValue = (Number) this.getSingleValue(connection, selectSql, array);
 
         return singleValue.intValue();
     }
@@ -308,7 +311,6 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
         Connection connection = JDBCUtils.getConnection();
         logger.info("===>    Parameters:" + key);
         T bean = this.getBean(connection, selectSql, key);
-
         return bean;
     }
 

@@ -1,5 +1,7 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 
@@ -47,12 +49,38 @@ public interface ItemDao {
     int updateItem(Item item) throws Exception;
 
     /**
+     * 更新项目当前人数
+     *
+     * @param num
+     * @return
+     * @throws Exception
+     */
+    int updateItemNowMen(Integer itemId,Integer num) throws Exception;
+
+    /**
      * 条件查询项目
      *
      * @param itemCondition
      * @return
      * @throws Exception
      */
-    List<Item> getByConditionString(ItemCondition itemCondition) throws Exception;
+    Page<ItemDTO> getByConditionString(ItemCondition itemCondition) throws Exception;
 
+    /**
+     * 根据用户id获取项目列表
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    List<Item> getItemsByUserId(Integer id) throws Exception;
+
+    /**
+     * 根据用户id获取用户参加的项目
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    List<Item> getUserEnterItemList(Integer id) throws Exception;
 }

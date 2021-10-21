@@ -2,6 +2,7 @@ package team.skylinekids.commonweal.pojo.po;
 
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
+import team.skylinekids.commonweal.dao.core.annotaion.TableName;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
  *
  * @author MysticalDream
  */
+@TableName("item_achievement")
 public class ItemAchievement {
     /**
      * 自增id
@@ -18,7 +20,7 @@ public class ItemAchievement {
     @TableField(value = "id", update = false, insert = false)
     private Integer id;
     /**
-     * 成就配图,保存多张图片分割符为",",比如"1.png,2.png,3.png"
+     * 成就配图
      */
     private String coverUrl;
     /**
@@ -41,11 +43,12 @@ public class ItemAchievement {
      * 点赞数
      */
     private Long loveNumber;
+    /**
+     * 成就标题
+     */
+    private String title;
 
-    public ItemAchievement() {
-    }
-
-    public ItemAchievement(Integer id, String coverUrl, String introduction, Integer itemId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber) {
+    public ItemAchievement(Integer id, String coverUrl, String introduction, Integer itemId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber, String title) {
         this.id = id;
         this.coverUrl = coverUrl;
         this.introduction = introduction;
@@ -53,6 +56,10 @@ public class ItemAchievement {
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
         this.loveNumber = loveNumber;
+        this.title = title;
+    }
+
+    public ItemAchievement() {
     }
 
     public Integer getId() {
@@ -111,16 +118,11 @@ public class ItemAchievement {
         this.loveNumber = loveNumber;
     }
 
-    @Override
-    public String toString() {
-        return "ItemAchievement{" +
-                "id=" + id +
-                ", coverUrl='" + coverUrl + '\'' +
-                ", introduction='" + introduction + '\'' +
-                ", itemId=" + itemId +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", loveNumber=" + loveNumber +
-                '}';
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

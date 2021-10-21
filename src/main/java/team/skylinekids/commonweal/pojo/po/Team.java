@@ -1,6 +1,7 @@
 package team.skylinekids.commonweal.pojo.po;
 
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
+import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +14,8 @@ public class Team {
     /**
      * 队伍id
      */
+    @TableId
+    @TableField(value = "team_id", insert = false, update = false)
     private Integer teamId;
     /**
      * 队伍名称
@@ -51,8 +54,20 @@ public class Team {
      * 队伍头像
      */
     private String teamAvatar;
+    /**
+     * 省份地区
+     */
+    private String province;
+    /**
+     * 城市
+     */
+    private String city;
+    /**
+     * 县区
+     */
+    private String area;
 
-    public Team(Integer teamId, String teamName, String teamIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, Integer maxMen, Integer nowMen, String teamAvatar) {
+    public Team(Integer teamId, String teamName, String teamIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, Integer maxMen, Integer nowMen, String teamAvatar, String province, String city, String area) {
         this.teamId = teamId;
         this.teamName = teamName;
         this.teamIntroduction = teamIntroduction;
@@ -63,6 +78,9 @@ public class Team {
         this.maxMen = maxMen;
         this.nowMen = nowMen;
         this.teamAvatar = teamAvatar;
+        this.province = province;
+        this.city = city;
+        this.area = area;
     }
 
     public Team() {
@@ -148,19 +166,27 @@ public class Team {
         this.teamAvatar = teamAvatar;
     }
 
-    @Override
-    public String toString() {
-        return "Team{" +
-                "teamId=" + teamId +
-                ", teamName='" + teamName + '\'' +
-                ", teamIntroduction='" + teamIntroduction + '\'' +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                ", userId=" + userId +
-                ", available=" + available +
-                ", maxMen=" + maxMen +
-                ", nowMen=" + nowMen +
-                ", teamAvatar='" + teamAvatar + '\'' +
-                '}';
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 }

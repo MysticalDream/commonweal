@@ -1,11 +1,7 @@
 package team.skylinekids.commonweal.factory;
 
-import team.skylinekids.commonweal.dao.ItemDao;
-import team.skylinekids.commonweal.dao.TeamDao;
-import team.skylinekids.commonweal.dao.UserDao;
-import team.skylinekids.commonweal.dao.impl.ItemDaoImpl;
-import team.skylinekids.commonweal.dao.impl.TeamDaoImpl;
-import team.skylinekids.commonweal.dao.impl.UserDaoImpl;
+import team.skylinekids.commonweal.dao.*;
+import team.skylinekids.commonweal.dao.impl.*;
 
 
 /**
@@ -29,4 +25,31 @@ public class DaoFactory {
         return new TeamDaoImpl();
     }
 
+    public static ProvinceDao getProvinceDao() {
+        return new ProvinceDaoImpl();
+    }
+
+    public static ItemMemberMapDao getItemMemberMapDao() {
+        return new ItemMemberMapDaoImpl();
+    }
+
+    public static ItemAchievementDao getItemAchievementDao() {
+        return new ItemAchievementDaoImpl();
+    }
+
+    public static TeamAchievementDao getTeamAchievementDao() {
+        return new TeamAchievementDaoImpl();
+    }
+
+    public static ThumbDao getThumbDao() {
+        return new ThumbDaoImpl();
+    }
+
+    public static RecruitDao getRecruitDao() {
+        return new RecruitDaoImpl();
+    }
+
+    public static TeamMemberMapDao getTeamMemberMapDao() {
+        return new TeamMemberMapDaoImpl();
+    }
 }
