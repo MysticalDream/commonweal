@@ -165,7 +165,7 @@ TurnPage.prototype.bindEvent = function() {
             let arr_2=new Array();
             city={
                 type:'get',
-                url:'./js/data.json',
+                url:'/js/data.json',
                 data:{
                   
                 },
