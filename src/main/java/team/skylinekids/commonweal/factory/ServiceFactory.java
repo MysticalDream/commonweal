@@ -34,8 +34,24 @@ public class ServiceFactory {
         return ProxyFactory.getTransactionProxy(new ItemBOServiceImpl());
     }
 
+    public static TeamBOService getTeamBOService() {
+        return ProxyFactory.getTransactionProxy(new TeamBOServiceImpl());
+    }
+
     public static ThumbService getThumbService() {
-        return new ThumbServiceImpl();
+        return ProxyFactory.getTransactionProxy(new ThumbServiceImpl());
+    }
+
+    public static RecruitService getRecruitService() {
+        return ProxyFactory.getTransactionProxy(new RecruitServiceImpl());
+    }
+
+    public static TeamMemberMapService getTeamMemberMapService() {
+        return ProxyFactory.getTransactionProxy(new TeamMemberMapServiceImpl());
+    }
+
+    public static AchievementService getAchievementService() {
+        return ProxyFactory.getTransactionProxy(new AchievementServiceImpl());
     }
 
 }

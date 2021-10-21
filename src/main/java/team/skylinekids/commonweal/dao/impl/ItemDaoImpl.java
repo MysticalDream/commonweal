@@ -7,10 +7,7 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
-import team.skylinekids.commonweal.utils.JDBCUtils;
-import team.skylinekids.commonweal.utils.ScopeUtils;
-import team.skylinekids.commonweal.utils.SqlUtils;
-import team.skylinekids.commonweal.utils.StringUtils;
+import team.skylinekids.commonweal.utils.*;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 
@@ -43,6 +40,12 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
     @Override
     public int updateItem(Item item) throws Exception {
         return this.update(item);
+    }
+
+    @Override
+    public int updateItemNowMen(Integer itemId, Integer num) throws Exception {
+        String updateSql = "UPDATE " + this.getTableName() + " SET now_men=now_men+" + num + " WHERE item_id=?";
+        return this.update(JDBCUtils.getConnection(), updateSql, itemId);
     }
 
     @Override
@@ -122,6 +125,8 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         List<Item> items = this.selectListByConditionString(sql, values);
 
         List<ItemDTO> itemDTOs = ConversionUtils.convertList(items, ItemDTO.class);
+        //设置封面路径
+        ResourceURLUtils.setItemsURL(itemDTOs);
         /**
          * 总记录数
          */
@@ -154,5 +159,6 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         logger.info("===>   Parameters:" + "[" + id + ",true]");
         return this.getListBean(JDBCUtils.getConnection(), sql, id, true);
     }
+
 
 }

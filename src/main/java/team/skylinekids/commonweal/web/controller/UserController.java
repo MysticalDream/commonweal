@@ -40,12 +40,20 @@ public class UserController {
     @MyRequestPath(value = "/sessions", type = {RequestMethod.POST})
     public String login(HttpInfoWrapper httpWrapper) throws Exception {
 
-        if (httpWrapper.isUserLogin()) {
+        if (httpWrapper.isLogin()) {
             //已经登录无需登录
             return ResultUtils.getResult(ApiResultCode.REDIRECT, "/");
         }
-        User user1 = FillBeanUtils.fill(httpWrapper.getParameterMap(), User.class);
-        System.out.println(System.currentTimeMillis() + ":" + user1);
+        //用户名
+        String username = httpWrapper.getParameter("username");
+        //密码
+        String password = httpWrapper.getParameter("password");
+        if (username == null || password == null) {
+            return ResultUtils.getResult(ApiResultCode.PASSWORD_OR_USER_NAME_IS_INCORRECT);
+        }
+        User user1 = new User();
+        user1.setUsername(username);
+        user1.setPassword(password);
         //前端提交数据的字段名称或者是字段类型和后台的实体类不一致，导致无法封装
         if (user1 == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);

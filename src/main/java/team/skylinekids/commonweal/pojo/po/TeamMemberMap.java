@@ -7,12 +7,12 @@ import team.skylinekids.commonweal.dao.core.annotaion.TableName;
 import java.time.LocalDateTime;
 
 /**
- * 团队成就表
+ * 团队成员映射表
  *
  * @author MysticalDream
  */
-@TableName("team_achievement")
-public class TeamAchievement {
+@TableName("team_and_user_map")
+public class TeamMemberMap {
     /**
      * 自增id
      */
@@ -20,47 +20,42 @@ public class TeamAchievement {
     @TableField(value = "id", update = false, insert = false)
     private Integer id;
     /**
-     * 成就配图
-     */
-    private String coverUrl;
-    /**
-     * 成就文字说明
-     */
-    private String introduction;
-    /**
-     * 对应项目id
+     * 团队id
      */
     private Integer teamId;
     /**
-     * 团队成就创建时间
+     * 用户id
+     */
+    private Integer userId;
+    /**
+     * 加入时间
      */
     private LocalDateTime gmtCreate;
-
     /**
-     * 最后修改信息时间
+     * 退出时间
      */
     private LocalDateTime gmtModified;
     /**
-     * 点赞数
+     * 该记录是否可用
      */
-    private Long loveNumber;
+    @TableField("is_available")
+    private Boolean available;
     /**
-     * 成就标题
+     * 审核状态
      */
-    private String title;
+    private Boolean status;
 
-    public TeamAchievement(Integer id, String coverUrl, String introduction, Integer teamId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber, String title) {
+    public TeamMemberMap(Integer id, Integer teamId, Integer userId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean available, Boolean status) {
         this.id = id;
-        this.coverUrl = coverUrl;
-        this.introduction = introduction;
         this.teamId = teamId;
+        this.userId = userId;
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
-        this.loveNumber = loveNumber;
-        this.title = title;
+        this.available = available;
+        this.status = status;
     }
 
-    public TeamAchievement() {
+    public TeamMemberMap() {
     }
 
     public Integer getId() {
@@ -71,28 +66,20 @@ public class TeamAchievement {
         this.id = id;
     }
 
-    public String getCoverUrl() {
-        return coverUrl;
-    }
-
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl;
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
     public Integer getTeamId() {
         return teamId;
     }
 
     public void setTeamId(Integer teamId) {
         this.teamId = teamId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public LocalDateTime getGmtCreate() {
@@ -111,19 +98,19 @@ public class TeamAchievement {
         this.gmtModified = gmtModified;
     }
 
-    public Long getLoveNumber() {
-        return loveNumber;
+    public Boolean getAvailable() {
+        return available;
     }
 
-    public void setLoveNumber(Long loveNumber) {
-        this.loveNumber = loveNumber;
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
-    public String getTitle() {
-        return title;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

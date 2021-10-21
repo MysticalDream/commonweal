@@ -40,6 +40,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Page<ItemDTO> getItemByCondition(ItemCondition itemCondition) throws Exception {
+
         return itemDao.getByConditionString(itemCondition);
     }
 

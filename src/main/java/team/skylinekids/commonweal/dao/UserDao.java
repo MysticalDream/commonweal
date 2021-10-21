@@ -85,13 +85,20 @@ public interface UserDao {
     int updatePassword(Integer id, String password) throws Exception;
 
     /**
-     * 获取项目个人用户列表
+     * 获取项目个人成员用户列表
      *
      * @param itemId 项目id
      * @return
      */
     List<User> getItemUserList(Integer itemId) throws Exception;
 
-
+    /**
+     * 获取团队成员列表
+     *
+     * @param teamId 项目id
+     * @return
+     * @throws Exception
+     */
+    List<User> getTeamUserList(Integer teamId) throws Exception;
 
 }

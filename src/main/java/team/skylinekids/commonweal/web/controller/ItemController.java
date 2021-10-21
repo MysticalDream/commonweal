@@ -167,8 +167,11 @@ public class ItemController {
     public String joinItem(HttpInfoWrapper httpInfoWrapper) throws Exception {
         String jsonString = httpInfoWrapper.getJsonString();
         ItemMemberMap itemMemberMap = GsonUtils.j2O(jsonString, ItemMemberMap.class);
+        if (itemMemberMap == null) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
         itemMemberMapService.addMember(itemMemberMap);
-        return "加入项目";
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
     /**

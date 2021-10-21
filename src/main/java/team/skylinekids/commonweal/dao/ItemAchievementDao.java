@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.ItemAchievement;
 
 import java.util.List;
@@ -42,5 +43,6 @@ public interface ItemAchievementDao {
      * @return
      * @throws Exception
      */
-    int updateLoveNumber(Integer ItemAchievementId,boolean status) throws Exception;
+    int updateLoveNumber(Integer ItemAchievementId, boolean status) throws Exception;
+
 }

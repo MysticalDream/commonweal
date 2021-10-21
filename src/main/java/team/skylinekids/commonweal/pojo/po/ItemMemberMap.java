@@ -22,11 +22,11 @@ public class ItemMemberMap {
     /**
      * 项目id
      */
-    private Integer item_id;
+    private Integer itemId;
     /**
      * 目标id
      */
-    private Integer target_id;
+    private Integer targetId;
     /**
      * 加入时间
      */
@@ -49,10 +49,10 @@ public class ItemMemberMap {
      */
     private Boolean status;
 
-    public ItemMemberMap(Integer id, Integer item_id, Integer target_id, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean available, Boolean type, Boolean status) {
+    public ItemMemberMap(Integer id, Integer itemId, Integer targetId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean available, Boolean type, Boolean status) {
         this.id = id;
-        this.item_id = item_id;
-        this.target_id = target_id;
+        this.itemId = itemId;
+        this.targetId = targetId;
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
         this.available = available;
@@ -71,20 +71,20 @@ public class ItemMemberMap {
         this.id = id;
     }
 
-    public Integer getItem_id() {
-        return item_id;
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public void setItem_id(Integer item_id) {
-        this.item_id = item_id;
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
-    public Integer getTarget_id() {
-        return target_id;
+    public Integer getTargetId() {
+        return targetId;
     }
 
-    public void setTarget_id(Integer target_id) {
-        this.target_id = target_id;
+    public void setTargetId(Integer targetId) {
+        this.targetId = targetId;
     }
 
     public LocalDateTime getGmtCreate() {

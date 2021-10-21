@@ -16,6 +16,7 @@ import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
  * @author MysticalDream
  */
 public class ThumbController {
+
     ThumbService thumbService = ServiceFactory.getThumbService();
 
     /**
@@ -29,8 +30,16 @@ public class ThumbController {
     public String thumb(HttpInfoWrapper httpInfoWrapper) throws Exception {
         String jsonString = httpInfoWrapper.getJsonString();
         Thumb thumb = GsonUtils.j2O(jsonString, Thumb.class);
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
+        if (thumb == null) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        thumb.setUserId(httpInfoWrapper.getUser().getUserId());
         thumbService.handleThumb(thumb);
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
+
 
 }

@@ -1,7 +1,7 @@
 package team.skylinekids.commonweal.pojo.bo;
 
 import team.skylinekids.commonweal.pojo.dto.TeamDTO;
-import team.skylinekids.commonweal.pojo.po.User;
+import team.skylinekids.commonweal.pojo.dto.UserDTO;
 
 import java.util.List;
 
@@ -12,30 +12,33 @@ public class TeamBO {
     /**
      * 团队
      */
-    private TeamDTO teamDTO;
+    private TeamDTO team;
     /**
      * 队员列表
      */
-    private List<User> userList;
+    private List<UserDTO> userList;
 
-    public TeamBO(TeamDTO teamDTO, List<User> userList) {
-        this.teamDTO = teamDTO;
+    public TeamBO(TeamDTO team, List<UserDTO> userList) {
+        this.team = team;
         this.userList = userList;
     }
 
-    public TeamDTO getTeamDTO() {
-        return teamDTO;
+    public TeamBO() {
     }
 
-    public void setTeamDTO(TeamDTO teamDTO) {
-        this.teamDTO = teamDTO;
+    public TeamDTO getTeam() {
+        return team;
     }
 
-    public List<User> getUserList() {
+    public void setTeam(TeamDTO team) {
+        this.team = team;
+    }
+
+    public List<UserDTO> getUserList() {
         return userList;
     }
 
-    public void setUserList(List<User> userList) {
+    public void setUserList(List<UserDTO> userList) {
         this.userList = userList;
     }
 }

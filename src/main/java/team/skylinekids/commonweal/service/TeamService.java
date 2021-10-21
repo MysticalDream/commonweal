@@ -5,6 +5,8 @@ import team.skylinekids.commonweal.pojo.dto.TeamDTO;
 import team.skylinekids.commonweal.pojo.po.Team;
 import team.skylinekids.commonweal.pojo.query.TeamCondition;
 
+import java.util.List;
+
 /**
  * 队伍Service
  *
@@ -43,4 +45,24 @@ public interface TeamService {
      * @throws Exception
      */
     Page<TeamDTO> getTeamByCondition(TeamCondition teamCondition) throws Exception;
+
+    /**
+     * 获取用户创建的团队列表
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    List<TeamDTO> getTeamsByUserId(Integer userId) throws Exception;
+
+    /**
+     * 获取用户加入的队伍
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    List<TeamDTO> getUserJoinedTeam(Integer userId) throws Exception;
+
+
 }

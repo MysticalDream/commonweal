@@ -1,5 +1,7 @@
 package team.skylinekids.commonweal.pojo.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.time.LocalDateTime;
 
 /**
@@ -32,10 +34,12 @@ public class TeamDTO {
     /**
      * 队伍最大人数限制
      */
+    @SerializedName("maximumNumberLimit")
     private Integer maxMen;
     /**
      * 队伍当前人数
      */
+    @SerializedName("currentHeadcount")
     private Integer nowMen;
     /**
      * 队伍头像

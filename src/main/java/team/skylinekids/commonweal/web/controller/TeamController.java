@@ -7,16 +7,23 @@ import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.bo.TeamBO;
 import team.skylinekids.commonweal.pojo.dto.TeamDTO;
 import team.skylinekids.commonweal.pojo.po.Team;
+import team.skylinekids.commonweal.pojo.po.TeamMemberMap;
 import team.skylinekids.commonweal.pojo.query.TeamCondition;
+import team.skylinekids.commonweal.service.TeamBOService;
+import team.skylinekids.commonweal.service.TeamMemberMapService;
 import team.skylinekids.commonweal.service.TeamService;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.Part;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * 团队Controller
@@ -28,6 +35,10 @@ public class TeamController {
     private final Logger logger = Logger.getLogger(TeamController.class);
 
     TeamService teamService = ServiceFactory.getTeamService();
+
+    TeamBOService teamBOService = ServiceFactory.getTeamBOService();
+
+    TeamMemberMapService teamMemberMapService = ServiceFactory.getTeamMemberMapService();
 
     /**
      * 创建团队
@@ -101,7 +112,55 @@ public class TeamController {
      * @return
      */
     @MyRequestPath(value = "/teams/members/?", type = {RequestMethod.GET})
-    public String getTeamMember(HttpInfoWrapper httpInfoWrapper) {
-        return "";
+    public String getTeamMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        TeamBO teamBO = teamBOService.getTeamBOByTeamId(httpInfoWrapper.getPathVariable(Integer.class));
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, teamBO);
+    }
+
+    /**
+     * 获取用户创建的队伍
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/teams/user", type = {RequestMethod.GET})
+    public String getUserOfTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
+        Cookie userId = httpInfoWrapper.getCookie("userId");
+        List<TeamDTO> teamDTOS = teamService.getTeamsByUserId(Integer.parseInt(userId.getValue()));
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, teamDTOS);
+    }
+
+    /**
+     * 获取用户加入的队伍
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @MyRequestPath(value = "/teams/joined")
+    public String getUserJoinedTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
+        Cookie userId = httpInfoWrapper.getCookie("userId");
+        List<TeamDTO> joinedTeam = teamService.getUserJoinedTeam(Integer.parseInt(userId.getValue()));
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, joinedTeam);
+    }
+
+    @MyRequestPath(value = "/teams/enter", type = {RequestMethod.POST})
+    public String joinTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
+        TeamMemberMap teamMemberMap = GsonUtils.j2O(httpInfoWrapper.getJsonString(), TeamMemberMap.class);
+        if (teamMemberMap == null) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        teamMemberMap.setUserId(httpInfoWrapper.getUser().getUserId());
+        teamMemberMapService.addMember(teamMemberMap);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 }

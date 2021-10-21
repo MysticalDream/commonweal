@@ -45,4 +45,11 @@ public class DaoFactory {
         return new ThumbDaoImpl();
     }
 
+    public static RecruitDao getRecruitDao() {
+        return new RecruitDaoImpl();
+    }
+
+    public static TeamMemberMapDao getTeamMemberMapDao() {
+        return new TeamMemberMapDaoImpl();
+    }
 }

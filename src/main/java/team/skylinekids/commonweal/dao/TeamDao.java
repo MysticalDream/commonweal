@@ -42,6 +42,16 @@ public interface TeamDao {
     int updateTeam(Team team) throws Exception;
 
     /**
+     * 更新队伍人数
+     *
+     * @param teamId
+     * @param number
+     * @return
+     * @throws Exception
+     */
+    int updateNowMen(Integer teamId, Integer number) throws Exception;
+
+    /**
      * 获取项目团队成员列表
      *
      * @param itemId
@@ -58,5 +68,23 @@ public interface TeamDao {
      * @throws Exception
      */
     Page<TeamDTO> getTeamByCondition(TeamCondition teamCondition) throws Exception;
+
+    /**
+     * 获取用户创建的团队列表
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    List<Team> getTeamsByUserId(Integer userId) throws Exception;
+
+    /**
+     * 获取用户加入的队伍的id
+     *
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    List<Team> getUserJoinedTeam(Integer userId) throws Exception;
 
 }

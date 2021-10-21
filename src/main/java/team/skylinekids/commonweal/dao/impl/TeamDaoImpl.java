@@ -43,6 +43,12 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
     }
 
     @Override
+    public int updateNowMen(Integer teamId, Integer number) throws Exception {
+        String updateSql = "UPDATE " + this.getTableName() + " SET now_men=now_men+" + number + " WHERE team_id=?";
+        return this.update(JDBCUtils.getConnection(), updateSql, teamId);
+    }
+
+    @Override
     public List<Team> getItemTeamList(Integer itemId) throws Exception {
         String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Team.class), true) + " FROM " + this.getTableName() + " WHERE team_id IN (SELECT target_id FROM item_and_member_map WHERE item_id=? AND type=? AND is_available=?)";
         logger.info("===>   Preparing:" + sql);
@@ -132,4 +138,20 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
         return page;
 
     }
+
+    @Override
+    public List<Team> getTeamsByUserId(Integer userId) throws Exception {
+        Team team = new Team();
+        team.setUserId(userId);
+        return this.selectList(team);
+    }
+
+    @Override
+    public List<Team> getUserJoinedTeam(Integer userId) throws Exception {
+        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Team.class), true) + " FROM " + this.getTableName() + " WHERE team_id IN(SELECT team_id FROM team_and_user_map WHERE user_id=?)";
+        logger.info("===>   Preparing:" + sql);
+        logger.info("===>   Parameters:" + "[" + userId + "]");
+        return this.getListBean(JDBCUtils.getConnection(), sql, userId);
+    }
+
 }

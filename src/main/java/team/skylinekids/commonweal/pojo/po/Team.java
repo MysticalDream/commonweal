@@ -1,6 +1,7 @@
 package team.skylinekids.commonweal.pojo.po;
 
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
+import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +14,8 @@ public class Team {
     /**
      * 队伍id
      */
+    @TableId
+    @TableField(value = "team_id", insert = false, update = false)
     private Integer teamId;
     /**
      * 队伍名称

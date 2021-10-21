@@ -1,21 +1,17 @@
-package team.skylinekids.commonweal.pojo.po;
+package team.skylinekids.commonweal.pojo.dto;
 
-import team.skylinekids.commonweal.dao.core.annotaion.TableField;
-import team.skylinekids.commonweal.dao.core.annotaion.TableId;
+import com.google.gson.annotations.SerializedName;
+import team.skylinekids.commonweal.utils.convert.IgnoreConvert;
 
 import java.time.LocalDateTime;
 
 /**
- * 招募志愿者信息
- *
  * @author MysticalDream
  */
-public class Recruit {
+public class RecruitDTO {
     /**
      * 招募志愿id
      */
-    @TableId
-    @TableField(value = "recruit_id", insert = false, update = false)
     private Integer recruitId;
     /**
      * 介绍
@@ -24,19 +20,13 @@ public class Recruit {
     /**
      * 志愿开始时间
      */
+    @SerializedName("begin")
     private LocalDateTime gmtStart;
     /**
      * 结束时间
      */
+    @SerializedName("end")
     private LocalDateTime gmtEnd;
-    /**
-     * 记录生成时间
-     */
-    private LocalDateTime gmtCreate;
-    /**
-     * 记录修改时间
-     */
-    private LocalDateTime gmtModified;
     /**
      * 举行地址
      */
@@ -48,10 +38,12 @@ public class Recruit {
     /**
      * 最大人数限制
      */
+    @SerializedName("maximumNumberLimit")
     private Integer maxMen;
     /**
      * 当前人数
      */
+    @SerializedName("currentHeadcount")
     private Integer nowMen;
     /**
      * 省份地区
@@ -70,21 +62,20 @@ public class Recruit {
      */
     private Integer status;
     /**
-     * 分类id
+     * 分类
      */
-    private Integer categoryId;
+    @IgnoreConvert
+    private String category;
     /**
-     * 标题
+     * 招募标题
      */
     private String title;
 
-    public Recruit(Integer recruitId, String introduction, LocalDateTime gmtStart, LocalDateTime gmtEnd, LocalDateTime gmtCreate, LocalDateTime gmtModified, String location, String coverUrl, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status, Integer categoryId, String title) {
+    public RecruitDTO(Integer recruitId, String introduction, LocalDateTime gmtStart, LocalDateTime gmtEnd, String location, String coverUrl, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status, String category, String title) {
         this.recruitId = recruitId;
         this.introduction = introduction;
         this.gmtStart = gmtStart;
         this.gmtEnd = gmtEnd;
-        this.gmtCreate = gmtCreate;
-        this.gmtModified = gmtModified;
         this.location = location;
         this.coverUrl = coverUrl;
         this.maxMen = maxMen;
@@ -93,11 +84,11 @@ public class Recruit {
         this.city = city;
         this.area = area;
         this.status = status;
-        this.categoryId = categoryId;
+        this.category = category;
         this.title = title;
     }
 
-    public Recruit() {
+    public RecruitDTO() {
     }
 
     public Integer getRecruitId() {
@@ -130,22 +121,6 @@ public class Recruit {
 
     public void setGmtEnd(LocalDateTime gmtEnd) {
         this.gmtEnd = gmtEnd;
-    }
-
-    public LocalDateTime getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(LocalDateTime gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
     }
 
     public String getLocation() {
@@ -212,12 +187,12 @@ public class Recruit {
         this.status = status;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getTitle() {

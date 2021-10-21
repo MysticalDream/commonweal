@@ -177,7 +177,27 @@ public class HttpInfoWrapper {
      * @return
      */
     public String getParameter(String name) {
-        return parameterMap.get(name)[0];
+        String[] strings = parameterMap.get(name);
+        if (strings != null) {
+            return strings[0];
+        }
+        return null;
+    }
+
+    /**
+     * 根据提供的类型获取参数，当参数有多个值时只取第一个
+     *
+     * @param name
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public <T> T getParameter(String name, Class<T> clazz) throws ClassCastException {
+        String[] strings = parameterMap.get(name);
+        if (strings != null) {
+            return clazz.cast(strings[0]);
+        }
+        return null;
     }
 
     /**
@@ -291,6 +311,8 @@ public class HttpInfoWrapper {
                 }
             } catch (NumberFormatException e) {
                 logger.error("用户id转化错误", e);
+            } catch (Exception e) {
+                logger.error("登录Cookie验证出错", e);
             }
         }
         return false;

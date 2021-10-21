@@ -1,11 +1,14 @@
 package team.skylinekids.commonweal.dao.impl;
 
+import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.dao.ItemAchievementDao;
 import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
+import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.ItemAchievement;
 import team.skylinekids.commonweal.utils.JDBCUtils;
 
 import java.sql.Connection;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,11 +17,11 @@ import java.util.List;
  * @author MysticalDream
  */
 public class ItemAchievementDaoImpl extends MyGenericBaseDao<ItemAchievement> implements ItemAchievementDao {
-
+    private final Logger logger = Logger.getLogger(ItemAchievementDaoImpl.class);
 
     @Override
     public int addItemAchievement(ItemAchievement itemAchievement) throws Exception {
-        return 0;
+        return this.insert(itemAchievement);
     }
 
     @Override
@@ -40,7 +43,9 @@ public class ItemAchievementDaoImpl extends MyGenericBaseDao<ItemAchievement> im
         } else {
             res = "-1";
         }
-        String sql = "UPDATE " + this.getTableName() + "SET love_number=love_number" + res + " WHERE id=?";
+        String sql = "UPDATE " + this.getTableName() + " SET love_number=love_number" + res + " WHERE id=?";
+        logger.info("===>    Preparing:" + sql);
+        logger.info("===>    Parameters:[" + itemAchievementId + "]");
         return this.update(connection, sql, itemAchievementId);
     }
 }
