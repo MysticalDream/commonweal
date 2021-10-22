@@ -54,4 +54,8 @@ public class ServiceFactory {
         return ProxyFactory.getTransactionProxy(new AchievementServiceImpl());
     }
 
+    public static FarmerInfoService getFarmerInfoService() {
+        return ProxyFactory.getTransactionProxy(new FarmerInfoServiceImpl());
+    }
+
 }

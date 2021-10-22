@@ -29,6 +29,11 @@ public class AchievementDaoImpl extends MyGenericBaseDao<Achievement> implements
     }
 
     @Override
+    public List<Achievement> getAchievementList(Achievement achievement) throws Exception {
+        return this.selectList(achievement);
+    }
+
+    @Override
     public Page<Achievement> getAchievementByLimit(Page<Achievement> page, boolean sort) throws Exception {
         String s = sort ? "ASC" : "DESC";
         //条件语句

@@ -62,9 +62,9 @@ public class RecruitDaoImpl extends MyGenericBaseDao<Recruit> implements Recruit
          */
         Integer pageNum = recruitCondition.getPageNum();
 
-        List<String> conditionSql = new ArrayList<>(6);
+        List<String> conditionSql = new ArrayList<>(10);
 
-        List<Object> values = new ArrayList<>(6);
+        List<Object> values = new ArrayList<>(10);
 
         if (StringUtils.isNotBlank(province)) {
             conditionSql.add("province=?");

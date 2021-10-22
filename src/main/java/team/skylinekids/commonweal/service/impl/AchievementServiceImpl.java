@@ -6,6 +6,8 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
 import team.skylinekids.commonweal.service.AchievementService;
 
+import java.util.List;
+
 /**
  * 添加成就
  *
@@ -18,6 +20,11 @@ public class AchievementServiceImpl implements AchievementService {
     @Override
     public int addAchievement(Achievement achievement) throws Exception {
         return achievementDao.addAchievement(achievement);
+    }
+
+    @Override
+    public List<Achievement> getAchievementList(Achievement achievement) throws Exception {
+        return achievementDao.getAchievementList(achievement);
     }
 
     @Override

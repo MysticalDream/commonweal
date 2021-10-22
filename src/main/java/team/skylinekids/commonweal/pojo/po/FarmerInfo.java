@@ -43,4 +43,126 @@ public class FarmerInfo {
      * 最后修改信息时间
      */
     private LocalDateTime gmtModified;
+    /**
+     * 位置信息
+     */
+    private String location;
+    /**
+     * 省份地区
+     */
+    private String province;
+    /**
+     * 城市
+     */
+    private String city;
+    /**
+     * 县区
+     */
+    private String area;
+
+    public FarmerInfo(Integer id, String coverUrl, String introduction, String tel, String realName, LocalDateTime gmtCreate, LocalDateTime gmtModified, String location, String province, String city, String area) {
+        this.id = id;
+        this.coverUrl = coverUrl;
+        this.introduction = introduction;
+        this.tel = tel;
+        this.realName = realName;
+        this.gmtCreate = gmtCreate;
+        this.gmtModified = gmtModified;
+        this.location = location;
+        this.province = province;
+        this.city = city;
+        this.area = area;
+    }
+
+    public FarmerInfo() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public LocalDateTime getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(LocalDateTime gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public LocalDateTime getGmtModified() {
+        return gmtModified;
+    }
+
+    public void setGmtModified(LocalDateTime gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
 }

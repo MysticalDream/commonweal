@@ -56,4 +56,8 @@ public class DaoFactory {
     public static AchievementDao getAchievementDao() {
         return new AchievementDaoImpl();
     }
+
+    public static FarmerInfoDao getFarmerInfoDao() {
+        return new FarmerInfoDaoImpl();
+    }
 }

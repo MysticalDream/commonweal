@@ -47,7 +47,14 @@ public interface ResourcePathConstant {
      * 成就图片
      */
     String DISK_ACHIEVEMENT_IMG_BASE = DISK_IMAGE_BASE + "achievements/";
-
+    /**
+     * 助农暂存
+     */
+    String DISK_FARMER_TEMP_IMG_BASE = DISK_IMAGE_BASE + "temp/farmer/";
+    /**
+     * 助农
+     */
+    String DISK_FARMER_IMG_BASE = DISK_IMAGE_BASE + "farmer/";
 
     //--------------------------------------------------------------------------
     /**
@@ -95,5 +102,13 @@ public interface ResourcePathConstant {
      * 招募志愿
      */
     String VIRTUAL_RECRUIT_COVER_BASE = VIRTUAL_IMAGE_BASE + "recruit/";
+    /**
+     * 助农暂存
+     */
+    String VIRTUAL_FARMER_COVER_TEMP_BASE = VIRTUAL_IMAGE_BASE + "temp/farmer/";
+    /**
+     * 助农信息
+     */
+    String VIRTUAL_FARMER_COVER_BASE = VIRTUAL_IMAGE_BASE + "farmer/";
 
 }
