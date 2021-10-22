@@ -1,6 +1,5 @@
 package team.skylinekids.commonweal.dao;
 
-import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.ItemAchievement;
 
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
  * 项目成就数据库操作接口
  *
  * @author MysticalDream
+ * @deprecated
  */
 public interface ItemAchievementDao {
     /**

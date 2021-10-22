@@ -13,6 +13,7 @@ import java.util.List;
  * 团队成就实现类
  *
  * @author MysticalDream
+ * @deprecated
  */
 public class TeamAchievementDaoImpl extends MyGenericBaseDao<TeamAchievement> implements TeamAchievementDao {
     private final Logger logger = Logger.getLogger(TeamAchievementDaoImpl.class);

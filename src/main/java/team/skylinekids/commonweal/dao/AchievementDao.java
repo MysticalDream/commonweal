@@ -1,8 +1,7 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
-
-import java.util.List;
 
 /**
  * @author MysticalDream
@@ -25,12 +24,14 @@ public interface AchievementDao {
     int updateAchievement(Achievement achievement) throws Exception;
 
     /**
-     * 根据typeId和type条件获取成就列表
+     * 分页获取成就
      *
-     * @param achievement
+     * @param page
+     * @param sort 为true是升序 false为降序
      * @return
+     * @throws Exception
      */
-    List<Achievement> getAchievementById(Achievement achievement) throws Exception;
+    Page<Achievement> getAchievementByLimit(Page<Achievement> page, boolean sort) throws Exception;
 
     /**
      * 根据所给状态更新点赞数

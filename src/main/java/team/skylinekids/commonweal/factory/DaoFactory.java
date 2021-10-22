@@ -52,4 +52,8 @@ public class DaoFactory {
     public static TeamMemberMapDao getTeamMemberMapDao() {
         return new TeamMemberMapDaoImpl();
     }
+
+    public static AchievementDao getAchievementDao() {
+        return new AchievementDaoImpl();
+    }
 }

@@ -159,7 +159,7 @@ public class HttpInfoWrapper {
     }
 
     public void removeUserFromSession() {
-        httpSession.removeAttribute(SessionKeyConstant.USER_STRING);
+        httpSession.invalidate();
     }
 
     public Part getPart(String name) {
@@ -192,10 +192,10 @@ public class HttpInfoWrapper {
      * @param <T>
      * @return
      */
-    public <T> T getParameter(String name, Class<T> clazz) throws ClassCastException {
+    public <T> T getParameter(String name, Class<? extends Number> clazz) throws ClassCastException {
         String[] strings = parameterMap.get(name);
         if (strings != null) {
-            return clazz.cast(strings[0]);
+            return (T) GsonUtils.j2O(strings[0], clazz);
         }
         return null;
     }

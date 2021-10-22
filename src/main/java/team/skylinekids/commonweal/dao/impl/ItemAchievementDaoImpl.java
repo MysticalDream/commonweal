@@ -15,6 +15,7 @@ import java.util.List;
  * 项目成就
  *
  * @author MysticalDream
+ * @deprecated
  */
 public class ItemAchievementDaoImpl extends MyGenericBaseDao<ItemAchievement> implements ItemAchievementDao {
     private final Logger logger = Logger.getLogger(ItemAchievementDaoImpl.class);

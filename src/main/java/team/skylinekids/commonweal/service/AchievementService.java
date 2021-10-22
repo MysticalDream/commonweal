@@ -1,5 +1,8 @@
 package team.skylinekids.commonweal.service;
 
+import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.po.Achievement;
+
 /**
  * 成就服务
  *
@@ -7,12 +10,20 @@ package team.skylinekids.commonweal.service;
  */
 public interface AchievementService {
     /**
-     * 根据对应类型添加成就
+     * 添加成就
      *
-     * @param type
      * @param achievement
      * @return
      * @throws Exception
      */
-    int addAchievement(Integer type, Object achievement) throws Exception;
+    int addAchievement(Achievement achievement) throws Exception;
+
+    /**
+     * 分页获取成就
+     *
+     * @param page
+     * @return
+     * @throws Exception
+     */
+    Page<Achievement> getAchievementByLimit(Page<Achievement> page) throws Exception;
 }
