@@ -18,17 +18,25 @@ public class ItemCondition extends BaseCondition {
      * 人数范围代号
      */
     private Integer numberScope;
+    /**
+     * 项目编号id
+     */
+    private Integer itemId;
+    /**
+     * 项目标题
+     */
+    private String itemTitle;
 
-
-    public ItemCondition(String province, String city, String area, Integer pageSize, Integer pageNum, Integer itemCategoryId, String ItemCategory, Integer numberScope) {
+    public ItemCondition(String province, String city, String area, Integer pageSize, Integer pageNum, Integer itemCategoryId, String itemCategory, Integer numberScope, Integer itemId, String itemTitle) {
         super(province, city, area, pageSize, pageNum);
         this.itemCategoryId = itemCategoryId;
-        this.itemCategory = ItemCategory;
+        this.itemCategory = itemCategory;
         this.numberScope = numberScope;
+        this.itemId = itemId;
+        this.itemTitle = itemTitle;
     }
 
     public ItemCondition() {
-
     }
 
     public Integer getItemCategoryId() {
@@ -55,4 +63,19 @@ public class ItemCondition extends BaseCondition {
         this.numberScope = numberScope;
     }
 
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getItemTitle() {
+        return itemTitle;
+    }
+
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
+    }
 }
