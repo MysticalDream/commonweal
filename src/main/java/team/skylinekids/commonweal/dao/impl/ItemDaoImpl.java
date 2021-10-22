@@ -70,7 +70,14 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
          * 人数范围
          */
         Integer numberScope = itemCondition.getNumberScope();
-
+        /**
+         * 项目编号
+         */
+        Integer itemId = itemCondition.getItemId();
+        /**
+         * 项目标题
+         */
+        String itemTitle = itemCondition.getItemTitle();
         /**
          * 每页显示数量
          */
@@ -103,11 +110,21 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
         if (numberScope != null) {
             String scope = ScopeUtils.getScopeByNum(numberScope);
-
             if (scope != null) {
                 conditionSql.add(scope);
             }
         }
+
+        if (itemId != null) {
+            conditionSql.add("item_id=?");
+            values.add(itemId);
+        }
+
+        if (StringUtils.isNotBlank(itemTitle)) {
+            conditionSql.add("item_title like ?");
+            values.add("%" + itemTitle + "%");
+        }
+
 
         String sql = String.join(" AND ", conditionSql);
         if (!"".equals(sql)) {
