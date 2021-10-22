@@ -101,10 +101,12 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
             values.add(categoryId);
         }
 
-        String scope = ScopeUtils.getScopeByNum(numberScope);
+        if (numberScope != null) {
+            String scope = ScopeUtils.getScopeByNum(numberScope);
 
-        if (scope != null) {
-            conditionSql.add(scope);
+            if (scope != null) {
+                conditionSql.add(scope);
+            }
         }
 
         String sql = String.join(" AND ", conditionSql);

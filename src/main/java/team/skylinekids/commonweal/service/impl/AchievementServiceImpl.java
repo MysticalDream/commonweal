@@ -1,10 +1,9 @@
 package team.skylinekids.commonweal.service.impl;
 
-import team.skylinekids.commonweal.dao.ItemAchievementDao;
-import team.skylinekids.commonweal.dao.TeamAchievementDao;
+import team.skylinekids.commonweal.dao.AchievementDao;
 import team.skylinekids.commonweal.factory.DaoFactory;
-import team.skylinekids.commonweal.pojo.po.ItemAchievement;
-import team.skylinekids.commonweal.pojo.po.TeamAchievement;
+import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.po.Achievement;
 import team.skylinekids.commonweal.service.AchievementService;
 
 /**
@@ -14,21 +13,16 @@ import team.skylinekids.commonweal.service.AchievementService;
  */
 public class AchievementServiceImpl implements AchievementService {
 
-    TeamAchievementDao teamAchievementDao = DaoFactory.getTeamAchievementDao();
-
-    ItemAchievementDao itemAchievementDao = DaoFactory.getItemAchievementDao();
+    AchievementDao achievementDao = DaoFactory.getAchievementDao();
 
     @Override
-    public int addAchievement(Integer type, Object achievement) throws Exception {
-        //项目成就
-        if (type.intValue() == 1) {
-            ItemAchievement itemAchievement = (ItemAchievement) achievement;
-            return itemAchievementDao.addItemAchievement(itemAchievement);
-        }
-        //团队成就
-        else {
-            TeamAchievement teamAchievement = (TeamAchievement) achievement;
-            return teamAchievementDao.addTeamAchievement(teamAchievement);
-        }
+    public int addAchievement(Achievement achievement) throws Exception {
+        return achievementDao.addAchievement(achievement);
     }
+
+    @Override
+    public Page<Achievement> getAchievementByLimit(Page<Achievement> page) throws Exception {
+        return achievementDao.getAchievementByLimit(page, false);
+    }
+
 }

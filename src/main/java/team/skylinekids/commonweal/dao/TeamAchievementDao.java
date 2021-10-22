@@ -8,6 +8,7 @@ import java.util.List;
  * 团队成就
  *
  * @author MysticalDream
+ * @deprecated
  */
 public interface TeamAchievementDao {
     /**

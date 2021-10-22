@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
  * 项目成就
  *
  * @author MysticalDream
+ * @deprecated 暂时不用
  */
 @TableName("item_achievement")
 public class ItemAchievement {

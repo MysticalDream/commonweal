@@ -99,10 +99,12 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
             conditionSql.add("area=?");
             values.add(area);
         }
-        String scope = ScopeUtils.getScopeByNum(numberScope);
+        if (numberScope != null) {
+            String scope = ScopeUtils.getScopeByNum(numberScope);
 
-        if (scope != null) {
-            conditionSql.add(scope);
+            if (scope != null) {
+                conditionSql.add(scope);
+            }
         }
         String sql = String.join(" AND ", conditionSql);
 

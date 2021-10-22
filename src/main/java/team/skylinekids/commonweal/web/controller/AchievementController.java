@@ -5,19 +5,17 @@ import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
-import team.skylinekids.commonweal.pojo.bo.AchievementBO;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.bo.Page;
-import team.skylinekids.commonweal.pojo.po.ItemAchievement;
-import team.skylinekids.commonweal.pojo.po.TeamAchievement;
+import team.skylinekids.commonweal.pojo.po.Achievement;
 import team.skylinekids.commonweal.service.AchievementService;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
-import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
+import java.util.Map;
 
 /**
  * 成就
@@ -47,18 +45,24 @@ public class AchievementController {
      * @param httpInfoWrapper
      * @return
      */
-    @MyRequestPath(value = "/achievements/conditions", type = {RequestMethod.GET})
-    public String getAchievementCondition(HttpInfoWrapper httpInfoWrapper) {
-        long millis = System.currentTimeMillis();
+    @MyRequestPath(value = "/achievements/conditions")
+    public String getAchievementCondition(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        Map<String, Object> map = GsonUtils.jsonToMap(httpInfoWrapper.getJsonString());
         Integer pageSize;
         Integer pageNum;
         try {
-            pageSize = httpInfoWrapper.getParameter("pageSize", Integer.class);
-            pageNum = httpInfoWrapper.getParameter("pageNum", Integer.class);
-        } catch (ClassCastException e) {
+            pageSize = Integer.parseInt((String) map.get("pageSize"));
+            pageNum = Integer.parseInt((String) map.get("pageNum"));
+        } catch (Exception e) {
+            logger.error("成就请求分页语法错误", e);
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-        return "";
+
+        Page<Achievement> page = new Page<>();
+        page.setPageSize(pageSize);
+        page.setPageNum(pageNum);
+        Page<Achievement> achievementByLimit = achievementService.getAchievementByLimit(page);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementByLimit);
     }
 
     /**
@@ -69,29 +73,15 @@ public class AchievementController {
      */
     @MyRequestPath(value = "/achievements", type = {RequestMethod.POST})
     public String addAchievement(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        AchievementBO achievementBO = GsonUtils.j2O(httpInfoWrapper.getJsonString(), AchievementBO.class);
-        if (achievementBO == null) {
+        Achievement achievement = GsonUtils.j2O(httpInfoWrapper.getJsonString(), Achievement.class);
+        if (achievement == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-        Integer type = achievementBO.getType();
-        if (type == 1) {
-            ItemAchievement itemAchievement = ConversionUtils.convert(achievementBO, ItemAchievement.class);
-            itemAchievement.setItemId(achievementBO.getTypeId());
-            String fileName = FileUtils.getFileName(achievementBO.getCoverUrl());
-            FileUtils.cutFile(ResourcePathConstant.DISK_ACHIEVEMENT_TEMP_IMG_BASE + fileName, ResourcePathConstant.DISK_ACHIEVEMENT_IMG_BASE + fileName);
-            itemAchievement.setCoverUrl(fileName);
-            achievementService.addAchievement(1, itemAchievement);
-            return ResultUtils.getResult(ApiResultCode.SUCCESS);
-        } else if (type == 2) {
-            TeamAchievement teamAchievement = ConversionUtils.convert(achievementBO, TeamAchievement.class);
-            teamAchievement.setTeamId(achievementBO.getTypeId());
-            String fileName = FileUtils.getFileName(achievementBO.getCoverUrl());
-            FileUtils.cutFile(ResourcePathConstant.DISK_ACHIEVEMENT_TEMP_IMG_BASE + fileName, ResourcePathConstant.DISK_ACHIEVEMENT_IMG_BASE + fileName);
-            teamAchievement.setCoverUrl(fileName);
-            achievementService.addAchievement(2, teamAchievement);
-            return ResultUtils.getResult(ApiResultCode.SUCCESS);
-        }
-        return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        String fileName = FileUtils.getFileName(achievement.getCoverUrl());
+        FileUtils.cutFile(ResourcePathConstant.DISK_ACHIEVEMENT_TEMP_IMG_BASE + fileName, ResourcePathConstant.DISK_ACHIEVEMENT_IMG_BASE + fileName);
+        achievement.setCoverUrl(fileName);
+        achievementService.addAchievement(achievement);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
     /**

@@ -2,18 +2,15 @@ package team.skylinekids.commonweal.pojo.po;
 
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
-import team.skylinekids.commonweal.dao.core.annotaion.TableName;
 
 import java.time.LocalDateTime;
 
 /**
- * 团队成就表
+ * 成就
  *
  * @author MysticalDream
- * @deprecated 暂时废弃
  */
-@TableName("team_achievement")
-public class TeamAchievement {
+public class Achievement {
     /**
      * 自增id
      */
@@ -29,14 +26,17 @@ public class TeamAchievement {
      */
     private String introduction;
     /**
-     * 对应项目id
+     * 1--项目成就 2--团队成就
      */
-    private Integer teamId;
+    private Integer type;
     /**
-     * 团队成就创建时间
+     * 对应项目或则成就id
+     */
+    private Integer typeId;
+    /**
+     * 成就创建时间
      */
     private LocalDateTime gmtCreate;
-
     /**
      * 最后修改信息时间
      */
@@ -50,18 +50,19 @@ public class TeamAchievement {
      */
     private String title;
 
-    public TeamAchievement(Integer id, String coverUrl, String introduction, Integer teamId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber, String title) {
+    public Achievement(Integer id, String coverUrl, String introduction, Integer type, Integer typeId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber, String title) {
         this.id = id;
         this.coverUrl = coverUrl;
         this.introduction = introduction;
-        this.teamId = teamId;
+        this.type = type;
+        this.typeId = typeId;
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
         this.loveNumber = loveNumber;
         this.title = title;
     }
 
-    public TeamAchievement() {
+    public Achievement() {
     }
 
     public Integer getId() {
@@ -88,12 +89,20 @@ public class TeamAchievement {
         this.introduction = introduction;
     }
 
-    public Integer getTeamId() {
-        return teamId;
+    public Integer getType() {
+        return type;
     }
 
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public LocalDateTime getGmtCreate() {
