@@ -26,7 +26,6 @@ li {
     height: 50px;
     margin: 0 auto;
     line-height: 50px;
-    background-color: pink;
 }
 
 .nav_s>div {
@@ -108,6 +107,7 @@ li {
     font-weight: 700;
     color: #fff;
     letter-spacing: 5px;
+    /* background-image: url(../images/pro_bg.jpg) center center; */
     background-color: skyblue;
 }
 

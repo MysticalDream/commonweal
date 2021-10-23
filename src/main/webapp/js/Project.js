@@ -122,6 +122,7 @@ TurnPage.prototype.bindEvent = function() {
                 self.changePage(self.currentPage);
             } else if (e.target.classList.contains('turn_to_btn')) {
                 let turn_to = document.querySelector('.turn_to');
+                // let turn_to_1=document.querySelectorAll('.turn_to')[1];
                 let number = parseInt(turn_to.value);
                 // 要判断里面的元素是不是可以用的 
                 if (!number == '') {
@@ -149,7 +150,10 @@ TurnPage.prototype.bindEvent = function() {
 
 
         window.addEventListener('load',function(){
-            function $(ele) {
+            
+            // var seek_opt={}
+
+            function $(ele){
                 return document.querySelectorAll(ele);
             }
             
@@ -217,6 +221,11 @@ TurnPage.prototype.bindEvent = function() {
                           }
                         arr_2[i].style.display='block';
                         this.classList.add('red_bg');
+                        // 新加
+                        for(let k=0;k<arr_2[i].childNodes.length;k++){
+                            arr_2[i].childNodes[k].classList.remove('red_bg_d');
+                        }
+                        arr_2[i].firstChild.classList.add('red_bg_d');
                       })
                     }
                     contry.addEventListener('click',function(){
@@ -265,6 +274,76 @@ TurnPage.prototype.bindEvent = function() {
                 })
             }
 
+
+            // 点击出现下拉框
+            let vis_down=$('.vis_down')[0];
+            let vis_down_1=$('.vis_down')[1];
+            let vis_ul=$('.inner_ul_d')[0];
+            let vis_ul_1=$('.inner_ul_d')[1];
+            let span_left=$('.left_em>span')[0];
+            let span_center=$('.center_em>span')[0];
+            let span_left_1=$('.left_em>span')[1];
+            let span_center_1=$('.center_em>span')[1];
+            let search_d=$('.pro_search')[0];
+            let search_d_1=$('.pro_search')[1];
+            vis_down.addEventListener('click',function(e){
+                e.stopPropagation();
+                vis_ul.style.height='80px';
+            })
+            vis_down_1.addEventListener('click',function(e){
+                e.stopPropagation();
+                vis_ul_1.style.height='80px';
+            })
+            vis_ul.addEventListener('click',function(){
+                this.style.height='0px';
+            })
+            vis_ul_1.addEventListener('click',function(){
+                this.style.height='0px';
+            })
+            this.document.addEventListener('click',function(){
+                vis_ul.style.height='0px';
+                vis_ul_1.style.height='0px';
+            })
+
+            let vis_li=vis_ul.querySelectorAll('li');
+            let vis_li_1=vis_ul_1.querySelectorAll('li');
+            for(let i=0;i<vis_li.length;i++){
+                vis_li[i].addEventListener('click',function(){
+                    span_left.innerText=vis_li[i].innerText;
+                    span_center.innerText=vis_li[i].innerText;
+                })
+            }
+
+            for(let i=0;i<vis_li_1.length;i++){
+                vis_li_1[i].addEventListener('click',function(){
+                    span_left_1.innerText=vis_li_1[i].innerText;
+                    span_center_1.innerText=vis_li_1[i].innerText;
+                })
+            }
+
+            // 搜索框
+            
+            // let left_em=$('.left_em')[0];
+            let center_em=$('.center_em')[0];
+            let center_em_1=$('.center_em')[1];
+            search_d.onfocus=function(){
+                center_em.style.opacity='0';
+            }
+            search_d_1.onfocus=function(){
+                center_em_1.style.opacity='0';
+            }
+            search_d.onblur=function(){
+                center_em.style.opacity='1';
+            }
+            search_d_1.onblur=function(){
+                center_em_1.style.opacity='1';
+            }
+            center_em.onclick=function(){
+                search_d.focus();
+            }
+            center_em_1.onclick=function(){
+                search_d_1.focus();
+            }
             // 传送参数的获取
             //  province:11,
             // city:"01",
@@ -273,58 +352,125 @@ TurnPage.prototype.bindEvent = function() {
             // "numberScope": "1",
             // "pageSize": "9",
             // "pageNum": "1"
-            var seek_opt=[];
-            var province;
-            var itemCategory;
-            var numberScope;
-            var city_d;
-            var area;
+
+            // 动态添加属性
+            var seek_opt=new Object();
+            seek_opt.type='get';
+            seek_opt.url='/items/conditions';
+            seek_opt.data={};
+            seek_opt.success=function(data){
+                var p=JSON.parse(data);
+                console.log(p);
+            };
+            seek_opt.error=function(){
+
+            };
+            seek_opt.header='application/json';
+            seek_opt.data.pageNum="1";
+            seek_opt.data.pageSize="9";
+            // 未点击时第一次发送，里面是未点击的数据，初始页面1和每页容量9
+            ajax(seek_opt);
+            // 进入选择区域 每点击一次都要发送
             sele_wrapper.addEventListener('click',function(e){
                 if(e.target==sele_wrapper){
                     return;
                 }
+                // 省份的判断
                 if(e.target.classList.contains('move_span')){
-                    province=e.target.province;
-                    console.log(province);
+                    e.target.province?seek_opt.data.province=e.target.province:null;
                 }
+                // 城市和地区的判断
                 if(e.target.classList.contains('red_bg_d')){
-                    city_d=e.target.city;
-                    e.target.area?data.area=e.target.area:null;
-                    console.log(city_d);
-                    console.log(area);
+                    e.target.city?seek_opt.data.city=e.target.city:null;
+                    e.target.area?seek_opt.data.area=e.target.area:null;
                 }
+                // 主题的判断
                 if(e.target.classList.contains('item_d')){
-                    itemCategory=e.target.innerText;
-                    console.log(itemCategory);
+                   seek_opt.data.itemCategory=e.target.innerText;
                 }
+                // 人数范围的判断
                 if(e.target.classList.contains('peo_d')){
-                    numberScope=e.target.index;
-                    console.log(numberScope);
+                    e.target.index==0?null:seek_opt.data.numberScope=e.target.index;
+                    // seek_opt.data.numberScope=e.target.index;
                 }
-                seek_opt={
-                    type:'GET',
-                    url:'/js/data.json',
-                    data:{
-                        province:province,
-                        city:city_d,
-                        itemCategory:itemCategory,
-                        numberScope: numberScope,
-                        pageSize: "9",
-                        pageNum: "1"
-                        },
-                   
-                    // header:{
-                    //     'Content-Type':'application/x-www-form-urlencoded'
-                    //     // 'Content-Type':'application/json'
-                    // },
-                    success:function(data){
-                        var p=JSON.parse(data);
-                        console.log(p);
-                    },
-                    error:function(){}
+                // 搜索框内容获取 编号和主题
+                search_d.onchange=function(){
+                    if(span_center.innerText=='项目名称'&&search_d.value.trim()!=''){
+                        // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
+                        seek_opt.data.itemTitle=this.value;
                     }
-                    console.log(seek_opt);
-                    ajax(seek_opt);
+                    if(span_center.innerText=='项目编号'&&search_d.value.trim()!=''){
+                        seek_opt.data.itemId=this.value;
+                    }
+                }
+                search_d_1.onchange=function(){
+                    if(span_center_1.innerText=='队伍名称'&&this.value.trim()!=''){
+                        // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
+                        seek_opt.data.teamName=this.value;
+                    }
+                    if(span_center_1.innerText=='队伍编号'&&this.value.trim()!=''){
+                        seek_opt.data.teamId=this.value;
+                    }
 
-            })    
+                    // 项目存在时删除队伍信息 队伍名存在时删除项目信息
+                    if(theme_d.style.display=='none'){
+                        seek_opt.data.itemCategory?delete seek_opt.data.itemCategory:null;
+                        seek_opt.data.itemId?delete seek_opt.data.itemId:null;
+                        seek_opt.data.itemTitle?delete seek_opt.data.itemTitle:null;
+                    }
+                    if(theme_d.style.display=='block'){
+                        seek_opt.data.teamId?delete seek_opt.data.teamId:null;
+                        seek_opt.data.teamName?delete seek_opt.data.teamName:null;
+                    }
+                }
+                // 获取页码
+                if(e.target.classList.contains('num')){
+                    seek_opt.data.pageNum=e.target.innerText;
+                }
+                if(e.target.classList.contains('turn_to')&&e.target.value!=''){
+                    seek_opt.data.pageNum=e.target.value;          
+                }
+                console.log(seek_opt);
+                // 发送前打印出来是对的就已经添加data成功了
+                ajax(seek_opt);
+            })  
+
+            // 切换项目和队伍
+            let tag_li=$('.pro_box>ul>li');
+            let tag_box=$('.tagged_box');
+            let area_c=$('.area_c')[0];
+            let peo_c=$('.peo_c')[0];
+            let  fir_d=$('.fir_d')[0];
+            let item_d=$('.item_d');
+            let peo_d=$('.peo_d');
+            for(let i=0;i<tag_li.length;i++){
+                tag_li[i].addEventListener('click',function(){
+                    for(let j=0;j<tag_li.length;j++){
+                        tag_li[j].className='';
+                        tag_box[j].style.display='none';
+                    }
+                    this.style.display='block';
+                    this.className='pro_li_cur';
+                    tag_box[i].style.display='block';
+                    i==1?area_c.innerText='队伍地区':area_c.innerText='项目地区';
+                    i==1?theme_d.style.display='none':theme_d.style.display='block';
+                    i==1?peo_c.innerText='队伍人数':peo_c.innerText='项目人数';
+                    for(let k=0;k<arr_1.length;k++){
+                        arr_1[k].classList.remove('red_bg');
+                    }
+
+                    fir_d.classList.add('red_bg');
+                    for(let k=0;k<item_d.length;k++){
+                        item_d[k].classList.remove('red_bg');
+                    }
+                    item_d[0].classList.add('red_bg');
+                    for(let k=0;k<peo_d.length;k++){
+                        peo_d[k].classList.remove('red_bg');
+                    }
+                    peo_d[0].classList.add('red_bg');
+                    for(let k=0;k<arr_2.length;k++){
+                        arr_2[k].style.display='none';
+                    }
+                })
+            }
         })

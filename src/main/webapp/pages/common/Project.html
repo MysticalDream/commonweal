@@ -11,6 +11,7 @@
     <script src="../../js/recruit.js"></script>
     <script src="../../js/ajax.js"></script>
     <script src="../../js/Project.js"></script>
+    <script src="../../js/obj_wcj.js"></script>
 </head>
 
 <body>
@@ -22,13 +23,13 @@
                 <li>
                     <a href="javascript:;">首页</a>
                 </li>
-                <li>
+                <li  class="pitch">
                     <a href="javascript:;">志愿招募</a>
                 </li>
                 <li>
                     <a href="javascript:;">成就展示</a>
                 </li>
-                <li class="pitch">
+                <li>
                     <a href="javascript:;">招募志愿者</a>
                     <span></span>
                 </li>
@@ -58,7 +59,7 @@
     <div class="pro_box">
         <ul>
             <li class="pro_li_cur">志愿项目</li>
-            <li>志愿招募</li>
+            <li>志愿队伍</li>
         </ul>
     </div>
     <!-- 中间的大盒子 -->
@@ -73,8 +74,8 @@
         <div class="sele_wrapper">
             <div class="province_d">
                 <img src="../../images/diqu.png" alt="">
-                <span>项目地区</span>
-                <span class="red_bg">全国</span>
+                <span class="area_c">项目地区</span>
+                <span class="red_bg fir_d">全国</span>
             </div>
             <div class="theme_d">
                 <img src="../../images/theme (1).png" alt="">
@@ -94,9 +95,9 @@
             </div>
             <div class="people_d">
                 <img src="../../images/people.png" alt="">
-                <span>项目人数</span>
+                <span class="peo_c">项目人数</span>
                 <span class="peo_d red_bg">全部</span>
-                <span class="peo_d">0-21</span>
+                <span class="peo_d">0-20</span>
                 <span class="peo_d">21-40</span>
                 <span class="peo_d">41-60</span>
                 <span class="peo_d">61-80</span>
@@ -107,36 +108,64 @@
                 <input type="text" class="pro_search">
                 <div class="left_em">
                     <span>
-                        项目编号
+                        项目名称
                     </span>
-                    <img src="../../images/down.png" alt="">
+                    <img src="../../images/down.png" alt="" class="vis_down">
+                    <ul class="inner_ul_d">
+                        <li>项目名称</li>
+                        <li>项目编号</li>
+                    </ul>
                 </div>
                 <div class="center_em">
                     <img src="../../images/搜索.png" alt="">
-                    <span>项目编号</span>
+                    <span>项目名称</span>
                 </div>
                 <div class="box"></div>
+                <div class="wrapper">
+                </div>
+            </div>
+            <div class="tagged_box tagged_copy">
+                <input type="text" class="pro_search">
+                <div class="left_em">
+                    <span>
+                        队伍名称
+                    </span>
+                    <img src="../../images/down.png" alt="" class="vis_down">
+                    <ul class="inner_ul_d">
+                        <li>队伍名称</li>
+                        <li>队伍编号</li>
+                    </ul>
+                </div>
+                <div class="center_em">
+                    <img src="../../images/搜索.png" alt="">
+                    <span>队伍名称</span>
+                </div>
+                <div class="box"></div>
+                <div class="wrapper">
+                </div>
             </div>
         </div>
+        <!-- <div class="wrapper">
+
+        </div> -->
     </div>
-    <div class="wrapper"></div>
     <!-- 页脚 -->
     <script>
         let data = [];
-        // 下面的渲染方法的参数
-        let box = document.querySelector('.box');
-        // 制造88条假数据（实则需要根据后端返回的数目）
-        for (let i = 0; i < 88; i++) {
-            data.push({
-                name: ''
-            })
+        for(let i=0;i<obj_w.data.list.length;i++){
+            data.push(obj_w.data.list[i]);
+            console.log(data);
         }
+        // 下面的渲染方法的参数
+        let box = document.querySelectorAll('.box')[1];
+        let box_0=document.querySelectorAll('.box')[0];
 
         // 每一个页面放的数据数
         let pageSize = 9;
         // 总的页数
         let allPage = Math.ceil(data.length / pageSize);
-        let wrapper = document.querySelector('.wrapper');
+        let wrapper = document.querySelectorAll('.wrapper')[0];
+        let wrapper_1=document.querySelectorAll('.wrapper')[1];
         let obj = new TurnPage({
             currentPage: 1,
             allPage: allPage,
@@ -151,28 +180,70 @@
             }
         })
 
+        let obj_1=new TurnPage({
+            currentPage: 1,
+            allPage: allPage,
+            wrap: wrapper_1,
+            changePage: function(page) {
+                // console.log(page);
+                // 我们要渲染到页面上的数据
+                var filterData = data.filter((item, index) => {
+                    return index >= (page - 1) * pageSize && index < page * pageSize;
+                })
+                renderDom(filterData);
+            }
+        })
+
         obj.init();
+        obj_1.init();
+
+        // var arr_d=new Array();
         // 将一个数组渲染到页面上,传入一个data
         function renderDom(data) {
             // 清空上一个页面的
             box.innerHTML = '';
-            data.forEach(element => {
-                let oDiv = document.createElement('div');
-                // 填充后端返回对象的各种属性，动态创建各个结构的盒子 大div小span等等
-                oDiv.innerText = element.name;
+            box_0.innerHTML='';
+            for(let i=0;i<data.length;i++){
+                let oDiv=document.createElement('div');
                 oDiv.classList.add('nine_box');
-                let sonDiv = document.createElement('div');
-                let titleSpan = document.createElement('span');
-                titleSpan.classList.add('titleSpan');
-                sonDiv.appendChild(titleSpan);
-                sonDiv.classList.add('son_div')
-                oDiv.appendChild(sonDiv);
+                let url_d='../../images/beijing.jpg';
+                let url_d_1='../../images/peo_d.png';
+                let url_d_2='../../images/join.png';
+                let str=`<div>
+                    <img src='${url_d}'>
+                    <h1>北京大学爱心社</h1>
+                    <p>${data[i].itemIntroduction}</p>
+                    <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">26/60</span>
+                    <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
+                    </div>`
+                oDiv.innerHTML=str;
                 box.appendChild(oDiv);
-            });
+            }
+
+            for(let i=0;i<data.length;i++){
+                let oDiv=document.createElement('div');
+                oDiv.classList.add('nine_box');
+                let url_d='../../images/lunbotu3.jpg';
+                let url_d_1='../../images/peo_d.png';
+                let url_d_2='../../images/join.png';
+                let str=`<div>
+                    <img src='${url_d}'>
+                    <h1>北京大学爱心社</h1>
+                    <p>${data[i].itemIntroduction}</p>
+                    <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">26/60</span>
+                    <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
+                    </div>`
+                oDiv.innerHTML=str;
+                box_0.appendChild(oDiv);
+            }
         }
-        renderDom(data.filter((item, index) => {
+        renderDom(obj_w.data.list.filter((item, index) => {
             return index < 9;
         }));
+
+        function $(ele) {
+        return document.querySelectorAll(ele);
+        }
     </script>
 </body>
 

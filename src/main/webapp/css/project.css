@@ -1,9 +1,13 @@
+body{
+    height: 1600px;
+}
+
 .turn-page-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* 这个的位置 */
-    margin-top: 980px;
+    margin-top:60px;
+    overflow: hidden;
 
 }
 
@@ -198,39 +202,114 @@
 
 .pro_search{
     position: relative;
-    width: 90%;
+    width: 80%;
     height: 25px;
     border-radius: 10px;
     margin-top:25px;
     margin-left: 45px;
-    padding-left:20px;
+    padding-left:108px;
     outline: none;
     background-color: #F1EFEF;
+    overflow: hidden;
+}
+
+
+.inner_ul_d{
+    width: 100px;
+    height:0px;
+    background-color: #e5e5e5;
+    position: absolute;
+    top:32px;
+    left:-10px;
+    overflow: hidden;
+    transition: all .5s;
+}
+
+.inner_ul_d li{
+    margin-left:15px;
+    margin-top:15px;
+    cursor: pointer;
 }
 
 /* 下面的立方盒子 */
+
+.box{
+    overflow: hidden;
+}
+
 .nine_box{
     position: relative;
     display: inline-block;
     width: 220px;
-    height: 232px;
-    background-color: pink;
-    margin-top:45px;
+    height: 250px;
+    margin-top:65px;
     margin-left:45px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(49, 39, 39, 0.11);
+    cursor: pointer;
 }
 
-.son_div{
-    width: 100%;
+.nine_box img:first-child{
+    width: 220px;
     height: 60%;
-    background-color: thistle;
+    position: absolute;
+    top:0px;
+    left:0px;
 }
 
-.titleSpan{
-    width: 100px;
-    height: 20px;
-    background-color: tomato;
+.nine_box img{
+    position: absolute;
+    width: 18px;
+    top:91%;
 }
 
+.nine_box .le_dd{
+    left:8px;
+}
+
+.nine_box .ri_dd{
+    left:64%;
+}
+
+.nine_box span{
+    position: absolute;
+    font-size:12px;
+    top:91%;
+    letter-spacing: 2px;
+}
+
+.nine_box .le_sp{
+    left:30px;
+}
+
+.nine_box .ri_sp{
+    left:74%;
+}
+
+.nine_box h1{
+    position: absolute;
+    top:63%;
+    left:10px;
+    font-size: 14px;
+    letter-spacing: 3px;
+}
+
+.nine_box p{
+    width: 90%;
+    height: 32px;
+    position: absolute;
+    top:73%;
+    left:10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color:rgba(123, 114, 114, 1);
+    /* 多行的省略号 */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
 
 .tagged_box{
     position: relative;
@@ -251,6 +330,7 @@
     position: relative;
     top:7px;
     left:-9px;
+    cursor: pointer;
 }
 
 .center_em{
@@ -273,5 +353,11 @@
 .center_em span{
     position: relative;
     top:3px;
+    font-size: 12px;
 }
+
+.tagged_copy{
+    display: none;
+}
+
 

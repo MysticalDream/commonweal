@@ -7,11 +7,13 @@ function ajax(opt){
        header:{
            'Content-Type':'application/x-www-form-urlencoded'
        },
-       success:function(){},
+       success:function(){
+       },
        error:function(){}
     }
     // 这里是用opt覆盖default的值，opt是用户传入的参数，利用浅拷贝的方法
     Object.assign(defaults,opt);
+    console.log(opt);
     var xhr=new XMLHttpRequest();
     var params='';
     for(var attr in defaults.data){
@@ -41,7 +43,7 @@ function ajax(opt){
        if(contentType.includes('application/json')){
         //    已是json对象就不用处理，不是才需要转化
         //    responseText=JSON.parse(responseText);
-           console.log(responseText);
+        //    console.log(responseText);
        }
        if(xhr.status==200){
            opt.success(responseText);
