@@ -58,4 +58,8 @@ public class ServiceFactory {
         return ProxyFactory.getTransactionProxy(new FarmerInfoServiceImpl());
     }
 
+    public static AdoptService getAdoptService() {
+        return new AdoptServiceImpl();
+    }
+
 }

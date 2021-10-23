@@ -10,10 +10,7 @@ import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.po.Team;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.pojo.query.TeamCondition;
-import team.skylinekids.commonweal.utils.JDBCUtils;
-import team.skylinekids.commonweal.utils.ScopeUtils;
-import team.skylinekids.commonweal.utils.SqlUtils;
-import team.skylinekids.commonweal.utils.StringUtils;
+import team.skylinekids.commonweal.utils.*;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 
@@ -76,6 +73,14 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
          */
         Integer numberScope = teamCondition.getNumberScope();
         /**
+         * 团队编号
+         */
+        Integer teamId = teamCondition.getTeamId();
+        /**
+         * 团队名称
+         */
+        String teamName = teamCondition.getTeamName();
+        /**
          * 每页显示数量
          */
         Integer pageSize = teamCondition.getPageSize();
@@ -106,6 +111,15 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
                 conditionSql.add(scope);
             }
         }
+        if (teamId != null) {
+            conditionSql.add("team_id=?");
+            values.add(teamId);
+        }
+        if (StringUtils.isNotBlank(teamName)) {
+            conditionSql.add("team_name like ?");
+            values.add("%" + teamName + "%");
+        }
+
         String sql = String.join(" AND ", conditionSql);
 
         if (!"".equals(sql)) {
@@ -122,6 +136,7 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
         List<Team> teams = this.selectListByConditionString(sql, values);
 
         List<TeamDTO> teamDTOS = ConversionUtils.convertList(teams, TeamDTO.class);
+        ResourceURLUtils.setTeamsURL(teamDTOS);
         /**
          * 总记录数
          */

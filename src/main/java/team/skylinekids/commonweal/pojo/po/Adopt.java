@@ -3,6 +3,8 @@ package team.skylinekids.commonweal.pojo.po;
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 
+import java.time.LocalDateTime;
+
 /**
  * 动物领养信息
  *
@@ -30,7 +32,7 @@ public class Adopt {
     /**
      * 性格
      */
-    private String character;
+    private String characters;
     /**
      * 习性
      */
@@ -47,17 +49,27 @@ public class Adopt {
      * 封面
      */
     private String coverUrl;
+    /**
+     * 生成时间
+     */
+    private LocalDateTime gmtCreate;
+    /**
+     * 最后修改信息时间
+     */
+    private LocalDateTime gmtModified;
 
-    public Adopt(Integer adoptId, String variety, String appearance, Integer age, String character, String habit, String introduction, Integer userId, String coverUrl) {
+    public Adopt(Integer adoptId, String variety, String appearance, Integer age, String character, String habit, String introduction, Integer userId, String coverUrl, LocalDateTime gmtCreate, LocalDateTime gmtModified) {
         this.adoptId = adoptId;
         this.variety = variety;
         this.appearance = appearance;
         this.age = age;
-        this.character = character;
+        this.characters = character;
         this.habit = habit;
         this.introduction = introduction;
         this.userId = userId;
         this.coverUrl = coverUrl;
+        this.gmtCreate = gmtCreate;
+        this.gmtModified = gmtModified;
     }
 
     public Adopt() {
@@ -96,11 +108,11 @@ public class Adopt {
     }
 
     public String getCharacter() {
-        return character;
+        return characters;
     }
 
     public void setCharacter(String character) {
-        this.character = character;
+        this.characters = character;
     }
 
     public String getHabit() {
@@ -133,5 +145,21 @@ public class Adopt {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    public LocalDateTime getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(LocalDateTime gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public LocalDateTime getGmtModified() {
+        return gmtModified;
+    }
+
+    public void setGmtModified(LocalDateTime gmtModified) {
+        this.gmtModified = gmtModified;
     }
 }

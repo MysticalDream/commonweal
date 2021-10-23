@@ -141,7 +141,6 @@ public class ItemController {
      */
     @MyRequestPath(value = "/items/cover", type = {RequestMethod.POST})
     public String uploadItemCover(HttpInfoWrapper httpInfoWrapper) {
-
         Part coverPart = httpInfoWrapper.getPart("item_cover");
 
         if (coverPart == null) {

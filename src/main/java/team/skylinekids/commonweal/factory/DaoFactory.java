@@ -60,4 +60,8 @@ public class DaoFactory {
     public static FarmerInfoDao getFarmerInfoDao() {
         return new FarmerInfoDaoImpl();
     }
+
+    public static AdoptDao getAdoptDao() {
+        return new AdoptDaoImpl();
+    }
 }
