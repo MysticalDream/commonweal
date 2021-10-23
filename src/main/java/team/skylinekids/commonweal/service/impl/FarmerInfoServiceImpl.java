@@ -20,4 +20,9 @@ public class FarmerInfoServiceImpl implements FarmerInfoService {
     public Page<FarmerInfo> getFarmerInfoList(FarmerInfoCondition farmerInfoCondition) throws Exception {
         return farmerInfoDao.getFarmerInfoList(farmerInfoCondition);
     }
+
+    @Override
+    public int addFarmerInfo(FarmerInfo farmerInfo) throws Exception {
+        return farmerInfoDao.addFarmerInfo(farmerInfo);
+    }
 }

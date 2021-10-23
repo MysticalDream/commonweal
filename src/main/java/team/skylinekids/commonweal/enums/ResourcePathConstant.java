@@ -55,6 +55,14 @@ public interface ResourcePathConstant {
      * 助农
      */
     String DISK_FARMER_IMG_BASE = DISK_IMAGE_BASE + "farmer/";
+    /**
+     * 领养动物暂存
+     */
+    String DISK_ADOPT_TEMP_IMG_BASE = DISK_IMAGE_BASE + "temp/adopt/";
+    /**
+     * 领养动物
+     */
+    String DISk_ADOPT_IMG_BASE = DISK_IMAGE_BASE + "adopt/";
 
     //--------------------------------------------------------------------------
     /**
@@ -110,5 +118,13 @@ public interface ResourcePathConstant {
      * 助农信息
      */
     String VIRTUAL_FARMER_COVER_BASE = VIRTUAL_IMAGE_BASE + "farmer/";
+    /**
+     * 领养动物暂存
+     */
+    String VIRTUAL_ADOPT_COVER_TEMP_BASE = VIRTUAL_IMAGE_BASE + "temp/adopt/";
+    /**
+     * 领养动物
+     */
+    String VIRTUAL_ADOPT_COVER_BASE = VIRTUAL_IMAGE_BASE + "adopt/";
 
 }

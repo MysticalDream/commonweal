@@ -90,4 +90,9 @@ public class FarmerInfoDaoImpl extends MyGenericBaseDao<FarmerInfo> implements F
         page.setPagesAuto();
         return page;
     }
+
+    @Override
+    public int addFarmerInfo(FarmerInfo farmerInfo) throws Exception {
+        return this.insert(farmerInfo);
+    }
 }
