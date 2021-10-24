@@ -40,7 +40,7 @@ public class RecruitController {
      */
     @MyRequestPath(value = "/recruits/conditions", type = {RequestMethod.GET})
     public String getRecruitsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        RecruitCondition recruitCondition = GsonUtils.j2O(httpInfoWrapper.getJsonString(), RecruitCondition.class);
+        RecruitCondition recruitCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), RecruitCondition.class);
         recruitCondition.setRecruitCategoryId(CategoryUtils.getCategoryIdByName(recruitCondition.getRecruitCategory()));
         Page<RecruitDTO> page = recruitService.getRecruitByCondition(recruitCondition);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, page);

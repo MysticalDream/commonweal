@@ -99,7 +99,7 @@ public class TeamController {
      */
     @MyRequestPath(value = "/teams/conditions", type = {RequestMethod.GET})
     public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        String jsonString = httpInfoWrapper.getJsonString();
+        String jsonString = httpInfoWrapper.getParameter("json");
         TeamCondition teamCondition = GsonUtils.j2O(jsonString, TeamCondition.class);
         Page<TeamDTO> teamByCondition = teamService.getTeamByCondition(teamCondition);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, teamByCondition);

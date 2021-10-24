@@ -66,4 +66,5 @@ public final class ResourceURLUtils {
             recruitDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_RECRUIT_COVER_BASE + recruitDTO.getCoverUrl());
         }
     }
+
 }

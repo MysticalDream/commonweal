@@ -3,6 +3,8 @@ package team.skylinekids.commonweal.dao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
 
+import java.util.List;
+
 /**
  * @author MysticalDream
  */
@@ -22,6 +24,15 @@ public interface AchievementDao {
      * @return
      */
     int updateAchievement(Achievement achievement) throws Exception;
+
+    /**
+     * 根据achievement条件获取成就列表
+     *
+     * @param achievement
+     * @return
+     * @throws Exception
+     */
+    List<Achievement> getAchievementList(Achievement achievement) throws Exception;
 
     /**
      * 分页获取成就

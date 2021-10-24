@@ -15,6 +15,8 @@ import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,14 +31,16 @@ public class AchievementController {
     AchievementService achievementService = ServiceFactory.getAchievementService();
 
     /**
-     * 获取成就 1--项目成就 2----团队成就
+     * 获取对应项目或则队伍
+     * 成就列表 1--项目成就 2----团队成就
      *
      * @return
      */
     @MyRequestPath(value = "/achievements", type = {RequestMethod.GET})
-    public String getAchievement(HttpInfoWrapper httpInfoWrapper) {
-
-        return "获取项目成就";
+    public String getAchievement(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        Achievement achievement = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), Achievement.class);
+        List<Achievement> achievementList = achievementService.getAchievementList(achievement);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementList);
     }
 
     /**
@@ -92,6 +96,10 @@ public class AchievementController {
      */
     @MyRequestPath(value = "/achievements/cover", type = {RequestMethod.POST})
     public String uploadAchievementCover(HttpInfoWrapper httpInfoWrapper) {
+        //验证登录
+//        if (!httpInfoWrapper.isLogin()) {
+//            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+//        }
         Part coverPart = httpInfoWrapper.getPart("achievement_cover");
         if (coverPart == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);

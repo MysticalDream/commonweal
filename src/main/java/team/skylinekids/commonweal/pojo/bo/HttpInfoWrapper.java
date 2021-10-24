@@ -72,15 +72,18 @@ public class HttpInfoWrapper {
             this.httpSession = httpServletRequest.getSession();
             //获取数据类型
             String header = httpServletRequest.getHeader("Content-Type");
-            if (header.contains(MediaType.MULTIPART_FORM_DATA) || header.contains(MediaType.MULTIPART_MIXED)) {
-                Collection<Part> parts = httpServletRequest.getParts();
-                for (Part part :
-                        parts) {
-                    if (partMap.put(part.getName(), part) != null) {
-                        throw new RuntimeException("Part的name重复了");
+            if (header != null) {
+                if (header.contains(MediaType.MULTIPART_FORM_DATA) || header.contains(MediaType.MULTIPART_MIXED)) {
+                    Collection<Part> parts = httpServletRequest.getParts();
+                    for (Part part :
+                            parts) {
+                        if (partMap.put(part.getName(), part) != null) {
+                            throw new RuntimeException("Part的name重复了");
+                        }
                     }
                 }
             }
+
         } catch (Exception e) {
             logger.error("获取Part部分出现异常", e);
         }

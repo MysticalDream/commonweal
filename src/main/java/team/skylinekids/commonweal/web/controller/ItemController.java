@@ -86,7 +86,7 @@ public class ItemController {
     @MyRequestPath(value = "/items/conditions", type = {RequestMethod.GET})
     public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
         //项目查询条件
-        ItemCondition itemCondition = GsonUtils.j2O(httpInfoWrapper.getJsonString(), ItemCondition.class);
+        ItemCondition itemCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), ItemCondition.class);
         //项目分类id设置
         itemCondition.setItemCategoryId(CategoryUtils.getCategoryIdByName(itemCondition.getItemCategory()));
         //根据条件获取项目数据
@@ -141,7 +141,6 @@ public class ItemController {
      */
     @MyRequestPath(value = "/items/cover", type = {RequestMethod.POST})
     public String uploadItemCover(HttpInfoWrapper httpInfoWrapper) {
-
         Part coverPart = httpInfoWrapper.getPart("item_cover");
 
         if (coverPart == null) {
