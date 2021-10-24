@@ -82,4 +82,16 @@ window.addEventListener('load',function(){
         //    inner_box[i].style.transform='rotate(-'+0+'deg)';
         // })
     }
+
+    let plus_d=this.document.querySelector('.plus_rota');
+    let mask=this.document.querySelector('.mask_s');
+    let form_ss=this.document.querySelector('.form_s');
+    plus_d.addEventListener('click',function(){
+        mask.style.display='block';
+        setTimeout(function(){
+            form_ss.classList.add('down');
+        },200)
+    })
+   
+
 })

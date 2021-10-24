@@ -10,6 +10,7 @@ body {
 }
 
 .mask_s {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,14 +19,21 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: rgba(0, 0, 0, .6);
+    top:0px;
+    left:0px;
+    z-index: 10;
 }
 
 .mask_s .form_s {
+    position: relative;
+    top:10%;
+    left:40%;
     width: 350px;
     height: 420px;
     background-color: #fff;
     border-radius: 6px;
     padding: 0 20px;
+    opacity: 0;
 }
 
 .mask_s .form_s h2 {
@@ -112,4 +120,19 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.down{
+    animation: down_ .5s forwards;
+}
+
+@keyframes down_ {
+    0%{
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
