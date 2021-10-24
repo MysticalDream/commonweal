@@ -27,7 +27,7 @@ function getCookie(key) {
             break;
         }
     }
-    return decodeURI(tips);
+    return decodeURIComponent(tips).replaceAll("\"","");
 }
 
 /**
