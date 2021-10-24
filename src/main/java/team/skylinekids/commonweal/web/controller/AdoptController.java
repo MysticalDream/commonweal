@@ -66,7 +66,7 @@ public class AdoptController {
      */
     @MyRequestPath(value = "/adopts", type = {RequestMethod.GET})
     public String getAdoptList(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Map<String, Object> map = GsonUtils.jsonToMap(httpInfoWrapper.getJsonString());
+        Map<String, Object> map = GsonUtils.jsonToMap(httpInfoWrapper.getParameter("json"));
         Integer pageSize;
         Integer pageNum;
         try {

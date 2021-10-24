@@ -22,7 +22,6 @@ import java.util.Set;
  * @author MysticalDream
  */
 @WebServlet(urlPatterns = {"/"}, loadOnStartup = 0)
-@MultipartConfig
 public class HandOutServlet extends HttpServlet {
 
     private final Logger logger = Logger.getLogger(HandOutServlet.class);

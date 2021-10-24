@@ -35,7 +35,7 @@ public class FarmerController {
      */
     @MyRequestPath(value = "/agriculture/list", type = {RequestMethod.GET})
     public String getFarmerInfoList(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        FarmerInfoCondition farmerInfoCondition = GsonUtils.j2O(httpInfoWrapper.getJsonString(), FarmerInfoCondition.class);
+        FarmerInfoCondition farmerInfoCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), FarmerInfoCondition.class);
         Page<FarmerInfo> farmerInfoList = farmerInfoService.getFarmerInfoList(farmerInfoCondition);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, farmerInfoList);
     }

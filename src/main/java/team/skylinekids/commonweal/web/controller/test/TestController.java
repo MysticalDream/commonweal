@@ -31,4 +31,9 @@ public class TestController {
     public String test2(HttpInfoWrapper httpInfoWrapper) throws Exception {
         return ResultUtils.getResult(ApiResultCode.SUCCESS, LocalDateTime.now());
     }
+
+    @MyRequestPath(value = "/json", type = {RequestMethod.GET})
+    public String test3(HttpInfoWrapper httpInfoWrapper) {
+        return httpInfoWrapper.getParameter("json");
+    }
 }

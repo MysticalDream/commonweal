@@ -9,16 +9,35 @@ import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.IOException;
 
 /**
  * 上传图片控制器
  *
  * @author MysticalDream
  */
-public class UploadController {
+@WebServlet("/cover")
+@MultipartConfig
+public class UploadController extends HttpServlet {
 
     private final Logger logger = Logger.getLogger(UploadController.class);
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.getWriter().write(uploadHandle(new HttpInfoWrapper(resp, req, "")));
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.getWriter().write(ResultUtils.getResult(ApiResultCode.REQUEST_METHOD_NOT_ALLOWED));
+    }
 
     /**
      * 封面上传
@@ -26,7 +45,6 @@ public class UploadController {
      * @param httpInfoWrapper
      * @return
      */
-    @MyRequestPath(value = "/cover", type = {RequestMethod.POST})
     public String uploadHandle(HttpInfoWrapper httpInfoWrapper) {
         String partName = httpInfoWrapper.getParameter("part_name");
         String tempPath, virtualPath;

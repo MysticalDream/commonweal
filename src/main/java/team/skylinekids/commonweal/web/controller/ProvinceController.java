@@ -28,7 +28,7 @@ public class ProvinceController {
      */
     @MyRequestPath(value = "/area/province", type = {RequestMethod.GET})
     public String getName(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        String jsonString = httpInfoWrapper.getJsonString();
+        String jsonString = httpInfoWrapper.getParameter("json");
         Province provinceCondition = GsonUtils.j2O(jsonString, Province.class);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, provinceService.getCityNameByCondition(provinceCondition));
     }

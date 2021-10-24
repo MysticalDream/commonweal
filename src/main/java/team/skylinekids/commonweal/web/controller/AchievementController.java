@@ -38,7 +38,7 @@ public class AchievementController {
      */
     @MyRequestPath(value = "/achievements", type = {RequestMethod.GET})
     public String getAchievement(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Achievement achievement = GsonUtils.j2O(httpInfoWrapper.getJsonString(), Achievement.class);
+        Achievement achievement = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), Achievement.class);
         List<Achievement> achievementList = achievementService.getAchievementList(achievement);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementList);
     }
