@@ -365,7 +365,10 @@ TurnPage.prototype.bindEvent = function() {
             seek_opt.error=function(){
 
             };
-            seek_opt.header='application/json';
+            // seek_opt.header='application/json';
+            seek_opt.header={
+                'Content-Type':'application/json'
+            },
             seek_opt.data.pageNum="1";
             seek_opt.data.pageSize="9";
             // 未点击时第一次发送，里面是未点击的数据，初始页面1和每页容量9

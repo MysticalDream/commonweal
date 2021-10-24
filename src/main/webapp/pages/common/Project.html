@@ -211,9 +211,9 @@
                 let url_d_2='../../images/join.png';
                 let str=`<div>
                     <img src='${url_d}'>
-                    <h1>北京大学爱心社</h1>
+                    <h1>${data[i].itemTitle}</h1>
                     <p>${data[i].itemIntroduction}</p>
-                    <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">26/60</span>
+                    <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data[i].currentHeadcount}/${data[i].maximumNumberLimit}</span>
                     <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
                     </div>`
                 oDiv.innerHTML=str;
@@ -223,15 +223,16 @@
             for(let i=0;i<data.length;i++){
                 let oDiv=document.createElement('div');
                 oDiv.classList.add('nine_box');
-                let url_d='../../images/lunbotu3.jpg';
                 let url_d_1='../../images/peo_d.png';
                 let url_d_2='../../images/join.png';
                 let str=`<div>
-                    <img src='${url_d}'>
-                    <h1>北京大学爱心社</h1>
+                    <img src='${data[i].coverUrl}'>
+                    <h1>${data[i].itemTitle}</h1>
                     <p>${data[i].itemIntroduction}</p>
-                    <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">26/60</span>
-                    <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
+                    <img src='${url_d_1}' class="le_dd"></img>
+                    <span class="le_sp">${data[i].currentHeadcount}/${data[i].maximumNumberLimit}</span>
+                    <img src="${url_d_2}" class="ri_dd"></img>
+                    <span class="ri_sp">我要加入</span>
                     </div>`
                 oDiv.innerHTML=str;
                 box_0.appendChild(oDiv);

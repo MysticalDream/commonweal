@@ -19,7 +19,7 @@ var obj_w = {
                 "itemIntroduction": "为老弱病残群体服务，北京大学爱心社组织志愿活动,常规活动包括关爱儿童，老年人", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -35,7 +35,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl":'../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -53,7 +53,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -69,7 +69,7 @@ var obj_w = {
                 "itemIntroduction": "项目介绍", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/1.png", //封面
+                "coverUrl":'../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -85,7 +85,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -103,7 +103,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -119,7 +119,7 @@ var obj_w = {
                 "itemIntroduction": "项目介绍", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/1.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -135,7 +135,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -153,7 +153,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -169,7 +169,7 @@ var obj_w = {
                 "itemIntroduction": "项目介绍", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/1.png", //封面
+                "coverUrl":'../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -185,7 +185,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -203,7 +203,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -219,7 +219,7 @@ var obj_w = {
                 "itemIntroduction": "项目介绍", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/1.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -235,7 +235,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -253,7 +253,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -269,7 +269,7 @@ var obj_w = {
                 "itemIntroduction": "项目介绍", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/1.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -285,7 +285,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -303,7 +303,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl":'../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -319,7 +319,7 @@ var obj_w = {
                 "itemIntroduction": "项目介绍", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/1.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -335,7 +335,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -353,7 +353,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -369,7 +369,7 @@ var obj_w = {
                 "itemIntroduction": "项目介绍", //项目介绍
                 "gmtCreate": "2021-10-16 20:15:58", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/1.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "项目预计持续时间", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -385,7 +385,7 @@ var obj_w = {
                 "itemIntroduction": "一起加油2", //项目介绍
                 "gmtCreate": "2021-10-16 20:32:47", //创建时间
                 "userId": 1, //创建者id
-                "coverUrl": "/upload/images/avatars/item/be420a23a1854c5992e8e54687082d0c.jpg", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "1个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数
@@ -403,7 +403,7 @@ var obj_w = {
                 "itemIntroduction": "爱心之旅", //项目介绍
                 "gmtCreate": "2021-10-19 21:17:15", //创建时间
                 "userId": 2, //创建者id
-                "coverUrl": "/upload/images/avatars/item/udiwdi.png", //封面
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
                 "duration": "2个月", //预计持续时间
                 "itemCategory": "社区服务", //分类
                 "maximumNumberLimit": 10, //最大人数

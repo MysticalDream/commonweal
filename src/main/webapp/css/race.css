@@ -29,10 +29,10 @@ li {
 .top_d{
     position: relative;
     width: 100%;
-    height:72px;
+    height:69px;
     line-height: 72px;
-    background:linear-gradient(to right,#F3C8C7,#CC4341);
-    background: -webkit-linear-gradient(to right,#F3C8C7,#CC4341);
+    /* background:linear-gradient(to right,#F3C8C7,#CC4341);
+    background: -webkit-linear-gradient(to right,#F3C8C7,#CC4341); */
 }
 
 /* 顶部导航中心盒子的样式 */

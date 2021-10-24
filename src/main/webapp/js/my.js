@@ -75,10 +75,11 @@ window.addEventListener('load',function(){
     console.log(inner_box.length);
     for(let i=0;i<out_box.length;i++){
         out_box[i].addEventListener('mouseover',function(){
-            inner_box[i].style.transform='rotate(-'+15+'deg)';
+            inner_box[i].classList.add('rotate_slowly');
+            // inner_box[i].style.transform='rotate(-'+15+'deg)';
         })
-        out_box[i].addEventListener('mouseout',function(){
-            inner_box[i].style.transform='rotate(-'+0+'deg)';
-        })
+        // out_box[i].addEventListener('mouseout',function(){
+        //    inner_box[i].style.transform='rotate(-'+0+'deg)';
+        // })
     }
 })
