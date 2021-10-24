@@ -414,7 +414,7 @@ form span{
 .rotate_slowly{
     /* transition: transform .4s;
     transform: rotate(-15deg); */
-    animation: ro_slow .7s forwards;
+    animation: ro_slow .7s none;
 }
 
 @keyframes ro_slow{
