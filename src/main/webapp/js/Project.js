@@ -387,6 +387,8 @@ window.addEventListener('load', function () {
         } else {
             if (e.target.parentElement.classList.contains("province_d")) {
                 delete seek_opt.data.province;
+                delete seek_opt.data.city;
+                delete seek_opt.data.area;
             }
         }
         // 城市和地区的判断
