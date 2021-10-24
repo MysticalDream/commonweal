@@ -3,9 +3,12 @@ package team.skylinekids.commonweal.utils;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
+import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 填充javaBean的工具类
@@ -35,6 +38,13 @@ public class FillBeanUtils {
         Gson gson = GsonUtils.getGsonInstance();
         try {
             T obj = clazz.getConstructor().newInstance();
+            Field[] allFields = ReflectUtils.getAllFields(obj);
+            Map<String, Field> fieldMap = new ConcurrentHashMap<>();
+            for (Field field :
+                    allFields) {
+                System.out.println("field:" + field.getName());
+                fieldMap.putIfAbsent(field.getName(), field);
+            }
             map.forEach((key, value) -> {
                 //拼接出set方法
                 String methodName = "set" + key.substring(0, 1).toUpperCase() + key.substring(1);
@@ -42,11 +52,14 @@ public class FillBeanUtils {
                     if (value[0] == null) {
                         return;
                     }
-                    Class<?> fieldClass = clazz.getDeclaredField(key).getType();
-
+                    Field field = fieldMap.get(key);
+                    if (field == null) {
+                        return;
+                    }
+                    Class<?> fieldClass = field.getType();
                     Object o = gson.fromJson(value[0], fieldClass);
 
-                    Method declaredMethod = clazz.getDeclaredMethod(methodName, fieldClass);
+                    Method declaredMethod = clazz.getMethod(methodName, fieldClass);
 
                     if (declaredMethod != null) {
                         declaredMethod.invoke(obj, o);

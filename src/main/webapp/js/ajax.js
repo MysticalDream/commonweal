@@ -41,9 +41,9 @@ function ajax(opt){
        //  服务器端返回的数据
        var responseText=xhr.responseText;
        if(contentType.includes('application/json')){
-        //    已是json对象就不用处理，不是才需要转化
-        //    responseText=JSON.parse(responseText);
-        //    console.log(responseText);
+           //已是json对象就不用处理，不是才需要转化
+           responseText=JSON.parse(responseText);
+           // console.log(responseText);
        }
        if(xhr.status==200){
            opt.success(responseText);

@@ -78,4 +78,15 @@ public class ItemCondition extends BaseCondition {
     public void setItemTitle(String itemTitle) {
         this.itemTitle = itemTitle;
     }
+
+    @Override
+    public String toString() {
+        return "ItemCondition{" +
+                "itemCategoryId=" + itemCategoryId +
+                ", itemCategory='" + itemCategory + '\'' +
+                ", numberScope=" + numberScope +
+                ", itemId=" + itemId +
+                ", itemTitle='" + itemTitle + '\'' +
+                '}';
+    }
 }

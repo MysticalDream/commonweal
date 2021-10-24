@@ -17,6 +17,7 @@ import team.skylinekids.commonweal.service.ItemMemberMapService;
 import team.skylinekids.commonweal.service.ItemService;
 import team.skylinekids.commonweal.utils.CategoryUtils;
 import team.skylinekids.commonweal.utils.FileUtils;
+import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
@@ -25,6 +26,7 @@ import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目Controller
@@ -86,7 +88,13 @@ public class ItemController {
     @MyRequestPath(value = "/items/conditions", type = {RequestMethod.GET})
     public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
         //项目查询条件
-        ItemCondition itemCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), ItemCondition.class);
+        //ItemCondition itemCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), ItemCondition.class);
+
+        ItemCondition itemCondition = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), ItemCondition.class);
+        System.out.println(itemCondition);
+        if (itemCondition == null) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
         //项目分类id设置
         itemCondition.setItemCategoryId(CategoryUtils.getCategoryIdByName(itemCondition.getItemCategory()));
         //根据条件获取项目数据
