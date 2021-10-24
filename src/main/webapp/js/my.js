@@ -93,5 +93,9 @@ window.addEventListener('load',function(){
         },200)
     })
    
+    let out_d=this.document.querySelector('.put_out');
+    out_d.addEventListener('click',function(){
+        mask.style.display='none';
+    })
 
 })

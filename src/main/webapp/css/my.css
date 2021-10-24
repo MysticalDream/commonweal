@@ -456,3 +456,16 @@ form span{
         transform:rotate(0deg);
     }
 } */
+
+.put_in{
+    position: relative;
+    left:-50px;
+}
+
+.put_out{
+
+    position: relative;
+    top:-38px;
+    left:40px;
+}
+
