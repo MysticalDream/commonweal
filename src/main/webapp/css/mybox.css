@@ -1,0 +1,115 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0px;
+}
+
+.mask_s {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.mask_s .form_s {
+    width: 350px;
+    height: 420px;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 0 20px;
+}
+
+.mask_s .form_s h2 {
+    width: 100%;
+    line-height: 50px;
+    font-weight: 400;
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 3px;
+}
+
+.mask_s .form_s>div {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.mask_s .form_s>div input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+.mask_s .form_s .first span {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.mask_s .form_s .second {
+    border: none;
+}
+
+.mask_s .form_s .second>input {
+    float: left;
+    width: 43%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.mask_s .form_s .second>input:last-child {
+    float: right;
+}
+
+.mask_s .form_s .fifth {
+    height: 115px;
+}
+
+.mask_s .form_s .fifth textarea {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    resize: none;
+    overflow: hidden;
+}
+
+.mask_s .form_s .fifth span {
+    position: absolute;
+    bottom: 7px;
+    right: 7px;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.mask_s .form_s button {
+    width: 70px;
+    height: 30px;
+    margin-top: 8px;
+    margin-left: 119px;
+    background-color: #CD4140;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

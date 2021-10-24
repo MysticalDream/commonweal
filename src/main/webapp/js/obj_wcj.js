@@ -7,11 +7,10 @@ var obj_w = {
         "pageSize": 9, //每页记录数，即每页显示的数量
         "pageNum": 1, //第几页，就是请求的是第几页
         "total": 3, //这个条件下的总记录数
-        "size": 3, //当前页的数据数量<=pageSize
+        "size": 3, //当前页的数据数量  (<=pageSize)
         "pages": 1, //总页数
 
-        // 这个list就是数据的条数，就是要渲染的东西
-        // div.innerText=obj.list[0].itemIntroduction等等
+        // 这个list就是数据的条数 就是要渲染的东西
         "list": [
             {
                 "itemId": 1, //id

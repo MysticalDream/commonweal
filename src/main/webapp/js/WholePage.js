@@ -16,9 +16,11 @@ window.addEventListener('load',function(){
     // var h3=$('.right>h3')[0];
     // var rp=$('.right>p')[0];
     var r_btn=$('.right>button')[0];
-    // var circle=$('.circle');
+    var circle=$('.circle');
     var ad=$('.adopt_rd')[0];
-    // var btn_item=$('.btn_items');
+    var btn_item=$('.btn_items>button');
+    var juxing=$('.rectangle');
+    var btn_ul=$('.children_rd>ul>li');
     wrap.addEventListener('mousewheel', mo);
     function mo(e) {
         e.deltaY < 0 ? up(): down();
@@ -90,24 +92,49 @@ window.addEventListener('load',function(){
                 r_btn.classList.add('btn_up');
              },1600)
         }
-        // if(curIndex==5){
-        //     for(let i=0;i<2;i++){
-        //         clearTimeout(i)
-        //     }
-        //     setTimeout(function(){
-        //         circle[0].classList.add('left_come');
-        //     },1000)
-        //     setTimeout(function(){
-        //         circle[1].classList.add('left_come');
-        //     },1000)
-        // }
-        if(curIndex==6){
+        if(curIndex==5){
             for(let i=0;i<2;i++){
+                clearTimeout(i)
+            }
+            setTimeout(function(){
+                circle[0].classList.add('btn_up');
+            },1000)
+            setTimeout(function(){
+                circle[1].classList.add('btn_up');
+            },1200)
+            setTimeout(function(){
+                juxing[0].classList.add('btn_up');
+            },1000)
+            setTimeout(function(){
+                juxing[1].classList.add('btn_up');
+            },1200)
+        }
+        if(curIndex==6){
+            for(let i=0;i<4;i++){
                 clearTimeout(i)
             }
             setTimeout(function(){
                ad.classList.add('btn_up');
             },1000)
+        }
+        if(curIndex==7){
+            for(let i=0;i<1;i++){
+                clearTimeout(i)
+            }
+            setTimeout(function(){
+               btn_item[0].classList.add('btn_up');
+               btn_item[1].classList.add('btn_up');
+               btn_item[2].classList.add('btn_up');
+            },1000)
+            setTimeout(function(){
+                btn_ul[0].classList.add('btn_up');
+                btn_ul[1].classList.add('btn_up');
+                btn_ul[2].classList.add('btn_up');
+                btn_ul[3].classList.add('btn_up');
+             },1200)
+        }
+        for(let i=0;i<2;i++){
+            clearTimeout(i)
         }
     };
 })

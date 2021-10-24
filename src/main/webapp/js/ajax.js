@@ -7,7 +7,7 @@ function ajax(opt){
        header:{
            'Content-Type':'application/x-www-form-urlencoded'
        },
-       success:function(){
+       success:function(data){
        },
        error:function(){}
     }

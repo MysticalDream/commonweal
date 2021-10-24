@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../css/recruit.css">
     <link rel="stylesheet" href="../../css/project.css">
+    <link rel="stylesheet" href="../../css/font.css">
     <script src="../../js/recruit.js"></script>
     <script src="../../js/ajax.js"></script>
     <script src="../../js/Project.js"></script>
@@ -24,7 +25,7 @@
                     <a href="javascript:;">首页</a>
                 </li>
                 <li  class="pitch">
-                    <a href="javascript:;">志愿招募</a>
+                    <a href="javascript:;">志愿项目</a>
                 </li>
                 <li>
                     <a href="javascript:;">成就展示</a>
@@ -52,7 +53,7 @@
     <!-- 大照片 -->
     <div class="big_pic_s">
         <div class="big_pic_left_line"></div>
-        志愿项目
+        <span class="center_title">志愿项目</span>
         <div class="big_pic_right_line"></div>
     </div>
     <!-- 切换栏 -->
@@ -152,7 +153,7 @@
     <!-- 页脚 -->
     <script>
         let data = [];
-        for(let i=0;i<obj_w.data.list.length;i++){
+        for(let i=0;i<obj_w.data.total;i++){
             data.push(obj_w.data.list[i]);
             console.log(data);
         }
@@ -163,7 +164,7 @@
         // 每一个页面放的数据数
         let pageSize = 9;
         // 总的页数
-        let allPage = Math.ceil(data.length / pageSize);
+        let allPage = Math.ceil(obj_w.data.total/ pageSize);
         let wrapper = document.querySelectorAll('.wrapper')[0];
         let wrapper_1=document.querySelectorAll('.wrapper')[1];
         let obj = new TurnPage({
