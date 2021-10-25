@@ -130,9 +130,9 @@ TurnPage.prototype.bindEvent = function () {
             if (!number == '') {
                 console.log(number);
                 self.currentPage = number;
+                localStorage.setItem("turn_page", number);
                 self.fillHTML();
-                self.changePage(self.currentPage)
-                turn_to.value = '';
+                self.changePage(self.currentPage);
             }
 
         }
@@ -378,7 +378,7 @@ window.addEventListener('load', function () {
     ajax(seek_opt);
     // 进入选择区域 每点击一次都要发送
     sele_wrapper.addEventListener('click', function (e) {
-        if (e.target == sele_wrapper) {
+        if (e.target == sele_wrapper || e.target.classList.contains("turn_to")) {
             return;
         }
         // 省份的判断
@@ -447,8 +447,8 @@ window.addEventListener('load', function () {
         if (e.target.classList.contains('num')) {
             seek_opt.data.pageNum = e.target.innerText;
         }
-        if (e.target.classList.contains('turn_to') && e.target.value != '') {
-            seek_opt.data.pageNum = e.target.value;
+        if (e.target.classList.contains('turn_to_btn') && localStorage.getItem("turn_page")) {
+            seek_opt.data.pageNum = localStorage.getItem("turn_page");
         }
         console.log(seek_opt);
         // 发送前打印出来是对的就已经添加data成功了

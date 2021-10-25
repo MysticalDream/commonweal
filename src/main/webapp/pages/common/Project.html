@@ -152,6 +152,9 @@
 </div>
 <!-- 页脚 -->
 <script>
+    var obj;
+    var obj_1;
+
     function render(obj_w) {
         let data = [];
         for (let i = 0; i < obj_w.data.list.length; i++) {
@@ -165,36 +168,39 @@
         // 每一个页面放的数据数
         let pageSize = 9;
         // 总的页数
-        let allPage = Math.ceil( obj_w.data.total/ pageSize);
+        let allPage = Math.ceil(obj_w.data.total / pageSize);
         let wrapper = document.querySelectorAll('.wrapper')[0];
         let wrapper_1 = document.querySelectorAll('.wrapper')[1];
-        let obj = new TurnPage({
-            currentPage: 1,
-            allPage: allPage,
-            wrap: wrapper,
-            changePage: function (page) {
-                // console.log(page);
-                // 我们要渲染到页面上的数据
-                var filterData = data.filter((item, index) => {
-                    return index >= (page - 1) * pageSize && index < page * pageSize;
-                })
-                renderDom(filterData);
-            }
-        })
-
-        let obj_1 = new TurnPage({
-            currentPage: 1,
-            allPage: allPage,
-            wrap: wrapper_1,
-            changePage: function (page) {
-                // console.log(page);
-                // 我们要渲染到页面上的数据
-                var filterData = data.filter((item, index) => {
-                    return index >= (page - 1) * pageSize && index < page * pageSize;
-                })
-                renderDom(filterData);
-            }
-        })
+        if (!obj) {
+            obj = new TurnPage({
+                currentPage: obj_w.data.pageNum,
+                allPage: allPage,
+                wrap: wrapper,
+                changePage: function (page) {
+                    // console.log(page);
+                    // 我们要渲染到页面上的数据
+                    // var filterData = data.filter((item, index) => {
+                    //     return index >= (page - 1) * pageSize && index < page * pageSize;
+                    // })
+                    //renderDom(filterData);
+                }
+            })
+        }
+        if (!obj_1) {
+            obj_1 = new TurnPage({
+                currentPage: obj_w.data.pageNum,
+                allPage: allPage,
+                wrap: wrapper_1,
+                changePage: function (page) {
+                    // console.log(page);
+                    // 我们要渲染到页面上的数据
+                    // var filterData = data.filter((item, index) => {
+                    //     return index >= (page - 1) * pageSize && index < page * pageSize;
+                    // })
+                    // renderDom(filterData);
+                }
+            })
+        }
 
         obj.init();
         obj_1.init();
