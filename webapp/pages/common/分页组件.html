@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul.pagination {
+            position: relative;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgb(0, 0, .2);
+            min-height: 50px;
+            margin: 20px auto 0 auto;
+        }
+
+        ul.pagination li {
+            list-style: none;
+            line-height: 50px;
+            margin: 0 5px;
+        }
+
+        ul.pagination li.numb,
+        ul.pagination li.dot {
+            min-width: 25px;
+            min-height: 25px;
+            line-height: 25px;
+            text-align: center;
+        }
+
+        ul.pagination li.numb a {
+            border: 1px solid #777;
+            border-radius: 5px;
+        }
+
+        ul.pagination li a {
+            display: block;
+            text-decoration: none;
+            color: #777;
+            font-weight: 600;
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        ul.pagination li.dot a {
+            cursor: text;
+        }
+
+        ul.pagination li.numb.active a {
+            cursor: text;
+        }
+
+        ul.pagination li.numb:hover a,
+        ul.pagination li.numb.active a {
+            background-color: #333;
+            color: #fff;
+        }
+
+        ul.pagination li .prev,
+        ul.pagination li .next {
+            color: #000;
+            border: 1px solid #777;
+            border-radius: 5px;
+            line-height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="pagination" id="pagination">
+    </ul>
+    <script>
+        //分页组件框架
+        (function (global, factory) {
+            typeof exports === "object" && typeof module !== "undefined"
+                ? (module.exports = factory())
+                : typeof define === "function" && define.amd
+                    ? define(factory)
+                    : ((global = global || self), (global.myLayPage = factory()));
+        })(this, function () {
+            //辅助函数
+            function $(matcher) {
+                return document.querySelectorAll(matcher);
+            }
+
+            function isElementNode(node) {
+                return node.nodeType === 1;
+            }
+  /**
+   * 删除所有子节点的方法
+   * @param {*} e表示预删除所有子节点的父节点
+   */ function empty(e) {
+                while (e.firstChild) {
+                    e.removeChild(e.firstChild);
+                }
+            }
+            //核心函数
+            var parentElement;
+            /**
+             *
+             * @author wcj
+             * @param {*} data
+             */
+            function deal(data) {
+                //清空元素
+                empty(data.elem);
+                //取最小值，避免出现错误
+                let curr = Math.min(data.curr, data.pageTotal);
+                data["curr"] = Math.max(curr, 1);
+                //回调函数
+                data.jump(data);
+                if (data.pageTotal <= 0 && data.elem.parentElement) {
+                    //移除分页
+                    parentElement = data.elem.parentElement;
+                    parentElement.removeChild(data.elem);
+                    return;
+                }
+                else if (!data.elem.parentElement && data.pageTotal > 0) {
+                    parentElement.appendChild(data.elem);
+                }
+                //获取连续出现页码个数，最小值只能是1
+                let groups = Math.max(data.groups, 1);
+                //当前页数要大于0
+                if (curr > 0) {
+                    //大于1就显示上一页
+                    if (curr > 1) {
+                        let liElement = document.createElement("LI");
+                        liElement.innerHTML = `<a href="javascript:void(0)" class="prev" title="上一页">上一页</a>`;
+                        liElement.onclick = function () {
+                            data["curr"] = curr - 1;
+                            deal(data);
+                        };
+                        data.elem.appendChild(liElement);
+                    }
+                    //连续页数大于总页数-1则没有 ...省略号
+                    if (groups >= data.pageTotal - 1) {
+                        for (let i = 1; i <= data.pageTotal; i++) {
+                            let liElement = document.createElement("LI");
+                            liElement.className = "numb";
+                            liElement.innerHTML = `<a href="javascript:void(0)">${i}</a>`;
+                            if (i !== curr) {
+                                liElement.onclick = function () {
+                                    data["curr"] = i;
+                                    deal(data);
+                                };
+                            } else {
+                                liElement.className += " active";
+                            }
+                            data.elem.appendChild(liElement);
+                        }
+                    }
+                    //否者会出现省略号
+                    else {
+                        //当前页数小于连续页数时 会连续出现连续页数，且右边会有省略号
+                        if (curr < groups) {
+                            for (let i = 1; i <= groups; i++) {
+                                let liElement = document.createElement("LI");
+                                liElement.className = "numb";
+                                liElement.innerHTML = `<a href="javascript:void(0)">${i}</a>`;
+                                if (i !== curr) {
+                                    liElement.onclick = function () {
+                                        data["curr"] = i;
+                                        deal(data);
+                                    };
+                                } else {
+                                    liElement.className += " active";
+                                }
+                                data.elem.appendChild(liElement);
+                            }
+                            let liElement = document.createElement("LI");
+
+                            liElement.className = "dot";
+                            liElement.innerHTML = `<a href="javascript:void(0)">...</a>`;
+                            data.elem.appendChild(liElement);
+                            let liElement_end = document.createElement("LI");
+                            liElement_end.className = "numb";
+                            liElement_end.onclick = function () {
+                                data["curr"] = data.pageTotal;
+                                deal(data);
+                            };
+                            liElement_end.innerHTML = `<a href="javascript:void(0)">${data.pageTotal}</a>`;
+                            data.elem.appendChild(liElement_end);
+                        }
+                        //否则，以连续页数为标准，当前页位于连续页数中间，如果无法满足，则在当前页前面添加
+                        else {
+                            let aver = Math.ceil(groups / 2) - 1;
+                            let begin = curr - aver;
+                            let end = Math.min(curr + (groups - aver - 1), data.pageTotal);
+                            let consecutive = end - begin + 1; //连续出现的页数
+                            begin = begin - (groups - consecutive); //使得连续出现页数必须满足groups
+                            //如果连续页数不是1,或则当前页数不是1时创建1这个子节点
+                            if (begin !== end || curr !== 1) {
+                                let liElement = document.createElement("LI");
+                                liElement.className = "numb";
+                                liElement.innerHTML = `<a href="javascript:void(0)">1</a>`;
+                                liElement.onclick = function () {
+                                    data["curr"] = 1;
+                                    deal(data);
+                                };
+                                data.elem.appendChild(liElement);
+                            }
+                            //如果连续起始页大于2则会出现...
+                            if (begin > 2) {
+                                let liElement = document.createElement("LI");
+                                liElement.className = "dot";
+                                liElement.innerHTML = `<a href="javascript:void(0)">...</a>`;
+                                data.elem.appendChild(liElement);
+                            }
+                            //创建连续节点
+                            for (let i = begin; i <= end; i++) {
+                                let liElement = document.createElement("LI");
+                                liElement.className = "numb";
+                                liElement.innerHTML = `<a href="javascript:void(0)">${i}</a>`;
+                                if (i !== curr) {
+                                    liElement.onclick = function () {
+                                        data["curr"] = i;
+                                        deal(data);
+                                    };
+                                } else {
+                                    liElement.className += " active";
+                                }
+                                data.elem.appendChild(liElement);
+                            }
+                            //如果连续结束页数小于总页数-1
+                            if (end < data.pageTotal - 1) {
+                                let liElement = document.createElement("LI");
+                                liElement.className = "dot";
+                                liElement.innerHTML = `<a href="javascript:void(0)">...</a>`;
+                                data.elem.appendChild(liElement);
+                            }
+                            //如果连续结束页数小于总页数
+                            if (end < data.pageTotal) {
+                                let liElement_end = document.createElement("LI");
+                                liElement_end.className = "numb";
+                                liElement_end.onclick = function () {
+                                    data["curr"] = data.pageTotal;
+                                    deal(data);
+                                };
+                                liElement_end.innerHTML = `<a href="javascript:void(0)">${data.pageTotal}</a>`;
+                                data.elem.appendChild(liElement_end);
+                            }
+                        }
+                    }
+                    if (curr < data.pageTotal) {
+                        let liElement = document.createElement("LI");
+                        liElement.innerHTML = `<a href="javascript:void(0)" class="next" title="下一页">下一页</a>`;
+                        liElement.onclick = function () {
+                            data["curr"] = curr + 1;
+                            deal(data);
+                        };
+                        data.elem.appendChild(liElement);
+                    }
+                }
+            }
+
+            function myLayPage(opt) {
+                opt.elem = opt.elem || "";
+                opt = opt || {};
+                opt.count = opt.count || 0;
+                opt.limit = opt.limit || 10;
+                opt.groups = opt.groups || 5;
+                opt.curr = opt.curr || 1;
+                opt.jump = opt.jump || function () { };
+                var data = opt;
+                var limit = opt.limit;
+                data.pageTotal = Math.ceil(opt.count / opt.limit);
+                data.elem = isElementNode(opt.elem) ? opt.elem : $(opt.elem)[0];
+                this.changeCount = function (count, cur) {
+                    data.count = count || data.count;
+                    data.pageTotal = Math.ceil(data.count / limit);
+                    data.curr = cur || data.curr;
+                    deal(data);
+                };
+                this.changeCount(data.count);
+            }
+            return myLayPage;
+        });
+    </script>
+    <script>
+        var myPage = new myLayPage({
+            count: 100,
+            limit: 3,
+            curr: 1,
+            elem: "#pagination", //ID
+            groups: 5,
+            jump: function (data) {
+                console.log(data.curr);
+            }
+        });
+    </script>
+</body>
+
+</html>
