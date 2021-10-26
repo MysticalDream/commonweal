@@ -157,9 +157,7 @@ window.addEventListener('load', function () {
     city = {
         type: 'get',
         url: '/js/data.json',
-        data: {
-
-        },
+        data: {},
         success: function (data) {
             // if(data.success)
             obj_d = data;
@@ -234,7 +232,8 @@ window.addEventListener('load', function () {
                 }
             }
         },
-        error: function () { }
+        error: function () {
+        }
     }
     ajax(city);
 
@@ -334,27 +333,26 @@ window.addEventListener('load', function () {
 
     // 从这里开始
     var box = $('.box')[0];
-    var box_t=$('.box')[1];
+    var box_t = $('.box')[1];
     var wrapper = $('.wrapper')[0];
-    var li_jug=$('.pro_box>ul>li')[0];
+    var li_jug = $('.pro_box>ul>li')[0];
     console.log(li_jug);
     var seek_opt = new Object();
     seek_opt.type = "get";
-    seek_opt.url = '/item/conditions';
+    seek_opt.url = '/items/conditions';
     // seek_opt.url='https://mock.apipost.cn/app/mock/project/adb58a24-e8c9-40fc-9b10-2d8da179d593/items/conditions';
     seek_opt.data = {};
     seek_opt.header = {
         'Content-Type': 'application/json'
     }
     seek_opt.success = function (data) {
-        if(li_jug.classList.contains('pro_li_cur')){
-            alert(1);
+        if (li_jug.classList.contains('pro_li_cur')) {
+            // alert(1);
             // 渲染分页
             render(data);
             // 渲染页面
             renderDom(data);
-        }
-        else{
+        } else {
             // 渲染分页
             render(data);
             // 渲染页面
@@ -368,9 +366,10 @@ window.addEventListener('load', function () {
     seek_opt.data.pageSize = '9';
     ajax(seek_opt);
     // render(obj_w);
-  
+
     var turnPage;
     var allpage;
+
     // 开一个分页实例
     function render(data) {
         if (!turnPage) {
@@ -385,11 +384,10 @@ window.addEventListener('load', function () {
                     //     renderDom(data);
                     // }
                     // console.log(seek_opt.success);
-                   ajax(seek_opt);
+                    ajax(seek_opt);
                 }
             });
-        }
-        else if (allpage != data.data.pages) {
+        } else if (allpage != data.data.pages) {
             allpage = data.data.pages;
             turnPage = new TurnPage({
                 currentPage: data.data.pageNum,
@@ -411,7 +409,8 @@ window.addEventListener('load', function () {
         }
         turnPage.init();
     }
-    // 渲染数据 
+
+    // 渲染数据
     function renderDom(data) {
         // 容器的内容清空
         box.innerHTML = "";
@@ -423,7 +422,7 @@ window.addEventListener('load', function () {
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
-                <img src='${url_d}'>
+                <img src='${data.data.list[i].coverUrl}'>
                 <h1>${data.data.list[i].itemTitle}</h1>
                 <p>${data.data.list[i].itemIntroduction}</p>
                 <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
@@ -445,7 +444,7 @@ window.addEventListener('load', function () {
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
-                <img src='${url_d}'>
+                <img src='${data.data.list[i].teamAvatar}'>
                 <h1>${data.data.list[i].teamName}</h1>
                 <p>${data.data.list[i].teamIntroduction}</p>
                 <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
@@ -485,6 +484,7 @@ window.addEventListener('load', function () {
         }
         console.log('城市为：' + seek_opt.data.city);
         console.log('县区为：' + seek_opt.data.area);
+        seek_opt.data.pageNum = 1;
         ajax(seek_opt);
         console.log(seek_opt);
     })
@@ -523,7 +523,7 @@ window.addEventListener('load', function () {
             seek_opt.data.teamId = this.value;
         }
     }
-   
+
     // 点击切换栏
     let tag_li = $('.pro_box>ul>li');
     let tag_box = $('.tagged_box');
@@ -533,7 +533,7 @@ window.addEventListener('load', function () {
     let item_d = $('.item_d');
     let peo_d = $('.peo_d');
     for (let i = 0; i < tag_li.length; i++) {
-        tag_li[i].index=i;
+        tag_li[i].index = i;
         tag_li[i].addEventListener('click', function () {
             // 切换时更换url
             // 切换时清空
@@ -544,15 +544,15 @@ window.addEventListener('load', function () {
             seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
 
             // 项目存在时删除队伍信息 队伍名存在时删除项目信息
-            if (tag_li[i].index==1) {
-                seek_opt.url='/teams/conditions';
+            if (tag_li[i].index == 1) {
+                seek_opt.url = '/teams/conditions';
                 seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
                 seek_opt.data.itemId ? delete seek_opt.data.itemId : null;
                 seek_opt.data.itemTitle ? delete seek_opt.data.itemTitle : null;
                 ajax(seek_opt);
             }
-            if (tag_li[i].index==0) {
-                seek_opt.url='/item/conditions';
+            if (tag_li[i].index == 0) {
+                seek_opt.url = '/items/conditions';
                 seek_opt.data.teamId ? delete seek_opt.data.teamId : null;
                 seek_opt.data.teamName ? delete seek_opt.data.teamName : null;
                 ajax(seek_opt);

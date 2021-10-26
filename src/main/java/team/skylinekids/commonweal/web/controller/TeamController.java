@@ -16,6 +16,7 @@ import team.skylinekids.commonweal.service.TeamBOService;
 import team.skylinekids.commonweal.service.TeamMemberMapService;
 import team.skylinekids.commonweal.service.TeamService;
 import team.skylinekids.commonweal.utils.FileUtils;
+import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
@@ -99,8 +100,7 @@ public class TeamController {
      */
     @MyRequestPath(value = "/teams/conditions", type = {RequestMethod.GET})
     public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        String jsonString = httpInfoWrapper.getParameter("json");
-        TeamCondition teamCondition = GsonUtils.j2O(jsonString, TeamCondition.class);
+        TeamCondition teamCondition = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), TeamCondition.class);
         Page<TeamDTO> teamByCondition = teamService.getTeamByCondition(teamCondition);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, teamByCondition);
     }

@@ -303,7 +303,7 @@ window.addEventListener('load',function(){
             // let url_d_2 = '../../images/join.png';
             let str=`<div class="big_recg">
             <div class="img_container">
-            <img src=${url_d} class="img_cir">
+            <img src=${data.data.list[i].coverUrl} class="img_cir">
             <div>
             <div class="text_container">
             <img src=${url_d_1} class="tree">
