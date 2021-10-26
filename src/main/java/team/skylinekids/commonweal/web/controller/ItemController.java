@@ -2,8 +2,8 @@ package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
-import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
+import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.bo.ItemBO;
@@ -26,7 +26,6 @@ import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 项目Controller
@@ -89,9 +88,7 @@ public class ItemController {
     public String getItemsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
         //项目查询条件
         //ItemCondition itemCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), ItemCondition.class);
-
         ItemCondition itemCondition = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), ItemCondition.class);
-        System.out.println(itemCondition);
         if (itemCondition == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }

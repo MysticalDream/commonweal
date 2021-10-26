@@ -103,4 +103,17 @@ public class Province {
     public void setTown(String town) {
         this.town = town;
     }
+
+    @Override
+    public String toString() {
+        return "Province{" +
+                "id=" + id +
+                ", code=" + code +
+                ", name='" + name + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", town='" + town + '\'' +
+                '}';
+    }
 }
