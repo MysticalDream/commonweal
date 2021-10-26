@@ -1,4 +1,3 @@
-.adpot_main{
-    width: 75%;
-    margin:15px auto;
+body .big_pic_adpot{
+    background: url(../images/adpot_bg.jpg) center center;
 }

@@ -340,7 +340,7 @@ window.addEventListener('load', function () {
     console.log(li_jug);
     var seek_opt = new Object();
     seek_opt.type = "get";
-    seek_opt.url = 'item/conditions';
+    seek_opt.url = '/item/conditions';
     // seek_opt.url='https://mock.apipost.cn/app/mock/project/adb58a24-e8c9-40fc-9b10-2d8da179d593/items/conditions';
     seek_opt.data = {};
     seek_opt.header = {
@@ -545,14 +545,14 @@ window.addEventListener('load', function () {
 
             // 项目存在时删除队伍信息 队伍名存在时删除项目信息
             if (tag_li[i].index==1) {
-                seek_opt.url='teams/conditions';
+                seek_opt.url='/teams/conditions';
                 seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
                 seek_opt.data.itemId ? delete seek_opt.data.itemId : null;
                 seek_opt.data.itemTitle ? delete seek_opt.data.itemTitle : null;
                 ajax(seek_opt);
             }
             if (tag_li[i].index==0) {
-                seek_opt.url='item/conditions';
+                seek_opt.url='/item/conditions';
                 seek_opt.data.teamId ? delete seek_opt.data.teamId : null;
                 seek_opt.data.teamName ? delete seek_opt.data.teamName : null;
                 ajax(seek_opt);
