@@ -11,6 +11,7 @@ import team.skylinekids.commonweal.pojo.po.FarmerInfo;
 import team.skylinekids.commonweal.pojo.query.FarmerInfoCondition;
 import team.skylinekids.commonweal.service.FarmerInfoService;
 import team.skylinekids.commonweal.utils.FileUtils;
+import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
@@ -35,7 +36,7 @@ public class FarmerController {
      */
     @MyRequestPath(value = "/agriculture/list", type = {RequestMethod.GET})
     public String getFarmerInfoList(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        FarmerInfoCondition farmerInfoCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), FarmerInfoCondition.class);
+        FarmerInfoCondition farmerInfoCondition = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), FarmerInfoCondition.class);
         Page<FarmerInfo> farmerInfoList = farmerInfoService.getFarmerInfoList(farmerInfoCondition);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, farmerInfoList);
     }
