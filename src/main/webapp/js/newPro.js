@@ -137,23 +137,8 @@ TurnPage.prototype.bindEvent = function () {
 
         }
     }
-    // 给按钮绑定点击事件 还要判断一下 省略号的情况
-    // let btn = document.querySelector('.turn_to_btn');
-    // let turn_to = document.querySelector('.turn_to');
-    // btn.addEventListener('click', (e) => {
-    //     alert(1);
-    //     e.stopPropagation();
-    //     self.currentPage = turn_to.value;
-    //     self.fillHTML();
-    //     self.changePage(self.currentPage);
-    //     console.log(turn_to.value);
-    // })
 }
-
-
 window.addEventListener('load', function () {
-
-    // var seek_opt={}
 
     function $(ele) {
         return document.querySelectorAll(ele);
@@ -161,7 +146,7 @@ window.addEventListener('load', function () {
 
     let sele_wrapper = $('.sele_wrapper')[0];
     let province_d = $('.province_d')[0];
-    // let people_d=$('.people_d')[0];
+    let people_d = $('.people_d')[0];
     let theme_d = $('.theme_d')[0];
     let city;
     let obj_d;
@@ -169,87 +154,87 @@ window.addEventListener('load', function () {
     let city_div;
     let arr_1 = new Array();
     let arr_2 = new Array();
-    city={
-        type:'get',
-        url:'/js/data.json',
-        data:{
-          
+    city = {
+        type: 'get',
+        url: '/js/data.json',
+        data: {
+
         },
-        success:function(data){
+        success: function (data) {
             // if(data.success)
-            obj_d=data;
+            obj_d = data;
             // 省市的渲染
-            for(let i=0;i<obj_d.length;i++){
+            for (let i = 0; i < obj_d.length; i++) {
                 // 省部分
-                move_span=document.createElement('span');
-                move_span.innerText=obj_d[i].name;
+                move_span = document.createElement('span');
+                move_span.innerText = obj_d[i].name;
                 // 渲染时把属性也加上
-                move_span.province=obj_d[i].province;
+                move_span.province = obj_d[i].province;
                 move_span.classList.add('move_span');
                 province_d.appendChild(move_span);
                 arr_1.push(move_span);
                 // 市部分
-                city_div=document.createElement('div');
+                city_div = document.createElement('div');
                 city_div.classList.add('hide_city');
-               
-                let all_span=document.createElement('span');
-                all_span.innerText='全部';
+
+                let all_span = document.createElement('span');
+                all_span.innerText = '全部';
                 all_span.classList.add('red_bg_d');
                 city_div.appendChild(all_span);
-                sele_wrapper.insertBefore(city_div,theme_d);
-                for(let j=0;j<obj_d[i].children.length;j++){
-                    let city_span=document.createElement('span');
+                sele_wrapper.insertBefore(city_div, theme_d);
+                for (let j = 0; j < obj_d[i].children.length; j++) {
+                    let city_span = document.createElement('span');
                     // city_span.classList.add='city_span';
                     city_div.appendChild(city_span);
-                    city_span.innerText=obj_d[i].children[j].name;
+                    city_span.innerText = obj_d[i].children[j].name;
                     // 加上城市属性
-                    city_span.city=obj_d[i].children[j].city;
+                    city_span.city = obj_d[i].children[j].city;
                     // 加上area属性
-                    city_span.area=obj_d[i].children[j].area;
+                    city_span.area = obj_d[i].children[j].area;
                 }
                 // 写在这就把子节点 市的span也装进去
                 arr_2.push(city_div);
             }
 
             // 点击事件
-            let contry=$('.red_bg')[0];
-          for(let i=0;i<arr_1.length;i++){
-              arr_1[i].addEventListener('click',function(){
+            let contry = $('.red_bg')[0];
+            for (let i = 0; i < arr_1.length; i++) {
+                arr_1[i].addEventListener('click', function () {
                     contry.classList.remove('red_bg');
-                  for(let j=0;j<arr_2.length;j++){
-                    arr_2[j].style.display='none';
-                    arr_1[j].classList.remove('red_bg');
-                  }
-                arr_2[i].style.display='block';
-                this.classList.add('red_bg');
-                // 新加
-                for(let k=0;k<arr_2[i].childNodes.length;k++){
-                    arr_2[i].childNodes[k].classList.remove('red_bg_d');
-                }
-                arr_2[i].firstChild.classList.add('red_bg_d');
-              })
+                    for (let j = 0; j < arr_2.length; j++) {
+                        arr_2[j].style.display = 'none';
+                        arr_1[j].classList.remove('red_bg');
+                    }
+                    arr_2[i].style.display = 'block';
+                    this.classList.add('red_bg');
+                    // 新加
+                    for (let k = 0; k < arr_2[i].childNodes.length; k++) {
+                        arr_2[i].childNodes[k].classList.remove('red_bg_d');
+                    }
+                    arr_2[i].firstChild.classList.add('red_bg_d');
+                })
             }
-            contry.addEventListener('click',function(){
+            contry.addEventListener('click', function () {
                 this.classList.add('red_bg');
-                for(let j=0;j<arr_2.length;j++){
-                    arr_2[j].style.display='none';
+                for (let j = 0; j < arr_2.length; j++) {
+                    arr_2[j].style.display = 'none';
                     arr_1[j].classList.remove('red_bg');
-                  }
+                }
             })
-            
+
             // 子级的类名切换
-            for(let i=0;i<arr_2.length;i++){
-                for(let j=0;j<arr_2[i].childNodes.length;j++){
-                    arr_2[i].childNodes[j].addEventListener('click',function(){
-                        for(let k=0;k<arr_2[i].childNodes.length;k++){
+            for (let i = 0; i < arr_2.length; i++) {
+                for (let j = 0; j < arr_2[i].childNodes.length; j++) {
+                    arr_2[i].childNodes[j].addEventListener('click', function () {
+                        for (let k = 0; k < arr_2[i].childNodes.length; k++) {
                             arr_2[i].childNodes[k].classList.remove('red_bg_d');
                         }
-                       this.classList.add('red_bg_d');
+                        this.classList.add('red_bg_d');
                     })
                 }
             }
         },
-        error:function(){}
+        error: function () { }
     }
     ajax(city);
 
@@ -346,41 +331,133 @@ window.addEventListener('load', function () {
     center_em_1.onclick = function () {
         search_d_1.focus();
     }
-    // 传送参数的获取
-    //  province:11,
-    // city:"01",
-    // area:"01",
-    // "itemCategory": "社区服务",
-    // "numberScope": "1",
-    // "pageSize": "9",
-    // "pageNum": "1"
 
-    // 动态添加属性
+    // 从这里开始
+    var box = $('.box')[0];
+    var box_t=$('.box')[1];
+    var wrapper = $('.wrapper')[0];
+    var li_jug=$('.pro_box>ul>li')[0];
+    console.log(li_jug);
     var seek_opt = new Object();
-    seek_opt.type="get";
-    seek_opt.url='item/conditions';
-    seek_opt.data={};
-    seek_opt.header={
-        'Content-Type':'application/json'
+    seek_opt.type = "get";
+    seek_opt.url = 'item/conditions';
+    // seek_opt.url='https://mock.apipost.cn/app/mock/project/adb58a24-e8c9-40fc-9b10-2d8da179d593/items/conditions';
+    seek_opt.data = {};
+    seek_opt.header = {
+        'Content-Type': 'application/json'
     }
-    seek_opt.success=function(data){
-        render(data);
-    }
-    seek_opt.error=function(){
-        
-    }
-    seek_opt.data.pageNum='1';
-    seek_opt.data.pageSize='9';
-    // 未点击时第一次发送，里面是未点击的数据，初始页面1和每页容量9
-    ajax(seek_opt);
-
-    
-    // 进入选择区域 每点击一次都要发送
-    sele_wrapper.addEventListener('click', function (e) {
-        if (e.target == sele_wrapper) {
-            return;
+    seek_opt.success = function (data) {
+        if(li_jug.classList.contains('pro_li_cur')){
+            alert(1);
+            // 渲染分页
+            render(data);
+            // 渲染页面
+            renderDom(data);
         }
-        // 省份的判断
+        else{
+            // 渲染分页
+            render(data);
+            // 渲染页面
+            renderDom_t(data);
+        }
+    }
+    seek_opt.error = function () {
+
+    }
+    seek_opt.data.pageNum = '1';
+    seek_opt.data.pageSize = '9';
+    ajax(seek_opt);
+    // render(obj_w);
+  
+    var turnPage;
+    var allpage;
+    // 开一个分页实例
+    function render(data) {
+        if (!turnPage) {
+            allpage = data.data.pages;
+            turnPage = new TurnPage({
+                currentPage: data.data.pageNum,
+                allPage: data.data.pages,
+                wrap: wrapper,
+                changePage: function (page) {
+                    seek_opt.data.pageNum = page;
+                    // seek_opt.success=function(data){
+                    //     renderDom(data);
+                    // }
+                    // console.log(seek_opt.success);
+                   ajax(seek_opt);
+                }
+            });
+        }
+        else if (allpage != data.data.pages) {
+            allpage = data.data.pages;
+            turnPage = new TurnPage({
+                currentPage: data.data.pageNum,
+                allPage: data.data.pages,
+                wrap: wrapper,
+                changePage: function (page) {
+                    seek_opt.data.pageNum = page;
+                    // ajax({
+                    //     data:seek_opt.data,
+                    //     success:function(data){
+                    //          // 我们要渲染到页面上的数据
+
+                    //         renderDom(data);
+                    //     }
+                    // });
+                    ajax(seek_opt);
+                }
+            });
+        }
+        turnPage.init();
+    }
+    // 渲染数据 
+    function renderDom(data) {
+        // 容器的内容清空
+        box.innerHTML = "";
+        console.log(data.data.list.length)
+        for (let i = 0; i < data.data.list.length; i++) {
+            let oDiv = document.createElement('div');
+            oDiv.classList.add('nine_box');
+            let url_d = '../../images/beijing.jpg';
+            let url_d_1 = '../../images/peo_d.png';
+            let url_d_2 = '../../images/join.png';
+            let str = `<div>
+                <img src='${url_d}'>
+                <h1>${data.data.list[i].itemTitle}</h1>
+                <p>${data.data.list[i].itemIntroduction}</p>
+                <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
+                <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
+                </div>`
+            oDiv.innerHTML = str;
+            box.appendChild(oDiv);
+        }
+    }
+
+
+    function renderDom_t(data) {
+        // 容器的内容清空
+        box_t.innerHTML = "";
+        for (let i = 0; i < data.data.list.length; i++) {
+            let oDiv = document.createElement('div');
+            oDiv.classList.add('nine_box');
+            let url_d = '../../images/beijing.jpg';
+            let url_d_1 = '../../images/peo_d.png';
+            let url_d_2 = '../../images/join.png';
+            let str = `<div>
+                <img src='${url_d}'>
+                <h1>${data.data.list[i].teamName}</h1>
+                <p>${data.data.list[i].teamIntroduction}</p>
+                <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
+                <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
+                </div>`
+            oDiv.innerHTML = str;
+            box_t.appendChild(oDiv);
+        }
+    }
+
+
+    province_d.addEventListener('click', function (e) {
         if (e.target.classList.contains('move_span')) {
             e.target.province ? seek_opt.data.province = e.target.province : null;
         } else {
@@ -390,7 +467,10 @@ window.addEventListener('load', function () {
                 delete seek_opt.data.area;
             }
         }
-        // 城市和地区的判断
+        console.log('省份为：' + seek_opt.data.province);
+    })
+
+    sele_wrapper.addEventListener('click', function (e) {
         if (e.target.classList.contains('red_bg_d')) {
             if (e.target.city) {
                 seek_opt.data.city = e.target.city
@@ -403,59 +483,48 @@ window.addEventListener('load', function () {
                 delete seek_opt.data.area;
             }
         }
-        // 主题的判断
+        console.log('城市为：' + seek_opt.data.city);
+        console.log('县区为：' + seek_opt.data.area);
+        ajax(seek_opt);
+        console.log(seek_opt);
+    })
+
+    theme_d.addEventListener('click', function (e) {
         if (e.target.classList.contains('item_d')) {
             seek_opt.data.itemCategory = e.target.innerText;
         }
-        // 人数范围的判断
+        console.log(seek_opt.data.itemCategory);
+    })
+
+    people_d.addEventListener('click', function (e) {
         if (e.target.classList.contains('peo_d')) {
             e.target.index == 0 ? null : seek_opt.data.numberScope = e.target.index;
             // seek_opt.data.numberScope=e.target.index;
         }
-        // 搜索框内容获取 编号和主题
-        search_d.onchange = function () {
-            if (span_center.innerText == '项目名称' && search_d.value.trim() != '') {
-                // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
-                seek_opt.data.itemTitle = this.value;
-            }
-            if (span_center.innerText == '项目编号' && search_d.value.trim() != '') {
-                seek_opt.data.itemId = this.value;
-            }
-        }
-        search_d_1.onchange = function () {
-            if (span_center_1.innerText == '队伍名称' && this.value.trim() != '') {
-                // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
-                seek_opt.data.teamName = this.value;
-            }
-            if (span_center_1.innerText == '队伍编号' && this.value.trim() != '') {
-                seek_opt.data.teamId = this.value;
-            }
-
-            // 项目存在时删除队伍信息 队伍名存在时删除项目信息
-            if (theme_d.style.display == 'none') {
-                seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
-                seek_opt.data.itemId ? delete seek_opt.data.itemId : null;
-                seek_opt.data.itemTitle ? delete seek_opt.data.itemTitle : null;
-            }
-            if (theme_d.style.display == 'block') {
-                seek_opt.data.teamId ? delete seek_opt.data.teamId : null;
-                seek_opt.data.teamName ? delete seek_opt.data.teamName : null;
-            }
-        }
-        // 获取页码
-        if (e.target.classList.contains('num')) {
-            seek_opt.data.pageNum = e.target.innerText;
-        }
-        if (e.target.classList.contains('turn_to') && e.target.value != '') {
-            seek_opt.data.pageNum = e.target.value;
-        }
-        console.log(seek_opt);
-        // 发送前打印出来是对的就已经添加data成功了
-        // seek_opt.data.json = encodeURIComponent(JSON.stringify(seek_opt.data));
-        ajax(seek_opt);
+        console.log('人数范围区间为：' + seek_opt.data.numberScope);
     })
 
-    // 切换项目和队伍
+    search_d.onchange = function () {
+        if (span_center.innerText == '项目名称' && search_d.value.trim() != '') {
+            // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
+            seek_opt.data.itemTitle = this.value;
+        }
+        if (span_center.innerText == '项目编号' && search_d.value.trim() != '') {
+            seek_opt.data.itemId = this.value;
+        }
+    }
+
+    search_d_1.onchange = function () {
+        if (span_center_1.innerText == '队伍名称' && this.value.trim() != '') {
+            // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
+            seek_opt.data.teamName = this.value;
+        }
+        if (span_center_1.innerText == '队伍编号' && this.value.trim() != '') {
+            seek_opt.data.teamId = this.value;
+        }
+    }
+   
+    // 点击切换栏
     let tag_li = $('.pro_box>ul>li');
     let tag_box = $('.tagged_box');
     let area_c = $('.area_c')[0];
@@ -464,7 +533,31 @@ window.addEventListener('load', function () {
     let item_d = $('.item_d');
     let peo_d = $('.peo_d');
     for (let i = 0; i < tag_li.length; i++) {
+        tag_li[i].index=i;
         tag_li[i].addEventListener('click', function () {
+            // 切换时更换url
+            // 切换时清空
+            seek_opt.data.province ? delete seek_opt.data.province : null;
+            seek_opt.data.city ? delete seek_opt.data.city : null;
+            seek_opt.data.area ? delete seek_opt.data.area : null;
+            seek_opt.data.numberScope ? delete seek_opt.data.numberScope : null;
+            seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
+
+            // 项目存在时删除队伍信息 队伍名存在时删除项目信息
+            if (tag_li[i].index==1) {
+                seek_opt.url='teams/conditions';
+                seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
+                seek_opt.data.itemId ? delete seek_opt.data.itemId : null;
+                seek_opt.data.itemTitle ? delete seek_opt.data.itemTitle : null;
+                ajax(seek_opt);
+            }
+            if (tag_li[i].index==0) {
+                seek_opt.url='item/conditions';
+                seek_opt.data.teamId ? delete seek_opt.data.teamId : null;
+                seek_opt.data.teamName ? delete seek_opt.data.teamName : null;
+                ajax(seek_opt);
+            }
+            console.log(seek_opt);
             for (let j = 0; j < tag_li.length; j++) {
                 tag_li[j].className = '';
                 tag_box[j].style.display = 'none';

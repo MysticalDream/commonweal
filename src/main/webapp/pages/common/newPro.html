@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="../../css/font.css">
     <script src="../../js/recruit.js"></script>
     <script src="../../js/ajax.js"></script>
-    <script src="../../js/Project.js"></script>
-    <!--    <script src="../../js/obj_wcj.js"></script>-->
-</head>
+    <!-- <script src="../../js/Project.js"></script> -->
+       <script src="../../js/obj_wcj.js"></script>
+    <script src="../../js/newPro.js"></script>
 
 <body>
 <!-- 导航栏 -->
@@ -105,7 +105,7 @@
             <span class="peo_d">80-100</span>
             <span class="peo_d">100以上</span>
         </div>
-        <div class="tagged_box">
+         <div class="tagged_box">
             <input type="text" class="pro_search">
             <div class="left_em">
                     <span>
@@ -146,110 +146,47 @@
             </div>
         </div>
     </div>
+    <!-- <div class="tagged_box">
+        <input type="text" class="pro_search">
+        <div class="left_em">
+                <span>
+                    项目名称
+                </span>
+            <img src="../../images/down.png" alt="" class="vis_down">
+            <ul class="inner_ul_d">
+                <li>项目名称</li>
+                <li>项目编号</li>
+            </ul>
+        </div>
+        <div class="center_em">
+            <img src="../../images/搜索.png" alt="">
+            <span>项目名称</span>
+        </div>
+        <div class="box"></div>
+        <div class="wrapper">
+        </div>
+    </div>
+    <div class="tagged_box tagged_copy">
+        <input type="text" class="pro_search">
+        <div class="left_em">
+                <span>
+                    队伍名称
+                </span>
+            <img src="../../images/down.png" alt="" class="vis_down">
+            <ul class="inner_ul_d">
+                <li>队伍名称</li>
+                <li>队伍编号</li>
+            </ul>
+        </div>
+        <div class="center_em">
+            <img src="../../images/搜索.png" alt="">
+            <span>队伍名称</span>
+        </div>
+        <div class="box"></div>
+        <div class="wrapper">
+        </div>
+    </div> -->
     <!-- <div class="wrapper">
 
     </div> -->
 </div>
-<!-- 页脚 -->
-<script>
-    function render(obj_w) {
-        let data = [];
-        for (let i = 0; i < obj_w.data.list.length; i++) {
-            data.push(obj_w.data.list[i]);
-            console.log(data);
-        }
-        // 下面的渲染方法的参数
-        let box = document.querySelectorAll('.box')[1];
-        let box_0 = document.querySelectorAll('.box')[0];
-
-        // 每一个页面放的数据数
-        let pageSize = 9;
-        // 总的页数
-        let allPage = Math.ceil( obj_w.data.total/ pageSize);
-        let wrapper = document.querySelectorAll('.wrapper')[0];
-        let wrapper_1 = document.querySelectorAll('.wrapper')[1];
-        let obj = new TurnPage({
-            currentPage: 1,
-            allPage: allPage,
-            wrap: wrapper,
-            changePage: function (page) {
-                // console.log(page);
-                // 我们要渲染到页面上的数据
-                var filterData = data.filter((item, index) => {
-                    return index >= (page - 1) * pageSize && index < page * pageSize;
-                })
-                renderDom(filterData);
-            }
-        })
-
-        let obj_1 = new TurnPage({
-            currentPage: 1,
-            allPage: allPage,
-            wrap: wrapper_1,
-            changePage: function (page) {
-                // console.log(page);
-                // 我们要渲染到页面上的数据
-                var filterData = data.filter((item, index) => {
-                    return index >= (page - 1) * pageSize && index < page * pageSize;
-                })
-                // renderDom(filterData);
-            }
-        })
-
-        obj.init();
-        obj_1.init();
-
-        // var arr_d=new Array();
-        // 将一个数组渲染到页面上,传入一个data
-        function renderDom(data) {
-            // 清空上一个页面的
-            box.innerHTML = '';
-            box_0.innerHTML = '';
-            for (let i = 0; i < data.length; i++) {
-                let oDiv = document.createElement('div');
-                oDiv.classList.add('nine_box');
-                let url_d = '../../images/beijing.jpg';
-                let url_d_1 = '../../images/peo_d.png';
-                let url_d_2 = '../../images/join.png';
-                let str = `<div>
-                    <img src='${url_d}'>
-                    <h1>${data[i].itemTitle}</h1>
-                    <p>${data[i].itemIntroduction}</p>
-                    <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data[i].currentHeadcount}/${data[i].maximumNumberLimit}</span>
-                    <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
-                    </div>`
-                oDiv.innerHTML = str;
-                box.appendChild(oDiv);
-            }
-
-            for (let i = 0; i < data.length; i++) {
-                let oDiv = document.createElement('div');
-                oDiv.classList.add('nine_box');
-                let url_d_1 = '../../images/peo_d.png';
-                let url_d_2 = '../../images/join.png';
-                let str = `<div>
-                    <img src='${data[i].coverUrl}'>
-                    <h1>${data[i].itemTitle}</h1>
-                    <p>${data[i].itemIntroduction}</p>
-                    <img src='${url_d_1}' class="le_dd"></img>
-                    <span class="le_sp">${data[i].currentHeadcount}/${data[i].maximumNumberLimit}</span>
-                    <img src="${url_d_2}" class="ri_dd"></img>
-                    <span class="ri_sp">我要加入</span>
-                    </div>`
-                oDiv.innerHTML = str;
-                box_0.appendChild(oDiv);
-            }
-        }
-
-        renderDom(obj_w.data.list.filter((item, index) => {
-            return index < 9;
-        }));
-
-        function $(ele) {
-            return document.querySelectorAll(ele);
-        }
-    }
-</script>
-</body>
-
-</html>
