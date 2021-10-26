@@ -66,8 +66,16 @@ public class Team {
      * 县区
      */
     private String area;
+    /**
+     * 检查状态
+     */
+    private Boolean checkStatus;
+    /**
+     * 队长是否开启了审核功能
+     */
+    private Boolean needReview;
 
-    public Team(Integer teamId, String teamName, String teamIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, Integer maxMen, Integer nowMen, String teamAvatar, String province, String city, String area) {
+    public Team(Integer teamId, String teamName, String teamIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, Integer maxMen, Integer nowMen, String teamAvatar, String province, String city, String area, Boolean checkStatus, Boolean needReview) {
         this.teamId = teamId;
         this.teamName = teamName;
         this.teamIntroduction = teamIntroduction;
@@ -81,6 +89,8 @@ public class Team {
         this.province = province;
         this.city = city;
         this.area = area;
+        this.checkStatus = checkStatus;
+        this.needReview = needReview;
     }
 
     public Team() {
@@ -188,5 +198,42 @@ public class Team {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+    public Boolean getCheckStatus() {
+        return checkStatus;
+    }
+
+    public void setCheckStatus(Boolean checkStatus) {
+        this.checkStatus = checkStatus;
+    }
+
+    public Boolean getNeedReview() {
+        return needReview;
+    }
+
+    public void setNeedReview(Boolean needReview) {
+        this.needReview = needReview;
+    }
+
+    @Override
+    public String toString() {
+        return "Team{" +
+                "teamId=" + teamId +
+                ", teamName='" + teamName + '\'' +
+                ", teamIntroduction='" + teamIntroduction + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", userId=" + userId +
+                ", available=" + available +
+                ", maxMen=" + maxMen +
+                ", nowMen=" + nowMen +
+                ", teamAvatar='" + teamAvatar + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", checkStatus=" + checkStatus +
+                ", needReview=" + needReview +
+                '}';
     }
 }

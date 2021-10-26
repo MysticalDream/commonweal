@@ -42,7 +42,6 @@ public class FillBeanUtils {
             Map<String, Field> fieldMap = new ConcurrentHashMap<>();
             for (Field field :
                     allFields) {
-                System.out.println("field:" + field.getName());
                 fieldMap.putIfAbsent(field.getName(), field);
             }
             map.forEach((key, value) -> {

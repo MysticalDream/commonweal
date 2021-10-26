@@ -79,9 +79,16 @@ public class Item {
      * 项目状态 1---进行中 2----结束
      */
     private Integer status;
+    /**
+     * 项目是否通过了审核
+     */
+    private Boolean checkStatus;
+    /**
+     * 项目发起人是否选择了需要审核
+     */
+    private Boolean needReview;
 
-
-    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status) {
+    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status, Boolean checkStatus, Boolean needReview) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemIntroduction = itemIntroduction;
@@ -98,6 +105,8 @@ public class Item {
         this.city = city;
         this.area = area;
         this.status = status;
+        this.checkStatus = checkStatus;
+        this.needReview = needReview;
     }
 
     public Item() {
@@ -231,6 +240,22 @@ public class Item {
         this.status = status;
     }
 
+    public Boolean getCheckStatus() {
+        return checkStatus;
+    }
+
+    public void setCheckStatus(Boolean checkStatus) {
+        this.checkStatus = checkStatus;
+    }
+
+    public Boolean getNeedReview() {
+        return needReview;
+    }
+
+    public void setNeedReview(Boolean needReview) {
+        this.needReview = needReview;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -250,6 +275,8 @@ public class Item {
                 ", city='" + city + '\'' +
                 ", area='" + area + '\'' +
                 ", status=" + status +
+                ", checkStatus=" + checkStatus +
+                ", needReview=" + needReview +
                 '}';
     }
 }
