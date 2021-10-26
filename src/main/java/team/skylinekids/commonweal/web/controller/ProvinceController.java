@@ -8,6 +8,7 @@ import team.skylinekids.commonweal.pojo.po.Province;
 import team.skylinekids.commonweal.service.ProvinceService;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
+import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 
@@ -29,7 +30,6 @@ public class ProvinceController {
     @MyRequestPath(value = "/area/province", type = {RequestMethod.GET})
     public String getName(HttpInfoWrapper httpInfoWrapper) throws Exception {
         Province province = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), Province.class);
-        System.out.println(province);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, provinceService.getCityNameByCondition(province));
     }
 }

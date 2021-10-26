@@ -26,6 +26,7 @@ public class FillBeanUtils {
 
     }
 
+
     /**
      * 填充javaBean对象数据方法
      *
@@ -39,7 +40,8 @@ public class FillBeanUtils {
         try {
             T obj = clazz.getConstructor().newInstance();
             Field[] allFields = ReflectUtils.getAllFields(obj);
-            Map<String, Field> fieldMap = new ConcurrentHashMap<>();
+            Map<String, Field> fieldMap = new ConcurrentHashMap<>(allFields.length);
+            //域将以名称-域的形式放入map
             for (Field field :
                     allFields) {
                 fieldMap.putIfAbsent(field.getName(), field);
