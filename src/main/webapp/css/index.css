@@ -374,13 +374,21 @@ html {
 }
 
 .intro .intro_nd .intro_nd_lf .creat_project {
-    background-color: #2f3954;
-    color: #fff;
+    /* background-color: #2f3954;
+    color: #fff; */
     margin-left: 30px;
     font-family: 'DOUYU-Font';
     letter-spacing: 4px;
     cursor: pointer;
     opacity: 0;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    color:#2f3954;
+    border:2px solid #2f3954;
+}
+
+.intro .intro_nd .intro_nd_lf .creat_project:hover{
+    background-color: #2f3954;
+    color:#fff;
 }
 
 .intro .intro_nd .intro_nd_lf .join_team {
@@ -391,6 +399,11 @@ html {
     letter-spacing: 4px;
     cursor: pointer;
     opacity: 0;
+}
+
+.intro .intro_nd .intro_nd_lf .join_team:hover{
+    background-color: #2f3954;
+    color:#fff;
 }
 
 .intro .intro_nd .intro_nd_rg {
@@ -545,7 +558,8 @@ html {
     color: #bc604b;
     background-color: #fff;
     border-radius: 30px;
-    transition: all 0.4s;
+    transition: all 0.5s;
+    cursor: pointer;
 }
 
 .volunteer .volunteer_rd .search_cicle .search_box .search_btn {
