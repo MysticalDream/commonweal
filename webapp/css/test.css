@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    font-family: 'DOUYU Font';
+}
+
+h2 {
+    letter-spacing: 5px;
+    font-size: 20px;
+    height: 2000px;
+}
+
+body,
+html {
+    min-width: 1250px;
+    width: 100%;
+}
+
+.son {
+    width: inherit;
+    height: 500px;
+    background-color: skyblue;
+}
+
+.children {
+    /* width: 1280px; */
+    width: inherit;
+    height: 587px;
+    margin: 0 auto;
+    background-color: #f2efea;
+}
+
+.children .children_box {
+    position: relative;
+    margin: 0 auto;
+    width: 1250px;
+}
+
+.the_st {
+    position: relative;
+    top: 14px;
+    width: 60%;
+    height: 40px;
+}
+
+.the_st>* {
+    float: left;
+}
+
+.the_st h2 {
+    color: #bc604b;
+}
+
+.the_st .one {
+    position: absolute;
+    top: 0px;
+    left: 47px;
+}
+
+.the_st .two {
+    position: absolute;
+    top: 0px;
+    left: 135px;
+}
+
+.the_st .left_line,
+.the_st .middle_line,
+.the_st .right_line {
+    position: absolute;
+    /* height: 1px; */
+    border: 1px solid #bfb9b9;
+    top: 13px;
+    opacity: 0;
+    /* width: 0; */
+    /* margin: 13px 7px 0px; */
+    background-color: #bfb9b9;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.the_st .left_line {
+    width: 40px;
+    /* left: 0px; */
+    left: -40px;
+}
+
+.the_st .middle_line {
+    width: 50px;
+    /* left: 80px; */
+    left: 30px;
+}
+
+.the_st .right_line {
+    width: 150px;
+    /* left: 235px; */
+    left: 85px;
+}
+
+.children .children_nd {
+    position: absolute;
+    top: 45px;
+    left: 415px;
+    width: 34%;
+    height: 90px;
+    line-height: 45px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #bc604b;
+    text-align: center;
+}
+
+.children .children_rd {
+    position: absolute;
+    top: 170px;
+    left: 130px;
+    width: 80%;
+    height: 400px;
+    background-color: pink;
+}
+
+.children .children_rd .btn_items {
+    position: absolute;
+    top: 20px;
+    left: 240px;
+}
+
+.children .children_rd .btn_items button {
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    border: 3px solid #bc604b;
+    border-radius: 5px;
+    margin-right: 110px;
+}
+
+.children .children_rd ul {
+    position: absolute;
+    top: 140px;
+    left: 0px;
+}
+
+.children .children_rd ul li {
+    float: left;
+    width: 205px;
+    height: 211px;
+    background-color: skyblue;
+    margin-right: 60px;
+    border-radius: 10px;
+}
+
+.children .children_rd ul li:last-child {
+    margin-right: 0px;
+}
