@@ -31,6 +31,10 @@ public class RecruitCondition extends BaseCondition {
         this.status = status;
     }
 
+    public RecruitCondition() {
+
+    }
+
     public Integer getRecruitCategoryId() {
         return recruitCategoryId;
     }

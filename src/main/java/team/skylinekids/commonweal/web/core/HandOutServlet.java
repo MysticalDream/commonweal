@@ -53,7 +53,7 @@ public class HandOutServlet extends HttpServlet {
      * @param request
      * @param response
      */
-    private void doDispatch(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void doDispatch(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取请求路径 比如/users/1
         String uri = request.getRequestURI();
 
@@ -101,7 +101,9 @@ public class HandOutServlet extends HttpServlet {
             LevelCode levelCode = accessLevel.value();
             //当前请求的等级
             LevelCode currentAccessLevel = getCurrentAccessLevel(request);
-
+//            if (currentAccessLevel.getLevel() < levelCode.getLevel()) {
+//                return;
+//            }
         }
         Object object = handleInfo.getObject();
         Object result = null;
@@ -161,6 +163,11 @@ public class HandOutServlet extends HttpServlet {
         User user = (User) session.getAttribute(SessionKeyConstant.USER_STRING);
         if (user == null) {
             return LevelCode.COMMON_LEVEL;
+        }
+        for (LevelCode levelCode : LevelCode.values()) {
+            if (levelCode.getLevel() == user.getLevelNum().intValue()) {
+                return levelCode;
+            }
         }
         return null;
     }
