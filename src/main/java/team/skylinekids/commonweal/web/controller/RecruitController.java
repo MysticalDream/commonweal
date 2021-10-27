@@ -13,6 +13,7 @@ import team.skylinekids.commonweal.pojo.query.RecruitCondition;
 import team.skylinekids.commonweal.service.RecruitService;
 import team.skylinekids.commonweal.utils.CategoryUtils;
 import team.skylinekids.commonweal.utils.FileUtils;
+import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
@@ -40,7 +41,7 @@ public class RecruitController {
      */
     @MyRequestPath(value = "/recruits/conditions", type = {RequestMethod.GET})
     public String getRecruitsByConditionPage(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        RecruitCondition recruitCondition = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), RecruitCondition.class);
+        RecruitCondition recruitCondition = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), RecruitCondition.class);
         recruitCondition.setRecruitCategoryId(CategoryUtils.getCategoryIdByName(recruitCondition.getRecruitCategory()));
         Page<RecruitDTO> page = recruitService.getRecruitByCondition(recruitCondition);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, page);

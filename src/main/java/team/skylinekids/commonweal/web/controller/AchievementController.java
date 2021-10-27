@@ -10,6 +10,7 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
 import team.skylinekids.commonweal.service.AchievementService;
 import team.skylinekids.commonweal.utils.FileUtils;
+import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
@@ -38,7 +39,7 @@ public class AchievementController {
      */
     @MyRequestPath(value = "/achievements", type = {RequestMethod.GET})
     public String getAchievement(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Achievement achievement = GsonUtils.j2O(httpInfoWrapper.getParameter("json"), Achievement.class);
+        Achievement achievement = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), Achievement.class);
         List<Achievement> achievementList = achievementService.getAchievementList(achievement);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementList);
     }
