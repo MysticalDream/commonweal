@@ -8,7 +8,6 @@ import team.skylinekids.commonweal.pojo.po.Province;
 import team.skylinekids.commonweal.service.ProvinceService;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
-import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 

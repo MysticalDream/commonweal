@@ -2,9 +2,13 @@ package team.skylinekids.commonweal.web.core;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
+import team.skylinekids.commonweal.enums.LevelCode;
+import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
+import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.utils.ClassUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
+import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -13,12 +17,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.Set;
 
 /**
+ * 前端控制器
+ *
  * @author MysticalDream
  */
 @WebServlet(urlPatterns = {"/"}, loadOnStartup = 0)
@@ -46,7 +53,7 @@ public class HandOutServlet extends HttpServlet {
      * @param request
      * @param response
      */
-    private void doDispatch(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void doDispatch(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取请求路径 比如/users/1
         String uri = request.getRequestURI();
 
@@ -66,11 +73,6 @@ public class HandOutServlet extends HttpServlet {
                 //拼接出带有?符号的uri
                 uri = uri.substring(0, i) + "?";
             }
-//            //为空交由原生Servlet处理
-//            if ("".equals(uri)) {
-//                super.service(request, response);
-//                return;
-//            }
 
             handleInfo = HandlerMapping.get(uri);
             // 资源不存在
@@ -89,6 +91,20 @@ public class HandOutServlet extends HttpServlet {
             logger.debug("405:请求方法不允许");
             return;
         }
+        /**
+         * 访问权限
+         */
+        AccessLevel accessLevel = method.getDeclaredAnnotation(AccessLevel.class);
+
+        if (accessLevel != null) {
+            //接口访问需要的等级
+            LevelCode levelCode = accessLevel.value();
+            //当前请求的等级
+            LevelCode currentAccessLevel = getCurrentAccessLevel(request);
+//            if (currentAccessLevel.getLevel() < levelCode.getLevel()) {
+//                return;
+//            }
+        }
         Object object = handleInfo.getObject();
         Object result = null;
         try {
@@ -97,6 +113,18 @@ public class HandOutServlet extends HttpServlet {
             logger.error("方法调用异常:" + e.getMessage(), e);
             response.getWriter().write(ResultUtils.getResult(ApiResultCode.SERVER_RUNNING_EXCEPTION));
         }
+
+        responseResult(response, result);
+    }
+
+    /**
+     * 响应结果
+     *
+     * @param response
+     * @param result
+     * @throws IOException
+     */
+    private void responseResult(HttpServletResponse response, Object result) throws IOException {
         //返回值不为空时
         if (result != null) {
             //响应json
@@ -122,7 +150,26 @@ public class HandOutServlet extends HttpServlet {
                 inputStream.close();
             }
         }
+    }
 
+    /**
+     * 获取当前访问等级
+     *
+     * @param request
+     * @return
+     */
+    private LevelCode getCurrentAccessLevel(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute(SessionKeyConstant.USER_STRING);
+        if (user == null) {
+            return LevelCode.COMMON_LEVEL;
+        }
+        for (LevelCode levelCode : LevelCode.values()) {
+            if (levelCode.getLevel() == user.getLevelNum().intValue()) {
+                return levelCode;
+            }
+        }
+        return null;
     }
 
 }

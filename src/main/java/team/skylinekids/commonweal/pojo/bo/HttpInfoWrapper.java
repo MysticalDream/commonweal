@@ -74,11 +74,18 @@ public class HttpInfoWrapper {
             String header = httpServletRequest.getHeader("Content-Type");
             if (header != null) {
                 if (header.contains(MediaType.MULTIPART_FORM_DATA) || header.contains(MediaType.MULTIPART_MIXED)) {
-                    Collection<Part> parts = httpServletRequest.getParts();
-                    for (Part part :
-                            parts) {
-                        if (partMap.put(part.getName(), part) != null) {
-                            throw new RuntimeException("Part的name重复了");
+                    Collection<Part> parts = null;
+                    try {
+                        parts = httpServletRequest.getParts();
+                    } catch (Exception e) {
+                        logger.debug("没有添加@MultipartConfig注解");
+                    }
+                    if (parts != null) {
+                        for (Part part :
+                                parts) {
+                            if (partMap.put(part.getName(), part) != null) {
+                                throw new RuntimeException("Part的name重复了");
+                            }
                         }
                     }
                 }

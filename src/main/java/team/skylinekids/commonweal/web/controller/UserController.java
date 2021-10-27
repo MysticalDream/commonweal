@@ -170,7 +170,9 @@ public class UserController {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
         try {
-            userService.register(user1);
+            if (userService.register(user1) == 0) {
+                return ResultUtils.getResult(ApiResultCode.USER_NAME_ALREADY_EXISTS);
+            }
         } catch (Exception e) {
             //移除令牌
             removeToken(httpWrapper);
@@ -239,7 +241,8 @@ public class UserController {
     @MyRequestPath(value = "/tokens/signup", type = {RequestMethod.GET})
     public String getSignUpToken(HttpInfoWrapper httpInfoWrapper) {
         String token = TokenUtils.getToken();
-        httpInfoWrapper.setCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING, token, "/");
+        //TODO 删除了设置路径
+        httpInfoWrapper.setCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING, token);
         httpInfoWrapper.setHttpSessionAttribute(SessionKeyConstant.SIGNUP_TOKEN_STRING, token);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, token);
     }

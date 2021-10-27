@@ -2,12 +2,15 @@ package team.skylinekids.commonweal.web.listener;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.PropertyConfigurator;
+import team.skylinekids.commonweal.utils.ClassUtils;
+import team.skylinekids.commonweal.web.core.HandlerMapping;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.io.File;
+import java.util.Set;
 
 /**
  * 初始化log4j配置
@@ -19,7 +22,17 @@ public class ConfigLoadListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        initLog4j(sce);
+    }
 
+
+    /**
+     * 初始化log4j配置
+     *
+     * @param sce
+     */
+
+    private void initLog4j(ServletContextEvent sce) {
         System.out.println("log4j init Servlet 正在初始化 log4j日志设置信息");
         ServletContext sc = sce.getServletContext();
 
@@ -41,4 +54,5 @@ public class ConfigLoadListener implements ServletContextListener {
             }
         }
     }
+
 }

@@ -50,6 +50,10 @@ public class User {
      * 用户地区地址
      */
     private String location;
+    /**
+     * 用户等级
+     */
+    private Integer levelNum;
 
     /**
      * 默认创建一个空的用户对象
@@ -59,7 +63,7 @@ public class User {
         this.available = true;
     }
 
-    public User(Integer userId, String username, String password, String tel, LocalDateTime gmtCreate, LocalDateTime gmtModified, String avatarUrl, Boolean available, String location) {
+    public User(Integer userId, String username, String password, String tel, LocalDateTime gmtCreate, LocalDateTime gmtModified, String avatarUrl, Boolean available, String location, Integer levelNum) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -69,6 +73,7 @@ public class User {
         this.avatarUrl = avatarUrl;
         this.available = available;
         this.location = location;
+        this.levelNum = levelNum;
     }
 
     public Integer getUserId() {
@@ -143,6 +148,14 @@ public class User {
         this.location = location;
     }
 
+    public Integer getLevelNum() {
+        return levelNum;
+    }
+
+    public void setLevelNum(Integer levelNum) {
+        this.levelNum = levelNum;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -155,6 +168,7 @@ public class User {
                 ", avatarUrl='" + avatarUrl + '\'' +
                 ", available=" + available +
                 ", location='" + location + '\'' +
+                ", levelNum=" + levelNum +
                 '}';
     }
 }

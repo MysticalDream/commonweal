@@ -14,6 +14,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int register(User user) throws Exception {
+        User user1 = getUserByUsername(user.getUsername());
+        if (user1 != null) {
+            return 0;
+        }
         return userDao.addUser(user);
     }
 
