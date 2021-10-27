@@ -66,12 +66,11 @@ public class AdoptController {
      */
     @MyRequestPath(value = "/adopts", type = {RequestMethod.GET})
     public String getAdoptList(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Map<String, Object> map = GsonUtils.jsonToMap(httpInfoWrapper.getParameter("json"));
         Integer pageSize;
         Integer pageNum;
         try {
-            pageSize = Integer.parseInt((String) map.get("pageSize"));
-            pageNum = Integer.parseInt((String) map.get("pageNum"));
+            pageSize = Integer.parseInt(httpInfoWrapper.getParameter("pageSize"));
+            pageNum = Integer.parseInt(httpInfoWrapper.getParameter("pageNum"));
         } catch (Exception e) {
             logger.error("领养请求分页语法错误", e);
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
