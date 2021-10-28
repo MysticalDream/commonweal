@@ -16,13 +16,9 @@ public class Thumb {
     @TableField(value = "id", insert = false, update = false)
     private Integer id;
     /**
-     * 对应点赞的表的主键id
+     * 成就id
      */
-    private Integer typeId;
-    /**
-     * 点赞的类型 1--项目成就 2--团队成就
-     */
-    private Integer type;
+    private Integer achievementId;
     /**
      * 用户id
      */
@@ -32,10 +28,9 @@ public class Thumb {
      */
     private Boolean status;
 
-    public Thumb(Integer id, Integer typeId, Integer type, Integer userId, Boolean status) {
+    public Thumb(Integer id, Integer achievementId, Integer userId, Boolean status) {
         this.id = id;
-        this.typeId = typeId;
-        this.type = type;
+        this.achievementId = achievementId;
         this.userId = userId;
         this.status = status;
     }
@@ -51,20 +46,12 @@ public class Thumb {
         this.id = id;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    public Integer getAchievementId() {
+        return achievementId;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
+    public void setAchievementId(Integer achievementId) {
+        this.achievementId = achievementId;
     }
 
     public Integer getUserId() {
@@ -81,5 +68,15 @@ public class Thumb {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Thumb{" +
+                "id=" + id +
+                ", achievementId=" + achievementId +
+                ", userId=" + userId +
+                ", status=" + status +
+                '}';
     }
 }

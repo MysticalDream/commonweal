@@ -41,11 +41,16 @@ public class TeamMemberMap {
     @TableField("is_available")
     private Boolean available;
     /**
-     * 审核状态
+     * 审核状态 0-未审核 1-审核通过 2-审核未通过
      */
-    private Boolean status;
+    private Integer status;
+    /**
+     * 读取状态
+     */
+    @TableField(value = "is_read")
+    private Boolean readStatus;
 
-    public TeamMemberMap(Integer id, Integer teamId, Integer userId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean available, Boolean status) {
+    public TeamMemberMap(Integer id, Integer teamId, Integer userId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean available, Integer status, Boolean readStatus) {
         this.id = id;
         this.teamId = teamId;
         this.userId = userId;
@@ -53,6 +58,7 @@ public class TeamMemberMap {
         this.gmtModified = gmtModified;
         this.available = available;
         this.status = status;
+        this.readStatus = readStatus;
     }
 
     public TeamMemberMap() {
@@ -106,11 +112,19 @@ public class TeamMemberMap {
         this.available = available;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Boolean getReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(Boolean readStatus) {
+        this.readStatus = readStatus;
     }
 }

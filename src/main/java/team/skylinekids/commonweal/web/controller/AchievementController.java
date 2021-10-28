@@ -8,6 +8,7 @@ import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
+import team.skylinekids.commonweal.pojo.vo.AchievementVO;
 import team.skylinekids.commonweal.service.AchievementService;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
@@ -52,22 +53,29 @@ public class AchievementController {
      */
     @MyRequestPath(value = "/achievements/conditions")
     public String getAchievementCondition(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Map<String, Object> map = GsonUtils.jsonToMap(httpInfoWrapper.getJsonString());
         Integer pageSize;
         Integer pageNum;
         try {
-            pageSize = Integer.parseInt((String) map.get("pageSize"));
-            pageNum = Integer.parseInt((String) map.get("pageNum"));
+            pageSize = Integer.parseInt(httpInfoWrapper.getParameter("pageSize"));
+            pageNum = Integer.parseInt(httpInfoWrapper.getParameter("pageNum"));
         } catch (Exception e) {
             logger.error("成就请求分页语法错误", e);
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-
+        //登录则获取用户是否点赞信息
+        if (httpInfoWrapper.isLogin()) {
+            Page<AchievementVO> page = new Page<>();
+            page.setPageSize(pageSize);
+            page.setPageNum(pageNum);
+            Page<AchievementVO> achievementByLimit = achievementService.getAchievementVOByLimit(page, httpInfoWrapper.getUser().getUserId());
+            return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementByLimit);
+        }
         Page<Achievement> page = new Page<>();
         page.setPageSize(pageSize);
         page.setPageNum(pageNum);
         Page<Achievement> achievementByLimit = achievementService.getAchievementByLimit(page);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementByLimit);
+
     }
 
     /**

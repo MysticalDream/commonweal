@@ -45,11 +45,16 @@ public class ItemMemberMap {
      */
     private Boolean type;
     /**
-     * 审核状态
+     * 审核状态  0-未审核 1-审核通过 2-审核未通过
      */
-    private Boolean status;
+    private Integer status;
+    /**
+     * 读取状态
+     */
+    @TableField(value = "is_read")
+    private Boolean readStatus;
 
-    public ItemMemberMap(Integer id, Integer itemId, Integer targetId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean available, Boolean type, Boolean status) {
+    public ItemMemberMap(Integer id, Integer itemId, Integer targetId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean available, Boolean type, Integer status, Boolean readStatus) {
         this.id = id;
         this.itemId = itemId;
         this.targetId = targetId;
@@ -58,6 +63,7 @@ public class ItemMemberMap {
         this.available = available;
         this.type = type;
         this.status = status;
+        this.readStatus = readStatus;
     }
 
     public ItemMemberMap() {
@@ -119,11 +125,19 @@ public class ItemMemberMap {
         this.type = type;
     }
 
-    public Boolean getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Boolean getReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(Boolean readStatus) {
+        this.readStatus = readStatus;
     }
 }
