@@ -29,37 +29,15 @@ public class ThumbServiceImpl implements ThumbService {
     @Override
     public void handleThumb(Thumb thumb) throws Exception {
         boolean clickLike = thumbDao.clickLike(thumb);
-        Integer type = thumb.getType();
         Achievement achievement = new Achievement();
-        achievement.setId(thumb.getTypeId());
+        achievement.setId(thumb.getAchievementId());
         //成功的点赞
         if (clickLike) {
             //项目成就
-            if (type == 1) {
-                achievement.setType(1);
-                achievementDao.updateLoveNumber(achievement, true);
-                //itemAchievementDao.updateLoveNumber(thumb.getTypeId(), true);
-            }
-            //团队成就
-            else {
-                achievement.setType(2);
-                achievementDao.updateLoveNumber(achievement, false);
-                //teamAchievementDao.updateLoveNumber(thumb.getTypeId(), true);
-            }
+            achievementDao.updateLoveNumber(achievement, true);
             //取消点赞
         } else {
-            //项目成就
-            if (type == 1) {
-                achievement.setType(1);
-                achievementDao.updateLoveNumber(achievement, false);
-                //itemAchievementDao.updateLoveNumber(thumb.getTypeId(), false);
-            }
-            //团队成就
-            else {
-                achievement.setType(2);
-                achievementDao.updateLoveNumber(achievement, false);
-                //teamAchievementDao.updateLoveNumber(thumb.getTypeId(), false);
-            }
+            achievementDao.updateLoveNumber(achievement, false);
         }
 
     }

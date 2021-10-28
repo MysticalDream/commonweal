@@ -64,4 +64,8 @@ public class DaoFactory {
     public static AdoptDao getAdoptDao() {
         return new AdoptDaoImpl();
     }
+
+    public static AchievementVODao getAchievementVODao() {
+        return new AchievementVODaoImpl();
+    }
 }

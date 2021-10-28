@@ -246,7 +246,9 @@ public abstract class BaseDao<T> {
                     //初始化字段
                     Field field = type.getDeclaredField(columnLabel);
                     field.setAccessible(true);
-                    field.set(t, object);
+                    if (object != null) {
+                        field.set(t, object);
+                    }
                 }
                 return t;
             }
