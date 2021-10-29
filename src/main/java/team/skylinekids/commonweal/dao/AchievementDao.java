@@ -53,4 +53,12 @@ public interface AchievementDao {
      * @throws Exception
      */
     int updateLoveNumber(Achievement achievement, boolean status) throws Exception;
+
+    /**
+     * 获取成就点赞前三名的列表
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Achievement> getAchievementTopThree() throws Exception;
 }

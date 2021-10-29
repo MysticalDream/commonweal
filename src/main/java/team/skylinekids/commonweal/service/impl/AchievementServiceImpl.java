@@ -40,5 +40,10 @@ public class AchievementServiceImpl implements AchievementService {
         return achievementVODao.getAchievementVOList(page, false, userId);
     }
 
+    @Override
+    public List<Achievement> getAchievementTopThree() throws Exception {
+        return achievementDao.getAchievementTopThree();
+    }
+
 
 }

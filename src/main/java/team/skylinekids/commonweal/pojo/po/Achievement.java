@@ -136,4 +136,19 @@ public class Achievement {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public String toString() {
+        return "Achievement{" +
+                "id=" + id +
+                ", coverUrl='" + coverUrl + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", type=" + type +
+                ", typeId=" + typeId +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", loveNumber=" + loveNumber +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

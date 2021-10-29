@@ -35,6 +35,7 @@ public class ItemBOServiceImpl implements ItemBOService {
         ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
         itemDTO.setItemCategory(CategoryUtils.getCategoryNameById(item.getItemCategoryId()));
         itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
+
         List<User> userList = userDao.getItemUserList(itemId);
 
         List<Team> itemTeamList = teamDao.getItemTeamList(itemId);
@@ -45,6 +46,7 @@ public class ItemBOServiceImpl implements ItemBOService {
             userDTO.setAvatarUrl(ResourcePathConstant.VIRTUAL_USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
         }
         List<TeamDTO> teamDTOS = ConversionUtils.convertList(itemTeamList, TeamDTO.class);
+
         for (TeamDTO teamDTO :
                 teamDTOS) {
             teamDTO.setTeamAvatar(ResourcePathConstant.VIRTUAL_TEAM_COVER_BASE + teamDTO.getTeamAvatar());

@@ -169,6 +169,9 @@ public class ItemController {
      */
     @MyRequestPath(value = "/items/enter", type = {RequestMethod.POST})
     public String joinItem(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
         String jsonString = httpInfoWrapper.getJsonString();
         ItemMemberMap itemMemberMap = GsonUtils.j2O(jsonString, ItemMemberMap.class);
         if (itemMemberMap == null) {
@@ -198,10 +201,43 @@ public class ItemController {
      * @return
      * @throws Exception
      */
-    @MyRequestPath(value = "/items/members/?")
+    @MyRequestPath(value = "/items/members/?", type = {RequestMethod.GET})
     public String getItemMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
         ItemBO itemBO = itemBOService.getItemBOByItemId(httpInfoWrapper.getPathVariable(Integer.class));
         return ResultUtils.getResult(ApiResultCode.SUCCESS, itemBO);
     }
 
+    /**
+     * 根据项目id获取申请列表
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/items/apply/list/?", type = {RequestMethod.GET})
+    public String getItemApplyList(HttpInfoWrapper httpInfoWrapper) throws Exception {
+
+        return "";
+    }
+
+    /**
+     * 项目成员审核
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @MyRequestPath(value = "/items/audit", type = {RequestMethod.PUT})
+    public String agreeToApply(HttpInfoWrapper httpInfoWrapper) {
+        if (httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
+        //审核结果 true代表同意，false代表拒绝
+        Boolean result = Boolean.valueOf(httpInfoWrapper.getParameter("result"));
+        //成员类型 false---团队 true----个人
+        Boolean type = Boolean.valueOf(httpInfoWrapper.getParameter("type"));
+        //目标id
+        Integer targetId = Integer.valueOf(httpInfoWrapper.getParameter("targetId"));
+
+        return "";
+    }
 }

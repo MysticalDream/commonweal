@@ -49,4 +49,12 @@ public interface AchievementService {
      * @throws Exception
      */
     Page<AchievementVO> getAchievementVOByLimit(Page<AchievementVO> page, Integer userId) throws Exception;
+
+    /**
+     * 获取成就的点赞数前三的列表
+     *
+     * @return
+     * @throws Exception
+     */
+    List<Achievement> getAchievementTopThree() throws Exception;
 }
