@@ -104,7 +104,6 @@ signIn.addEventListener('click', () => {
             // setCookie("tel", datas.data.tel);
             // setCookie("avatarUrl", datas.data.avatarUrl);
             // setCookie("location", datas.data.location);
-            datas = JSON.parse(datas);
             if (datas.success) {
                 window.location.replace("/");
             } else {
