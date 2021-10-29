@@ -19,17 +19,17 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: rgba(0, 0, 0, .6);
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
     z-index: 10;
 }
 
 .mask_s .form_s {
     position: relative;
-    top:10%;
-    left:40%;
-    width: 350px;
-    height: 420px;
+    top: 5%;
+    left: 40%;
+    width: 400px;
+    height: 545px;
     background-color: #fff;
     border-radius: 6px;
     padding: 0 20px;
@@ -49,7 +49,7 @@ body {
     position: relative;
     width: 100%;
     height: 35px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -63,27 +63,116 @@ body {
     padding: 5px;
 }
 
+.mask_s .form_s .zero {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #999;
+    cursor: pointer;
+}
+
+.mask_s .form_s .zero i {
+    margin-top: 15px;
+    font-size: 30px;
+}
+
+.mask_s .form_s .zero p {
+    margin-right: 20px;
+    text-align: center;
+}
+
 .mask_s .form_s .first span {
     position: absolute;
     top: 7px;
     right: 7px;
-    color: #ccc;
-    font-size: 14px;
+    color: #999;
+    font-size: 16px;
+}
+
+.mask_s .form_s .third {
+    height: 55px;
+    border: none;
+}
+
+.mask_s .form_s .third p {
+    height: 20px;
+    line-height: 20px;
+    font-size: 1px;
+    margin-bottom: 5px;
+    color: #999;
+}
+
+.mask_s .form_s .third select {
+    width: 110px;
+    height: 31px;
+    margin-right: 10px;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #999;
+}
+
+.mask_s .form_s .third select option {
+    color: #999;
+}
+
+.mask_s .form_s .third select:last-child {
+    margin-right: 0px;
 }
 
 .mask_s .form_s .second {
     border: none;
 }
 
-.mask_s .form_s .second>input {
+.mask_s .form_s .second>input,
+.mask_s .form_s .second select {
     float: left;
     width: 43%;
+    height: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.mask_s .form_s .second>input:last-child {
+.mask_s .form_s .second select {
     float: right;
+    height: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #999;
+}
+
+.mask_s .form_s .second select option {
+    color: #999;
+}
+
+.mask_s .form_s .fourth {
+    height: 35px;
+    border: none;
+}
+
+.mask_s .form_s .fourth input {
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.mask_s .form_s .fourth select {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 25%;
+    height: 35px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 0px 5px 5px 0px;
+    color: #999;
+}
+
+.mask_s .form_s .fourth select option {
+    color: #999;
 }
 
 .mask_s .form_s .fifth {
@@ -105,33 +194,33 @@ body {
     bottom: 7px;
     right: 7px;
     color: #ccc;
-    font-size: 14px;
+    font-size: 16px;
 }
 
-.mask_s .form_s button {
+.mask_s .form_s>button {
     width: 70px;
     height: 30px;
     margin-top: 8px;
-    margin-left: 119px;
+    margin-left: 147px;
     background-color: #CD4140;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     outline: none;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.down{
+.down {
     animation: down_ .5s forwards;
 }
 
 @keyframes down_ {
-    0%{
+    0% {
         opacity: 0;
         transform: translateY(-100px);
     }
-    100%{
+    100% {
         opacity: 1;
         transform: translateY(0px);
     }

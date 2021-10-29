@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="../../css/race.css">
     <link rel="stylesheet" href="../../css/my.css">
     <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/mybox.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
     <script src="../../js/fade.js"></script>
     <script src="../../js/my.js"></script>
-    <link rel="stylesheet" href="../../css/mybox.css">
+    <script src="../../js/ajax.js"></script>
+    <script src="../../js/getPath.js"></script>
 </head>
 
 <body>
@@ -433,33 +436,207 @@
                 </ul>
             </div>
         </div>
+        <!-- 点击创建项目弹出来的框框 -->
         <div class="mask_s" style="display: none;">
             <div class="form_s">
                 <h2>创建项目</h2>
+                <div class="zero">
+                    <form action="/cover" method="post" id="item_cover" enctype="multipart/form-data">
+                        <input type="file" name="item_cover" id="xm_file" hidden>
+                        <input type="hidden" name="part_name" value="item_cover">
+                    </form>
+                    <i class="iconfont icon-shangchuan"></i>
+                    <p>点击此处上传项目封面</p>
+                </div>
                 <div class="first">
-                    <input type="text" name="" id="" placeholder="项目标题">
-                    <span>0/10</span>
+                    <input type="text" name="" id="first_text" placeholder="项目标题">
+                    <span id="first_show">0/10</span>
                 </div>
                 <div class="second">
-                    <input type="number" name="" id="" placeholder="项目人数限制" oninput="if(value!==''&&value<1)value=1">
-                    <input type="text" name="" id="" placeholder="项目主题">
+                    <input type="number" name="" id="second_text" placeholder="项目人数限制" oninput="if(value!==''&&value<1)value=1">
+                    <!-- <input type="text" name="" id="" placeholder="项目主题"> -->
+                    <select name="" id="second_select">
+                        <option value="">社区服务</option>
+                        <option value="">卫生健康</option>
+                        <option value="">法律服务</option>
+                        <option value="">环境保护</option>
+                        <option value="">科技科普</option>
+                        <option value="">文化艺术</option>
+                        <option value="">交通引导</option>
+                        <option value="">志愿消防</option>
+                        <option value="">禁毒宣传</option>
+                        <option value="">海外志愿服务</option>
+                        <option value="">体育健身</option>
+                    </select>
                 </div>
                 <div class="third">
-                    <input type="text" name="" id="" placeholder="项目进行地区">
+                    <!-- <input type="text" name="" id="" placeholder="项目进行地区"> -->
+                    <!--省份选择-->
+                    <p>项目地区的选择</p>
+
+                    <select id="prov" onchange="showCity(this)">
+                        <option value="">请选择省份</option>
+                    </select>
+
+                    <!--城市选择-->
+                    <select id="city" onchange="showArea(this)">
+                        <option value="">请选择城市</option>
+                    </select>
+
+                    <!--县区选择-->
+                    <select id="area" onchange="selectArea(this)">
+                        <option value="">请选择县区</option>
+                    </select>
+
+                    <!-- <button type="button" class="btn met1" onclick="showAddr()" disabled="">确定</button> -->
+                    <!-- <button type="button" class="btn met1" disabled="">确定</button> -->
                 </div>
                 <div class="fourth">
-                    <input type="text" name="" id="" placeholder="项目预计时长">
+                    <input type="text" name="" id="fourth_text" placeholder="项目预计时长">
+                    <select name="" id="xm_time">
+                        <option value="">小时</option>
+                        <option value="">天</option>
+                        <option value="">月</option>
+                        <option value="">年</option>
+                    </select>
                 </div>
                 <div class="fifth">
-                    <textarea name="" id="" placeholder="项目介绍(可填写)"></textarea>
-                    <span>0/200</span>
+                    <textarea name="" id="fifth_text" placeholder="项目介绍(可填写)"></textarea>
+                    <span id="fifth_show">0/200</span>
                 </div>
                 <button class="put_in">提交</button>
                 <button class="put_out">取消</button>
             </div>
         </div>
     </div>
- 
+    <!-- 选择地区的js -->
+    <script>
+        var listData;
+        // var btn = document.getElementsByClassName('met1')[0];
+        // var btn = document.querySelector('.put_in');
+        // var addrShow = document.getElementById('show_text');
+        var prov = document.getElementById('prov');
+        var city = document.getElementById('city');
+        var area = document.getElementById('area');
+
+        /*用于保存当前所选的省市区*/
+        var infoData = {
+            province: '',
+            city: '',
+            area: ''
+        };
+
+        ajax({
+            type: 'get',
+            url: "../../js/data2(2).json",
+            success: function(data) {
+                // listData = JSON.parse(data);
+                listData = data;
+                //不要删了这段代码，ajax换成你自己的
+                showProv();
+            }
+        });
+        /*自动加载省份列表*/
+        function showProv() {
+            // btn.disabled = true;
+            var len = listData.length;
+            for (var i = 0; i < len; i++) {
+                var provOpt = document.createElement('option');
+                provOpt.value = listData[i]['province'];
+                provOpt.innerText = listData[i]['name'];
+                prov.appendChild(provOpt);
+            }
+        }
+        /*根据所选的省份来显示城市列表*/
+        function showCity(obj) {
+            var val = obj.options[obj.selectedIndex].value;
+            if (val != infoData.province) {
+                infoData.province = val;
+                // addrShow.value = '';
+                // btn.disabled = true;
+                city.length = 1;
+                area.length = 1;
+            }
+
+            if (val != '') {
+                //查找省的索引 并将当前选中的省的索引存到变量provIndex变量里
+                var len = listData.length;
+                let provIndex = 0;
+                for (var i = 0; i < len; i++) {
+                    if (val == listData[i]['province']) {
+                        provIndex = i;
+                    }
+                }
+                // 遍历市的所有区 并且动态创建
+                var cityLen = listData[provIndex]["citys"].length;
+                for (var j = 0; j < cityLen; j++) {
+                    var cityOpt = document.createElement('option');
+                    cityOpt.value = listData[provIndex]["citys"][j].city;
+                    cityOpt.innerText = listData[provIndex]["citys"][j].name;
+                    city.appendChild(cityOpt);
+                }
+            }
+        }
+        /*根据所选的城市来显示县区列表*/
+        function showArea(obj) {
+            var val = obj.options[obj.selectedIndex].value;
+            if (val != infoData.city) {
+                infoData.city = val;
+                // addrShow.value = '';
+                // btn.disabled = true;
+                area.length = 1; //清空之前的内容只留第一个默认选项
+            }
+
+            //查找省的索引
+            var provLen = listData.length;
+            let provIndex = 0;
+            for (var i = 0; i < provLen; i++) {
+                if (infoData.province == listData[i]['province']) {
+                    provIndex = i;
+                    break;
+                }
+            }
+
+            //查找城市的索引
+            var cityLen = listData[provIndex]["citys"].length;
+            let cityIndex = 0;
+            for (var i = 0; i < cityLen; i++) {
+                if (infoData.city == listData[provIndex]["citys"][i].city) {
+                    cityIndex = i;
+                    break;
+                }
+            }
+
+            if (val != '') {
+                var countryLen = listData[provIndex]["citys"][cityIndex].districtAndCounty ? listData[provIndex]["citys"][cityIndex].districtAndCounty.length : null;
+                if (countryLen == 0 || countryLen == null) {
+                    // addrShow.value = 'province:' + infoData.province;
+                    return;
+                }
+                for (var n = 0; n < countryLen; n++) {
+                    var countryOpt = document.createElement('option');
+                    countryOpt.innerText = listData[provIndex]["citys"][cityIndex].districtAndCounty[n].name;
+                    countryOpt.value = listData[provIndex]["citys"][cityIndex].districtAndCounty[n].area;
+                    area.appendChild(countryOpt);
+                }
+            }
+        }
+        /*选择县区之后的处理函数*/
+        function selectArea(obj) {
+            infoData.area = obj.options[obj.selectedIndex].value;
+            if ((infoData.city != '') && (infoData.area != '')) {
+                // btn.disabled = false;
+            }
+        }
+
+        /*点击确定按钮显示用户所选的地址*/
+        // function showAddr() {
+        //     addrShow.value = 'province:' + infoData.province + ',city:' + infoData.city + ',area:' + infoData.area;
+        // }
+    </script>
+    <!-- 计数器js -->
+    <script src="../../js/counter.js"></script>
+    <script src="../../js/utils.js"></script>
 </body>
 
 </html>

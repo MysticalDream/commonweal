@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2850170 */
-  src: url('iconfont.woff2?t=1634969050688') format('woff2'),
-       url('iconfont.woff?t=1634969050688') format('woff'),
-       url('iconfont.ttf?t=1634969050688') format('truetype');
+  src: url('iconfont.woff2?t=1635387587713') format('woff2'),
+       url('iconfont.woff?t=1635387587713') format('woff'),
+       url('iconfont.ttf?t=1635387587713') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-shangchuan:before {
+  content: "\e61e";
 }
 
 .icon-sousuo:before {
