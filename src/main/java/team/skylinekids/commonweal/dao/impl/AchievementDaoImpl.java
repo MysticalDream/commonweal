@@ -73,4 +73,10 @@ public class AchievementDaoImpl extends MyGenericBaseDao<Achievement> implements
         return this.update(connection, sql, achievement.getId());
     }
 
+    @Override
+    public List<Achievement> getAchievementTopThree() throws Exception {
+        String sqlCondition = " WHERE id IN(SELECT id FROM(SELECT *,DENSE_RANK() OVER (ORDER BY love_number DESC) AS ranking FROM commonweal.achievement) t  WHERE ranking<4)";
+        return this.selectListByConditionString(sqlCondition, new ArrayList<>());
+    }
+
 }

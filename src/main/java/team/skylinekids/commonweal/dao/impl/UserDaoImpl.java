@@ -80,19 +80,19 @@ public class UserDaoImpl extends MyGenericBaseDao<User> implements UserDao {
 
     @Override
     public List<User> getItemUserList(Integer itemId) throws Exception {
-        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(User.class), true) + " FROM " + this.getTableName() + " WHERE user_id IN (SELECT target_id FROM item_and_member_map WHERE item_id=? AND type=? AND is_available=?)";
+        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(User.class), true) + " FROM " + this.getTableName() + " WHERE user_id IN (SELECT target_id FROM item_and_member_map WHERE item_id=? AND type=? AND is_available=? AND status=?)";
         logger.info("===>   Preparing:" + sql);
-        logger.info("===>   Parameters:" + "[" + itemId + ",true,true]");
-        List<User> users = this.getListBean(JDBCUtils.getConnection(), sql, itemId, true, true);
+        logger.info("===>   Parameters:" + "[" + itemId + ",true,true,1]");
+        List<User> users = this.getListBean(JDBCUtils.getConnection(), sql, itemId, true, true, 1);
         return users;
     }
 
     @Override
     public List<User> getTeamUserList(Integer teamId) throws Exception {
-        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(User.class), true) + " FROM " + this.getTableName() + " WHERE user_id IN (SELECT user_id FROM team_and_user_map WHERE team_id=? AND is_available=?)";
+        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(User.class), true) + " FROM " + this.getTableName() + " WHERE user_id IN (SELECT user_id FROM team_and_user_map WHERE team_id=? AND is_available=? AND status=?)";
         logger.info("===>   Preparing:" + sql);
-        logger.info("===>   Parameters:" + "[" + teamId + ",true]");
-        List<User> users = this.getListBean(JDBCUtils.getConnection(), sql, teamId, true);
+        logger.info("===>   Parameters:" + "[" + teamId + ",true,1]");
+        List<User> users = this.getListBean(JDBCUtils.getConnection(), sql, teamId, true, 1);
         return users;
     }
 

@@ -31,13 +31,16 @@ public final class CacheUtils {
             this.future = future;
         }
 
+
         public Object getValue() {
+
             return value;
         }
 
         public Future getFuture() {
             return future;
         }
+
     }
 
     /**
@@ -80,7 +83,30 @@ public final class CacheUtils {
             //不设置过期时间
             MAP.put(key, new Entity(value, null));
         }
+    }
 
+    /**
+     * 添加缓存,设置时间单位
+     *
+     * @param key      键
+     * @param value    值
+     * @param delay    存活时间，单位是毫秒,小于等于0表示无限长
+     * @param timeUnit 时间单位
+     */
+    public static void put(String key, Object value, long delay, TimeUnit timeUnit) {
+        //清除原键值对
+        CacheUtils.remove(key);
+        //设置过期时间
+        if (delay > 0) {
+            Future<?> future = scheduledExecutorService.schedule(() -> {
+                //过期后删除键值对
+                MAP.remove(key);
+            }, delay, timeUnit);
+            MAP.put(key, new Entity(value, future));
+        } else {
+            //不设置过期时间
+            MAP.put(key, new Entity(value, null));
+        }
     }
 
     /**

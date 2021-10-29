@@ -140,4 +140,19 @@ public class ItemMemberMap {
     public void setReadStatus(Boolean readStatus) {
         this.readStatus = readStatus;
     }
+
+    @Override
+    public String toString() {
+        return "ItemMemberMap{" +
+                "id=" + id +
+                ", itemId=" + itemId +
+                ", targetId=" + targetId +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                ", available=" + available +
+                ", type=" + type +
+                ", status=" + status +
+                ", readStatus=" + readStatus +
+                '}';
+    }
 }

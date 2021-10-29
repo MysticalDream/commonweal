@@ -47,10 +47,10 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
 
     @Override
     public List<Team> getItemTeamList(Integer itemId) throws Exception {
-        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Team.class), true) + " FROM " + this.getTableName() + " WHERE team_id IN (SELECT target_id FROM item_and_member_map WHERE item_id=? AND type=? AND is_available=?)";
+        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Team.class), true) + " FROM " + this.getTableName() + " WHERE team_id IN (SELECT target_id FROM item_and_member_map WHERE item_id=? AND type=? AND is_available=? AND status=?)";
         logger.info("===>   Preparing:" + sql);
-        logger.info("===>   Parameters:" + "[" + itemId + ",false,true]");
-        List<Team> teams = this.getListBean(JDBCUtils.getConnection(), sql, itemId, true, true);
+        logger.info("===>   Parameters:" + "[" + itemId + ",false,true,1]");
+        List<Team> teams = this.getListBean(JDBCUtils.getConnection(), sql, itemId, false, true, 1);
         return teams;
     }
 

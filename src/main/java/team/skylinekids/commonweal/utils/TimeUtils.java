@@ -72,4 +72,26 @@ public final class TimeUtils {
             return amount / YEAR_OF_DAY / DAY_OF_HOUR + " " + MyTimeUnit.YEAR.getDescription();
         }
     }
+
+    /**
+     * 获取时间戳
+     *
+     * @param amount
+     * @param myTimeUnit
+     * @return
+     */
+    public static long getDistanceTimeStamp(long amount, MyTimeUnit myTimeUnit) {
+        switch (myTimeUnit) {
+            case DAY:
+                return amount * 86400000;
+            case MONTH:
+                return amount * 2592000000L;
+            case YEAR:
+                return amount * 31104000000L;
+            case HOUR:
+                return amount * 3600000;
+            default:
+                return -1;
+        }
+    }
 }

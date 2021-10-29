@@ -2,6 +2,7 @@ package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
+import team.skylinekids.commonweal.enums.CommonConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
@@ -10,6 +11,7 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
 import team.skylinekids.commonweal.pojo.vo.AchievementVO;
 import team.skylinekids.commonweal.service.AchievementService;
+import team.skylinekids.commonweal.utils.CacheUtils;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
@@ -17,9 +19,8 @@ import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 成就
@@ -120,6 +121,21 @@ public class AchievementController {
             logger.error("成就封面上传处理失败", e);
             return ResultUtils.getResult(ApiResultCode.RESOURCE_STORAGE_FAILED);
         }
+    }
+
+    @MyRequestPath(value = "/achievement/top3", type = {RequestMethod.GET})
+    public String getAchievementTopThree(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        List list = CacheUtils.get(CommonConstant.TOP3_KEY, List.class);
+        if (list != null) {
+            return ResultUtils.getResult(ApiResultCode.SUCCESS, list);
+        }
+        List<Achievement> topThree = achievementService.getAchievementTopThree();
+        //30天更新一次
+        CacheUtils.put(CommonConstant.TOP3_KEY, topThree, 30, TimeUnit.DAYS);
+
+        //  CacheUtils.put(CommonConstant.TOP3_KEY, topThree, 60, TimeUnit.SECONDS);
+
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, topThree);
     }
 
 }
