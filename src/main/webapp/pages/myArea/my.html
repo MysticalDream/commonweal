@@ -441,9 +441,10 @@
             <div class="form_s">
                 <h2>创建项目</h2>
                 <div class="zero">
-                    <form action="/cover" method="post" id="item_cover" enctype="multipart/form-data">
+                    <form action="https://mock.apipost.cn/app/mock/project/adb58a24-e8c9-40fc-9b10-2d8da179d593/cover" method="post" id="item_cover" enctype="multipart/form-data" accept=".jpg, .jpeg, .png">
                         <input type="file" name="item_cover" id="xm_file" hidden>
-                        <input type="hidden" name="part_name" value="item_cover">
+                        <!-- <input type="hidden" name="part_name" value="item_cover"> -->
+                        <input type="submit" value="" id="xm_submit" hidden>
                     </form>
                     <i class="iconfont icon-shangchuan"></i>
                     <p>点击此处上传项目封面</p>

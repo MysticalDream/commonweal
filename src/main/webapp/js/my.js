@@ -126,12 +126,22 @@ window.addEventListener('load', function() {
     // 最大人数限制
     let maximumNumberLimit = document.querySelector('#second_text');
     // 请求项目封面
-    iframeAjax({
-        form: "#item_cover",
-        callback: function(datas) {
-            coverUrl = datas;
-        }
+    let xm_submit = document.querySelector('#xm_submit');
+    xm_file.addEventListener('change', () => {
+        iframeAjax({
+            form: "#item_cover",
+            callback: function(datas) {
+                console.log(datas);
+                // 拿到图片的路径
+                coverUrl = datas.data;
+            }
+        })
+        xm_submit.click();
+        let img = document.createElement('img');
+        img.src = coverUrl;
+        zero.appendChild(img);
     })
+
 
     put_in.addEventListener('click', () => {
         // alert(1);
