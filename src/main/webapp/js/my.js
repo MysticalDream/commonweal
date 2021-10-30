@@ -100,6 +100,21 @@ window.addEventListener('load', function() {
     let out_d = this.document.querySelector('.put_out');
     out_d.addEventListener('click', function() {
         mask.style.display = 'none';
+        // 关闭那个框框 并且将里面的内容清空
+        // out_d.click();
+        itemTitle.value = '';
+        itemTitle.dispatchEvent(new Event("input", { bubbles: true }));
+        itemIntroduction.value = '';
+        itemIntroduction.dispatchEvent(new Event("input", { bubbles: true }));
+        fourth_text.value = '';
+        fourth_text.dispatchEvent(new Event("input", { bubbles: true }));
+        xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+        itemCategory.options[itemCategory.selectedIndex].text = itemCategory.options[0].text;
+        maximumNumberLimit.value = ''
+        maximumNumberLimit.dispatchEvent(new Event("input", { bubbles: true }));
+        prov.options[prov.selectedIndex].text = prov.options[0].text;
+        city.options[city.selectedIndex].text = city.options[0].text;
+        area.options[area.selectedIndex].text = area.options[0].text;
     })
 
     // 获取上传文件的那个按钮 和上传文件的框框
@@ -142,7 +157,6 @@ window.addEventListener('load', function() {
             coverUrl = datas.data;
             zero_i.remove();
             zero_p.remove();
-            xm_file.remove();
             img = document.createElement('img');
             img.src = coverUrl;
             zero.appendChild(img);
@@ -197,14 +211,8 @@ window.addEventListener('load', function() {
                     zero_i.className = 'iconfont icon-shangchuan';
                     let zero_p = document.createElement('p');
                     zero_p.innerText = '点击此处上传项目封面';
-                    let xm_file = document.createElement('input');
-                    xm_file.type = 'file';
-                    xm_file.name = 'item_cover';
-                    xm_file.id = 'xm_flie';
-                    xm_file.hidden = true;
                     zero.appendChild(zero_i);
                     zero.appendChild(zero_p);
-                    zero.appendChild(xm_file);
                     // 弹出创建成功的信息
                     let win = document.querySelector('.win');
                     win.style.display = 'block';
