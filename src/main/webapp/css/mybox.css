@@ -45,7 +45,7 @@ body {
     letter-spacing: 3px;
 }
 
-.mask_s .form_s>div {
+.mask_s .form_s > div {
     position: relative;
     width: 100%;
     height: 35px;
@@ -55,7 +55,7 @@ body {
     font-size: 16px;
 }
 
-.mask_s .form_s>div input {
+.mask_s .form_s > div input {
     height: 100%;
     width: 100%;
     border: none;
@@ -132,7 +132,7 @@ body {
     border: none;
 }
 
-.mask_s .form_s .second>input,
+.mask_s .form_s .second > input,
 .mask_s .form_s .second select {
     float: left;
     width: 43%;
@@ -192,7 +192,8 @@ body {
     border: none;
     outline: none;
     resize: none;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    overflow-y: auto;
 }
 
 .mask_s .form_s .fifth span {
@@ -203,7 +204,7 @@ body {
     font-size: 16px;
 }
 
-.mask_s .form_s>button {
+.mask_s .form_s > button {
     width: 70px;
     height: 30px;
     margin-top: 8px;
