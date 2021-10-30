@@ -235,7 +235,7 @@ public class ItemController {
      * 项目成员审核
      *
      * @param httpInfoWrapper
-     * @return 231321
+     * @return
      */
     @MyRequestPath(value = "/items/audit", type = {RequestMethod.PUT})
     public String agreeToApply(HttpInfoWrapper httpInfoWrapper) throws Exception {
