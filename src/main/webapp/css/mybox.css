@@ -27,7 +27,7 @@ body {
 .mask_s .form_s {
     position: relative;
     top: 5%;
-    left: 40%;
+    left: 34%;
     width: 400px;
     height: 545px;
     background-color: #fff;
@@ -228,5 +228,36 @@ body {
     100% {
         opacity: 1;
         transform: translateY(0px);
+    }
+}
+
+.warn {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    height: 40px;
+    padding: 0px 12px;
+    line-height: 40px;
+    background-color: #CD4140;
+    color: #fff;
+    border-radius: 5px;
+    display: none;
+    letter-spacing: 3px;
+    transform: translateX(-50%);
+}
+
+.come {
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: come_ .5s forwards;
+}
+
+@keyframes come_ {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px)
     }
 }
