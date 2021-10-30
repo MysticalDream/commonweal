@@ -133,7 +133,7 @@ window.addEventListener('load', function() {
     let xm_submit = document.querySelector('#xm_submit');
     let zero_i = zero.querySelector('i');
     let zero_p = zero.querySelector('p');
-    let zero_form = zero_i.querySelector('form');
+    let zero_form = zero.querySelector('form');
     let img;
     xm_file.addEventListener('change', () => {
         iframeAjax({
@@ -178,7 +178,7 @@ window.addEventListener('load', function() {
                 // 响应成功
                 if (data.success) {
                     // 关闭那个框框 并且将里面的内容清空
-                    // out_d.click();
+                    out_d.click();
                     itemTitle.value = '';
                     itemTitle.dispatchEvent(new Event("input", { bubbles: true }));
                     itemIntroduction.value = '';
