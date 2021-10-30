@@ -115,6 +115,8 @@ window.addEventListener('load', function() {
         prov.options[prov.selectedIndex].text = prov.options[0].text;
         city.options[city.selectedIndex].text = city.options[0].text;
         area.options[area.selectedIndex].text = area.options[0].text;
+        img.src = '';
+        img.style.display = 'none';
     })
 
     // 获取上传文件的那个按钮 和上传文件的框框
@@ -148,7 +150,7 @@ window.addEventListener('load', function() {
     let xm_submit = document.querySelector('#xm_submit');
     let zero_i = zero.querySelector('i');
     let zero_p = zero.querySelector('p');
-    let img;
+    let img = zero.querySelector('img');
     iframeAjax({
         form: "#item_cover",
         callback: function(datas) {
@@ -157,9 +159,8 @@ window.addEventListener('load', function() {
             coverUrl = datas.data;
             zero_i.remove();
             zero_p.remove();
-            img = document.createElement('img');
             img.src = coverUrl;
-            zero.appendChild(img);
+            img.style.display = 'block';
         }
     })
     xm_file.addEventListener('change', () => {
@@ -206,7 +207,8 @@ window.addEventListener('load', function() {
                     city.options[city.selectedIndex].text = city.options[0].text;
                     area.options[area.selectedIndex].text = area.options[0].text;
                     // 删除img 创建上传照片那个
-                    img.remove();
+                    img.src = '';
+                    img.style.display = 'none';
                     let zero_i = document.createElement('i');
                     zero_i.className = 'iconfont icon-shangchuan';
                     let zero_p = document.createElement('p');
