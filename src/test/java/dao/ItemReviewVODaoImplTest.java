@@ -13,7 +13,7 @@ class ItemReviewVODaoImplTest {
     void getList() throws Exception {
         Page<ItemReviewVO> page = new Page<>();
         page.setPageNum(1);
-        page.setPageSize(1);
+        page.setPageSize(2);
         Page<ItemReviewVO> list = itemReviewVODao.getList(page, 1);
         list.getList().forEach(System.out::println);
     }

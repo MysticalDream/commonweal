@@ -4,6 +4,7 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
+import team.skylinekids.commonweal.pojo.vo.ItemReviewVO;
 
 import java.util.List;
 
@@ -63,5 +64,15 @@ public interface ItemService {
      * @throws Exception
      */
     List<ItemDTO> getUserEnterItemList(Integer id) throws Exception;
+
+    /**
+     * 获取项目审核列表
+     *
+     * @param page
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    Page<ItemReviewVO> getItemReviewVOList(Page<ItemReviewVO> page, Integer id) throws Exception;
 
 }

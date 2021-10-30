@@ -1,12 +1,14 @@
 package team.skylinekids.commonweal.service.impl;
 
 import team.skylinekids.commonweal.dao.ItemDao;
+import team.skylinekids.commonweal.dao.ItemReviewVODao;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.DaoFactory;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
+import team.skylinekids.commonweal.pojo.vo.ItemReviewVO;
 import team.skylinekids.commonweal.service.ItemService;
 import team.skylinekids.commonweal.utils.CategoryUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
@@ -22,6 +24,8 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
 
     ItemDao itemDao = DaoFactory.getItemDao();
+
+    ItemReviewVODao itemReviewVODao = DaoFactory.getItemReviewVODao();
 
     @Override
     public int createItem(Item item) throws Exception {
@@ -70,5 +74,10 @@ public class ItemServiceImpl implements ItemService {
             itemDTOs.add(itemDTO);
         }
         return itemDTOs;
+    }
+
+    @Override
+    public Page<ItemReviewVO> getItemReviewVOList(Page<ItemReviewVO> page, Integer id) throws Exception {
+        return itemReviewVODao.getList(page, id);
     }
 }

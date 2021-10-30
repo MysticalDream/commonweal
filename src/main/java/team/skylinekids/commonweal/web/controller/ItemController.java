@@ -12,6 +12,7 @@ import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.po.ItemMemberMap;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
+import team.skylinekids.commonweal.pojo.vo.ItemReviewVO;
 import team.skylinekids.commonweal.service.ItemBOService;
 import team.skylinekids.commonweal.service.ItemMemberMapService;
 import team.skylinekids.commonweal.service.ItemService;
@@ -217,10 +218,17 @@ public class ItemController {
      */
     @MyRequestPath(value = "/items/apply/list/?", type = {RequestMethod.GET})
     public String getItemApplyList(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        }
         //项目id
         Integer itemId = httpInfoWrapper.getPathVariable(Integer.class);
-
-        return "";
+        Integer pageSize = Integer.valueOf(httpInfoWrapper.getParameter("pageSize"));
+        Integer pageNum = Integer.valueOf(httpInfoWrapper.getParameter("pageNum"));
+        Page<ItemReviewVO> page = new Page<>();
+        page.setPageSize(pageSize);
+        page.setPageNum(pageNum);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, itemService.getItemReviewVOList(page, itemId));
     }
 
     /**
