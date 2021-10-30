@@ -133,23 +133,22 @@ window.addEventListener('load', function() {
     let xm_submit = document.querySelector('#xm_submit');
     let zero_i = zero.querySelector('i');
     let zero_p = zero.querySelector('p');
-    let zero_form = zero.querySelector('form');
     let img;
+    iframeAjax({
+        form: "#item_cover",
+        callback: function(datas) {
+            console.log(datas);
+            // 拿到图片的路径
+            coverUrl = datas.data;
+            zero_i.remove();
+            zero_p.remove();
+            xm_file.remove();
+            img = document.createElement('img');
+            img.src = coverUrl;
+            zero.appendChild(img);
+        }
+    })
     xm_file.addEventListener('change', () => {
-        iframeAjax({
-            form: "#item_cover",
-            callback: function(datas) {
-                console.log(datas);
-                // 拿到图片的路径
-                coverUrl = datas.data;
-                zero_i.remove();
-                zero_p.remove();
-                zero_form.remove();
-                img = document.createElement('img');
-                img.src = coverUrl;
-                zero.appendChild(img);
-            }
-        })
         xm_submit.click();
 
     })
@@ -198,16 +197,14 @@ window.addEventListener('load', function() {
                     zero_i.className = 'iconfont icon-shangchuan';
                     let zero_p = document.createElement('p');
                     zero_p.innerText = '点击此处上传项目封面';
-                    let zero_form = document.createElement('form');
-                    zero_form.action = '/cover';
-                    zero_form.method = 'post';
-                    zero_form.id = 'item_cover';
-                    zero_form.enctype = 'multipart/form-data';
-                    zero_form.accept = '.jpg,.jpeg,.png';
-                    zero_form.innerHTML = '<input type="flie" name="item_cover" id="xm_file" hidden><input type="hidden" name="part_name" id="item_cover"><input type="submit" value="" id="xm_submit" hidden>'
+                    let xm_file = document.createElement('input');
+                    xm_file.type = 'file';
+                    xm_file.name = 'item_cover';
+                    xm_file.id = 'xm_flie';
+                    xm_file.hidden = true;
                     zero.appendChild(zero_i);
                     zero.appendChild(zero_p);
-                    zero.appendChild(zero_form);
+                    zero.appendChild(xm_file);
                     // 弹出创建成功的信息
                     let win = document.querySelector('.win');
                     win.style.display = 'block';
