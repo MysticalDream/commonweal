@@ -13,7 +13,8 @@ public interface ItemMemberMapService {
      * @return
      * @throws Exception
      */
-    int addMember(ItemMemberMap itemMemberMap) throws Exception;
+    int addMemberMap(ItemMemberMap itemMemberMap) throws Exception;
+
 
     /**
      * 移除成员
@@ -23,4 +24,23 @@ public interface ItemMemberMapService {
      * @throws Exception
      */
     int removeMember(ItemMemberMap itemMemberMap) throws Exception;
+
+    /**
+     * 更新项目成员映射
+     *
+     * @param itemMemberMap
+     * @return
+     * @throws Exception
+     */
+    int checkMemberMap(ItemMemberMap itemMemberMap) throws Exception;
+
+    /**
+     * 根据id获取成员映射
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    ItemMemberMap getItemMemberById(Integer id) throws Exception;
+
 }

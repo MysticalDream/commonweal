@@ -15,7 +15,8 @@ public interface ItemMemberMapDao {
      * @return
      * @throws Exception
      */
-    int addMember(ItemMemberMap itemMemberMap) throws Exception;
+    int addMemberMap(ItemMemberMap itemMemberMap) throws Exception;
+
 
     /**
      * 移除成员
@@ -25,5 +26,23 @@ public interface ItemMemberMapDao {
      * @throws Exception
      */
     int removeMember(ItemMemberMap itemMemberMap) throws Exception;
+
+    /**
+     * 更新项目成员映射
+     *
+     * @param itemMemberMap
+     * @return
+     * @throws Exception
+     */
+    int updateMemberMap(ItemMemberMap itemMemberMap) throws Exception;
+
+    /**
+     * 根据id获取项目成员映射对象
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    ItemMemberMap getItemMemberMapById(Integer id) throws Exception;
 
 }

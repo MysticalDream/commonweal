@@ -1,10 +1,10 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     let li_open = document.querySelectorAll('.bottom_left_d>ul>li');
     console.log(li_open.length);
     let show_box = document.querySelectorAll('.slide_ul_d');
     console.log(show_box.length);
     for (let i = 0; i < li_open.length; i++) {
-        li_open[i].addEventListener('mouseover', function() {
+        li_open[i].addEventListener('mouseover', function () {
             for (let j = 0; j < li_open.length; j++) {
                 show_box[j].style.width = '0px';
                 li_open[j].classList.remove('cur_li');
@@ -12,7 +12,7 @@ window.addEventListener('load', function() {
             li_open[i].classList.add('cur_li');
             show_box[i].style.width = '170px';
         })
-        li_open[i].addEventListener('mouseout', function() {
+        li_open[i].addEventListener('mouseout', function () {
             show_box[i].style.width = '0px';
         })
     }
@@ -20,7 +20,7 @@ window.addEventListener('load', function() {
     let tag_d = document.querySelectorAll('.tag_d');
     let right_ds = document.querySelectorAll('.bottom_right_d');
     for (let i = 0; i < tag_d.length; i++) {
-        tag_d[i].addEventListener('click', function() {
+        tag_d[i].addEventListener('click', function () {
             for (let j = 0; j < tag_d.length; j++) {
                 fadeOut(right_ds[j]);
                 right_ds[j].style.zIndex = -1;
@@ -47,19 +47,19 @@ window.addEventListener('load', function() {
     }
 
     for (let i = 0; i < input_d.length; i++) {
-        input_d[i].onfocus = function() {
+        input_d[i].onfocus = function () {
             hide(input_img[i]);
             hide(input_span[i]);
         }
-        input_d[i].onblur = function() {
+        input_d[i].onblur = function () {
             show(input_img[i]);
             show(input_span[i]);
         }
     }
 
     // 点击搜索框和图片时input选中
-    focus_d = function(ele, input) {
-        ele.addEventListener('click', function() {
+    focus_d = function (ele, input) {
+        ele.addEventListener('click', function () {
             input.focus();
         })
     }
@@ -75,30 +75,30 @@ window.addEventListener('load', function() {
     console.log(out_box.length);
     console.log(inner_box.length);
     for (let i = 0; i < out_box.length; i++) {
-        out_box[i].addEventListener('mouseover', function() {
-                inner_box[i].classList.add('rotate_slowly');
-                // inner_box[i].style.transform='rotate(-'+15+'deg)';
-            })
-            // out_box[i].addEventListener('mouseout',function(){
-            //    inner_box[i].style.transform='rotate(-'+0+'deg)';
-            // })
+        out_box[i].addEventListener('mouseover', function () {
+            inner_box[i].classList.add('rotate_slowly');
+            // inner_box[i].style.transform='rotate(-'+15+'deg)';
+        })
+        // out_box[i].addEventListener('mouseout',function(){
+        //    inner_box[i].style.transform='rotate(-'+0+'deg)';
+        // })
     }
 
     let plus_d = this.document.querySelector('.plus_rota');
     let mask = this.document.querySelector('.mask_s');
     let form_ss = this.document.querySelector('.form_s');
     // 点击加号
-    plus_d.addEventListener('click', function() {
+    plus_d.addEventListener('click', function () {
         mask.style.display = 'block';
         // 那个框框从上面淡入
-        setTimeout(function() {
+        setTimeout(function () {
             form_ss.classList.add('down');
         }, 200)
     })
 
     // 取消按钮
     let out_d = this.document.querySelector('.put_out');
-    out_d.addEventListener('click', function() {
+    out_d.addEventListener('click', function () {
         mask.style.display = 'none';
     })
 
@@ -130,16 +130,17 @@ window.addEventListener('load', function() {
     xm_file.addEventListener('change', () => {
         iframeAjax({
             form: "#item_cover",
-            callback: function(datas) {
+            callback: function (datas) {
                 console.log(datas);
                 // 拿到图片的路径
                 coverUrl = datas.data;
+                let img = document.createElement('img');
+                img.src = coverUrl;
+                zero.appendChild(img);
             }
         })
         xm_submit.click();
-        let img = document.createElement('img');
-        img.src = coverUrl;
-        zero.appendChild(img);
+
     })
 
 
@@ -172,7 +173,7 @@ window.addEventListener('load', function() {
             header: {
                 'Content-Type': 'application/json'
             },
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
             },
         })

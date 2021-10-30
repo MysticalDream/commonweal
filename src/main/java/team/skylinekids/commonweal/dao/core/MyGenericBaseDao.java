@@ -309,7 +309,7 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
         selectSql = MessageFormat.format(selectSql, columns, prevCondition);
         logger.info("===>    Preparing:" + selectSql);
         Connection connection = JDBCUtils.getConnection();
-        logger.info("===>    Parameters:" + key);
+        logger.info("===>    Parameters:" + "[" + key + "]");
         T bean = this.getBean(connection, selectSql, key);
         return bean;
     }

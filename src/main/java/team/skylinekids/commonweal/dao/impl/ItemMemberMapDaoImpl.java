@@ -12,7 +12,7 @@ import team.skylinekids.commonweal.pojo.po.ItemMemberMap;
 public class ItemMemberMapDaoImpl extends MyGenericBaseDao<ItemMemberMap> implements ItemMemberMapDao {
 
     @Override
-    public int addMember(ItemMemberMap itemMemberMap) throws Exception {
+    public int addMemberMap(ItemMemberMap itemMemberMap) throws Exception {
         return this.insert(itemMemberMap);
     }
 
@@ -20,5 +20,15 @@ public class ItemMemberMapDaoImpl extends MyGenericBaseDao<ItemMemberMap> implem
     public int removeMember(ItemMemberMap itemMemberMap) throws Exception {
         itemMemberMap.setAvailable(false);
         return this.update(itemMemberMap);
+    }
+
+    @Override
+    public int updateMemberMap(ItemMemberMap itemMemberMap) throws Exception {
+        return this.update(itemMemberMap);
+    }
+
+    @Override
+    public ItemMemberMap getItemMemberMapById(Integer id) throws Exception {
+        return this.selectByPrimaryKey(id);
     }
 }

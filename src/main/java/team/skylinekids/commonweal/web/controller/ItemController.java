@@ -26,6 +26,7 @@ import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目Controller
@@ -177,7 +178,7 @@ public class ItemController {
         if (itemMemberMap == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-        itemMemberMapService.addMember(itemMemberMap);
+        itemMemberMapService.addMemberMap(itemMemberMap);
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
@@ -216,6 +217,8 @@ public class ItemController {
      */
     @MyRequestPath(value = "/items/apply/list/?", type = {RequestMethod.GET})
     public String getItemApplyList(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        //项目id
+        Integer itemId = httpInfoWrapper.getPathVariable(Integer.class);
 
         return "";
     }
@@ -227,17 +230,30 @@ public class ItemController {
      * @return
      */
     @MyRequestPath(value = "/items/audit", type = {RequestMethod.PUT})
-    public String agreeToApply(HttpInfoWrapper httpInfoWrapper) {
-        if (httpInfoWrapper.isLogin()) {
+    public String agreeToApply(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        if (!httpInfoWrapper.isLogin()) {
             return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
         }
+        //审核列表id
+        Integer list_id;
         //审核结果 true代表同意，false代表拒绝
-        Boolean result = Boolean.valueOf(httpInfoWrapper.getParameter("result"));
-        //成员类型 false---团队 true----个人
-        Boolean type = Boolean.valueOf(httpInfoWrapper.getParameter("type"));
-        //目标id
-        Integer targetId = Integer.valueOf(httpInfoWrapper.getParameter("targetId"));
-
-        return "";
+        Integer result;
+        try {
+            String jsonString = httpInfoWrapper.getJsonString();
+            Map<String, Object> jsonToMap = GsonUtils.jsonToMap(jsonString);
+            list_id = Integer.valueOf((String) jsonToMap.get("list_id"));
+            result = Integer.valueOf((String) jsonToMap.get("result"));
+        } catch (Exception e) {
+            logger.error("请求语法错误", e);
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        ItemMemberMap memberMap = itemMemberMapService.getItemMemberById(list_id);
+        if (memberMap == null) {
+            return ResultUtils.getResult(ApiResultCode.REJECT_THE_REQUEST);
+        }
+        memberMap.setStatus(result);
+        //更新成员映射
+        itemMemberMapService.checkMemberMap(memberMap);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 }
