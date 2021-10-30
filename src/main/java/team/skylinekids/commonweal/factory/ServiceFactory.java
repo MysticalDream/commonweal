@@ -59,7 +59,7 @@ public class ServiceFactory {
     }
 
     public static AdoptService getAdoptService() {
-        return new AdoptServiceImpl();
+        return ProxyFactory.getTransactionProxy(new AdoptServiceImpl());
     }
 
 }

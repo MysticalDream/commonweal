@@ -173,7 +173,7 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
     @Override
     public List<Item> getUserEnterItemList(Integer id) throws Exception {
-        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Item.class), true) + " FROM " + this.getTableName() + " WHERE item_id IN(SELECT item_id FROM item_and_member_map WHERE target_id=? AND type=?)";
+        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Item.class), true) + " FROM " + this.getTableName() + " WHERE item_id IN(SELECT item_id FROM item_and_member_map WHERE target_id=? AND type=? AND status=1)";
         logger.info("===>   Preparing:" + sql);
         logger.info("===>   Parameters:" + "[" + id + ",true]");
         return this.getListBean(JDBCUtils.getConnection(), sql, id, true);
