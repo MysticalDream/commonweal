@@ -125,10 +125,16 @@ window.addEventListener('load', function() {
     let itemCategory = document.querySelector('#second_select');
     // 最大人数限制
     let maximumNumberLimit = document.querySelector('#second_text');
+    // 项目地区
+    let prov = document.querySelector('#prov');
+    let city = document.querySelector('#city');
+    let area = document.querySelector('#area');
     // 请求项目封面
     let xm_submit = document.querySelector('#xm_submit');
     let zero_i = zero.querySelector('i');
     let zero_p = zero.querySelector('p');
+    let zero_form = zero_i.querySelector('form');
+    let img;
     xm_file.addEventListener('change', () => {
         iframeAjax({
             form: "#item_cover",
@@ -138,7 +144,8 @@ window.addEventListener('load', function() {
                 coverUrl = datas.data;
                 zero_i.remove();
                 zero_p.remove();
-                let img = document.createElement('img');
+                zero_form.remove();
+                img = document.createElement('img');
                 img.src = coverUrl;
                 zero.appendChild(img);
             }
@@ -171,7 +178,7 @@ window.addEventListener('load', function() {
                 // 响应成功
                 if (data.success) {
                     // 关闭那个框框 并且将里面的内容清空
-                    out_d.click();
+                    // out_d.click();
                     itemTitle.value = '';
                     itemTitle.dispatchEvent(new Event("input", { bubbles: true }));
                     itemIntroduction.value = '';
@@ -182,17 +189,38 @@ window.addEventListener('load', function() {
                     itemCategory.options[itemCategory.selectedIndex].text = itemCategory.options[0].text;
                     maximumNumberLimit.value = ''
                     maximumNumberLimit.dispatchEvent(new Event("input", { bubbles: true }));
+                    prov.options[prov.selectedIndex].text = prov.options[0].text;
+                    city.options[city.selectedIndex].text = city.options[0].text;
+                    area.options[area.selectedIndex].text = area.options[0].text;
                     // 删除img 创建上传照片那个
                     img.remove();
                     let zero_i = document.createElement('i');
                     zero_i.className = 'iconfont icon-shangchuan';
                     let zero_p = document.createElement('p');
                     zero_p.innerText = '点击此处上传项目封面';
+                    let zero_form = document.createElement('form');
+                    zero_form.action = '/cover';
+                    zero_form.method = 'post';
+                    zero_form.id = 'item_cover';
+                    zero_form.enctype = 'multipart/form-data';
+                    zero_form.accept = '.jpg,.jpeg,.png';
+                    zero_form.innerHTML = '<input type="flie" name="item_cover" id="xm_file" hidden><input type="hidden" name="part_name" id="item_cover"><input type="submit" value="" id="xm_submit" hidden>'
                     zero.appendChild(zero_i);
                     zero.appendChild(zero_p);
+                    zero.appendChild(zero_form);
+                    // 弹出创建成功的信息
+                    let win = document.querySelector('.win');
+                    win.style.display = 'block';
+                    // 设置定时器关掉提示框
+                    setTimeout(() => {
+                        win.style.display = 'none'
+                    }, 2000);
                 } else { //响应失败的话 弹出提示信息
                     let warn = document.querySelector('.warn');
                     warn.style.display = 'block';
+                    setTimeout(() => {
+                        warn.style.display = 'none';
+                    }, 2000);
                 }
             },
         })

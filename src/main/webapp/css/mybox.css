@@ -246,6 +246,21 @@ body {
     transform: translateX(-50%);
 }
 
+.win {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    height: 40px;
+    padding: 0px 12px;
+    line-height: 40px;
+    background-color: #00e500;
+    color: #fff;
+    border-radius: 5px;
+    display: none;
+    letter-spacing: 3px;
+    transform: translateX(-50%);
+}
+
 .come {
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
     animation: come_ .5s forwards;
