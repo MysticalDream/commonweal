@@ -5,7 +5,7 @@ package team.skylinekids.commonweal.pojo.vo;
  *
  * @author MysticalDream
  */
-public class ItemReviewVO {
+public class ItemMemberVO {
     /**
      * 列表id
      */
@@ -31,7 +31,7 @@ public class ItemReviewVO {
      */
     private String location;
 
-    public ItemReviewVO(Integer listId, Boolean type, String typeName, Integer targetId, String name, String location) {
+    public ItemMemberVO(Integer listId, Boolean type, String typeName, Integer targetId, String name, String location) {
         this.listId = listId;
         this.type = type;
         this.typeName = typeName;
@@ -40,7 +40,7 @@ public class ItemReviewVO {
         this.location = location;
     }
 
-    public ItemReviewVO() {
+    public ItemMemberVO() {
     }
 
     public Integer getListId() {

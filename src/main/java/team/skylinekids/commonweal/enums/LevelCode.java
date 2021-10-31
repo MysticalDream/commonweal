@@ -19,6 +19,7 @@ public enum LevelCode {
      * 特别登录等级
      */
     SPECIAL_LOGIN_LEVEL(10);
+
     int level;
 
     LevelCode(int level) {

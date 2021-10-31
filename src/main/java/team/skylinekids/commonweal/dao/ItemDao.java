@@ -55,7 +55,8 @@ public interface ItemDao {
      * @return
      * @throws Exception
      */
-    int updateItemNowMen(Integer itemId,Integer num) throws Exception;
+    int updateItemNowMen(Integer itemId, Integer num) throws Exception;
+
 
     /**
      * 条件查询项目
@@ -83,4 +84,13 @@ public interface ItemDao {
      * @throws Exception
      */
     List<Item> getUserEnterItemList(Integer id) throws Exception;
+
+    /**
+     * 获取项目更具item条件
+     *
+     * @param item
+     * @return
+     * @throws Exception
+     */
+    Item getItemByItemEntity(Item item) throws Exception;
 }

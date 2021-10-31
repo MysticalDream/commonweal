@@ -1,22 +1,21 @@
 package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
-import team.skylinekids.commonweal.enums.ApiResultCode;
-import team.skylinekids.commonweal.enums.ResourcePathConstant;
-import team.skylinekids.commonweal.enums.RequestMethod;
-import team.skylinekids.commonweal.enums.SessionKeyConstant;
+import team.skylinekids.commonweal.enums.*;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.service.UserService;
-import team.skylinekids.commonweal.utils.*;
+import team.skylinekids.commonweal.utils.FillBeanUtils;
+import team.skylinekids.commonweal.utils.ResultUtils;
+import team.skylinekids.commonweal.utils.TokenUtils;
+import team.skylinekids.commonweal.utils.VerifyUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
+import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.Part;
-import java.io.IOException;
 import java.util.Map;
 
 
@@ -39,7 +38,6 @@ public class UserController {
      */
     @MyRequestPath(value = "/sessions", type = {RequestMethod.POST})
     public String login(HttpInfoWrapper httpWrapper) throws Exception {
-
         if (httpWrapper.isLogin()) {
             //已经登录无需登录
             return ResultUtils.getResult(ApiResultCode.REDIRECT, "/");
@@ -82,17 +80,15 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel
     @MyRequestPath(value = "/sessions", type = {RequestMethod.DELETE})
     public String logout(HttpInfoWrapper httpInfoWrapper) {
-        if (httpInfoWrapper.isLogin()) {
-            //清除Cookie
-            httpInfoWrapper.setCookies(ConversionUtils.oToStringMap(new UserDTO()), 0);
-            //退出登录
-            httpInfoWrapper.removeUserFromSession();
-            return ResultUtils.getResult(ApiResultCode.SUCCESS);
-        }
-        //用户没有登录
-        return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        //清除Cookie
+        httpInfoWrapper.setCookies(ConversionUtils.oToStringMap(new UserDTO()), 0);
+        //退出登录
+        httpInfoWrapper.removeUserFromSession();
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
+
     }
 
     /**
@@ -101,6 +97,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel(LevelCode.SPECIAL_LOGIN_LEVEL)
     @MyRequestPath(value = "/users", type = {RequestMethod.GET})
     public String getUserList(HttpInfoWrapper httpInfoWrapper) {
         return "getUserList";
@@ -198,6 +195,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel(LevelCode.SPECIAL_LOGIN_LEVEL)
     @MyRequestPath(value = "/users/?", type = {RequestMethod.GET})
     public String getUseInfoById(HttpInfoWrapper httpInfoWrapper) throws Exception {
         if (!httpInfoWrapper.isLogin()) {
@@ -216,6 +214,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel
     @MyRequestPath(value = "/users/?", type = {RequestMethod.PUT})
     public String updateUseInfoById(HttpInfoWrapper httpInfoWrapper) {
         return "updateUseInfoById";
@@ -227,6 +226,7 @@ public class UserController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel(LevelCode.SPECIAL_LOGIN_LEVEL)
     @MyRequestPath(value = "/users/?", type = {RequestMethod.DELETE})
     public String deleteUserById(HttpInfoWrapper httpInfoWrapper) {
         return "deleteUserById";
@@ -245,22 +245,6 @@ public class UserController {
         httpInfoWrapper.setCookie(SessionKeyConstant.SIGNUP_TOKEN_STRING, token);
         httpInfoWrapper.setHttpSessionAttribute(SessionKeyConstant.SIGNUP_TOKEN_STRING, token);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, token);
-    }
-
-    @MyRequestPath("/testD")
-    public String test(HttpInfoWrapper httpInfoWrapper) {
-        httpInfoWrapper.getParameterMap();
-        Part part = httpInfoWrapper.getPart("file");
-        if (part == null) {
-            return "part为空";
-        }
-        try {
-            String s = FileUtils.saveResourceByPart(part, ResourcePathConstant.DISK_AVATAR_BASE_URL);
-            System.out.println(s);
-        } catch (IOException e) {
-            logger.error("头像图片文件保存异常", e);
-        }
-        return "测试";
     }
 
 }

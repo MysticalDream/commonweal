@@ -69,7 +69,7 @@ public class DaoFactory {
         return new AchievementVODaoImpl();
     }
 
-    public static ItemReviewVODao getItemReviewVODao() {
-        return new ItemReviewVODaoImpl();
+    public static ItemMemberDao getItemReviewVODao() {
+        return new ItemMemberDaoImpl();
     }
 }

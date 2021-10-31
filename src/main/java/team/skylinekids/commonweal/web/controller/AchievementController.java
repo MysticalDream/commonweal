@@ -123,6 +123,13 @@ public class AchievementController {
         }
     }
 
+    /**
+     * 点赞数前三的成就
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
     @MyRequestPath(value = "/achievement/top3", type = {RequestMethod.GET})
     public String getAchievementTopThree(HttpInfoWrapper httpInfoWrapper) throws Exception {
         List list = CacheUtils.get(CommonConstant.TOP3_KEY, List.class);

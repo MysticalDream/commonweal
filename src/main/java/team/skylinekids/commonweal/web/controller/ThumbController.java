@@ -8,6 +8,7 @@ import team.skylinekids.commonweal.pojo.po.Thumb;
 import team.skylinekids.commonweal.service.ThumbService;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
+import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 /**
@@ -26,13 +27,11 @@ public class ThumbController {
      * @return
      * @throws Exception
      */
+    @AccessLevel
     @MyRequestPath(value = "/thumb", type = {RequestMethod.PUT})
     public String thumb(HttpInfoWrapper httpInfoWrapper) throws Exception {
         String jsonString = httpInfoWrapper.getJsonString();
         Thumb thumb = GsonUtils.j2O(jsonString, Thumb.class);
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         if (thumb == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }

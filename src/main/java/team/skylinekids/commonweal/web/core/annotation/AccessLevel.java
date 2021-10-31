@@ -18,5 +18,5 @@ public @interface AccessLevel {
      *
      * @return
      */
-    LevelCode value() default LevelCode.COMMON_LEVEL;
+    LevelCode value() default LevelCode.COMMON_LOGIN_LEVEL;
 }

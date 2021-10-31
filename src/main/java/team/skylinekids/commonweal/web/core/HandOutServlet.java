@@ -57,6 +57,8 @@ public class HandOutServlet extends HttpServlet {
         //获取请求路径 比如/users/1
         String uri = request.getRequestURI();
 
+        String tempUri = uri;
+
         String pathVariable = null;
 
         HandleInfo handleInfo = HandlerMapping.get(uri);
@@ -77,7 +79,7 @@ public class HandOutServlet extends HttpServlet {
             handleInfo = HandlerMapping.get(uri);
             // 资源不存在
             if (handleInfo == null) {
-                logger.debug("404:资源不存在:" + uri);
+                logger.debug("404:资源不存在:" + uri + "[原:" + tempUri + "]");
                 response.getWriter().write(ResultUtils.getResult(ApiResultCode.THE_PAGE_NOT_FOUND));
                 return;
             }
@@ -95,15 +97,17 @@ public class HandOutServlet extends HttpServlet {
          * 访问权限
          */
         AccessLevel accessLevel = method.getDeclaredAnnotation(AccessLevel.class);
-
+        //等于Null的默认公开
         if (accessLevel != null) {
             //接口访问需要的等级
             LevelCode levelCode = accessLevel.value();
             //当前请求的等级
-            LevelCode currentAccessLevel = getCurrentAccessLevel(request);
-//            if (currentAccessLevel.getLevel() < levelCode.getLevel()) {
-//                return;
-//            }
+            LevelCode currentAccessLevel = getCurrentAccessLevel(request, response);
+            if (currentAccessLevel != null && currentAccessLevel.getLevel() < levelCode.getLevel()) {
+                logger.info("无权访问");
+                response.getWriter().write(ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED));
+                return;
+            }
         }
         Object object = handleInfo.getObject();
         Object result = null;
@@ -158,18 +162,21 @@ public class HandOutServlet extends HttpServlet {
      * @param request
      * @return
      */
-    private LevelCode getCurrentAccessLevel(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute(SessionKeyConstant.USER_STRING);
-        if (user == null) {
+    private LevelCode getCurrentAccessLevel(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpInfoWrapper httpInfoWrapper = new HttpInfoWrapper(response, request, null);
+        if (!httpInfoWrapper.isLogin()) {
             return LevelCode.COMMON_LEVEL;
         }
-        for (LevelCode levelCode : LevelCode.values()) {
-            if (levelCode.getLevel() == user.getLevelNum().intValue()) {
-                return levelCode;
-            }
+        Integer levelNum = httpInfoWrapper.getUser().getLevelNum();
+        //普通登录等级
+        if (levelNum == 0) {
+            return LevelCode.COMMON_LOGIN_LEVEL;
+        } else if (levelNum == 10) {
+            return LevelCode.SPECIAL_LOGIN_LEVEL;
+        } else {
+            response.getWriter().write(ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED));
+            return null;
         }
-        return null;
     }
 
 }

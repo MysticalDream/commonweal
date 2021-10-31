@@ -179,5 +179,10 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         return this.getListBean(JDBCUtils.getConnection(), sql, id, true);
     }
 
+    @Override
+    public Item getItemByItemEntity(Item item) throws Exception {
+        return this.selectOne(item);
+    }
+
 
 }

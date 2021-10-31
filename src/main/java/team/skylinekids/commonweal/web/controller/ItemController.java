@@ -2,6 +2,7 @@ package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
+import team.skylinekids.commonweal.enums.LevelCode;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.factory.ServiceFactory;
@@ -12,7 +13,7 @@ import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.po.ItemMemberMap;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
-import team.skylinekids.commonweal.pojo.vo.ItemReviewVO;
+import team.skylinekids.commonweal.pojo.vo.ItemMemberVO;
 import team.skylinekids.commonweal.service.ItemBOService;
 import team.skylinekids.commonweal.service.ItemMemberMapService;
 import team.skylinekids.commonweal.service.ItemService;
@@ -22,6 +23,7 @@ import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
+import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
@@ -50,11 +52,10 @@ public class ItemController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel
     @MyRequestPath(value = "/items", type = {RequestMethod.POST})
     public String createItem(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
+
         ItemDTO itemDTO = GsonUtils.j2O(httpInfoWrapper.getJsonString(), ItemDTO.class);
 
         if (itemDTO == null) {
@@ -127,11 +128,9 @@ public class ItemController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel
     @MyRequestPath(value = "/items/user/?", type = {RequestMethod.GET})
     public String getItemsByUserId(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         Integer pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
         if (!httpInfoWrapper.getUser().getUserId().equals(pathVariable)) {
             return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
@@ -169,11 +168,9 @@ public class ItemController {
      * @return
      * @throws Exception
      */
+    @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
     @MyRequestPath(value = "/items/enter", type = {RequestMethod.POST})
     public String joinItem(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         String jsonString = httpInfoWrapper.getJsonString();
         ItemMemberMap itemMemberMap = GsonUtils.j2O(jsonString, ItemMemberMap.class);
         if (itemMemberMap == null) {
@@ -198,34 +195,52 @@ public class ItemController {
 
     /**
      * 根据项目id获取项目成员
+     * 权限
      *
      * @param httpInfoWrapper
      * @return
      * @throws Exception
      */
+    @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
     @MyRequestPath(value = "/items/members/?", type = {RequestMethod.GET})
     public String getItemMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        ItemBO itemBO = itemBOService.getItemBOByItemId(httpInfoWrapper.getPathVariable(Integer.class));
-        return ResultUtils.getResult(ApiResultCode.SUCCESS, itemBO);
+        //项目id
+        Integer itemId = httpInfoWrapper.getPathVariable(Integer.class);
+        //用户id
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+        //项目条件
+        if (verifyItemAndUser(itemId, userId)) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHORIZED_ACCESS);
+        }
+
+        Integer pageSize = Integer.valueOf(httpInfoWrapper.getParameter("pageSize"));
+        Integer pageNum = Integer.valueOf(httpInfoWrapper.getParameter("pageNum"));
+        Page<ItemMemberVO> page = new Page<>();
+        page.setPageSize(pageSize);
+        page.setPageNum(pageNum);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, itemService.getItemMemberVoList(page, itemId));
     }
 
     /**
      * 根据项目id获取申请列表
+     * 权限
      *
      * @param httpInfoWrapper
      * @return
      * @throws Exception
      */
+    @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
     @MyRequestPath(value = "/items/apply/list/?", type = {RequestMethod.GET})
     public String getItemApplyList(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         //项目id
         Integer itemId = httpInfoWrapper.getPathVariable(Integer.class);
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+        if (verifyItemAndUser(itemId, userId)) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHORIZED_ACCESS);
+        }
         Integer pageSize = Integer.valueOf(httpInfoWrapper.getParameter("pageSize"));
         Integer pageNum = Integer.valueOf(httpInfoWrapper.getParameter("pageNum"));
-        Page<ItemReviewVO> page = new Page<>();
+        Page<ItemMemberVO> page = new Page<>();
         page.setPageSize(pageSize);
         page.setPageNum(pageNum);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, itemService.getItemReviewVOList(page, itemId));
@@ -233,15 +248,16 @@ public class ItemController {
 
     /**
      * 项目成员审核
+     * 权限
      *
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
     @MyRequestPath(value = "/items/audit", type = {RequestMethod.PUT})
     public String agreeToApply(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
+        //用户id
+        Integer userId = httpInfoWrapper.getUser().getUserId();
         //审核列表id
         Integer list_id;
         //审核结果 true代表同意，false代表拒绝
@@ -259,9 +275,63 @@ public class ItemController {
         if (memberMap == null) {
             return ResultUtils.getResult(ApiResultCode.REJECT_THE_REQUEST);
         }
+        Integer itemId = memberMap.getItemId();
+
+        if (verifyItemAndUser(itemId, userId)) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHORIZED_ACCESS);
+        }
         memberMap.setStatus(result);
         //更新成员映射
         itemMemberMapService.checkMemberMap(memberMap);
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
+    }
+
+    /**
+     * 删除项目成员
+     * 权限
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+
+    @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
+    @MyRequestPath(value = "/items/members/?", type = {RequestMethod.DELETE})
+    public String deleteItemMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        //成员列表id
+        Integer listId = httpInfoWrapper.getPathVariable(Integer.class);
+        //项目id
+        Integer itemId = Integer.valueOf(httpInfoWrapper.getParameter("itemId"));
+        //用户id
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+
+        if (verifyItemAndUser(itemId, userId)) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHORIZED_ACCESS);
+        }
+        ItemMemberMap itemMemberMap = new ItemMemberMap();
+        itemMemberMap.setId(listId);
+        itemMemberMapService.removeMember(itemMemberMap);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
+    }
+
+    /**
+     * 判断项目是否属于用户
+     *
+     * @param itemId
+     * @param userId
+     * @return 不属于返回true, 反之返回false
+     * @throws Exception
+     */
+    private boolean verifyItemAndUser(Integer itemId, Integer userId) throws Exception {
+        //项目条件
+        Item itemCondition = new Item();
+        itemCondition.setItemId(itemId);
+        itemCondition.setUserId(userId);
+        Item entity = itemService.getItemByItemEntity(itemCondition);
+        //判断该项目是否属于此用户
+        if (entity == null) {
+            return true;
+        }
+        return false;
     }
 }

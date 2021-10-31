@@ -26,6 +26,16 @@ public class ItemMemberMapServiceImpl implements ItemMemberMapService {
 
     @Override
     public int removeMember(ItemMemberMap itemMemberMap) throws Exception {
+        ItemMemberMap itemMemberById = getItemMemberById(itemMemberMap.getId());
+        Integer itemId = itemMemberById.getItemId();
+        Item item = itemDao.getItemById(itemId);
+        Integer nowMen = item.getNowMen();
+        //个人
+        if (itemMemberById.getType()) {
+            itemDao.updateItemNowMen(itemId, nowMen - 1);
+        } else {//团队
+            itemDao.updateItemNowMen(itemId, nowMen - teamDao.getTeamById(itemMemberById.getTargetId()).getNowMen());
+        }
         return itemMemberMapDao.removeMember(itemMemberMap);
     }
 

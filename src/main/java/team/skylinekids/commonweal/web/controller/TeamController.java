@@ -19,11 +19,11 @@ import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
+import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.Part;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -47,11 +47,9 @@ public class TeamController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel
     @MyRequestPath(value = "/teams", type = {RequestMethod.POST})
     public String createTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         Team team = GsonUtils.j2O(httpInfoWrapper.getJsonString(), Team.class);
         if (team == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
@@ -124,11 +122,9 @@ public class TeamController {
      * @return
      * @throws Exception
      */
+    @AccessLevel
     @MyRequestPath(value = "/teams/user", type = {RequestMethod.GET})
     public String getUserOfTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         Cookie userId = httpInfoWrapper.getCookie("userId");
         List<TeamDTO> teamDTOS = teamService.getTeamsByUserId(Integer.parseInt(userId.getValue()));
         return ResultUtils.getResult(ApiResultCode.SUCCESS, teamDTOS);
@@ -140,21 +136,24 @@ public class TeamController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel
     @MyRequestPath(value = "/teams/joined")
     public String getUserJoinedTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         Cookie userId = httpInfoWrapper.getCookie("userId");
         List<TeamDTO> joinedTeam = teamService.getUserJoinedTeam(Integer.parseInt(userId.getValue()));
         return ResultUtils.getResult(ApiResultCode.SUCCESS, joinedTeam);
     }
 
+    /**
+     * 加入团队
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @AccessLevel
     @MyRequestPath(value = "/teams/enter", type = {RequestMethod.POST})
     public String joinTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
         TeamMemberMap teamMemberMap = GsonUtils.j2O(httpInfoWrapper.getJsonString(), TeamMemberMap.class);
         if (teamMemberMap == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
