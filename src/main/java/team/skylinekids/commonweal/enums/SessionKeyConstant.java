@@ -14,4 +14,8 @@ public interface SessionKeyConstant {
      * 令牌
      */
     String SIGNUP_TOKEN_STRING = "SIGNUP_TOKEN";
+    /**
+     * 同意状态键
+     */
+    String AGREEMENT_KEY = "AGREEMENT_KEY";
 }
