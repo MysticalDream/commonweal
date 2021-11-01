@@ -15,6 +15,7 @@
     <script src="../../js/my.js"></script>
     <script src="../../js/ajax.js"></script>
     <script src="../../js/getPath.js"></script>
+    <script src="../../js/utils.js"></script>
 </head>
 
 <body>
@@ -124,7 +125,7 @@
                             <p class="right_icon_d">
                                 <span>
                                     <img src="../../images/管理员_角色管理.png" alt="">
-                                    <span class="number_change">管理团队</span>
+                                    <span class="number_change manager_btn">管理团队</span>
                                 </span>
                             </p>
                         </div>
@@ -169,7 +170,7 @@
                             <p class="right_icon_d">
                                 <span>
                                     <img src="../../images/管理员_角色管理.png" alt="">
-                                    <span class="number_change">管理团队</span>
+                                    <span class="number_change manager_btn">管理团队</span>
                                 </span>
                             </p>
                         </div>
@@ -181,6 +182,94 @@
                         </div>
                     </li>
                 </ul>
+                  <!-- 管理界面 -->
+                  <div class="manager_box">
+                    <h1>管理项目</h1>
+                    <span class="delete_d">删除项目</span>
+                    <div class="manager_main">
+                        <div class="manager_top">
+                            <ul class="title_ul">
+                                <li>
+                                    成员管理
+                                    <span class="move_line catch"></span>
+                                </li>
+                                <li>
+                                    成就编辑
+                                    <span class="catch"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="manager_tag">
+                            <ul class="content_tag">
+                                    <li class="mana_cur">
+                                        全部成员
+                                        <span class="number_span">
+                                            <!-- ${obj_menber.data.list.length} -->
+                                        </span>
+                                    </li>
+                                    <li>
+                                        待审核
+                                        <span class="number_span">
+                                            <!-- ${obj_pl.data.list.length} -->
+                                        </span>
+                                    </li>
+                                </ul>
+                            <div class="manager_content">
+                                <div class="manager_table">
+                                    <ul class="table_ul">
+                                        <li>
+                                            <span>成员昵称</span>
+                                            <span>加入形式</span>
+                                            <span>所在地</span>
+                                            <span>成员管理</span>
+                                        </li>
+                                        <!-- ${
+                                            menberList(obj_menber).reduce((accumulator,cur)=>{
+                                                return accumulator+cur.outerHTML;
+                                            },'')
+                                        } -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="manager_content">
+                                <div class="manager_table">
+                                    <ul class="table_ul">
+                                        <li>
+                                            <span>成员昵称</span>
+                                            <span>加入形式</span>
+                                            <span>所在地</span>
+                                            <span>成员管理</span>
+                                        </li>
+                                        <!-- ${
+                                            application(obj_pl).reduce((accumulator,cur)=>{
+                                                return accumulator+cur.outerHTML;
+                                            },'')
+                                        } -->
+                                    </ul>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="manager_tag">
+                            <div class="manager_three">
+                                <div class="manager_table">
+                                    <div>
+                                        <form action="/send/iframe" method="post" id="my_pic">
+                                            <label for="my_file" class="my_label">
+                                                <img src="../../images/up.png">
+                                                <p>点击此处上传图片</p>
+                                            </label>
+                                            <input type="file" name="cover" id="my_file">
+                                        </form>  
+                                            <textarea placeholder="成就介绍" class="my_textarea">    
+                                            </textarea>
+                                    </div>
+                                    <div></div>
+                                </div>
+                                <span class="send_d">发布</span>
+                            </div>
+                        </div>
+                  </div>
+                </div>
             </div>
             <!-- 也可用template标签 -->
             <div class="bottom_right_d zI" style="opacity: 0;">
@@ -538,7 +627,7 @@
             success: function(data) {
                 // listData = JSON.parse(data);
                 listData = data;
-                //不要删了这段代码，ajax换成你自己的
+                //不要删了这段代码
                 showProv();
             }
         });
@@ -643,6 +732,296 @@
     <!-- 计数器js -->
     <script src="../../js/counter.js"></script>
     <script src="../../js/utils.js"></script>
+     <!-- 管理界面的渲染 -->
+     <script>
+        //  var obj_menber={
+        // "code": 200, 
+         
+        // "message": "操作成功", 
+         
+        // "success": true, 
+         
+        // "data": {
+        // "pageSize": 3, 
+         
+        // "pageNum": 1, 
+         
+        // "total": 2, 
+         
+        // "size": 2, 
+         
+        // "pages": 1, 
+         
+        // "list": [
+        // {
+        // "listId": 5, 
+         
+        // "type": false, 
+         
+        // "typeName": "队伍", 
+         
+        // "targetId": 1, 
+         
+        // "name": "天才队伍", 
+         
+        // "location": "广东省" 
+         
+        // },
+        // {
+        // "listId": 4, 
+         
+        // "type": true, 
+         
+        // "typeName": "个人", 
+         
+        // "targetId": 2, 
+         
+        // "name": "Java", 
+         
+        // "location": "广东省" 
+         
+        // }
+        // ] 
+         
+        // } 
+         
+        // }
+
+        // var obj_pl={
+        // "code": 200, 
+        
+        // "message": "操作成功", 
+        
+        // "success": true, 
+        
+        // "data": {
+        // "pageSize": 3, 
+        
+        // "pageNum": 1, 
+        
+        // "total": 3, 
+        
+        // "size": 3, 
+        
+        // "pages": 1, 
+        
+        // "list": [
+        // {
+        // "listId": 5, 
+        
+        // "type": false, 
+        
+        // "typeName": "队伍", 
+        
+        // "targetId": 1, 
+        
+        // "name": "天才队伍", 
+        
+        // "location": "广东省" 
+        
+        // },
+        // {
+        // "listId": 4, 
+        
+        // "type": true, 
+        
+        // "typeName": "个人", 
+        
+        // "targetId": 2, 
+        
+        // "name": "Java", 
+        
+        // "location": "广东省广州市" 
+        
+        // },
+        // {
+        // "listId": 3, 
+        
+        // "type": true, 
+        
+        // "typeName": "个人", 
+        
+        // "targetId": 1, 
+        
+        // "name": "common", 
+        
+        // "location": "北京" 
+        
+        // }
+        // ] 
+        
+        // } 
+        
+        // }
+
+        let manager_box=document.querySelector('.manager_box');
+        function menber(data){
+            let oSpan=document.querySelectorAll('.number_span')[0];
+            oSpan.innerText=data.data.list.length;
+            let table_ul=document.querySelector('.table_ul')[0];
+            for(let i=0;i<data.data.list.length;i++){
+                let dele_url='../../images/dele.png';
+                let oLi=document.createElement('li');
+                for(let j=0;j<=3;j++){
+                    let oDivj=document.createElement('div');
+                    oDivj.classList.add('line_div');
+                    if(j==0){
+                        oDivj.innerText=data.data.list[i].name;
+                        console.log(oDivj);
+                    }
+                    if(j==1){
+                        oDivj.innerText=data.data.list[i].typeName;
+                        console.log(oDivj);
+                    }
+                    if(j==2){
+                        oDivj.innerText=data.data.list[i].location;
+                        console.log(oDivj);
+                    }
+                    if(j==3){
+                        // 用模板字符串时注意用innerHTML
+                        let str=`
+                            <img src="${dele_url}">
+                            <span class="dele_r">删除</span>
+                        `;
+                        oDivj.innerHTML=str;
+                        console.log(oDivj);
+                    }
+                    oLi.appendChild(oDivj);
+                }
+                table_ul.appendChild(oLi);
+            }
+            
+        }
+
+        function apply(data){
+            let oSpan=document.querySelectorAll('.number_span')[1];
+            oSpan.innerText=data.data.list.length;
+            let table_ul=document.querySelector('.table_ul')[1];
+            for(let i=0;i<data.data.list.length;i++){
+                let agree_url='../../images/argee.png';
+                let dis_url='../../images/disa.png';
+                let oLi=document.createElement('li');
+                for(let j=0;j<=3;j++){
+                    let oDivj=document.createElement('div');
+                    oDivj.classList.add('line_div');
+                    if(j==0){
+                        oDivj.innerText=data.data.list[i].name;
+                        console.log(oDivj);
+                    }
+                    if(j==1){
+                        oDivj.innerText=data.data.list[i].typeName;
+                        console.log(oDivj);
+                    }
+                    if(j==2){
+                        oDivj.innerText=data.data.list[i].location;
+                        console.log(oDivj);
+                    }
+                    if(j==3){
+                        // 用模板字符串时注意用innerHTML
+                        let str=`
+                            <img src="${agree_url}">
+                            <span class="dele_r">同意</span>
+                            <img src="${dis_url}">
+                            <span class="dele_r">拒绝</span>
+                        `;
+                        oDivj.innerHTML=str;
+                        console.log(oDivj);
+                    }
+                    oLi.appendChild(oDivj);
+                }
+                table_ul.appendChild(oLi);
+            }
+            
+        }
+      
+
+        let dele_r=document.querySelectorAll('.dele_r');
+        for(let i=0;i<dele_r.length;i++){
+            dele_r[i].addEventListener('click',function(){
+                this.parentElement.parentElement.style.display='none';
+            })
+        }
+
+        let manager_btn=document.querySelectorAll('.manager_btn')[0];
+        manager_btn.onclick=function(){
+            manager_box.style.display='block';
+            ajax({
+                    type:'get',
+                    url:'/items/members/:item_id',
+                    header:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    data:{
+                        pageNum:1,
+                        pageSize:7,
+                    },
+                    success:function(data){
+                        menber(data);
+                    },
+                    error:function(){
+
+                    }
+                })
+        }
+
+        let title_li=document.querySelectorAll('.title_ul>li');
+        let manager_tag=document.querySelectorAll('.manager_tag');
+        let content_li=document.querySelectorAll('.content_tag>li');
+        let manager_content=document.querySelectorAll('.manager_content');
+        let move_line=document.querySelectorAll('.catch');
+        for(let i=0;i<title_li.length;i++){
+            title_li[i].addEventListener('click',function(){
+                for(let j=0;j<title_li.length;j++){
+                    manager_tag[j].style.display='none';
+                    move_line[j].classList.remove('move_line');
+                }
+                manager_tag[i].style.display='block';
+                move_line[i].classList.add('move_line');
+            })
+        }
+
+        for(let i=0;i<content_li.length;i++){
+            content_li[i].addEventListener('click',function(){
+                for(let j=0;j<content_li.length;j++){
+                    manager_content[j].style.display='none';
+                    content_li[j].classList.remove('mana_cur');
+                }
+                manager_content[i].style.display='block';
+                this.classList.add('mana_cur');
+                if(i==1){
+                    ajax({
+                        type:'get',
+                        url:'/items/apply/list/:item_id',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageNum:1,
+                            pageSize:7,
+                        },
+                        success:function(data){
+                            apply(data);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                }
+            })
+        }
+
+        iframeAjax({
+            form: "#my_pic",
+            callback: function (datas) {
+                console.log(datas);
+                let img_up=document.createElement('img');
+                img_up.classList.add('img_up');
+                img.src = datas.data;
+                let pic_label=document.querySelector('.my_label');
+                pic_label.appendChild(img_up);
+            }
+        });
+    </script>
 </body>
 
 </html>
