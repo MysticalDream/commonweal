@@ -10,11 +10,11 @@ public enum LevelCode {
     /**
      * 普通等级
      */
-    COMMON_LEVEL(0),
+    COMMON_LEVEL(-1),
     /**
      * 普通登录等级
      */
-    COMMON_LOGIN_LEVEL(1),
+    COMMON_LOGIN_LEVEL(0),
     /**
      * 特别登录等级
      */
