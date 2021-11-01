@@ -1,0 +1,194 @@
+body .big_pic_expand{
+    background: url(../images/expand_bg.jpg) center center;
+}
+
+.expand_main{
+    width: 75%;
+    margin:15px auto;
+}
+
+.expand_situation{
+    line-height: 35px;
+    margin-left: 45px;
+    margin-top: 20px;
+}
+
+.expand_situation span{
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 15px;
+    font-family: SimSun;
+    font-weight: 700;
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 6px;
+    cursor: pointer;
+}
+
+.search_e{
+    position: relative;
+    width: 100%;
+    height: 30px;
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+.input_e{
+    width: 80%;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    background-color: #F1EFEF;
+    outline: none;
+    margin-left:105px;
+    padding-left: 15px;
+}
+
+.search_div{
+    position: absolute;
+    top:0px;
+    left:45%;
+    font-size: 14px;
+    font-family: SimSun;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.search_div img{
+    position:relative;
+    top:5px;
+    width: 20px;
+}
+
+.search_div span{
+    position: relative;
+    left:10px;
+}
+
+.expand_content{
+    width: 100%;
+    margin-left: 39px;
+}
+
+.expand_box{
+    display: inline-block;
+    margin-top:30px;
+    margin-right: 25px;
+    width: 265px;
+    height: 435px;
+    background-color:#fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.35);
+}
+
+.expand_box:nth-child(3){
+    margin-right: 0px;
+}
+
+.expand_box:nth-child(6){
+    margin-right: 0px;
+}
+
+.expand_box:nth-child(9){
+    margin-right: 0px;
+}
+
+.expand_imgbox{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+}
+
+.expand_imgbox img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left:0px;
+}
+
+.expand_box div:nth-child(2){
+    position: relative;
+    width: 100%;
+    height: 70px;
+}
+
+.expand_box div:nth-child(2) img{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    top:0px;
+    left:25px;
+}
+
+.expand_box div:nth-child(2) span{
+    position: absolute;
+    top:53%;
+    left:39%;
+    font-family: SimSun;
+    color:#fff;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+.expand_box h1{
+    font-size: 20px;
+    font-family: SimSun;
+    letter-spacing: 4px;
+    margin-left: 15px;
+    margin-top:10px;
+}
+
+.expand_box ul li:nth-child(1){
+    font-size: 13px;
+    color:#727171;
+}
+
+.expand_box ul li{
+    font-size: 14px;
+    font-family: SimSun;
+    line-height: 25px;
+    margin-left:15px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.expand_box .foot_mes{
+    position: relative;
+    top:7px;
+    width: 100%;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-family: SimSun;
+}
+
+.expand_box .foot_mes img{
+    position: absolute;
+    top:0px;
+    width: 20px;
+}
+
+.foot_mes .le_dd{
+    left:10px;
+}
+
+.foot_mes .ri_dd{
+    left:65%;
+    cursor: pointer;
+}
+
+.expand_box .foot_mes span{
+    position: absolute;
+    top:4px;
+}
+.expand_box .foot_mes .le_sp{
+    left:36px;
+}
+
+.expand_box .foot_mes .ri_sp{
+    left:75%;
+    cursor: pointer;
+}
+

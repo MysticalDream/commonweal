@@ -1,0 +1,147 @@
+body,
+dl,
+dd,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+form,
+header,
+section,
+article,
+footer {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%
+}
+
+em,
+b {
+    font-style: normal
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+img {
+    border: 0
+}
+
+/* body {
+    padding-top: 42px
+} */
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    outline: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+td,
+th,
+ul,
+ol {
+    padding: 0
+}
+
+
+.wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    transition: transform 1.5s cubic-bezier(0.86, 0, 0.03, 1);
+}
+
+.wrap>div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* background-position: center center;
+    background-repeat: no-repeat; */
+}
+
+/* .block:first-child {
+    background-color:pink;
+}
+
+.block:nth-child(2) {
+    background-color: aquamarine;
+}
+
+.block:nth-child(3) {
+    background-color:cadetblue;
+}
+
+.block:nth-child(4) {
+    background-color:darkviolet;
+}
+
+.block:nth-child(5) {
+    background-color: skyblue;
+} */
+
+.wrap.active0 {
+    transform: translateY(0);
+}
+
+.wrap.active1 {
+    transform: translateY(-100%);
+}
+
+.wrap.active2 {
+    transform: translateY(-200%);
+}
+
+.wrap.active3 {
+    transform: translateY(-300%);
+}
+
+.wrap.active4 {
+    transform: translateY(-400%);
+}
+
+.wrap.active5 {
+    transform: translateY(-500%);
+}
+
+.wrap.active6 {
+    transform: translateY(-600%);
+}
+
+.wrap.active7 {
+    transform: translateY(-700%);
+}
+
+.wrap.active8 {
+    transform: translateY(-800%);
+}
+/* 弹出子盒子类名 */
+.left_flag_d{
+    transform: translateY(100px);
+    transition: all .4s;
+}

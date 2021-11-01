@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"我的"界面</title>
+    <link rel="stylesheet" href="../../css/race.css">
+    <link rel="stylesheet" href="../../css/my.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/mybox.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <script src="../../js/fade.js"></script>
+    <script src="../../js/my.js"></script>
+    <script src="../../js/ajax.js"></script>
+    <script src="../../js/getPath.js"></script>
+    <script src="../../js/utils.js"></script>
+</head>
+
+<body>
+    <div class="cover_my">
+        <div class="top_d my_dd">
+            <div class="top-center_d">
+                <ul class="pro_d">
+                    <li class="spe_li_d">
+                        <!-- <img src="../../images/pink.jpg" alt="" class="pink_d"> -->
+                        <span class="title_d le_d">创</span>
+                        <span class="title_d ri_d">益</span>
+                    </li>
+                    <li class="my_move"><a href="../../index.html">首页</a></li>
+                    <li class="special_d my_move">
+                        <a href="javascript:void(0)">志愿项目</a>
+                        <!-- <div>
+                        <ul class="inner-ul_d">
+                            <li><a href="javascript:void(0)">创建项目</a></li>
+                            <li><a href="javascript:void(0)">自由组队</a></li>
+                            <li><a href="javascript:void(0)">成就展示</a></li>
+                        </ul>
+                    </div> -->
+                    </li>
+                    <li class="my_move"><a href="javascript:void(0)">招募志愿者</a></li>
+                    <li class="my_move"><a href="javascript:void(0)">助农</a></li>
+                    <li class="my_move"><a href="javascript:void(0)">领养动物</a></li>
+                    <li class="my_move"><a href="javascript:void(0)">关爱儿童</a></li>
+                    <!-- <li id="btn1"><a href="javascript:void(0)">登录/注册</a></li> -->
+                </ul>
+            </div>
+        </div>
+        <div class="bottom_dd">
+            <div class="bottom_left_d">
+                <div class="avator_d">
+                    <div class="avator_circle"></div>
+                    <div class="avator_name">
+                        <p>Quester</p>
+                        <div>
+                            <span class="left_area">所在地</span>
+                            <span>北京</span>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li class="cur_li">
+                        <img src="../../images/项目 (1).png" alt="">
+                        <span class="small_item_d">项目</span>
+                        <ul class="slide_ul_d">
+                            <li class="tag_d">
+                                <img src="../../images/slide1.png" alt="">
+                                <span>我创建的项目</span>
+                            </li>
+                            <li class="tag_d">
+                                <img src="../../images/slide2.png" alt="">
+                                <span>我加入的项目</span>
+                            </li>
+                            <li>
+                                <img src="../../images/slide3.png" alt="">
+                                <span>新建项目</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <img src="../../images/多人.png">
+                        <span class="small_item_d">队伍</span>
+                        <ul class="slide_ul_d">
+                            <li class="tag_d">
+                                <img src="../../images/slide1.png" alt="">
+                                <span>我创建的队伍</span>
+                            </li>
+                            <li class="tag_d">
+                                <img src="../../images/slide2.png" alt="">
+                                <span>我加入的队伍</span>
+                            </li>
+                            <li>
+                                <img src="../../images/slide3.png" alt="">
+                                <span>新建队伍</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom_right_d zI_d" style="z-index: 1;">
+                <h1>我创建的项目</h1>
+                <!-- <input class="input_out"></input> -->
+                <form action="" method="post" class="my_form">
+                    <input type="text" name="" class="input_out">
+                    <img src="../../images/搜索.png" alt="" class="search_icon_d">
+                    <span class="search_span_d">搜索项目</span>
+                </form>
+                <ul>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">26/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change manager_btn">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">13/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">15/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change manager_btn">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <img src="../../images/jia.png" alt="" class="plus_rota">
+                        </div>
+                    </li>
+                </ul>
+                  <!-- 管理界面 -->
+                  <div class="manager_box">
+                    <h1>管理项目</h1>
+                    <span class="delete_d">删除项目</span>
+                    <div class="manager_main">
+                        <div class="manager_top">
+                            <ul class="title_ul">
+                                <li>
+                                    成员管理
+                                    <span class="move_line catch"></span>
+                                </li>
+                                <li>
+                                    成就编辑
+                                    <span class="catch"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="manager_tag">
+                            <ul class="content_tag">
+                                    <li class="mana_cur">
+                                        全部成员
+                                        <span class="number_span">
+                                            <!-- ${obj_menber.data.list.length} -->
+                                        </span>
+                                    </li>
+                                    <li>
+                                        待审核
+                                        <span class="number_span">
+                                            <!-- ${obj_pl.data.list.length} -->
+                                        </span>
+                                    </li>
+                                </ul>
+                            <div class="manager_content">
+                                <div class="manager_table">
+                                    <ul class="table_ul">
+                                        <li>
+                                            <span>成员昵称</span>
+                                            <span>加入形式</span>
+                                            <span>所在地</span>
+                                            <span>成员管理</span>
+                                        </li>
+                                        <!-- ${
+                                            menberList(obj_menber).reduce((accumulator,cur)=>{
+                                                return accumulator+cur.outerHTML;
+                                            },'')
+                                        } -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="manager_content">
+                                <div class="manager_table">
+                                    <ul class="table_ul">
+                                        <li>
+                                            <span>成员昵称</span>
+                                            <span>加入形式</span>
+                                            <span>所在地</span>
+                                            <span>成员管理</span>
+                                        </li>
+                                        <!-- ${
+                                            application(obj_pl).reduce((accumulator,cur)=>{
+                                                return accumulator+cur.outerHTML;
+                                            },'')
+                                        } -->
+                                    </ul>    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="manager_tag">
+                            <div class="manager_three">
+                                <div class="manager_table">
+                                    <div>
+                                        <form action="/send/iframe" method="post" id="my_pic">
+                                            <label for="my_file" class="my_label">
+                                                <img src="../../images/up.png">
+                                                <p>点击此处上传图片</p>
+                                            </label>
+                                            <input type="file" name="cover" id="my_file">
+                                        </form>  
+                                            <textarea placeholder="成就介绍" class="my_textarea">    
+                                            </textarea>
+                                    </div>
+                                    <div></div>
+                                </div>
+                                <span class="send_d">发布</span>
+                            </div>
+                        </div>
+                  </div>
+                </div>
+            </div>
+            <!-- 也可用template标签 -->
+            <div class="bottom_right_d zI" style="opacity: 0;">
+                <h1>我加入的项目</h1>
+                <form action="" method="post">
+                    <input type="text" name="" class="input_out">
+                    <img src="../../images/搜索.png" alt="" class="search_icon_d">
+                    <span class="search_span_d">搜索项目</span>
+                </form>
+                <ul>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">26/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">13/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">15/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <img src="../../images/jia.png" alt="" class="plus_rota">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom_right_d zI" style="opacity: 0;">
+                <h1>我创建的队伍</h1>
+                <form action="" method="post">
+                    <input type="text" name="" class="input_out">
+                    <img src="../../images/搜索.png" alt="" class="search_icon_d">
+                    <span class="search_span_d">搜索项目</span>
+                </form>
+                <ul>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">26/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">13/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">15/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <img src="../../images/jia.png" alt="" class="plus_rota">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom_right_d zI" style="opacity: 0;">
+                <h1>我加入的队伍</h1>
+                <form action="" method="post">
+                    <input type="text" name="" class="input_out">
+                    <img src="../../images/搜索.png" alt="" class="search_icon_d">
+                    <span class="search_span_d">搜索项目</span>
+                </form>
+                <ul>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">26/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">13/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <div class="out_circle_d">
+                                <div></div>
+                            </div>
+                            <div class="pink_bottom">
+                            </div>
+                            <p class="left_icon_d">
+                                <span>
+                                    <img src="../../images/peo.png" alt="">
+                                    <span class="number_change">15/50</span>
+                                </span>
+                            </p>
+                            <p class="right_icon_d">
+                                <span>
+                                    <img src="../../images/管理员_角色管理.png" alt="">
+                                    <span class="number_change">管理团队</span>
+                                </span>
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inner_box inner_hide"></div>
+                        <div class="out_box">
+                            <img src="../../images/jia.png" alt="" class="plus_rota">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 点击创建项目弹出来的框框 -->
+        <div class="mask_s" style="display: none;">
+            <div class="form_s">
+                <h2>创建项目</h2>
+                <div class="zero">
+                    <form action="/cover" method="post" id="item_cover" enctype="multipart/form-data" accept=".jpg, .jpeg, .png">
+                        <input type="file" name="item_cover" id="xm_file" hidden>
+                        <input type="hidden" name="part_name" value="item_cover">
+                        <input type="submit" value="" id="xm_submit" hidden>
+                    </form>
+                    <i class="iconfont icon-shangchuan"></i>
+                    <p>点击此处上传项目封面</p>
+                    <img src="" alt="">
+                </div>
+                <div class="first">
+                    <input type="text" name="" id="first_text" placeholder="项目标题">
+                    <span id="first_show">0/10</span>
+                </div>
+                <div class="second">
+                    <input type="number" name="" id="second_text" placeholder="项目人数限制" oninput="if(value!==''&&value<1)value=1">
+                    <!-- <input type="text" name="" id="" placeholder="项目主题"> -->
+                    <select name="" id="second_select">
+                        <option value="">社区服务</option>
+                        <option value="">卫生健康</option>
+                        <option value="">法律服务</option>
+                        <option value="">环境保护</option>
+                        <option value="">科技科普</option>
+                        <option value="">文化艺术</option>
+                        <option value="">交通引导</option>
+                        <option value="">志愿消防</option>
+                        <option value="">禁毒宣传</option>
+                        <option value="">海外志愿服务</option>
+                        <option value="">体育健身</option>
+                    </select>
+                </div>
+                <div class="third">
+                    <!-- <input type="text" name="" id="" placeholder="项目进行地区"> -->
+                    <!--省份选择-->
+                    <p>项目地区的选择</p>
+
+                    <select id="prov" onchange="showCity(this)">
+                        <option value="">请选择省份</option>
+                    </select>
+
+                    <!--城市选择-->
+                    <select id="city" onchange="showArea(this)">
+                        <option value="">请选择城市</option>
+                    </select>
+
+                    <!--县区选择-->
+                    <select id="area" onchange="selectArea(this)">
+                        <option value="">请选择县区</option>
+                    </select>
+
+                    <!-- <button type="button" class="btn met1" onclick="showAddr()" disabled="">确定</button> -->
+                    <!-- <button type="button" class="btn met1" disabled="">确定</button> -->
+                </div>
+                <div class="fourth">
+                    <input type="text" name="" id="fourth_text" placeholder="项目预计时长">
+                    <select name="" id="xm_time">
+                        <option value="">小时</option>
+                        <option value="">天</option>
+                        <option value="">月</option>
+                        <option value="">年</option>
+                    </select>
+                </div>
+                <div class="fifth">
+                    <textarea name="" id="fifth_text" placeholder="项目介绍(可填写)"></textarea>
+                    <span id="fifth_show">0/200</span>
+                </div>
+                <button class="put_in">提交</button>
+                <button class="put_out">取消</button>
+            </div>
+            <!-- 创建项目失败信息 -->
+            <div class="warn">信息错误，创建失败</div>
+        </div>
+        <!-- 创建项目成功信息 -->
+        <div class="win">创建成功</div>
+    </div>
+    <!-- 选择地区的js -->
+    <script>
+        var listData;
+        // var btn = document.getElementsByClassName('met1')[0];
+        // var btn = document.querySelector('.put_in');
+        // var addrShow = document.getElementById('show_text');
+        var prov = document.getElementById('prov');
+        var city = document.getElementById('city');
+        var area = document.getElementById('area');
+
+        /*用于保存当前所选的省市区*/
+        var infoData = {
+            province: '',
+            city: '',
+            area: ''
+        };
+
+        ajax({
+            type: 'get',
+            url: "../../js/data2(2).json",
+            success: function(data) {
+                // listData = JSON.parse(data);
+                listData = data;
+                //不要删了这段代码
+                showProv();
+            }
+        });
+        /*自动加载省份列表*/
+        function showProv() {
+            // btn.disabled = true;
+            var len = listData.length;
+            for (var i = 0; i < len; i++) {
+                var provOpt = document.createElement('option');
+                provOpt.value = listData[i]['province'];
+                provOpt.innerText = listData[i]['name'];
+                prov.appendChild(provOpt);
+            }
+        }
+        /*根据所选的省份来显示城市列表*/
+        function showCity(obj) {
+            var val = obj.options[obj.selectedIndex].value;
+            if (val != infoData.province) {
+                infoData.province = val;
+                // addrShow.value = '';
+                // btn.disabled = true;
+                city.length = 1;
+                area.length = 1;
+            }
+
+            if (val != '') {
+                //查找省的索引 并将当前选中的省的索引存到变量provIndex变量里
+                var len = listData.length;
+                let provIndex = 0;
+                for (var i = 0; i < len; i++) {
+                    if (val == listData[i]['province']) {
+                        provIndex = i;
+                    }
+                }
+                // 遍历市的所有区 并且动态创建
+                var cityLen = listData[provIndex]["citys"].length;
+                for (var j = 0; j < cityLen; j++) {
+                    var cityOpt = document.createElement('option');
+                    cityOpt.value = listData[provIndex]["citys"][j].city;
+                    cityOpt.innerText = listData[provIndex]["citys"][j].name;
+                    city.appendChild(cityOpt);
+                }
+            }
+        }
+        /*根据所选的城市来显示县区列表*/
+        function showArea(obj) {
+            var val = obj.options[obj.selectedIndex].value;
+            if (val != infoData.city) {
+                infoData.city = val;
+                // addrShow.value = '';
+                // btn.disabled = true;
+                area.length = 1; //清空之前的内容只留第一个默认选项
+            }
+
+            //查找省的索引
+            var provLen = listData.length;
+            let provIndex = 0;
+            for (var i = 0; i < provLen; i++) {
+                if (infoData.province == listData[i]['province']) {
+                    provIndex = i;
+                    break;
+                }
+            }
+
+            //查找城市的索引
+            var cityLen = listData[provIndex]["citys"].length;
+            let cityIndex = 0;
+            for (var i = 0; i < cityLen; i++) {
+                if (infoData.city == listData[provIndex]["citys"][i].city) {
+                    cityIndex = i;
+                    break;
+                }
+            }
+
+            if (val != '') {
+                var countryLen = listData[provIndex]["citys"][cityIndex].districtAndCounty ? listData[provIndex]["citys"][cityIndex].districtAndCounty.length : null;
+                if (countryLen == 0 || countryLen == null) {
+                    // addrShow.value = 'province:' + infoData.province;
+                    return;
+                }
+                for (var n = 0; n < countryLen; n++) {
+                    var countryOpt = document.createElement('option');
+                    countryOpt.innerText = listData[provIndex]["citys"][cityIndex].districtAndCounty[n].name;
+                    countryOpt.value = listData[provIndex]["citys"][cityIndex].districtAndCounty[n].area;
+                    area.appendChild(countryOpt);
+                }
+            }
+        }
+        /*选择县区之后的处理函数*/
+        function selectArea(obj) {
+            infoData.area = obj.options[obj.selectedIndex].value;
+            if ((infoData.city != '') && (infoData.area != '')) {
+                // btn.disabled = false;
+            }
+        }
+
+        /*点击确定按钮显示用户所选的地址*/
+        // function showAddr() {
+        //     addrShow.value = 'province:' + infoData.province + ',city:' + infoData.city + ',area:' + infoData.area;
+        // }
+    </script>
+    <!-- 计数器js -->
+    <script src="../../js/counter.js"></script>
+    <script src="../../js/utils.js"></script>
+     <!-- 管理界面的渲染 -->
+     <script>
+        //  var obj_menber={
+        // "code": 200, 
+         
+        // "message": "操作成功", 
+         
+        // "success": true, 
+         
+        // "data": {
+        // "pageSize": 3, 
+         
+        // "pageNum": 1, 
+         
+        // "total": 2, 
+         
+        // "size": 2, 
+         
+        // "pages": 1, 
+         
+        // "list": [
+        // {
+        // "listId": 5, 
+         
+        // "type": false, 
+         
+        // "typeName": "队伍", 
+         
+        // "targetId": 1, 
+         
+        // "name": "天才队伍", 
+         
+        // "location": "广东省" 
+         
+        // },
+        // {
+        // "listId": 4, 
+         
+        // "type": true, 
+         
+        // "typeName": "个人", 
+         
+        // "targetId": 2, 
+         
+        // "name": "Java", 
+         
+        // "location": "广东省" 
+         
+        // }
+        // ] 
+         
+        // } 
+         
+        // }
+
+        // var obj_pl={
+        // "code": 200, 
+        
+        // "message": "操作成功", 
+        
+        // "success": true, 
+        
+        // "data": {
+        // "pageSize": 3, 
+        
+        // "pageNum": 1, 
+        
+        // "total": 3, 
+        
+        // "size": 3, 
+        
+        // "pages": 1, 
+        
+        // "list": [
+        // {
+        // "listId": 5, 
+        
+        // "type": false, 
+        
+        // "typeName": "队伍", 
+        
+        // "targetId": 1, 
+        
+        // "name": "天才队伍", 
+        
+        // "location": "广东省" 
+        
+        // },
+        // {
+        // "listId": 4, 
+        
+        // "type": true, 
+        
+        // "typeName": "个人", 
+        
+        // "targetId": 2, 
+        
+        // "name": "Java", 
+        
+        // "location": "广东省广州市" 
+        
+        // },
+        // {
+        // "listId": 3, 
+        
+        // "type": true, 
+        
+        // "typeName": "个人", 
+        
+        // "targetId": 1, 
+        
+        // "name": "common", 
+        
+        // "location": "北京" 
+        
+        // }
+        // ] 
+        
+        // } 
+        
+        // }
+
+        let manager_box=document.querySelector('.manager_box');
+        function menber(data){
+            let oSpan=document.querySelectorAll('.number_span')[0];
+            oSpan.innerText=data.data.list.length;
+            let table_ul=document.querySelector('.table_ul')[0];
+            for(let i=0;i<data.data.list.length;i++){
+                let dele_url='../../images/dele.png';
+                let oLi=document.createElement('li');
+                for(let j=0;j<=3;j++){
+                    let oDivj=document.createElement('div');
+                    oDivj.classList.add('line_div');
+                    if(j==0){
+                        oDivj.innerText=data.data.list[i].name;
+                        console.log(oDivj);
+                    }
+                    if(j==1){
+                        oDivj.innerText=data.data.list[i].typeName;
+                        console.log(oDivj);
+                    }
+                    if(j==2){
+                        oDivj.innerText=data.data.list[i].location;
+                        console.log(oDivj);
+                    }
+                    if(j==3){
+                        // 用模板字符串时注意用innerHTML
+                        let str=`
+                            <img src="${dele_url}">
+                            <span class="dele_r">删除</span>
+                        `;
+                        oDivj.innerHTML=str;
+                        console.log(oDivj);
+                    }
+                    oLi.appendChild(oDivj);
+                }
+                table_ul.appendChild(oLi);
+            }
+            
+        }
+
+        function apply(data){
+            let oSpan=document.querySelectorAll('.number_span')[1];
+            oSpan.innerText=data.data.list.length;
+            let table_ul=document.querySelector('.table_ul')[1];
+            for(let i=0;i<data.data.list.length;i++){
+                let agree_url='../../images/argee.png';
+                let dis_url='../../images/disa.png';
+                let oLi=document.createElement('li');
+                for(let j=0;j<=3;j++){
+                    let oDivj=document.createElement('div');
+                    oDivj.classList.add('line_div');
+                    if(j==0){
+                        oDivj.innerText=data.data.list[i].name;
+                        console.log(oDivj);
+                    }
+                    if(j==1){
+                        oDivj.innerText=data.data.list[i].typeName;
+                        console.log(oDivj);
+                    }
+                    if(j==2){
+                        oDivj.innerText=data.data.list[i].location;
+                        console.log(oDivj);
+                    }
+                    if(j==3){
+                        // 用模板字符串时注意用innerHTML
+                        let str=`
+                            <img src="${agree_url}">
+                            <span class="dele_r">同意</span>
+                            <img src="${dis_url}">
+                            <span class="dele_r">拒绝</span>
+                        `;
+                        oDivj.innerHTML=str;
+                        console.log(oDivj);
+                    }
+                    oLi.appendChild(oDivj);
+                }
+                table_ul.appendChild(oLi);
+            }
+            
+        }
+      
+
+        let dele_r=document.querySelectorAll('.dele_r');
+        for(let i=0;i<dele_r.length;i++){
+            dele_r[i].addEventListener('click',function(){
+                this.parentElement.parentElement.style.display='none';
+            })
+        }
+
+        let manager_btn=document.querySelectorAll('.manager_btn')[0];
+        manager_btn.onclick=function(){
+            manager_box.style.display='block';
+            ajax({
+                    type:'get',
+                    url:'/items/members/:item_id',
+                    header:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    data:{
+                        pageNum:1,
+                        pageSize:7,
+                    },
+                    success:function(data){
+                        menber(data);
+                    },
+                    error:function(){
+
+                    }
+                })
+        }
+
+        let title_li=document.querySelectorAll('.title_ul>li');
+        let manager_tag=document.querySelectorAll('.manager_tag');
+        let content_li=document.querySelectorAll('.content_tag>li');
+        let manager_content=document.querySelectorAll('.manager_content');
+        let move_line=document.querySelectorAll('.catch');
+        for(let i=0;i<title_li.length;i++){
+            title_li[i].addEventListener('click',function(){
+                for(let j=0;j<title_li.length;j++){
+                    manager_tag[j].style.display='none';
+                    move_line[j].classList.remove('move_line');
+                }
+                manager_tag[i].style.display='block';
+                move_line[i].classList.add('move_line');
+            })
+        }
+
+        for(let i=0;i<content_li.length;i++){
+            content_li[i].addEventListener('click',function(){
+                for(let j=0;j<content_li.length;j++){
+                    manager_content[j].style.display='none';
+                    content_li[j].classList.remove('mana_cur');
+                }
+                manager_content[i].style.display='block';
+                this.classList.add('mana_cur');
+                if(i==1){
+                    ajax({
+                        type:'get',
+                        url:'/items/apply/list/:item_id',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageNum:1,
+                            pageSize:7,
+                        },
+                        success:function(data){
+                            apply(data);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                }
+            })
+        }
+
+        iframeAjax({
+            form: "#my_pic",
+            callback: function (datas) {
+                console.log(datas);
+                let img_up=document.createElement('img');
+                img_up.classList.add('img_up');
+                img.src = datas.data;
+                let pic_label=document.querySelector('.my_label');
+                pic_label.appendChild(img_up);
+            }
+        });
+    </script>
+</body>
+
+</html>

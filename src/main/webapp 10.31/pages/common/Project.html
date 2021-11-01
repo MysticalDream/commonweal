@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/recruit.css">
+    <link rel="stylesheet" href="../../css/project.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <script src="../../js/recruit.js"></script>
+    <script src="../../js/ajax.js"></script>
+    <script src="../../js/Project.js"></script>
+    <!--    <script src="../../js/obj_wcj.js"></script>-->
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/isLog_in_adpot.js"></script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav_s">
+        <div class="left"><span>创</span>益</div>
+        <div class="middle">
+            <ul class="nav_ul_s">
+                <li>
+                    <a href="/">首页</a>
+                </li>
+                <li class="pitch">
+                    <a href="javascript:void(0)">志愿项目</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">成就展示</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">招募志愿者</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">助农</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">领养动物</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">关爱儿童</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right username">
+            <div class="pic"></div>
+            <span>command</span>
+        </div>
+    </div>
+    <!-- 大照片 -->
+    <div class="big_pic_s">
+        <div class="big_pic_left_line"></div>
+        <span class="center_title">志愿项目</span>
+        <div class="big_pic_right_line"></div>
+    </div>
+    <!-- 切换栏 -->
+    <div class="pro_box">
+        <ul>
+            <li class="pro_li_cur">志愿项目</li>
+            <li>志愿队伍</li>
+        </ul>
+    </div>
+    <!-- 中间的大盒子 -->
+    <div class="pro_main">
+        <div class="main_top_d">
+            <span>首页</span>
+            <span>></span>
+            <span>志愿项目</span>
+            <span>></span>
+            <span>志愿队伍</span>
+        </div>
+        <div class="sele_wrapper">
+            <div class="province_d">
+                <img src="../../images/diqu.png" alt="">
+                <span class="area_c">项目地区</span>
+                <span class="red_bg fir_d">全国</span>
+            </div>
+            <div class="theme_d">
+                <img src="../../images/theme (1).png" alt="">
+                <span>项目主题</span>
+                <span class=" item_d red_bg">全部</span>
+                <span class="item_d">社区服务</span>
+                <span class="item_d">卫生健康</span>
+                <span class="item_d">法律服务</span>
+                <span class="item_d">环境保护</span>
+                <span class="item_d">科技科普</span>
+                <span class="item_d">文化艺术</span>
+                <span class="item_d">交通引导</span>
+                <span class="item_d">志愿消防</span>
+                <span class="item_d">禁毒宣传</span>
+                <span class="item_d">海外志愿服务</span>
+                <span class="item_d">体育健身</span>
+            </div>
+            <div class="people_d">
+                <img src="../../images/people.png" alt="">
+                <span class="peo_c">项目人数</span>
+                <span class="peo_d red_bg">全部</span>
+                <span class="peo_d">0-20</span>
+                <span class="peo_d">21-40</span>
+                <span class="peo_d">41-60</span>
+                <span class="peo_d">61-80</span>
+                <span class="peo_d">80-100</span>
+                <span class="peo_d">100以上</span>
+            </div>
+            <div class="tagged_box">
+                <input type="text" class="pro_search">
+                <div class="left_em">
+                    <span>
+                        项目名称
+                    </span>
+                    <img src="../../images/down.png" alt="" class="vis_down">
+                    <ul class="inner_ul_d">
+                        <li>项目名称</li>
+                        <li>项目编号</li>
+                    </ul>
+                </div>
+                <div class="center_em">
+                    <img src="../../images/搜索.png" alt="">
+                    <span>项目名称</span>
+                </div>
+                <div class="box"></div>
+                <div class="wrapper">
+                </div>
+            </div>
+            <div class="tagged_box tagged_copy">
+                <input type="text" class="pro_search">
+                <div class="left_em">
+                    <span>
+                        队伍名称
+                    </span>
+                    <img src="../../images/down.png" alt="" class="vis_down">
+                    <ul class="inner_ul_d">
+                        <li>队伍名称</li>
+                        <li>队伍编号</li>
+                    </ul>
+                </div>
+                <div class="center_em">
+                    <img src="../../images/搜索.png" alt="">
+                    <span>队伍名称</span>
+                </div>
+                <div class="box"></div>
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
+        <!-- <div class="wrapper">
+
+    </div> -->
+    </div>
+    <!-- 页脚 -->
+    <div class="footer">
+        <div class="footer_lf">
+            <h3>创益</h3>
+            <ul class="first">
+                <li>
+                    <a href="javascript:;">关于我们</a>
+                </li>
+                <li>
+                    <a href="javascript:;">联系我们</a>
+                </li>
+                <li>
+                    <a href="javascript:;">用户协议</a>
+                </li>
+                <li>
+                    <a href="javascript:;">加入我们</a>
+                </li>
+            </ul>
+            <ul class="second">
+                <li>
+                    <a href="javascript:;">友情链接</a>
+                </li>
+                <li>
+                    <a href="javascript:;">隐私政策</a>
+                </li>
+                <li>
+                    <a href="javascript:;">创益认证</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Investor Relations</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer_rg">
+            <h3>传送门</h3>
+            <ul class="first">
+                <li>
+                    <a href="javascript:;">协议汇总</a>
+                </li>
+                <li>
+                    <a href="javascript:;">活动中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">活动专题页</a>
+                </li>
+                <li>
+                    <a href="javascript:;">侵权申诉</a>
+                </li>
+            </ul>
+            <ul class="second">
+                <li>
+                    <a href="javascript:;">帮助中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">用户反馈论坛</a>
+                </li>
+                <li>
+                    <a href="javascript:;">壁纸站</a>
+                </li>
+                <li>
+                    <a href="javascript:;">广告合作</a>
+                </li>
+            </ul>
+            <ul class="third">
+                <li>
+                    <a href="javascript:;">名人堂</a>
+                </li>
+                <li>
+                    <a href="javascript:;">管理中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">高级评论</a>
+                </li>
+                <li>
+                    <a href="javascript:;">企业号官网</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function render(obj_w) {
+            let data = [];
+            for (let i = 0; i < obj_w.data.list.length; i++) {
+                data.push(obj_w.data.list[i]);
+                console.log(data);
+            }
+            // 下面的渲染方法的参数
+            let box = document.querySelectorAll('.box')[1];
+            let box_0 = document.querySelectorAll('.box')[0];
+
+            // 每一个页面放的数据数
+            let pageSize = 9;
+            // 总的页数
+            let allPage = Math.ceil(obj_w.data.total / pageSize);
+            let wrapper = document.querySelectorAll('.wrapper')[0];
+            let wrapper_1 = document.querySelectorAll('.wrapper')[1];
+            let obj = new TurnPage({
+                currentPage: 1,
+                allPage: allPage,
+                wrap: wrapper,
+                changePage: function(page) {
+                    // console.log(page);
+                    // 我们要渲染到页面上的数据
+                    var filterData = data.filter((item, index) => {
+                        return index >= (page - 1) * pageSize && index < page * pageSize;
+                    })
+                    renderDom(filterData);
+                }
+            })
+
+            let obj_1 = new TurnPage({
+                currentPage: 1,
+                allPage: allPage,
+                wrap: wrapper_1,
+                changePage: function(page) {
+                    // console.log(page);
+                    // 我们要渲染到页面上的数据
+                    var filterData = data.filter((item, index) => {
+                            return index >= (page - 1) * pageSize && index < page * pageSize;
+                        })
+                        // renderDom(filterData);
+                }
+            })
+
+            obj.init();
+            obj_1.init();
+
+            // var arr_d=new Array();
+            // 将一个数组渲染到页面上,传入一个data
+            function renderDom(data) {
+                // 清空上一个页面的
+                box.innerHTML = '';
+                box_0.innerHTML = '';
+                for (let i = 0; i < data.length; i++) {
+                    let oDiv = document.createElement('div');
+                    oDiv.classList.add('nine_box');
+                    let url_d = '../../images/beijing.jpg';
+                    let url_d_1 = '../../images/peo_d.png';
+                    let url_d_2 = '../../images/join.png';
+                    let str = `<div>
+                    <img src='${url_d}'>
+                    <h1>${data[i].itemTitle}</h1>
+                    <p>${data[i].itemIntroduction}</p>
+                    <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data[i].currentHeadcount}/${data[i].maximumNumberLimit}</span>
+                    <img src="${url_d_2}" class="ri_dd"></img><span class="ri_sp">我要加入</span>
+                    </div>`
+                    oDiv.innerHTML = str;
+                    box.appendChild(oDiv);
+                }
+
+                for (let i = 0; i < data.length; i++) {
+                    let oDiv = document.createElement('div');
+                    oDiv.classList.add('nine_box');
+                    let url_d_1 = '../../images/peo_d.png';
+                    let url_d_2 = '../../images/join.png';
+                    let str = `<div>
+                    <img src='${data[i].coverUrl}'>
+                    <h1>${data[i].itemTitle}</h1>
+                    <p>${data[i].itemIntroduction}</p>
+                    <img src='${url_d_1}' class="le_dd"></img>
+                    <span class="le_sp">${data[i].currentHeadcount}/${data[i].maximumNumberLimit}</span>
+                    <img src="${url_d_2}" class="ri_dd"></img>
+                    <span class="ri_sp">我要加入</span>
+                    </div>`
+                    oDiv.innerHTML = str;
+                    box_0.appendChild(oDiv);
+                }
+            }
+
+            renderDom(obj_w.data.list.filter((item, index) => {
+                return index < 9;
+            }));
+
+            function $(ele) {
+                return document.querySelectorAll(ele);
+            }
+        }
+    </script>
+</body>
+
+</html>

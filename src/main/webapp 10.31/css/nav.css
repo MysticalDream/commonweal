@@ -1,0 +1,261 @@
+:root {
+  --bg-color: #00d9ff;
+  --main-color: rgb(78, 75, 226);
+  --inner-color: rgb(129, 126, 126);
+}
+/* body {
+  background: var(--bg-color);
+  color: white;
+  text-align: center;
+} */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu {
+  filter: url("#goo");
+  user-select: none;
+  transform: translate(0, 0);
+}
+
+.menu-item,
+.menu-open-button {
+  background: RGBA(224, 221, 221, 1);
+  /* background: var(--inner-color); */
+  /* background:#2f3954; */
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  /* margin-left: -40px; */
+  position: absolute;
+  /* top: 20px; */
+  /* color: var(--main-color); */
+  text-align: center;
+  line-height: 80px;
+  transform: translate3d(0, 0, 0);
+  transition: transform ease-out 200ms;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.menu-open {
+  display: none;
+}
+
+.hamburger {
+  width: 25px;
+  height: 3px;
+  /* background: var(--main-color); */
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -12.5px;
+  margin-top: -1.5px;
+  transition: transform 200ms;
+}
+.hamburger-1,
+.hamburger-2,
+.hamburger-3 {
+  display: none;
+}
+
+.inner_circle {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background: var(--inner-color);
+  background-color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.menu-open:checked + .menu-open-button .inner_circle {
+  display: none;
+}
+.menu-open:checked + .menu-open-button .hamburger-1,
+.menu-open:checked + .menu-open-button .hamburger-2,
+.menu-open:checked + .menu-open-button .hamburger-3 {
+  display: block;
+}
+.menu-open:checked + .menu-open-button .hamburger-1 {
+  transform: translate3d(0, 0, 0) rotate(45deg);
+}
+.menu-open:checked + .menu-open-button .hamburger-2 {
+  transform: translate3d(0, 0, 0) scale(0.1, 1);
+}
+.menu-open:checked + .menu-open-button .hamburger-3 {
+  transform: translate3d(0, 0, 0) rotate(-45deg);
+}
+
+.menu {
+  position: fixed;
+  right: 5%;
+  bottom: 1%;
+  /* margin-left: -190px;
+  padding-top: 20px;
+  padding-left: 190px; */
+  width: 88px;
+  height: 88px;
+  box-sizing: border-box;
+  font-size: 20px;
+  text-align: left;
+  z-index: 99;
+}
+
+.menu-item:hover {
+  background: white;
+  text-decoration: none;
+}
+
+.menu-item:hover span{
+  color:#bc604b;
+}
+
+.menu-item:nth-child(3) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(4) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(5) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(6) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(7) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(8) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(9) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(10) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(11) {
+  transition-duration: 180ms;
+}
+.menu-item:nth-child(12) {
+  transition-duration: 180ms;
+}
+
+.menu-open-button {
+  z-index: 2;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-duration: 400ms;
+  transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+  cursor: pointer;
+}
+
+.menu-open-button:hover {
+  transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.menu-open:checked + .menu-open-button {
+  transition-timing-function: linear;
+  transition-duration: 200ms;
+  transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+}
+
+.menu-open:checked ~ .menu-item {
+  transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+}
+.menu-open:checked ~ .menu-item:nth-child(3) {
+  transition-duration: 180ms;
+  transform: translate3d(0.11945px, -149.99995px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(4) {
+  transition-duration: 280ms;
+  transform: translate3d(96.46897px, -114.864px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(5) {
+  transition-duration: 380ms;
+  transform: translate3d(147.72347px, -26.03416px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(6) {
+  transition-duration: 480ms;
+  transform: translate3d(129.92371px, 74.96552px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(7) {
+  transition-duration: 580ms;
+  transform: translate3d(51.39031px, 140.92209px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(8) {
+  transition-duration: 680ms;
+  transform: translate3d(-51.16581px, 141.00376px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(9) {
+  transition-duration: 780ms;
+  transform: translate3d(-129.80416px, 75.17234px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(10) {
+  transition-duration: 880ms;
+  transform: translate3d(-147.76474px, -25.79885px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(11) {
+  transition-duration: 980ms;
+  transform: translate3d(-96.65178px, -114.71021px, 0);
+}
+.menu-open:checked ~ .menu-item:nth-child(12) {
+  transition-duration: 1080ms;
+  transform: translate3d(-0.35835px, -149.99957px, 0);
+}
+.menu-item::before {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  content: "";
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+}
+.menu-item span {
+  position: relative;
+  bottom: -20%;
+  color:#000;
+}
+
+.menu-item:nth-of-type(1)::before {
+  background-image: url("../images/shouye.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(2)::before {
+  background-image: url("../images/jianjie.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(3)::before {
+  background-image: url("../images/volunteer.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(4)::before {
+  background-image: url("../images/fengcaizhanshi.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(5)::before {
+  background-image: url("../images/zhaomu.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(6)::before {
+  background-image: url("../images/nongju.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(7)::before {
+  background-image: url("../images/maogou.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(8)::before {
+  background-image: url("../images/ertong.png");
+  background-size: 100% 100%;
+}
+.menu-item:nth-of-type(9)::before {
+  background-image: url("../images/hezuoshixin.png");
+  background-size: 100% 100%;
+}

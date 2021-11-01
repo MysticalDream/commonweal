@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: auto;
+            height: 100vh;
+            /* background-color: rgba(0, 0, 0, .4); */
+        }
+        
+        .warn {
+            height: 40px;
+            padding: 0px 10px;
+            line-height: 40px;
+            background-color: red;
+            color: #fff;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .come {
+            /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+            animation: come_ .5s forwards;
+        }
+        
+        @keyframes come_ {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="warn">信息错误，创建失败</div>
+
+    <script>
+        let btn = document.querySelector("button");
+        let warn = document.querySelector(".warn");
+        btn.addEventListener('click', () => {
+            warn.style.display = 'block';
+            warn.classList.add('come');
+        })
+    </script>
+</body>
+
+</html>
