@@ -152,7 +152,7 @@ window.addEventListener('load',function(){
     // 动态添加对象的属性
     var show_opt = new Object();
     show_opt.type = 'get';
-    // pet_opt.url = '/adpots';
+    show_opt.url = '/achievements/conditions';
     show_opt.data = {};
     show_opt.success = function (data) {
         // 渲染分页

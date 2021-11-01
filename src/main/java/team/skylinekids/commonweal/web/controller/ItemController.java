@@ -204,8 +204,14 @@ public class ItemController {
     @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
     @MyRequestPath(value = "/items/members/?", type = {RequestMethod.GET})
     public String getItemMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        //项目id
-        Integer itemId = httpInfoWrapper.getPathVariable(Integer.class);
+        Integer itemId = null;
+        try {
+            //项目id
+            itemId = httpInfoWrapper.getPathVariable(Integer.class);
+        } catch (Exception e) {
+            logger.error("动态参数解析错误", e);
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
         //用户id
         Integer userId = httpInfoWrapper.getUser().getUserId();
         //项目条件

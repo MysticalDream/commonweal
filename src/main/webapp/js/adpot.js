@@ -152,7 +152,7 @@ window.addEventListener('load',function(){
     // 动态添加对象的属性
     var pet_opt = new Object();
     pet_opt.type = 'get';
-    pet_opt.url = '/adpots';
+    pet_opt.url = '/adopts';
     pet_opt.data = {};
     pet_opt.success = function (data) {
         // 渲染分页
