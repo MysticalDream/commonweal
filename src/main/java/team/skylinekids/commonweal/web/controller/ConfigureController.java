@@ -22,7 +22,7 @@ public class ConfigureController {
     private final Logger logger = Logger.getLogger(ConfigureController.class);
 
     /**
-     * 加载分类配置文件
+     * 更新加载分类配置文件
      *
      * @param httpInfoWrapper
      * @return
