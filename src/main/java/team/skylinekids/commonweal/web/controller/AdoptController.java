@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
+import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.bo.Page;
@@ -12,6 +13,7 @@ import team.skylinekids.commonweal.service.AdoptService;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
+import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import java.util.Map;
@@ -37,6 +39,42 @@ public class AdoptController {
     public String uploadAdoptCover(HttpInfoWrapper httpInfoWrapper) {
 
         return "未开发";
+    }
+
+    /**
+     * 用户领养动物
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @AccessLevel
+    @MyRequestPath(value = "/adopt/user", type = {RequestMethod.PUT})
+    public String adoptAnimal(HttpInfoWrapper httpInfoWrapper) {
+        Boolean status = (Boolean) httpInfoWrapper.getHttpSessionAttribute(SessionKeyConstant.AGREEMENT_KEY);
+        if (!status) {
+            return ResultUtils.getResult(ApiResultCode.REJECT_THE_REQUEST);
+        }
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+        return "";
+    }
+
+    /**
+     * 签订协议
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @AccessLevel
+    @MyRequestPath(value = "/adopt/sign", type = {RequestMethod.POST})
+    public String signAgreement(HttpInfoWrapper httpInfoWrapper) {
+        boolean status;
+        try {
+            status = Boolean.getBoolean(httpInfoWrapper.getParameter("status"));
+        } catch (Exception e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        httpInfoWrapper.setHttpSessionAttribute(SessionKeyConstant.AGREEMENT_KEY, status);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
     /**

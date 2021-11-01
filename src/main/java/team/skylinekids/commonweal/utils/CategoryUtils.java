@@ -32,6 +32,7 @@ public class CategoryUtils {
     }
 
     public static void loadProperties() throws IOException {
+        logger.info("正在加载分类配置文件");
         InputStream resourceAsStream = CategoryUtils.class.getClassLoader().getResourceAsStream("classification.properties");
         //输入流读者
         InputStreamReader reader = new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8);
