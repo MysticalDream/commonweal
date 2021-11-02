@@ -796,12 +796,75 @@ li .line_div:nth-child(4) img{
 }
 
 .bottom_right_d ul li .pink_bottom p{
+    display: -webkit-box;
     position: absolute;
     top:0px;
     left:0px;
     width: 110px;
     height: 50px;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 25px;
     text-indent: 0em;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/* 我的分页特效 */
+
+.bottom_right_d .my_page{
+    position: absolute;
+    top:180px;
+    left:0%;
+    width: 100%;
+    height: 100px;
+}
+
+.bottom_right_d .my_page ul{
+    position: absolute;
+    top:0px;
+    left:25%;
+    width: 750px;
+    height: 100%;
+    margin-left: 0px; 
+    justify-content: center;
+    align-items: center;
+    margin-top:10px;
+    overflow: hidden;
+}
+
+.bottom_right_d .my_page ul li{
+    position: relative;
+    top:40%;
+    left:10%;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    font-family: SimSun;
+}
+
+.bottom_right_d .my_page .turn-page-wrapper>li.current-page {
+    background-color: #CD4140;
+    color: #fff;
+    border-radius:4px;
+}
+
+.bottom_right_d .my_page .turn-page-wrapper>li {
+    background-color: #EBE9E9;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius:4px
+}
+
+.bottom_right_d .my_page .turn-page-wrapper>li,
+.bottom_right_d .my_page .turn-page-wrapper>span {
+    float: left;
+    font-size: 14px;
+    font-family: SimSun;
+    color:#000;
+}
+
+.left_move_d{
+    left:5px;
 }
