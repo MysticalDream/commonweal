@@ -3,7 +3,6 @@ package team.skylinekids.commonweal.web.core;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
-import team.skylinekids.commonweal.web.core.annotation.RequireLogin;
 import team.skylinekids.commonweal.web.core.exception.HandlerException;
 
 import java.lang.reflect.Method;

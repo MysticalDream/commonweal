@@ -8,15 +8,15 @@ package team.skylinekids.commonweal.enums;
 
 public enum LevelCode {
     /**
-     * 普通等级
+     * 普通等级 -1
      */
     COMMON_LEVEL(-1),
     /**
-     * 普通登录等级
+     * 普通登录等级 0
      */
     COMMON_LOGIN_LEVEL(0),
     /**
-     * 特别登录等级
+     * 特别登录等级 10
      */
     SPECIAL_LOGIN_LEVEL(10);
 

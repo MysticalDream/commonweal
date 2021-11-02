@@ -129,13 +129,10 @@ public class ItemController {
      * @return
      */
     @AccessLevel
-    @MyRequestPath(value = "/items/user/?", type = {RequestMethod.GET})
+    @MyRequestPath(value = "/items/user", type = {RequestMethod.GET})
     public String getItemsByUserId(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Integer pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
-        if (!httpInfoWrapper.getUser().getUserId().equals(pathVariable)) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-        }
-        List<ItemDTO> items = itemService.getItemsByUserId(pathVariable);
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+        List<ItemDTO> items = itemService.getItemsByUserId(userId);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, items);
     }
 

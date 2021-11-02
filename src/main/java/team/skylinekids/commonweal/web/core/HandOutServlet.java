@@ -42,7 +42,7 @@ public class HandOutServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        logger.debug("DispatcherServlet running");
+        logger.debug("HandOutServlet running");
         //处理请求
         doDispatch(req, resp);
     }
@@ -79,7 +79,7 @@ public class HandOutServlet extends HttpServlet {
             handleInfo = HandlerMapping.get(uri);
             // 资源不存在
             if (handleInfo == null) {
-                logger.debug("404:资源不存在:" + uri + "[原:" + tempUri + "]");
+                logger.debug("404:资源不存在:" + uri + "[原uri:" + tempUri + "]");
                 response.getWriter().write(ResultUtils.getResult(ApiResultCode.THE_PAGE_NOT_FOUND));
                 return;
             }
