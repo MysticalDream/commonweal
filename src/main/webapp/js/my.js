@@ -1,8 +1,6 @@
 window.addEventListener('load', function () {
     let li_open = document.querySelectorAll('.bottom_left_d>ul>li');
-    console.log(li_open.length);
     let show_box = document.querySelectorAll('.slide_ul_d');
-    console.log(show_box.length);
     for (let i = 0; i < li_open.length; i++) {
         li_open[i].addEventListener('mouseover', function () {
             for (let j = 0; j < li_open.length; j++) {
@@ -17,21 +15,49 @@ window.addEventListener('load', function () {
         })
     }
 
-    let tag_d = document.querySelectorAll('.tag_d');
-    let right_ds = document.querySelectorAll('.bottom_right_d');
-    for (let i = 0; i < tag_d.length; i++) {
-        tag_d[i].addEventListener('click', function () {
-            for (let j = 0; j < tag_d.length; j++) {
-                fadeOut(right_ds[j]);
-                right_ds[j].style.zIndex = -1;
-            }
-            right_ds[i].style.left = '243px';
-            // right_ds[i].style.display='block';
-            fadeIn(right_ds[i]);
-            right_ds[i].style.zIndex = 1;
-            console.log(i);
-        })
-    }
+    // function getLi(data,box){
+    //     let oLi=document.createElement('li');
+    //     for(let i=0;i<data.data.length;i++){
+    //         box.innerHTML='';
+    //         let str=` <div class="inner_box inner_hide"></div>
+    //         <div class="out_box">
+    //             <div class="out_circle_d">
+    //                 <div></div>
+    //             </div>
+    //             <div class="pink_bottom">
+
+    //             </div>
+    //             <p class="left_icon_d">
+    //                 <span>
+    //                     <img src="../../images/peo.png" alt="">
+    //                     <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+    //                 </span>
+    //             </p>
+    //             <p class="right_icon_d">
+    //                 <span>
+    //                     <img src="../../images/管理员_角色管理.png" alt="">
+    //                     <span class="number_change manager_btn">管理团队</span>
+    //                 </span>
+    //             </p>
+    //         </div>`;
+    //         oLi.innerHTML=str;
+    //         box.appendChild(oLi);
+    //     }
+    //     let li=document.createElement('li');
+    //     let str=`
+    //     <div class="inner_box inner_hide"></div>
+    //     <div class="out_box">
+    //         <img src="../../images/jia.png" alt="" class="plus_rota">
+    //     </div>
+    //     `;
+    //     li.innerHTML=str;
+    //     box.appendChild(li);
+    // }
+
+    // 获取我创建的项目列表
+    
+
+  
 
     // 选中时img和span消失
     let input_d = document.querySelectorAll('.input_out');
@@ -77,14 +103,10 @@ window.addEventListener('load', function () {
     for (let i = 0; i < out_box.length; i++) {
         out_box[i].addEventListener('mouseover', function () {
             inner_box[i].classList.add('rotate_slowly');
-            // inner_box[i].style.transform='rotate(-'+15+'deg)';
         })
-        // out_box[i].addEventListener('mouseout',function(){
-        //    inner_box[i].style.transform='rotate(-'+0+'deg)';
-        // })
     }
 
-    let plus_d = this.document.querySelector('.plus_rota');
+    let plus_d = this.document.querySelectorAll('.plus_rota')[0];
     let mask = this.document.querySelector('.mask_s');
     let form_ss = this.document.querySelector('.form_s');
     // 点击加号
@@ -95,6 +117,7 @@ window.addEventListener('load', function () {
             form_ss.classList.add('down');
         }, 200)
     })
+
 
     // 取消按钮
     let out_d = this.document.querySelector('.put_out');

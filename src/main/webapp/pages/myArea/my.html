@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../css/mybox.css">
     <link rel="stylesheet" href="../../font/iconfont.css">
     <script src="../../js/fade.js"></script>
+    <script src="../../js/turnpage.js"></script>
     <script src="../../js/my.js"></script>
     <script src="../../js/ajax.js"></script>
     <script src="../../js/getPath.js"></script>
@@ -98,7 +99,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="bottom_right_d zI_d" style="z-index: 1;">
+            <div class="bottom_right_d zI_d right_first" style="z-index: 1;">
                 <h1>我创建的项目</h1>
                 <!-- <input class="input_out"></input> -->
                 <form action="" method="post" class="my_form">
@@ -106,7 +107,9 @@
                     <img src="../../images/搜索.png" alt="" class="search_icon_d">
                     <span class="search_span_d">搜索项目</span>
                 </form>
-                <ul>
+                <ul></ul>
+                <div class="my_page"></div>
+                <!-- <ul>
                     <li>
                         <div class="inner_box inner_hide"></div>
                         <div class="out_box">
@@ -181,7 +184,7 @@
                             <img src="../../images/jia.png" alt="" class="plus_rota">
                         </div>
                     </li>
-                </ul>
+                </ul> -->
                   <!-- 管理界面 -->
                   <div class="manager_box">
                     <h1>管理项目</h1>
@@ -252,14 +255,15 @@
                         <div class="manager_tag">
                             <div class="manager_three">
                                 <div class="manager_table">
-                                    <div>
+                                    <div class="achi_box">
                                         <form action="/send/iframe" method="post" id="my_pic">
                                             <label for="my_file" class="my_label">
-                                                <img src="../../images/up.png">
-                                                <p>点击此处上传图片</p>
+                                                <img src="../../images/up.png" class="file_img">
+                                                <p class="file_p">点击此处上传图片</p>
                                             </label>
                                             <input type="file" name="cover" id="my_file">
-                                        </form>  
+                                        </form> 
+                                            <input type="text" id="achi_title"> 
                                             <textarea placeholder="成就介绍" class="my_textarea"></textarea>
                                     </div>
                                     <div></div>
@@ -271,14 +275,16 @@
                 </div>
             </div>
             <!-- 也可用template标签 -->
-            <div class="bottom_right_d zI" style="opacity: 0;">
+            <div class="bottom_right_d zI right_second" style="opacity: 0;">
                 <h1>我加入的项目</h1>
                 <form action="" method="post">
                     <input type="text" name="" class="input_out">
                     <img src="../../images/搜索.png" alt="" class="search_icon_d">
                     <span class="search_span_d">搜索项目</span>
                 </form>
-                <ul>
+                <ul></ul>
+                <div class="my_page"></div>
+                <!-- <ul>
                     <li>
                         <div class="inner_box inner_hide"></div>
                         <div class="out_box">
@@ -353,16 +359,18 @@
                             <img src="../../images/jia.png" alt="" class="plus_rota">
                         </div>
                     </li>
-                </ul>
+                </ul> -->
             </div>
-            <div class="bottom_right_d zI" style="opacity: 0;">
+            <div class="bottom_right_d zI right_third" style="opacity: 0;">
                 <h1>我创建的队伍</h1>
                 <form action="" method="post">
                     <input type="text" name="" class="input_out">
                     <img src="../../images/搜索.png" alt="" class="search_icon_d">
                     <span class="search_span_d">搜索项目</span>
                 </form>
-                <ul>
+                <ul></ul>
+                <div class="my_page"></div>
+                <!-- <ul>
                     <li>
                         <div class="inner_box inner_hide"></div>
                         <div class="out_box">
@@ -437,7 +445,7 @@
                             <img src="../../images/jia.png" alt="" class="plus_rota">
                         </div>
                     </li>
-                </ul>
+                </ul> -->
             </div>
             <div class="bottom_right_d zI" style="opacity: 0;">
                 <h1>我加入的队伍</h1>
@@ -446,7 +454,9 @@
                     <img src="../../images/搜索.png" alt="" class="search_icon_d">
                     <span class="search_span_d">搜索项目</span>
                 </form>
-                <ul>
+                <ul></ul>
+                <div class="my_page"></div>
+                <!-- <ul>
                     <li>
                         <div class="inner_box inner_hide"></div>
                         <div class="out_box">
@@ -521,11 +531,11 @@
                             <img src="../../images/jia.png" alt="" class="plus_rota">
                         </div>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
-        <!-- 点击创建项目弹出来的框框 -->
-        <div class="mask_s" style="display: none;">
+         <!-- 点击创建项目弹出来的框框 -->
+         <div class="mask_s" style="display: none;">
             <div class="form_s">
                 <h2>创建项目</h2>
                 <div class="zero">
@@ -630,6 +640,7 @@
                 showProv();
             }
         });
+
         /*自动加载省份列表*/
         function showProv() {
             // btn.disabled = true;
@@ -731,128 +742,532 @@
     <!-- 计数器js -->
     <script src="../../js/counter.js"></script>
     <script src="../../js/utils.js"></script>
+    <!-- 几个li的渲染 -->
+    <script>
+        function getLi_cp(data,box){
+            // box.id=data.data.itemId;
+            let oLi=document.createElement('li');
+            oLi.id=data.data.itemId;
+            oLi.classList.add('find_id');
+            for(let i=0;i<data.data.length;i++){
+                box.innerHTML='';
+                let str=`<div class="inner_box inner_hide"></div>
+                <div class="out_box">
+                    <div class="out_circle_d">
+                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                    </div>
+                    <div class="pink_bottom">
+                        <p>${data.data[i].itemIntroduction}</p>
+                    </div>
+                    <p class="left_icon_d">
+                        <span>
+                            <img src="../../images/peo.png" alt="">
+                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                        </span>
+                    </p>
+                    <p class="right_icon_d">
+                        <span>
+                            <img src="../../images/管理员_角色管理.png" alt="">
+                            <span class="number_change manager_btn">管理团队</span>
+                        </span>
+                    </p>
+                </div>`;
+                oLi.innerHTML=str;
+                box.appendChild(oLi);
+            }
+            let li=document.createElement('li');
+            let str=`
+            <div class="inner_box inner_hide"></div>
+            <div class="out_box">
+                <img src="../../images/jia.png" alt="" class="plus_rota">
+            </div>
+            `;
+            li.innerHTML=str;
+            box.appendChild(li);
+        }
+
+        function getLi_jp(data,box){
+            let oLi=document.createElement('li');
+            oLi.id=data.data.itemId;
+            oLi.classList.add('find_id');
+            for(let i=0;i<data.data.length;i++){
+                box.innerHTML='';
+                let str=`<div class="inner_box inner_hide"></div>
+                <div class="out_box">
+                    <div class="out_circle_d">
+                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                    </div>
+                    <div class="pink_bottom">
+                        <p>${data.data[i].itemIntroduction}</p>
+                    </div>
+                    <p class="left_icon_d">
+                        <span>
+                            <img src="../../images/peo.png" alt="">
+                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                        </span>
+                    </p>
+                    <p class="right_icon_d">
+                        <span>
+                            <img src="../../images/管理员_角色管理.png" alt="">
+                            <span class="number_change manager_btn">查看团队</span>
+                        </span>
+                    </p>
+                </div>`;
+                oLi.innerHTML=str;
+                box.appendChild(oLi);
+            }
+            let li=document.createElement('li');
+            let str=`
+            <div class="inner_box inner_hide"></div>
+            <div class="out_box">
+                <img src="../../images/jia.png" alt="" class="plus_rota">
+            </div>
+            `;
+            li.innerHTML=str;
+            box.appendChild(li);
+        }
+
+        function getLi_ct(data,box){
+            let oLi=document.createElement('li');
+            oLi.id=data.data.teamId;
+            oLi.classList.add('find_id');
+            for(let i=0;i<data.data.length;i++){
+                box.innerHTML='';
+                let str=`<div class="inner_box inner_hide"></div>
+                <div class="out_box">
+                    <div class="out_circle_d">
+                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                    </div>
+                    <div class="pink_bottom">
+                        <p>${data.data[i].teamIntroduction}</p>
+                    </div>
+                    <p class="left_icon_d">
+                        <span>
+                            <img src="../../images/peo.png" alt="">
+                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                        </span>
+                    </p>
+                    <p class="right_icon_d">
+                        <span>
+                            <img src="../../images/管理员_角色管理.png" alt="">
+                            <span class="number_change manager_btn">管理队伍</span>
+                        </span>
+                    </p>
+                </div>`;
+                oLi.innerHTML=str;
+                box.appendChild(oLi);
+            }
+            let li=document.createElement('li');
+            let str=`
+            <div class="inner_box inner_hide"></div>
+            <div class="out_box">
+                <img src="../../images/jia.png" alt="" class="plus_rota">
+            </div>
+            `;
+            li.innerHTML=str;
+            box.appendChild(li);
+        }
+
+        function getLi_jt(data,box){
+            let oLi=document.createElement('li');
+            oLi.id=data.data.teamId;
+            oLi.classList.add('find_id');
+            for(let i=0;i<data.data.length;i++){
+                box.innerHTML='';
+                let str=`<div class="inner_box inner_hide"></div>
+                <div class="out_box">
+                    <div class="out_circle_d">
+                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                    </div>
+                    <div class="pink_bottom">
+                        <p>${data.data[i].teamIntroduction}</p>
+                    </div>
+                    <p class="left_icon_d">
+                        <span>
+                            <img src="../../images/peo.png" alt="">
+                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                        </span>
+                    </p>
+                    <p class="right_icon_d">
+                        <span>
+                            <img src="../../images/管理员_角色管理.png" alt="">
+                            <span class="number_change manager_btn">我的队伍</span>
+                        </span>
+                    </p>
+                </div>`;
+                oLi.innerHTML=str;
+                box.appendChild(oLi);
+            }
+            let li=document.createElement('li');
+            let str=`
+            <div class="inner_box inner_hide"></div>
+            <div class="out_box">
+                <img src="../../images/jia.png" alt="" class="plus_rota">
+            </div>
+            `;
+            li.innerHTML=str;
+            box.appendChild(li);
+        }
+
+         // 分页容器
+        var my_page=document.querySelectorAll('.my_page');  
+        var turnpage_my0,turnpage_my1,turnpage_my2,turnpage_my3;
+        // 分页组件的渲染
+        function render0(data) {
+            if (!turnpage_my0) {
+                allpage = data.data.pages;
+                turnpage_my0 = new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap:my_page[0],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'/items/user',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_cp(data,ul_box1); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            else if (allpage != data.data.pages) {
+                allpage = data.data.pages;
+                turnpage_my0= new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap: my_page[0],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'/items/user',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_cp(data,ul_box1); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            turnpage_my0.init();
+        }
+        function render1(data){
+            if (!turnpage_my1) {
+                allpage = data.data.pages;
+                turnpage_my1 = new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap:my_page[1],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'/items/participated/user',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_jp(data,ul_box2); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            else if (allpage != data.data.pages) {
+                allpage = data.data.pages;
+                turnpage_my1= new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap: my_page[1],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'/items/participated/user',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_jp(data,ul_box2); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            turnpage_my1.init();
+        }
+        function render2(data){
+            if (!turnpage_my2) {
+                allpage = data.data.pages;
+                turnpage_my2 = new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap:my_page[2],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'/teams/user',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_ct(data,ul_box3); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            else if (allpage != data.data.pages) {
+                allpage = data.data.pages;
+                turnpage_my2= new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap: my_page[2],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'/teams/user',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_ct(data,ul_box3); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            turnpage_my2.init();
+        }
+
+        function render3(data){
+            if (!turnpage_my3) {
+                allpage = data.data.pages;
+                turnpage_my3 = new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap:my_page[3],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'teams/joined',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_jt(data,ul_box4); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            else if (allpage != data.data.pages) {
+                allpage = data.data.pages;
+                turnpage_my3= new TurnPage({
+                    currentPage: data.data.pageNum,
+                    allPage: data.data.pages,
+                    wrap: my_page[3],
+                    changePage: function (page) {
+                        ajax({
+                            type:'get',
+                            url:'teams/joined',
+                            header:{
+                                'Content-Type':'application/x-www-form-urlencoded'
+                            },
+                            data:{
+                                pageSize:4,
+                                pageNum:page
+                            },
+                            success:function(data){
+                                getLi_jt(data,ul_box4); 
+                            },
+                            error:function(){
+
+                            }
+                        })
+                    }
+                });
+            }
+            turnpage_my3.init();
+        }
+
+        // 获取我创建的项目 
+        let ul_box1=document.querySelectorAll('.right_first>ul')[0];
+        let ul_box2=document.querySelectorAll('.right_second>ul')[0];
+        let ul_box3=document.querySelectorAll('.right_third>ul')[0];
+        let ul_box4=document.querySelectorAll('.right_forth>ul')[0];
+        ajax({
+            type:'get',
+            url:'/items/user',
+            header:{
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            data:{
+                pageSize:4,
+                pageNum:1
+            },
+            success:function(data){
+                render0(data);
+                getLi_cp(data,ul_box1); 
+            },
+            error:function(){
+
+            }
+        })
+
+        let tag_d = document.querySelectorAll('.tag_d');
+        let right_ds = document.querySelectorAll('.bottom_right_d');
+        for (let i = 0; i < tag_d.length; i++) {
+            tag_d[i].addEventListener('click', function () {
+                for (let j = 0; j < tag_d.length; j++) {
+                    fadeOut(right_ds[j]);
+                    right_ds[j].style.zIndex = -1;
+                }
+                right_ds[i].style.left = '243px';
+                fadeIn(right_ds[i]);
+                right_ds[i].style.zIndex = 1;
+                if(i==0){
+                    ajax({
+                        type:'get',
+                        url:'/items/user',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageSize:4,
+                            pageNum:1
+                        },
+                        success:function(data){
+                            render0(data);
+                            getLi_cp(data,ul_box1); 
+                        },
+                        error:function(){
+
+                        }
+                    })
+                }
+                if(i==1){
+                    // 获取我加入的项目列表
+                    ajax({
+                        type:'get',
+                        url:'/items/participated/user',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageSize:4,
+                            pageNum:1
+                        },
+                        success:function(data){
+                            render1(data);
+                            getLi_jp(data,ul_box2);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                }
+                if(i==2){
+                // 获取我创建的队伍列表
+                  ajax({
+                        type:'get',
+                        url:'/teams/user',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageSize:4,
+                            pageNum:1
+                        },
+                        success:function(data){
+                            render2(data);
+                            getLi_ct(data,ul_box3);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                }
+                if(i==3){
+                    // 获取我加入的队伍列表
+                    ajax({
+                        type:'get',
+                        url:'teams/joined',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageSize:4,
+                            pageNum:1
+                        },
+                        success:function(data){
+                            render3(data);
+                            getLi_jt(data,ul_box4);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                }
+            })
+        }
+
+
+    </script>
      <!-- 管理界面的渲染 -->
-     <script>
-        //  var obj_menber={
-        // "code": 200, 
-         
-        // "message": "操作成功", 
-         
-        // "success": true, 
-         
-        // "data": {
-        // "pageSize": 3, 
-         
-        // "pageNum": 1, 
-         
-        // "total": 2, 
-         
-        // "size": 2, 
-         
-        // "pages": 1, 
-         
-        // "list": [
-        // {
-        // "listId": 5, 
-         
-        // "type": false, 
-         
-        // "typeName": "队伍", 
-         
-        // "targetId": 1, 
-         
-        // "name": "天才队伍", 
-         
-        // "location": "广东省" 
-         
-        // },
-        // {
-        // "listId": 4, 
-         
-        // "type": true, 
-         
-        // "typeName": "个人", 
-         
-        // "targetId": 2, 
-         
-        // "name": "Java", 
-         
-        // "location": "广东省" 
-         
-        // }
-        // ] 
-         
-        // } 
-         
-        // }
-
-        // var obj_pl={
-        // "code": 200, 
-        
-        // "message": "操作成功", 
-        
-        // "success": true, 
-        
-        // "data": {
-        // "pageSize": 3, 
-        
-        // "pageNum": 1, 
-        
-        // "total": 3, 
-        
-        // "size": 3, 
-        
-        // "pages": 1, 
-        
-        // "list": [
-        // {
-        // "listId": 5, 
-        
-        // "type": false, 
-        
-        // "typeName": "队伍", 
-        
-        // "targetId": 1, 
-        
-        // "name": "天才队伍", 
-        
-        // "location": "广东省" 
-        
-        // },
-        // {
-        // "listId": 4, 
-        
-        // "type": true, 
-        
-        // "typeName": "个人", 
-        
-        // "targetId": 2, 
-        
-        // "name": "Java", 
-        
-        // "location": "广东省广州市" 
-        
-        // },
-        // {
-        // "listId": 3, 
-        
-        // "type": true, 
-        
-        // "typeName": "个人", 
-        
-        // "targetId": 1, 
-        
-        // "name": "common", 
-        
-        // "location": "北京" 
-        
-        // }
-        // ] 
-        
-        // } 
-        
-        // }
-
+     <script> 
         let manager_box=document.querySelector('.manager_box');
         function menber(data){
             let oSpan=document.querySelectorAll('.number_span')[0];
@@ -941,28 +1356,50 @@
             })
         }
 
-        let manager_btn=document.querySelectorAll('.manager_btn')[0];
-        manager_btn.onclick=function(){
-            manager_box.style.display='block';
-            ajax({
-                    type:'get',
-                    url:'/items/members/:item_id',
-                    header:{
-                        'Content-Type':'application/x-www-form-urlencoded'
-                    },
-                    data:{
-                        pageNum:1,
-                        pageSize:7,
-                    },
-                    success:function(data){
-                        menber(data);
-                    },
-                    error:function(){
+        // function achi(){
+        //     let str=`
+        //     <form action="/send/iframe" method="post" id="my_pic">
+        //         <label for="my_file" class="my_label">
+        //             <img src="../../images/up.png">
+        //             <p>点击此处上传图片</p>
+        //         </label>
+        //         <input type="file" name="cover" id="my_file">
+        //     </form>  
+        //     <textarea placeholder="成就介绍" class="my_textarea"></textarea>`
+        //     let 
+        //     }
 
-                    }
-                })
+         // 成员列表
+        let manager_btn=document.querySelectorAll('.manager_btn');
+        let find_id=document.querySelectorAll('find_id');
+        var p;
+        for(let i=0;i<manager_btn.length;i++){
+            manager_btn[i].onclick=function(){
+                p=find_id[i].id;
+                // manager_box只有一个
+                manager_box.style.display='block';
+                ajax({
+                        type:'get',
+                        // p区分不同的数据
+                        url:'/items/members/:'+p,
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageNum:1,
+                            pageSize:7,
+                        },
+                        success:function(data){
+                            menber(data);
+                        },
+                        error:function(){
+
+                        }
+                    })
+            }
+
         }
-
+       
         let title_li=document.querySelectorAll('.title_ul>li');
         let manager_tag=document.querySelectorAll('.manager_tag');
         let content_li=document.querySelectorAll('.content_tag>li');
@@ -979,6 +1416,7 @@
             })
         }
 
+        // 审核成员列表（同意or拒绝那个表）
         for(let i=0;i<content_li.length;i++){
             content_li[i].addEventListener('click',function(){
                 for(let j=0;j<content_li.length;j++){
@@ -990,7 +1428,8 @@
                 if(i==1){
                     ajax({
                         type:'get',
-                        url:'/items/apply/list/:item_id',
+                        // p区分不同的数据
+                        url:'/items/apply/list/:'+p,
                         header:{
                             'Content-Type':'application/x-www-form-urlencoded'
                         },
@@ -1008,18 +1447,51 @@
                 }
             })
         }
-
+        // 触发条件是啥来着 
+        var cover_photo;
+        var my_pic=document.querySelectorAll('#my_pic')[0];
+        let pic_label=document.querySelector('.my_label');
         iframeAjax({
-            form: "#my_pic",
+            form: my_pic,
             callback: function (datas) {
+                // img_up样式
                 console.log(datas);
+                pic_label.innerHTML='';
                 let img_up=document.createElement('img');
                 img_up.classList.add('img_up');
+                cover_photo=datas.data;
                 img.src = datas.data;
-                let pic_label=document.querySelector('.my_label');
                 pic_label.appendChild(img_up);
             }
         });
+
+        // 点击提交按钮触发提交信息和文本框的内容
+        let send_d=document.querySelectorAll('.send_d')[0];
+        let my_textarea=document.querySelectorAll('.my_textarea')[0];
+        let achi_title=document.querySelectorAll('.achi_title')[0];
+            send_d.addEventListener('click',function(){
+                ajax({
+                    type:'post',
+                    url:'/achievements',
+                    coverUrl:cover_photo,
+                    // 文本域的value
+                    introduction:my_textarea.value,
+                    title:achi_title.value.trim(),
+                    header:{
+                        'Content-Type':application/json
+                    },
+                    success:function(){
+                        alert('上传成功');
+                        my_textarea.value='';
+                        achi_title.value='';
+                        pic_label.innerHTML='';
+                        let img=document.createElement('img');
+                        img.src="../../images/up.png";
+                        let p=document.createElement('p');
+                        p.innerText='点击此处上传图片';
+                    }
+                })
+            })
     </script>
 </body>
 
