@@ -110,7 +110,7 @@ window.addEventListener('load', function () {
     let mask = this.document.querySelector('.mask_s');
     let form_ss = this.document.querySelector('.form_s');
     // 点击加号
-    plus_d.addEventListener('click', function () {
+    plus_d&&plus_d.addEventListener('click', function () {
         mask.style.display = 'block';
         // 那个框框从上面淡入
         setTimeout(function () {

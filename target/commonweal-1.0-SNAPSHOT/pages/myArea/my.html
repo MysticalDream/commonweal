@@ -744,25 +744,288 @@
     <script src="../../js/utils.js"></script>
     <!-- 几个li的渲染 -->
     <script>
+        var obj_test={
+"code": 200, 
+ 
+"message": "操作成功", 
+ 
+"success": true, 
+ 
+"data": {
+"pageSize": 4, 
+ 
+"pageNum": 1, 
+ 
+"total": 9, 
+ 
+"size": 4, 
+ 
+"pages": 3, 
+ 
+"list": [
+{
+"itemId": 1, 
+ 
+"itemTitle": "“幸福星”心理关爱热线服务", 
+ 
+"itemIntroduction": "热线以关怀每个个体生命、提高全体民众心理素质为宗旨，通过专业的心理热线，化解民众内心矛盾冲突，积极引导社会大众由“心安”到“平安”，从源头防范和降低社会风险，杜绝“小问题”引发为“大事件”", 
+ 
+"gmtCreate": "2021-10-30 16:33:23", 
+ 
+"userId": 1, 
+ 
+"coverUrl": "/upload/images/avatars/item/da228578744c42abbba0eddaa19ab06b.jpg", 
+ 
+"duration": "1月", 
+ 
+"itemCategory": "社区服务", 
+ 
+"maximumNumberLimit": 10, 
+ 
+"currentHeadcount": 0, 
+ 
+"province": "44", 
+ 
+"city": "01", 
+ 
+"area": "06", 
+ 
+"status": 1 
+ 
+},
+{
+"itemId": 2, 
+ 
+"itemTitle": "医心关怀”健康科普志愿服务", 
+ 
+"itemIntroduction": "以华山医院志愿服务基地为主体启动“医心关怀”健康科普志愿服务项目，以将华山名医带到百姓身边为建设理念，致力于向社会公众普及健康知识、传播健康理念", 
+ 
+"gmtCreate": "2021-10-30 16:57:38", 
+ 
+"userId": 1, 
+ 
+"coverUrl": "/upload/images/avatars/item/2b60f9fe26cb400894bb1292ac64b5ae.jpg", 
+ 
+"duration": "1年", 
+ 
+"itemCategory": "卫生健康", 
+ 
+"maximumNumberLimit": 10, 
+ 
+"currentHeadcount": 0, 
+ 
+"province": "31", 
+ 
+"city": "01", 
+ 
+"area": "01", 
+ 
+"status": 1 
+ 
+},
+{
+"itemId": 3, 
+ 
+"itemTitle": "“绿色希望”流动儿童关爱", 
+ 
+"itemIntroduction": "开展“绿色希望——流动儿童关爱项目”已经走进了第7个年头，主要服务燕京小天鹅打工子弟公益学校的小学生们", 
+ 
+"gmtCreate": "2021-10-30 17:25:34", 
+ 
+"userId": 1, 
+ 
+"coverUrl": "/upload/images/avatars/item/309d78950e7a43f7b65a5a6265f7759c.jpg", 
+ 
+"duration": "10天", 
+ 
+"itemCategory": "环境保护", 
+ 
+"maximumNumberLimit": 20, 
+ 
+"currentHeadcount": 0, 
+ 
+"province": "44", 
+ 
+"city": "01", 
+ 
+"area": "13", 
+ 
+"status": 1 
+ 
+},
+{
+"itemId": 4, 
+ 
+"itemTitle": "“吹响志愿集结号”海淀社区志愿日", 
+ 
+"itemIntroduction": "海淀团区委以区志愿服务联合会为枢纽和平台，策划推广了“海淀区社区志愿日”项目，将每月第一个星期六确立为“社区志愿日”，结合每月的节日特点，启动不同主题的集中性全区志愿服务活动", 
+ 
+"gmtCreate": "2021-10-30 18:35:53", 
+ 
+"userId": 1, 
+ 
+"coverUrl": "/upload/images/avatars/item/e9d76589dcc247c488b5ba90c9535b97.jpg", 
+ 
+"duration": "1月", 
+ 
+"itemCategory": "社区服务", 
+ 
+"maximumNumberLimit": 12, 
+ 
+"currentHeadcount": 0, 
+ 
+"province": "11", 
+ 
+"city": "01", 
+ 
+"area": "08", 
+ 
+"status": 1 
+ 
+}
+] 
+ 
+} 
+ 
+}
+        
+        var obj_test1={
+"code": 200, 
+ 
+"message": "操作成功", 
+ 
+"success": true, 
+ 
+"data": {
+"pageSize": 3, 
+ 
+"pageNum": 1, 
+ 
+"total": 2, 
+ 
+"size": 2, 
+ 
+"pages": 1, 
+ 
+"list": [
+{
+"listId": 5, 
+ 
+"type": false, 
+ 
+"typeName": "队伍", 
+ 
+"targetId": 1, 
+ 
+"name": "天才队伍", 
+ 
+"location": "广东省" 
+ 
+},
+{
+"listId": 4, 
+ 
+"type": true, 
+ 
+"typeName": "个人", 
+ 
+"targetId": 2, 
+ 
+"name": "Java", 
+ 
+"location": "广东省" 
+ 
+}
+] 
+ 
+} 
+ 
+}
+
+        var obj_test_2={
+"code": 200, 
+ 
+"message": "操作成功", 
+ 
+"success": true, 
+ 
+"data": {
+"pageSize": 3, 
+ 
+"pageNum": 1, 
+ 
+"total": 3, 
+ 
+"size": 3, 
+ 
+"pages": 1, 
+ 
+"list": [
+{
+"listId": 5, 
+ 
+"type": false, 
+ 
+"typeName": "队伍", 
+ 
+"targetId": 1, 
+ 
+"name": "天才队伍", 
+ 
+"location": "广东省" 
+ 
+},
+{
+"listId": 4, 
+ 
+"type": true, 
+ 
+"typeName": "个人", 
+ 
+"targetId": 2, 
+ 
+"name": "Java", 
+ 
+"location": "广东省广州市" 
+ 
+},
+{
+"listId": 3, 
+ 
+"type": true, 
+ 
+"typeName": "个人", 
+ 
+"targetId": 1, 
+ 
+"name": "common", 
+ 
+"location": "北京" 
+ 
+}
+] 
+ 
+} 
+ 
+}
         function getLi_cp(data,box){
-            // box.id=data.data.itemId;
-            let oLi=document.createElement('li');
-            oLi.id=data.data.itemId;
-            oLi.classList.add('find_id');
-            for(let i=0;i<data.data.length;i++){
-                box.innerHTML='';
+            box.innerHTML='';
+            for(let i=0;i<data.data.list.length;i++){
+                let oLi=document.createElement('li');
+                oLi.id=data.data.list[i].itemId;
+                oLi.classList.add('find_id');
                 let str=`<div class="inner_box inner_hide"></div>
                 <div class="out_box">
                     <div class="out_circle_d">
-                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                        <div><img src="${data.data.list[i].coverUrl}"></div>
                     </div>
                     <div class="pink_bottom">
-                        <p>${data.data[i].itemIntroduction}</p>
+                        <p>${data.data.list[i].itemIntroduction}</p>
                     </div>
                     <p class="left_icon_d">
                         <span>
                             <img src="../../images/peo.png" alt="">
-                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                            <span class="number_change left_move_d">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
                         </span>
                     </p>
                     <p class="right_icon_d">
@@ -775,76 +1038,76 @@
                 oLi.innerHTML=str;
                 box.appendChild(oLi);
             }
-            let li=document.createElement('li');
-            let str=`
-            <div class="inner_box inner_hide"></div>
-            <div class="out_box">
-                <img src="../../images/jia.png" alt="" class="plus_rota">
-            </div>
-            `;
-            li.innerHTML=str;
-            box.appendChild(li);
+            // let li=document.createElement('li');
+            // let str=`
+            // <div class="inner_box inner_hide"></div>
+            // <div class="out_box">
+            //     <img src="../../images/jia.png" alt="" class="plus_rota">
+            // </div>
+            // `;
+            // li.innerHTML=str;
+            // box.appendChild(li);
         }
 
         function getLi_jp(data,box){
-            let oLi=document.createElement('li');
-            oLi.id=data.data.itemId;
-            oLi.classList.add('find_id');
-            for(let i=0;i<data.data.length;i++){
-                box.innerHTML='';
+            box.innerHTML='';
+            for(let i=0;i<data.data.list.length;i++){
+                let oLi=document.createElement('li');
+                oLi.id=data.data.list[i].itemId;
+                oLi.classList.add('find_id');
                 let str=`<div class="inner_box inner_hide"></div>
                 <div class="out_box">
                     <div class="out_circle_d">
-                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                        <div><img src="${data.data.list[i].coverUrl}"></div>
                     </div>
                     <div class="pink_bottom">
-                        <p>${data.data[i].itemIntroduction}</p>
+                        <p>${data.data.list[i].itemIntroduction}</p>
                     </div>
                     <p class="left_icon_d">
                         <span>
                             <img src="../../images/peo.png" alt="">
-                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                            <span class="number_change left_move_d">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
                         </span>
                     </p>
                     <p class="right_icon_d">
                         <span>
                             <img src="../../images/管理员_角色管理.png" alt="">
-                            <span class="number_change manager_btn">查看团队</span>
+                            <span class="number_change manager_btn">管理团队</span>
                         </span>
                     </p>
                 </div>`;
                 oLi.innerHTML=str;
                 box.appendChild(oLi);
             }
-            let li=document.createElement('li');
-            let str=`
-            <div class="inner_box inner_hide"></div>
-            <div class="out_box">
-                <img src="../../images/jia.png" alt="" class="plus_rota">
-            </div>
-            `;
-            li.innerHTML=str;
-            box.appendChild(li);
+            // let li=document.createElement('li');
+            // let str=`
+            // <div class="inner_box inner_hide"></div>
+            // <div class="out_box">
+            //     <img src="../../images/jia.png" alt="" class="plus_rota">
+            // </div>
+            // `;
+            // li.innerHTML=str;
+            // box.appendChild(li);
         }
 
         function getLi_ct(data,box){
             let oLi=document.createElement('li');
             oLi.id=data.data.teamId;
             oLi.classList.add('find_id');
-            for(let i=0;i<data.data.length;i++){
+            for(let i=0;i<data.data.list.length;i++){
                 box.innerHTML='';
                 let str=`<div class="inner_box inner_hide"></div>
                 <div class="out_box">
                     <div class="out_circle_d">
-                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                        <div><img src="${data.data.list[i].coverUrl}" style="width:100% height:100%"></div>
                     </div>
                     <div class="pink_bottom">
-                        <p>${data.data[i].teamIntroduction}</p>
+                        <p>${data.data.list[i].teamIntroduction}</p>
                     </div>
                     <p class="left_icon_d">
                         <span>
                             <img src="../../images/peo.png" alt="">
-                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                            <span class="number_change">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
                         </span>
                     </p>
                     <p class="right_icon_d">
@@ -857,35 +1120,35 @@
                 oLi.innerHTML=str;
                 box.appendChild(oLi);
             }
-            let li=document.createElement('li');
-            let str=`
-            <div class="inner_box inner_hide"></div>
-            <div class="out_box">
-                <img src="../../images/jia.png" alt="" class="plus_rota">
-            </div>
-            `;
-            li.innerHTML=str;
-            box.appendChild(li);
+            // let li=document.createElement('li');
+            // let str=`
+            // <div class="inner_box inner_hide"></div>
+            // <div class="out_box">
+            //     <img src="../../images/jia.png" alt="" class="plus_rota">
+            // </div>
+            // `;
+            // li.innerHTML=str;
+            // box.appendChild(li);
         }
 
         function getLi_jt(data,box){
             let oLi=document.createElement('li');
             oLi.id=data.data.teamId;
             oLi.classList.add('find_id');
-            for(let i=0;i<data.data.length;i++){
+            for(let i=0;i<data.data.list.length;i++){
                 box.innerHTML='';
                 let str=`<div class="inner_box inner_hide"></div>
                 <div class="out_box">
                     <div class="out_circle_d">
-                        <div><img src="${data.data[i].coverUrl}" style="width:100% height:100%"></div>
+                        <div><img src="${data.data.list[i].coverUrl}" style="width:100% height:100%"></div>
                     </div>
                     <div class="pink_bottom">
-                        <p>${data.data[i].teamIntroduction}</p>
+                        <p>${data.data.list[i].teamIntroduction}</p>
                     </div>
                     <p class="left_icon_d">
                         <span>
                             <img src="../../images/peo.png" alt="">
-                            <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+                            <span class="number_change">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
                         </span>
                     </p>
                     <p class="right_icon_d">
@@ -898,15 +1161,15 @@
                 oLi.innerHTML=str;
                 box.appendChild(oLi);
             }
-            let li=document.createElement('li');
-            let str=`
-            <div class="inner_box inner_hide"></div>
-            <div class="out_box">
-                <img src="../../images/jia.png" alt="" class="plus_rota">
-            </div>
-            `;
-            li.innerHTML=str;
-            box.appendChild(li);
+            // let li=document.createElement('li');
+            // let str=`
+            // <div class="inner_box inner_hide"></div>
+            // <div class="out_box">
+            //     <img src="../../images/jia.png" alt="" class="plus_rota">
+            // </div>
+            // `;
+            // li.innerHTML=str;
+            // box.appendChild(li);
         }
 
          // 分页容器
@@ -1166,6 +1429,8 @@
 
             }
         })
+        // render0(obj_test);
+        // getLi_cp(obj_test,ul_box1);
 
         let tag_d = document.querySelectorAll('.tag_d');
         let right_ds = document.querySelectorAll('.bottom_right_d');
@@ -1179,6 +1444,8 @@
                 fadeIn(right_ds[i]);
                 right_ds[i].style.zIndex = 1;
                 if(i==0){
+                    // render0(obj_test);
+                    // getLi_cp(obj_test,ul_box1);
                     ajax({
                         type:'get',
                         url:'/items/user',
@@ -1199,6 +1466,8 @@
                     })
                 }
                 if(i==1){
+                    // render1(obj_test);
+                    // getLi_jp(obj_test,ul_box2);
                     // 获取我加入的项目列表
                     ajax({
                         type:'get',
@@ -1220,6 +1489,9 @@
                     })
                 }
                 if(i==2){
+                    // alert(2);
+                    // render2(obj_test);
+                    getLi_ct(obj_test,ul_box3);
                 // 获取我创建的队伍列表
                   ajax({
                         type:'get',
@@ -1241,6 +1513,8 @@
                     })
                 }
                 if(i==3){
+                    // render3(obj_test);
+                    // getLi_jt(obj_test,ul_box4);
                     // 获取我加入的队伍列表
                     ajax({
                         type:'get',
@@ -1272,7 +1546,7 @@
         function menber(data){
             let oSpan=document.querySelectorAll('.number_span')[0];
             oSpan.innerText=data.data.list.length;
-            let table_ul=document.querySelector('.table_ul')[0];
+            let table_ul=document.querySelectorAll('.table_ul')[0];
             for(let i=0;i<data.data.list.length;i++){
                 let dele_url='../../images/dele.png';
                 let oLi=document.createElement('li');
@@ -1310,7 +1584,7 @@
         function apply(data){
             let oSpan=document.querySelectorAll('.number_span')[1];
             oSpan.innerText=data.data.list.length;
-            let table_ul=document.querySelector('.table_ul')[1];
+            let table_ul=document.querySelectorAll('.table_ul')[1];
             for(let i=0;i<data.data.list.length;i++){
                 let agree_url='../../images/argee.png';
                 let dis_url='../../images/disa.png';
@@ -1332,6 +1606,7 @@
                     }
                     if(j==3){
                         // 用模板字符串时注意用innerHTML
+                        oDivj.classList.add('line_div_last');
                         let str=`
                             <img src="${agree_url}">
                             <span class="dele_r">同意</span>
@@ -1347,31 +1622,10 @@
             }
             
         }
-      
-
-        let dele_r=document.querySelectorAll('.dele_r');
-        for(let i=0;i<dele_r.length;i++){
-            dele_r[i].addEventListener('click',function(){
-                this.parentElement.parentElement.style.display='none';
-            })
-        }
-
-        // function achi(){
-        //     let str=`
-        //     <form action="/send/iframe" method="post" id="my_pic">
-        //         <label for="my_file" class="my_label">
-        //             <img src="../../images/up.png">
-        //             <p>点击此处上传图片</p>
-        //         </label>
-        //         <input type="file" name="cover" id="my_file">
-        //     </form>  
-        //     <textarea placeholder="成就介绍" class="my_textarea"></textarea>`
-        //     let 
-        //     }
 
          // 成员列表
         let manager_btn=document.querySelectorAll('.manager_btn');
-        let find_id=document.querySelectorAll('find_id');
+        let find_id=document.querySelectorAll('.find_id');
         var p;
         for(let i=0;i<manager_btn.length;i++){
             manager_btn[i].onclick=function(){
@@ -1396,6 +1650,7 @@
 
                         }
                     })
+                // menber(obj_test1);
             }
 
         }
@@ -1444,9 +1699,23 @@
 
                         }
                     })
+                    // alert(1);
+                    // apply(obj_test_2);
                 }
             })
         }
+
+        // 删除 同意 拒绝
+       let table_ul=document.querySelectorAll('.table_ul');
+        for(let i=0;i<table_ul.length;i++){
+            table_ul[i].addEventListener('click',function(e){
+                if(e.target.classList.contains('dele_r')){
+                    e.target.parentElement.parentElement.style.display='none';
+                }
+            })
+        }
+
+
         // 触发条件是啥来着 
         var cover_photo;
         var my_pic=document.querySelectorAll('#my_pic')[0];
