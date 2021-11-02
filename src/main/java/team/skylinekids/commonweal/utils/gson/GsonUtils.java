@@ -85,7 +85,8 @@ public class GsonUtils {
      * @param <T>
      * @return
      */
-    public static <T> T j2O(String json, Class<T> cls) {
+    public static <T> T j2O(String json, Class<T> cls) throws
+            JsonSyntaxException {
         return gson.fromJson(json, cls);
     }
 

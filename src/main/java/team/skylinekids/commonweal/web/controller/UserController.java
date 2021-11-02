@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.web.controller;
 
+import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.*;
 import team.skylinekids.commonweal.factory.ServiceFactory;
@@ -198,10 +199,13 @@ public class UserController {
     @AccessLevel(LevelCode.SPECIAL_LOGIN_LEVEL)
     @MyRequestPath(value = "/users/?", type = {RequestMethod.GET})
     public String getUseInfoById(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        if (!httpInfoWrapper.isLogin()) {
-            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
+        Integer pathVariable;
+        try {
+            pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
+        } catch (JsonSyntaxException e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-        User userById = userService.getUserById(httpInfoWrapper.getPathVariable(Integer.class));
+        User userById = userService.getUserById(pathVariable);
         if (userById == null) {
             return ResultUtils.getResult(ApiResultCode.UNKNOWN_USER);
         }

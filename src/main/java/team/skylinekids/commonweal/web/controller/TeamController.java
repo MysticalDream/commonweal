@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.web.controller;
 
+import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.RequestMethod;
@@ -111,7 +112,13 @@ public class TeamController {
      */
     @MyRequestPath(value = "/teams/members/?", type = {RequestMethod.GET})
     public String getTeamMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        TeamBO teamBO = teamBOService.getTeamBOByTeamId(httpInfoWrapper.getPathVariable(Integer.class));
+        Integer pathVariable;
+        try {
+            pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
+        } catch (JsonSyntaxException e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        TeamBO teamBO = teamBOService.getTeamBOByTeamId(pathVariable);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, teamBO);
     }
 

@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.pojo.bo;
 
+import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.MediaType;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
@@ -285,8 +286,13 @@ public class HttpInfoWrapper {
      * @param <T>参数类型
      * @return
      */
-    public <T> T getPathVariable(Class<T> clazz) {
-        return pathVariable == null ? null : GsonUtils.j2O(pathVariable, clazz);
+    public <T> T getPathVariable(Class<T> clazz) throws JsonSyntaxException{
+        try {
+            return pathVariable == null ? null : GsonUtils.j2O(pathVariable, clazz);
+        } catch (JsonSyntaxException e) {
+            logger.error("路径变量json解析异常");
+            throw e;
+        }
     }
 
     /**

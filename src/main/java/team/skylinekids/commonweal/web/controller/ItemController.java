@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.web.controller;
 
+import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.LevelCode;
@@ -111,7 +112,13 @@ public class ItemController {
      */
     @MyRequestPath(value = "/items/?", type = {RequestMethod.GET})
     public String getItemsByItemId(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Item item = itemService.getItemById(httpInfoWrapper.getPathVariable(Integer.class));
+        Integer pathVariable;
+        try {
+            pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
+        } catch (JsonSyntaxException e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        Item item = itemService.getItemById(pathVariable);
         ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
         itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
         return ResultUtils.getResult(ApiResultCode.SUCCESS, itemDTO);
@@ -186,7 +193,13 @@ public class ItemController {
      */
     @MyRequestPath(value = "/items/participated/user/?", type = {RequestMethod.GET})
     public String getItemUserParticipates(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        List<ItemDTO> itemDTOS = itemService.getUserEnterItemList(httpInfoWrapper.getPathVariable(Integer.class));
+        Integer pathVariable;
+        try {
+            pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
+        } catch (JsonSyntaxException e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        List<ItemDTO> itemDTOS = itemService.getUserEnterItemList(pathVariable);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, itemDTOS);
     }
 
@@ -235,8 +248,15 @@ public class ItemController {
     @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
     @MyRequestPath(value = "/items/apply/list/?", type = {RequestMethod.GET})
     public String getItemApplyList(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        Integer pathVariable;
+        try {
+            pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
+        } catch (JsonSyntaxException e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
         //项目id
-        Integer itemId = httpInfoWrapper.getPathVariable(Integer.class);
+        Integer itemId = pathVariable;
+
         Integer userId = httpInfoWrapper.getUser().getUserId();
         if (verifyItemAndUser(itemId, userId)) {
             return ResultUtils.getResult(ApiResultCode.UNAUTHORIZED_ACCESS);
@@ -301,8 +321,14 @@ public class ItemController {
     @AccessLevel(LevelCode.COMMON_LOGIN_LEVEL)
     @MyRequestPath(value = "/items/members/?", type = {RequestMethod.DELETE})
     public String deleteItemMember(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        Integer pathVariable;
+        try {
+            pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
+        } catch (JsonSyntaxException e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
         //成员列表id
-        Integer listId = httpInfoWrapper.getPathVariable(Integer.class);
+        Integer listId = pathVariable;
         //项目id
         Integer itemId = Integer.valueOf(httpInfoWrapper.getParameter("itemId"));
         //用户id
