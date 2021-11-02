@@ -74,7 +74,7 @@ public interface ItemDao {
      * @return
      * @throws Exception
      */
-    List<Item> getItemsByUserId(Integer id) throws Exception;
+    Page<ItemDTO> getItemsByUserId(Page<ItemDTO> page,Integer id) throws Exception;
 
     /**
      * 根据用户id获取用户参加的项目
@@ -83,7 +83,7 @@ public interface ItemDao {
      * @return
      * @throws Exception
      */
-    List<Item> getUserEnterItemList(Integer id) throws Exception;
+    Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page,Integer id) throws Exception;
 
     /**
      * 获取项目更具item条件

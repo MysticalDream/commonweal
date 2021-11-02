@@ -122,6 +122,7 @@ window.addEventListener('load', function () {
     // 取消按钮
     let out_d = this.document.querySelector('.put_out');
     out_d.addEventListener('click', function () {
+        let img = zero.querySelector('img');
         mask.style.display = 'none';
         // 关闭那个框框 并且将里面的内容清空
         // out_d.click();
@@ -131,15 +132,27 @@ window.addEventListener('load', function () {
         itemIntroduction.dispatchEvent(new Event("input", {bubbles: true}));
         fourth_text.value = '';
         fourth_text.dispatchEvent(new Event("input", {bubbles: true}));
-        xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+        // xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+        xm_time.options[0].selected = true;
         itemCategory.options[itemCategory.selectedIndex].text = itemCategory.options[0].text;
         maximumNumberLimit.value = ''
         maximumNumberLimit.dispatchEvent(new Event("input", {bubbles: true}));
-        prov.options[prov.selectedIndex].text = prov.options[0].text;
-        city.options[city.selectedIndex].text = city.options[0].text;
-        area.options[area.selectedIndex].text = area.options[0].text;
+        // prov.options[prov.selectedIndex].text = prov.options[0].text;
+        // city.options[city.selectedIndex].text = city.options[0].text;
+        // area.options[area.selectedIndex].text = area.options[0].text;
+        prov.options[0].selected = true;
+        prov.onchange();
         img.src = '';
         img.style.display = 'none';
+        if(zero.children[1].classList.contains('iconfont')){
+            return;
+        }
+        let zero_i = document.createElement('i');
+        zero_i.className = 'iconfont icon-shangchuan';
+        let zero_p = document.createElement('p');
+        zero_p.innerText = '点击此处上传项目封面';
+        zero.appendChild(zero_i);
+        zero.appendChild(zero_p);
     })
 
     // 获取上传文件的那个按钮 和上传文件的框框
@@ -171,12 +184,13 @@ window.addEventListener('load', function () {
     let area = document.querySelector('#area');
     // 请求项目封面
     let xm_submit = document.querySelector('#xm_submit');
-    let zero_i = zero.querySelector('i');
-    let zero_p = zero.querySelector('p');
-    let img = zero.querySelector('img');
+
     iframeAjax({
         form: "#item_cover",
         callback: function (datas) {
+            let zero_i = zero.querySelector('i');
+            let zero_p = zero.querySelector('p');
+            let img = zero.querySelector('img');
             console.log(datas);
             // 拿到图片的路径
             coverUrl = datas.data;
@@ -186,9 +200,9 @@ window.addEventListener('load', function () {
             img.style.display = 'block';
         }
     })
-    xm_file.addEventListener('change', () => {
-        xm_submit.click();
-
+    xm_file.addEventListener('change', (e) => {
+        if (xm_file.files.length)
+            xm_submit.click();
     })
 
 
@@ -229,7 +243,8 @@ window.addEventListener('load', function () {
                     itemIntroduction.dispatchEvent(new Event("input", {bubbles: true}));
                     fourth_text.value = '';
                     fourth_text.dispatchEvent(new Event("input", {bubbles: true}));
-                    xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+                    // xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+                    xm_time.options[0].selected = true;
                     itemCategory.options[itemCategory.selectedIndex].text = itemCategory.options[0].text;
                     maximumNumberLimit.value = ''
                     maximumNumberLimit.dispatchEvent(new Event("input", {bubbles: true}));

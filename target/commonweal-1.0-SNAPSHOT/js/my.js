@@ -1,8 +1,6 @@
 window.addEventListener('load', function () {
     let li_open = document.querySelectorAll('.bottom_left_d>ul>li');
-    console.log(li_open.length);
     let show_box = document.querySelectorAll('.slide_ul_d');
-    console.log(show_box.length);
     for (let i = 0; i < li_open.length; i++) {
         li_open[i].addEventListener('mouseover', function () {
             for (let j = 0; j < li_open.length; j++) {
@@ -17,21 +15,49 @@ window.addEventListener('load', function () {
         })
     }
 
-    let tag_d = document.querySelectorAll('.tag_d');
-    let right_ds = document.querySelectorAll('.bottom_right_d');
-    for (let i = 0; i < tag_d.length; i++) {
-        tag_d[i].addEventListener('click', function () {
-            for (let j = 0; j < tag_d.length; j++) {
-                fadeOut(right_ds[j]);
-                right_ds[j].style.zIndex = -1;
-            }
-            right_ds[i].style.left = '243px';
-            // right_ds[i].style.display='block';
-            fadeIn(right_ds[i]);
-            right_ds[i].style.zIndex = 1;
-            console.log(i);
-        })
-    }
+    // function getLi(data,box){
+    //     let oLi=document.createElement('li');
+    //     for(let i=0;i<data.data.length;i++){
+    //         box.innerHTML='';
+    //         let str=` <div class="inner_box inner_hide"></div>
+    //         <div class="out_box">
+    //             <div class="out_circle_d">
+    //                 <div></div>
+    //             </div>
+    //             <div class="pink_bottom">
+
+    //             </div>
+    //             <p class="left_icon_d">
+    //                 <span>
+    //                     <img src="../../images/peo.png" alt="">
+    //                     <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
+    //                 </span>
+    //             </p>
+    //             <p class="right_icon_d">
+    //                 <span>
+    //                     <img src="../../images/管理员_角色管理.png" alt="">
+    //                     <span class="number_change manager_btn">管理团队</span>
+    //                 </span>
+    //             </p>
+    //         </div>`;
+    //         oLi.innerHTML=str;
+    //         box.appendChild(oLi);
+    //     }
+    //     let li=document.createElement('li');
+    //     let str=`
+    //     <div class="inner_box inner_hide"></div>
+    //     <div class="out_box">
+    //         <img src="../../images/jia.png" alt="" class="plus_rota">
+    //     </div>
+    //     `;
+    //     li.innerHTML=str;
+    //     box.appendChild(li);
+    // }
+
+    // 获取我创建的项目列表
+    
+
+  
 
     // 选中时img和span消失
     let input_d = document.querySelectorAll('.input_out');
@@ -77,14 +103,10 @@ window.addEventListener('load', function () {
     for (let i = 0; i < out_box.length; i++) {
         out_box[i].addEventListener('mouseover', function () {
             inner_box[i].classList.add('rotate_slowly');
-            // inner_box[i].style.transform='rotate(-'+15+'deg)';
         })
-        // out_box[i].addEventListener('mouseout',function(){
-        //    inner_box[i].style.transform='rotate(-'+0+'deg)';
-        // })
     }
 
-    let plus_d = this.document.querySelector('.plus_rota');
+    let plus_d = this.document.querySelectorAll('.plus_rota')[0];
     let mask = this.document.querySelector('.mask_s');
     let form_ss = this.document.querySelector('.form_s');
     // 点击加号
@@ -96,9 +118,11 @@ window.addEventListener('load', function () {
         }, 200)
     })
 
+
     // 取消按钮
     let out_d = this.document.querySelector('.put_out');
     out_d.addEventListener('click', function () {
+        let img = zero.querySelector('img');
         mask.style.display = 'none';
         // 关闭那个框框 并且将里面的内容清空
         // out_d.click();
@@ -108,15 +132,27 @@ window.addEventListener('load', function () {
         itemIntroduction.dispatchEvent(new Event("input", {bubbles: true}));
         fourth_text.value = '';
         fourth_text.dispatchEvent(new Event("input", {bubbles: true}));
-        xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+        // xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+        xm_time.options[0].selected = true;
         itemCategory.options[itemCategory.selectedIndex].text = itemCategory.options[0].text;
         maximumNumberLimit.value = ''
         maximumNumberLimit.dispatchEvent(new Event("input", {bubbles: true}));
-        prov.options[prov.selectedIndex].text = prov.options[0].text;
-        city.options[city.selectedIndex].text = city.options[0].text;
-        area.options[area.selectedIndex].text = area.options[0].text;
+        // prov.options[prov.selectedIndex].text = prov.options[0].text;
+        // city.options[city.selectedIndex].text = city.options[0].text;
+        // area.options[area.selectedIndex].text = area.options[0].text;
+        prov.options[0].selected = true;
+        prov.onchange();
         img.src = '';
         img.style.display = 'none';
+        if(zero.children[1].classList.contains('iconfont')){
+            return;
+        }
+        let zero_i = document.createElement('i');
+        zero_i.className = 'iconfont icon-shangchuan';
+        let zero_p = document.createElement('p');
+        zero_p.innerText = '点击此处上传项目封面';
+        zero.appendChild(zero_i);
+        zero.appendChild(zero_p);
     })
 
     // 获取上传文件的那个按钮 和上传文件的框框
@@ -148,12 +184,13 @@ window.addEventListener('load', function () {
     let area = document.querySelector('#area');
     // 请求项目封面
     let xm_submit = document.querySelector('#xm_submit');
-    let zero_i = zero.querySelector('i');
-    let zero_p = zero.querySelector('p');
-    let img = zero.querySelector('img');
+
     iframeAjax({
         form: "#item_cover",
         callback: function (datas) {
+            let zero_i = zero.querySelector('i');
+            let zero_p = zero.querySelector('p');
+            let img = zero.querySelector('img');
             console.log(datas);
             // 拿到图片的路径
             coverUrl = datas.data;
@@ -163,9 +200,9 @@ window.addEventListener('load', function () {
             img.style.display = 'block';
         }
     })
-    xm_file.addEventListener('change', () => {
-        xm_submit.click();
-
+    xm_file.addEventListener('change', (e) => {
+        if (xm_file.files.length)
+            xm_submit.click();
     })
 
 
@@ -206,7 +243,8 @@ window.addEventListener('load', function () {
                     itemIntroduction.dispatchEvent(new Event("input", {bubbles: true}));
                     fourth_text.value = '';
                     fourth_text.dispatchEvent(new Event("input", {bubbles: true}));
-                    xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+                    // xm_time.options[xm_time.selectedIndex].text = xm_time.options[0].text;
+                    xm_time.options[0].selected = true;
                     itemCategory.options[itemCategory.selectedIndex].text = itemCategory.options[0].text;
                     maximumNumberLimit.value = ''
                     maximumNumberLimit.dispatchEvent(new Event("input", {bubbles: true}));
