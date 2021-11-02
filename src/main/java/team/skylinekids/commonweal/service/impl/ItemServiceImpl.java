@@ -49,31 +49,15 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemDTO> getItemsByUserId(Integer id) throws Exception {
-        List<Item> items = itemDao.getItemsByUserId(id);
-        List<ItemDTO> itemDTOs = new ArrayList<>(items.size());
-        for (Item item :
-                items) {
-            ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
-            itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
-            itemDTO.setItemCategory(CategoryUtils.getCategoryNameById(item.getItemCategoryId()));
-            itemDTOs.add(itemDTO);
-        }
-        return itemDTOs;
+    public Page<ItemDTO> getItemsByUserId(Page<ItemDTO> page, Integer id) throws Exception {
+        Page<ItemDTO> items = itemDao.getItemsByUserId(page, id);
+        return items;
     }
 
     @Override
-    public List<ItemDTO> getUserEnterItemList(Integer id) throws Exception {
-        List<Item> items = itemDao.getUserEnterItemList(id);
-        List<ItemDTO> itemDTOs = new ArrayList<>(items.size());
-        for (Item item :
-                items) {
-            ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
-            itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
-            itemDTO.setItemCategory(CategoryUtils.getCategoryNameById(item.getItemCategoryId()));
-            itemDTOs.add(itemDTO);
-        }
-        return itemDTOs;
+    public Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page, Integer id) throws Exception {
+        Page<ItemDTO> userEnterItemList = itemDao.getUserEnterItemList(page, id);
+        return userEnterItemList;
     }
 
     @Override

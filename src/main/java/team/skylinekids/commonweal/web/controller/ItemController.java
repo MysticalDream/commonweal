@@ -139,7 +139,14 @@ public class ItemController {
     @MyRequestPath(value = "/items/user", type = {RequestMethod.GET})
     public String getItemsByUserId(HttpInfoWrapper httpInfoWrapper) throws Exception {
         Integer userId = httpInfoWrapper.getUser().getUserId();
-        List<ItemDTO> items = itemService.getItemsByUserId(userId);
+        Page<ItemDTO> page = new Page<>();
+        try {
+            page.setPageNum(httpInfoWrapper.getParameter("pageNum", Integer.class));
+            page.setPageSize(httpInfoWrapper.getParameter("pageSize", Integer.class));
+        } catch (Exception e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        Page<ItemDTO> items = itemService.getItemsByUserId(page, userId);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, items);
     }
 
@@ -191,16 +198,19 @@ public class ItemController {
      * @return
      * @throws Exception
      */
-    @MyRequestPath(value = "/items/participated/user/?", type = {RequestMethod.GET})
+    @AccessLevel
+    @MyRequestPath(value = "/items/participated/user", type = {RequestMethod.GET})
     public String getItemUserParticipates(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Integer pathVariable;
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+        Page<ItemDTO> page = new Page<>();
         try {
-            pathVariable = httpInfoWrapper.getPathVariable(Integer.class);
-        } catch (JsonSyntaxException e) {
+            page.setPageSize(httpInfoWrapper.getParameter("pageSize", Integer.class));
+            page.setPageNum(httpInfoWrapper.getParameter("pageNum", Integer.class));
+        } catch (Exception e) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-        List<ItemDTO> itemDTOS = itemService.getUserEnterItemList(pathVariable);
-        return ResultUtils.getResult(ApiResultCode.SUCCESS, itemDTOS);
+        Page<ItemDTO> enterItemList = itemService.getUserEnterItemList(page, userId);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, enterItemList);
     }
 
     /**

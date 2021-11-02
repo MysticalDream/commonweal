@@ -3,6 +3,7 @@ package team.skylinekids.commonweal.dao.impl;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
+import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
@@ -165,18 +166,43 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
     }
 
     @Override
-    public List<Item> getItemsByUserId(Integer id) throws Exception {
-        Item itemCondition = new Item();
-        itemCondition.setUserId(id);
-        return this.selectList(itemCondition);
+    public Page<ItemDTO> getItemsByUserId(Page<ItemDTO> page, Integer id) throws Exception {
+        String sqlCondition = " WHERE user_id=" + id;
+        Integer count = this.selectCountByCondition(sqlCondition, new ArrayList<>());
+        page.setTotal(count);
+        List<Item> items = this.selectListByConditionString(sqlCondition + " LIMIT " + page.getStartRow() + "," + page.getPageSize(), new ArrayList<>());
+        List<ItemDTO> itemDTOS = new ArrayList<>(items.size());
+        for (Item item :
+                items) {
+            ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
+            itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
+            itemDTO.setItemCategory(CategoryUtils.getCategoryNameById(item.getItemCategoryId()));
+            itemDTOS.add(itemDTO);
+        }
+        page.setSize(itemDTOS.size());
+        page.setList(itemDTOS);
+        page.setPagesAuto();
+        return page;
     }
 
     @Override
-    public List<Item> getUserEnterItemList(Integer id) throws Exception {
-        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Item.class), true) + " FROM " + this.getTableName() + " WHERE item_id IN(SELECT item_id FROM item_and_member_map WHERE target_id=? AND type=? AND status=1)";
-        logger.info("===>   Preparing:" + sql);
-        logger.info("===>   Parameters:" + "[" + id + ",true]");
-        return this.getListBean(JDBCUtils.getConnection(), sql, id, true);
+    public Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page, Integer id) throws Exception {
+        String sqlCondition = " WHERE item_id IN(SELECT item_id FROM item_and_member_map WHERE target_id=" + id + " AND type=true AND status=1)";
+
+        Integer integer = this.selectCountByCondition(sqlCondition, new ArrayList<>());
+        List<Item> items = this.selectListByConditionString(sqlCondition + " LIMIT " + page.getStartRow() + "," + page.getPageSize(), new ArrayList<>());
+        List<ItemDTO> itemDTOS = new ArrayList<>(items.size());
+        for (Item item :
+                items) {
+            ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
+            itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
+            itemDTO.setItemCategory(CategoryUtils.getCategoryNameById(item.getItemCategoryId()));
+            itemDTOS.add(itemDTO);
+        }
+        page.setList(itemDTOS);
+        page.setSize(itemDTOS.size());
+        page.setPagesAuto();
+        return page;
     }
 
     @Override

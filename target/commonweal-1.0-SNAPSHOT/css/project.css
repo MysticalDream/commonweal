@@ -354,6 +354,11 @@ li {
 
 .nine_box h1 {
     position: absolute;
+    width: 100px;
+    height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     top: 63%;
     left: 10px;
     font-size: 14px;
