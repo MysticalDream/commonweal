@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
     var btn_item = $('.btn_items>button');
     var juxing = $('.rectangle');
     var btn_ul = $('.children_rd>ul>li');
-    wrap.addEventListener('mousewheel', mo);
+    wrap.addEventListener('wheel', mo);
 
     //导航
     var navDivs = $('.menu-item');
@@ -30,16 +30,18 @@ window.addEventListener('load', function () {
         e.addEventListener("click", () => {
             curIndex = index;
             wrap.className = 'wrap active' + curIndex;
-        })
+            // wrap.dispatchEvent(new Event("wheel",{bubbles: true,cancelable: false}));
+        });
+
     });
 
     function mo(e) {
         e.deltaY < 0 ? up() : down();
         go();
         //移除监听 避免频繁触发
-        wrap.removeEventListener('mousewheel', mo);
+        wrap.removeEventListener('wheel', mo);
         setTimeout(function () {
-            wrap.addEventListener('mousewheel', mo)
+            wrap.addEventListener('wheel', mo)
         }, 800);
 
     };
