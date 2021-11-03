@@ -55,9 +55,7 @@ window.addEventListener('load', function () {
     // }
 
     // 获取我创建的项目列表
-    
 
-  
 
     // 选中时img和span消失
     let input_d = document.querySelectorAll('.input_out');
@@ -110,7 +108,7 @@ window.addEventListener('load', function () {
     let mask = this.document.querySelector('.mask_s');
     let form_ss = this.document.querySelector('.form_s');
     // 点击加号
-    plus_d&&plus_d.addEventListener('click', function () {
+    plus_d && plus_d.addEventListener('click', function () {
         mask.style.display = 'block';
         // 那个框框从上面淡入
         setTimeout(function () {
@@ -144,7 +142,7 @@ window.addEventListener('load', function () {
         prov.onchange();
         img.src = '';
         img.style.display = 'none';
-        if(zero.children[1].classList.contains('iconfont')){
+        if (zero.children[1].classList.contains('iconfont')) {
             return;
         }
         let zero_i = document.createElement('i');
@@ -194,8 +192,8 @@ window.addEventListener('load', function () {
             console.log(datas);
             // 拿到图片的路径
             coverUrl = datas.data;
-            zero_i.remove();
-            zero_p.remove();
+            zero_i && zero_i.remove();
+            zero_p && zero_p.remove();
             img.src = coverUrl;
             img.style.display = 'block';
         }

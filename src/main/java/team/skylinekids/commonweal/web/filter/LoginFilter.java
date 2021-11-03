@@ -17,7 +17,8 @@ import java.util.Set;
 @WebFilter("/*")
 public class LoginFilter implements Filter {
 
-    private final Set<String> urlSet = Set.of("/pages/myArea/my.html");
+    private final Set<String> urlNeedLoginSet = Set.of("/pages/myArea/my.html");
+    private final Set<String> urlNeedLeaveSet = Set.of("/pages/login/come.html");
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -29,8 +30,12 @@ public class LoginFilter implements Filter {
         HttpInfoWrapper wrapper = new HttpInfoWrapper((HttpServletResponse) response, (HttpServletRequest) request, null);
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String requestURI = httpServletRequest.getRequestURI();
-        if (urlSet.contains(requestURI) && !wrapper.isLogin()) {
+        if (urlNeedLoginSet.contains(requestURI) && !wrapper.isLogin()) {
             ((HttpServletResponse) response).sendRedirect("/pages/login/come.html");
+            return;
+        }
+        if (urlNeedLeaveSet.contains(requestURI) && wrapper.isLogin()) {
+            ((HttpServletResponse) response).sendRedirect("/");
             return;
         }
         chain.doFilter(request, response);

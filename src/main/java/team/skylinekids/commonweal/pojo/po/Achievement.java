@@ -3,6 +3,7 @@ package team.skylinekids.commonweal.pojo.po;
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
  *
  * @author MysticalDream
  */
-public class Achievement {
+public class Achievement implements Serializable {
     /**
      * 自增id
      */

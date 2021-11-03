@@ -3,12 +3,14 @@ package team.skylinekids.commonweal.pojo.po;
 import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 
+import java.io.Serializable;
+
 /**
  * 点赞表
  *
  * @author MysticalDream
  */
-public class Thumb {
+public class Thumb implements Serializable {
     /**
      * 自增id
      */

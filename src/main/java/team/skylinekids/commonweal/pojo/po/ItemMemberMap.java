@@ -4,6 +4,7 @@ import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 import team.skylinekids.commonweal.dao.core.annotaion.TableName;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
  * @author MysticalDream
  */
 @TableName(value = "item_and_member_map")
-public class ItemMemberMap {
+public class ItemMemberMap implements Serializable {
     /**
      * 自增id
      */

@@ -212,12 +212,12 @@ window.addEventListener('load',function(){
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('pet_box');
-            let url_1='../../images/beijing.jpg';
+            // let url_1='../../images/beijing.jpg';
             let url='../../images/pet.png';
             let str=`
             <div class="pet_img_box"><img src="${url_1}" class="pet_img"></div>
             <div class="pet_bottom">
-                <div class="pet_title"><img src="${url}"><span>领养代替购买</span></div>
+                <div class="pet_title"><img src="${data.data.list[i].coverUrl}"><span>领养代替购买</span></div>
                 <ul>
                    <li>品种：${data.data.list[i].variety}</li>
                    <li>外貌：${data.data.list[i].appearance}</li>
@@ -225,11 +225,18 @@ window.addEventListener('load',function(){
                    <li>年龄：${data.data.list[i].age}</li>
                    <li>习性：${data.data.list[i].habit}</li>
                 </ul>
-                <button>我要领养</button>
+                <button class="take_care">我要领养</button>
             </div>
             `;
             oDiv.innerHTML=str;
             adpot_box.appendChild(oDiv);
         }
     }
+
+    adpot_box.addEventListener('click',function(e){
+        if(e.target.classList.contains('take_care')){
+            e.target.style.display='block';
+        }
+    })
+
 })

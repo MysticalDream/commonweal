@@ -52,7 +52,8 @@ public class GsonUtils {
                 .registerTypeAdapter(LocalDateTime.class, localDateTimeJsonDeserializer)
                 .registerTypeAdapter(LocalDate.class, localDateJsonDeserializer)
                 .registerTypeAdapter(new TypeToken<Map<String, Object>>() {
-                }.getType(), new MapTypeAdapter());
+                }.getType(), new MapTypeAdapter())
+                .registerTypeAdapter(Integer.class, new IntegerDefaultNullAdapter());
         //yyyy-MM-dd HH:mm:ss
         //yyyy-MM-dd
         gson = gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss").create();

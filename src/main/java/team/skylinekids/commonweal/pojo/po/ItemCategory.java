@@ -4,13 +4,15 @@ import team.skylinekids.commonweal.dao.core.annotaion.TableField;
 import team.skylinekids.commonweal.dao.core.annotaion.TableId;
 import team.skylinekids.commonweal.dao.core.annotaion.TableName;
 
+import java.io.Serializable;
+
 /**
  * 项目分类
  *
  * @author MysticalDream
  */
 @TableName("item_category")
-public class ItemCategory {
+public class ItemCategory implements Serializable {
     /**
      * 分类ID
      */
