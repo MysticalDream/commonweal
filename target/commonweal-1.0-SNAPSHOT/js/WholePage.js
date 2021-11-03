@@ -144,7 +144,7 @@ window.addEventListener('load', function () {
                 btn_ul[1].classList.add('btn_up');
                 btn_ul[2].classList.add('btn_up');
                 btn_ul[3].classList.add('btn_up');
-            }, 1200)
+            }, 1400)
         }
         for (let i = 0; i < 2; i++) {
             clearTimeout(i)
