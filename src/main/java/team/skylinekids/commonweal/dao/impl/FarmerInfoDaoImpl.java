@@ -6,7 +6,6 @@ import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.FarmerInfo;
 import team.skylinekids.commonweal.pojo.query.FarmerInfoCondition;
-import team.skylinekids.commonweal.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,18 +42,7 @@ public class FarmerInfoDaoImpl extends MyGenericBaseDao<FarmerInfo> implements F
 
         List<Object> values = new ArrayList<>(4);
 
-        if (StringUtils.isNotBlank(province)) {
-            conditionSql.add("province=?");
-            values.add(province);
-        }
-        if (StringUtils.isNotBlank(city)) {
-            conditionSql.add("city=?");
-            values.add(city);
-        }
-        if (StringUtils.isNotBlank(area)) {
-            conditionSql.add("area=?");
-            values.add(area);
-        }
+        RecruitDaoImpl.handle(province, city, area, conditionSql, values);
 
         String sql = String.join(" AND ", conditionSql);
 

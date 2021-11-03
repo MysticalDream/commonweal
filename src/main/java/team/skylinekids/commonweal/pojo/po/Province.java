@@ -48,6 +48,12 @@ public class Province {
     public Province() {
     }
 
+    public Province(String province, String city, String area) {
+        this.province = province;
+        this.city = city;
+        this.area = area;
+    }
+
     public Long getId() {
         return id;
     }

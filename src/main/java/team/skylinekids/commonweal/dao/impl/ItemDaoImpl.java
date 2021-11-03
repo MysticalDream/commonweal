@@ -10,7 +10,6 @@ import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.utils.*;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
-import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,18 +91,7 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
         List<Object> values = new ArrayList<>(6);
 
-        if (StringUtils.isNotBlank(province)) {
-            conditionSql.add("province=?");
-            values.add(province);
-        }
-        if (StringUtils.isNotBlank(city)) {
-            conditionSql.add("city=?");
-            values.add(city);
-        }
-        if (StringUtils.isNotBlank(area)) {
-            conditionSql.add("area=?");
-            values.add(area);
-        }
+        RecruitDaoImpl.handle(province, city, area, conditionSql, values);
         if (categoryId != null) {
             conditionSql.add("item_category_id=?");
             values.add(categoryId);

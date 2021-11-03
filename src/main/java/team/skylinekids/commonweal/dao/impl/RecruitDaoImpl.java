@@ -66,18 +66,7 @@ public class RecruitDaoImpl extends MyGenericBaseDao<Recruit> implements Recruit
 
         List<Object> values = new ArrayList<>(10);
 
-        if (StringUtils.isNotBlank(province)) {
-            conditionSql.add("province=?");
-            values.add(province);
-        }
-        if (StringUtils.isNotBlank(city)) {
-            conditionSql.add("city=?");
-            values.add(city);
-        }
-        if (StringUtils.isNotBlank(area)) {
-            conditionSql.add("area=?");
-            values.add(area);
-        }
+        handle(province, city, area, conditionSql, values);
         if (categoryId != null) {
             conditionSql.add("category_id=?");
             values.add(categoryId);
@@ -154,5 +143,20 @@ public class RecruitDaoImpl extends MyGenericBaseDao<Recruit> implements Recruit
         page.setPagesAuto();
 
         return page;
+    }
+
+    static void handle(String province, String city, String area, List<String> conditionSql, List<Object> values) {
+        if (StringUtils.isNotBlank(province)) {
+            conditionSql.add("province=?");
+            values.add(province);
+        }
+        if (StringUtils.isNotBlank(city)) {
+            conditionSql.add("city=?");
+            values.add(city);
+        }
+        if (StringUtils.isNotBlank(area)) {
+            conditionSql.add("area=?");
+            values.add(area);
+        }
     }
 }

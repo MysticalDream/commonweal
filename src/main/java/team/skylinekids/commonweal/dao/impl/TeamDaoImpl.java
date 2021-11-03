@@ -5,11 +5,8 @@ import team.skylinekids.commonweal.dao.TeamDao;
 import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.Page;
-import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.dto.TeamDTO;
-import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.po.Team;
-import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.pojo.query.TeamCondition;
 import team.skylinekids.commonweal.utils.*;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
@@ -93,18 +90,7 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
         List<String> conditionSql = new ArrayList<>(6);
 
         List<Object> values = new ArrayList<>(6);
-        if (StringUtils.isNotBlank(province)) {
-            conditionSql.add("province=?");
-            values.add(province);
-        }
-        if (StringUtils.isNotBlank(city)) {
-            conditionSql.add("city=?");
-            values.add(city);
-        }
-        if (StringUtils.isNotBlank(area)) {
-            conditionSql.add("area=?");
-            values.add(area);
-        }
+        RecruitDaoImpl.handle(province, city, area, conditionSql, values);
         if (numberScope != null) {
             String scope = ScopeUtils.getScopeByNum(numberScope);
 
