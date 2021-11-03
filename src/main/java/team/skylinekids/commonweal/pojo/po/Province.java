@@ -1,11 +1,13 @@
 package team.skylinekids.commonweal.pojo.po;
 
+import java.io.Serializable;
+
 /**
  * 省市信息
  *
  * @author MysticalDream
  */
-public class Province {
+public class Province implements Serializable {
     /**
      * 自增id
      */
