@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
         pic.classList.add('pic');
         let span = document.createElement('span');
         span.innerText = getCookie("username");
-        username.appendChild(pic);
-        username.appendChild(span);
+        username && username.appendChild(pic);
+        username && username.appendChild(span);
     }
 })

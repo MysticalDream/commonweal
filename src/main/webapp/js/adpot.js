@@ -214,9 +214,9 @@ window.addEventListener('load',function(){
             // let url_1='../../images/beijing.jpg';
             let url='../../images/pet.png';
             let str=`
-            <div class="pet_img_box"><img src="${url_1}" class="pet_img"></div>
+            <div class="pet_img_box"><img src="${data.data.list[i].coverUrl}" class="pet_img"></div>
             <div class="pet_bottom">
-                <div class="pet_title"><img src="${data.data.list[i].coverUrl}"><span>领养代替购买</span></div>
+                <div class="pet_title"><img src="${url}"><span>领养代替购买</span></div>
                 <ul>
                    <li>品种：${data.data.list[i].variety}</li>
                    <li>外貌：${data.data.list[i].appearance}</li>

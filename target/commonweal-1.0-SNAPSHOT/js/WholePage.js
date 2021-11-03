@@ -66,19 +66,18 @@ window.addEventListener('load', function () {
             }, 1800)
         }
         if (curIndex == 2) {
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 3; i++) {
                 clearTimeout(i);
             }
             setTimeout(function () {
                 left_flag.classList.add('flag_up');
             }, 1000)
-            // 这里处理成3秒 也许就有错落的效果
             setTimeout(function () {
                 right_flag.classList.add('right_up');
             }, 1500)
         }
         if (curIndex == 3) {
-            for (let i = 0; i < 1; i++) {
+            for (let i = 0; i < 2; i++) {
                 clearTimeout(i);
             }
             setTimeout(function () {
@@ -92,7 +91,7 @@ window.addEventListener('load', function () {
             }, 1400)
         }
         if (curIndex == 4) {
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 3; i++) {
                 clearTimeout(i)
             }
             setTimeout(function () {
@@ -106,7 +105,7 @@ window.addEventListener('load', function () {
             }, 1600)
         }
         if (curIndex == 5) {
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 3; i++) {
                 clearTimeout(i)
             }
             setTimeout(function () {

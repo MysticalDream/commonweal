@@ -1324,10 +1324,48 @@
             //         }
             //     })
             // }
+        var p;
         function manager(box){
             box.addEventListener('click',function(e){
                 if(e.target.classList.contains('manager_btn')){
+                    p=e.target.offsetParent.parentElement.parentElement.id;
                     manager_box.style.display='block';
+                    ajax({
+                        type:'get',
+                        // p区分不同的数据
+                        url:'/items/members/'+p,
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageNum:1,
+                            pageSize:7,
+                        },
+                        success:function(data){
+                            menber(data);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                    ajax({
+                        type:'get',
+                        url:'/items/apply/list/'+p,
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageNum:1,
+                            pageSize:7,
+                        },
+                        success:function(data){
+                            let wait_d=document.querySelectorAll('.wait_d')[0];
+                            wait_d.innerText=data.data.list.length;
+                        },
+                        error:function(){
+
+                        }
+                    })
                 }
             })
         }
@@ -1417,54 +1455,18 @@
         }
 
          // 成员列表
-        let manager_btn=document.querySelectorAll('.manager_btn');
-        let find_id=document.querySelectorAll('.find_id');
-        var p;
-        for(let i=0;i<manager_btn.length;i++){
-            manager_btn[i].onclick=function(){
-                p=find_id[i].id;
-                // manager_box只有一个
-                manager_box.style.display='block';
-                ajax({
-                        type:'get',
-                        // p区分不同的数据
-                        url:'/items/members/:'+p,
-                        header:{
-                            'Content-Type':'application/x-www-form-urlencoded'
-                        },
-                        data:{
-                            pageNum:1,
-                            pageSize:7,
-                        },
-                        success:function(data){
-                            menber(data);
-                        },
-                        error:function(){
-
-                        }
-                    })
-                    ajax({
-                        type:'get',
-                        url:'/items/apply/list/:'+p,
-                        header:{
-                            'Content-Type':'application/x-www-form-urlencoded'
-                        },
-                        data:{
-                            pageNum:1,
-                            pageSize:7,
-                        },
-                        success:function(data){
-                            let wait_d=document.querySelectorAll('.wait_d')[0];
-                            wait_d.innerText=data.data.list.length;
-                        },
-                        error:function(){
-
-                        }
-                    })
-                // menber(obj_test1);
-            }
-
-        }
+        // let manager_btn=document.querySelectorAll('.manager_btn');
+        // let find_id=document.querySelectorAll('.find_id');
+        // var p;
+        // for(let i=0;i<manager_btn.length;i++){
+        //     manager_btn[i].onclick=function(){
+        //         p=find_id[i].id;
+        //         // manager_box只有一个
+        //         manager_box.style.display='block';
+        //         // menber(obj_test1);
+        //     }
+        //
+        // }
        
         let title_li=document.querySelectorAll('.title_ul>li');
         let manager_tag=document.querySelectorAll('.manager_tag');
@@ -1495,7 +1497,7 @@
                     ajax({
                         type:'get',
                         // p区分不同的数据
-                        url:'/items/apply/list/:'+p,
+                        url:'/items/apply/list/'+p,
                         header:{
                             'Content-Type':'application/x-www-form-urlencoded'
                         },

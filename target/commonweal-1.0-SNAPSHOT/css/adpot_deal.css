@@ -23,6 +23,7 @@ body {
     padding: 0px 20px;
     box-sizing: border-box;
     border-radius: 10px;
+    z-index: 999;
 }
 
 .adpot_mask_s h2 {

@@ -519,6 +519,13 @@ form span {
     cursor: pointer;
 }
 
+.bottom_right_d .manager_box .backTo{
+    right:40px;
+    top:450px;
+    cursor: pointer;
+    z-index: 999;
+}
+
 .bottom_right_d .manager_box .manager_main{
     width: 100%;
     height: 87%;
@@ -836,7 +843,7 @@ li .line_div:nth-child(4) img{
 .bottom_right_d .my_page ul li{
     position: relative;
     top:40%;
-    left:10%;
+    left:15%;
     height: 30px;
     width: 30px;
     cursor: pointer;

@@ -335,8 +335,8 @@ window.addEventListener('load', function () {
     var box = $('.box')[0];
     var box_t = $('.box')[1];
     var wrapper = $('.wrapper')[0];
+    var wrapper_n=$('.wrapper_n')[0];
     var li_jug = $('.pro_box>ul>li')[0];
-    console.log(li_jug);
     var seek_opt = new Object();
     seek_opt.type = "get";
     seek_opt.url = '/items/conditions';
@@ -354,7 +354,7 @@ window.addEventListener('load', function () {
             renderDom(data);
         } else {
             // 渲染分页
-            render(data);
+            render_d(data);
             // 渲染页面
             renderDom_t(data);
         }
@@ -369,7 +369,7 @@ window.addEventListener('load', function () {
 
     var turnPage;
     var allpage;
-
+    var turnPage_d;
     // 开一个分页实例
     function render(data) {
         if (!turnPage) {
@@ -410,6 +410,46 @@ window.addEventListener('load', function () {
         turnPage.init();
     }
 
+    function render_d(data){
+        if (!turnPage_d) {
+            allpage = data.data.pages;
+            turnPage_d = new TurnPage({
+                currentPage: data.data.pageNum,
+                allPage: data.data.pages,
+                wrap: wrapper_n,
+                changePage: function (page) {
+                    seek_opt.data.pageNum = page;
+                    // seek_opt.success=function(data){
+                    //     renderDom(data);
+                    // }
+                    // console.log(seek_opt.success);
+                    ajax(seek_opt);
+                }
+            });
+        } else if (allpage != data.data.pages) {
+            allpage = data.data.pages;
+            turnPage_d = new TurnPage({
+                currentPage: data.data.pageNum,
+                allPage: data.data.pages,
+                wrap: wrapper_n,
+                changePage: function (page) {
+                    seek_opt.data.pageNum = page;
+                    // ajax({
+                    //     data:seek_opt.data,
+                    //     success:function(data){
+                    //          // 我们要渲染到页面上的数据
+
+                    //         renderDom(data);
+                    //     }
+                    // });
+                    ajax(seek_opt);
+                }
+            });
+        }
+        turnPage_d.init();
+    }
+
+    
     // 渲染数据
     function renderDom(data) {
         // 容器的内容清空
@@ -418,7 +458,6 @@ window.addEventListener('load', function () {
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('nine_box');
-            let url_d = '../../images/beijing.jpg';
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
@@ -440,7 +479,6 @@ window.addEventListener('load', function () {
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('nine_box');
-            let url_d = '../../images/beijing.jpg';
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
@@ -470,8 +508,8 @@ window.addEventListener('load', function () {
                 ajax(seek_opt);
             }
         }
-        console.log('省份为：' + seek_opt.data.province);
     })
+
     sele_wrapper.addEventListener('click', function (e) {
         if (e.target.classList.contains('red_bg_d')) {
             if (e.target.city) {
@@ -487,11 +525,6 @@ window.addEventListener('load', function () {
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
-        console.log('城市为：' + seek_opt.data.city);
-        console.log('县区为：' + seek_opt.data.area);
-
-
-        console.log(seek_opt);
     })
 
     theme_d.addEventListener('click', function (e) {
@@ -500,7 +533,6 @@ window.addEventListener('load', function () {
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
-        console.log(seek_opt.data.itemCategory);
     })
 
     people_d.addEventListener('click', function (e) {
@@ -510,18 +542,16 @@ window.addEventListener('load', function () {
             ajax(seek_opt);
             // seek_opt.data.numberScope=e.target.index;
         }
-        console.log('人数范围区间为：' + seek_opt.data.numberScope);
     })
 
     search_d.onchange = function () {
         if (span_center.innerText == '项目名称' && search_d.value.trim() != '') {
-            // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
-            seek_opt.data.itemTitle = this.value;
+            seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:seek_opt.data.itemTitle = this.value;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
         if (span_center.innerText == '项目编号' && search_d.value.trim() != '') {
-            seek_opt.data.itemId = this.value;
+            seek_opt.data.itemId? delete seek_opt.data.itemId:seek_opt.data.itemId = this.value;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
@@ -529,13 +559,12 @@ window.addEventListener('load', function () {
 
     search_d_1.onchange = function () {
         if (span_center_1.innerText == '队伍名称' && this.value.trim() != '') {
-            // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
-            seek_opt.data.teamName = this.value;
+            seek_opt.data.teamName? delete seek_opt.data.teamName:seek_opt.data.teamName = this.value;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
         if (span_center_1.innerText == '队伍编号' && this.value.trim() != '') {
-            seek_opt.data.teamId = this.value;
+            seek_opt.data.teamId? delete seek_opt.data.teamId:seek_opt.data.teamId = this.value;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
