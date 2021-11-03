@@ -254,6 +254,7 @@
                                             <label for="my_file" class="my_label">
                                                 <img src="../../images/up.png" class="file_img">
                                                 <p class="file_p">点击此处上传图片</p>
+                                                <input type="submit" id="passive_click" hidden>
                                             </label>
                                             <input type="file" name="cover" id="my_file">
                                         </form> 
@@ -1375,6 +1376,75 @@
     </script>
      <!-- 管理界面的渲染 -->
      <script> 
+
+var obj_test_2={
+        "code": 200, 
+         
+        "message": "操作成功", 
+         
+        "success": true, 
+         
+        "data": {
+        "pageSize": 3, 
+         
+        "pageNum": 1, 
+         
+        "total": 3, 
+         
+        "size": 3, 
+         
+        "pages": 1, 
+         
+        "list": [
+        {
+        "listId": 5, 
+         
+        "type": false, 
+         
+        "typeName": "队伍", 
+         
+        "targetId": 1, 
+         
+        "name": "天才队伍", 
+         
+        "location": "广东省" 
+         
+        },
+        {
+        "listId": 4, 
+         
+        "type": true, 
+         
+        "typeName": "个人", 
+         
+        "targetId": 2, 
+         
+        "name": "Java", 
+         
+        "location": "广东省广州市" 
+         
+        },
+        {
+        "listId": 3, 
+         
+        "type": true, 
+         
+        "typeName": "个人", 
+         
+        "targetId": 1, 
+         
+        "name": "common", 
+         
+        "location": "北京" 
+         
+        }
+        ] 
+         
+        } 
+         
+        }
+
+
         let manager_box=document.querySelector('.manager_box');
         function menber(data){
             let oSpan=document.querySelectorAll('.number_span')[0];
@@ -1398,8 +1468,8 @@
                     if(j==3){
                         // 用模板字符串时注意用innerHTML
                         let str=`
-                            <img src="${dele_url}">
-                            <span class="dele_r">删除</span>
+                            <img src="${dele_url}" class="click_dele">
+                            <span class="dele_r click_dele">删除</span>
                         `;
                         oDivj.innerHTML=str;
                         oDivj.classList.add('line_last');
@@ -1414,7 +1484,6 @@
 
         function apply(data){
             let oSpan=document.querySelectorAll('.number_span')[1];
-            oSpan.innerText=data.data.list.length;
             let table_ul=document.querySelectorAll('.table_ul')[1];
             for(let i=0;i<data.data.list.length;i++){
                 let agree_url='../../images/argee.png';
@@ -1437,37 +1506,25 @@
                     }
                     if(j==3){
                         // 用模板字符串时注意用innerHTML
-                        oDivj.classList.add('line_last');
                         let str=`
-                            <img src="${agree_url}">
-                            <span class="dele_r">同意</span>
-                            <img src="${dis_url}">
-                            <span class="dele_r">拒绝</span>
+                            <img src="${agree_url}" class="click_dele">
+                            <span class="dele_r click_dele">同意</span>
+                            <img src="${dis_url}" class="click_dele">
+                            <span class="dele_r click_dele">拒绝</span>
                         `;
                         oDivj.innerHTML=str;
+                        oDivj.classList.add('line_last');
                         console.log(oDivj);
                     }
                     oLi.appendChild(oDivj);
                 }
                 table_ul.appendChild(oLi);
+                oSpan.innerText=table_ul.children.length-1;
             }
             
         }
 
-         // 成员列表
-        // let manager_btn=document.querySelectorAll('.manager_btn');
-        // let find_id=document.querySelectorAll('.find_id');
-        // var p;
-        // for(let i=0;i<manager_btn.length;i++){
-        //     manager_btn[i].onclick=function(){
-        //         p=find_id[i].id;
-        //         // manager_box只有一个
-        //         manager_box.style.display='block';
-        //         // menber(obj_test1);
-        //     }
-        //
-        // }
-       
+        
         let title_li=document.querySelectorAll('.title_ul>li');
         let manager_tag=document.querySelectorAll('.manager_tag');
         let content_li=document.querySelectorAll('.content_tag>li');
@@ -1512,19 +1569,19 @@
 
                         }
                     })
-                    // alert(1);
                     // apply(obj_test_2);
                 }
             })
         }
 
         // 删除 同意 拒绝
-        // 数目要减一
        let table_ul=document.querySelectorAll('.table_ul');
+       let number_span=document.querySelectorAll('.number_span');
         for(let i=0;i<table_ul.length;i++){
             table_ul[i].addEventListener('click',function(e){
-                if(e.target.classList.contains('line_last')){
-                    e.target.parentElement.style.display='none';
+                if(e.target.classList.contains('click_dele')){
+                    e.target.parentElement.parentElement.remove();
+                    number_span[i].innerText=table_ul[i].children.length-1;
                 }
             })
         }
@@ -1534,10 +1591,16 @@
             manager_box.style.display='none';
         })
 
-        // 触发条件是啥来着 
+        
         var cover_photo;
         var my_pic=document.querySelectorAll('#my_pic')[0];
         let pic_label=document.querySelector('.my_label');
+        let passive_click=document.querySelectorAll('#passive_click')[0];
+        // 触发条件是submit
+        pic_label.addEventListener('click',()=>{
+            passive_click.click();
+        })
+
         iframeAjax({
             form: my_pic,
             callback: function (datas) {
