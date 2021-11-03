@@ -40,26 +40,14 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<TeamDTO> getTeamsByUserId(Integer userId) throws Exception {
-
-        List<Team> teams = teamDao.getTeamsByUserId(userId);
-        List<TeamDTO> teamDTOS = ConversionUtils.convertList(teams, TeamDTO.class);
-        for (TeamDTO teamDTO :
-                teamDTOS) {
-            teamDTO.setTeamAvatar(ResourcePathConstant.VIRTUAL_TEAM_COVER_BASE + teamDTO.getTeamAvatar());
-        }
-        return teamDTOS;
+    public Page<TeamDTO> getTeamsByUserId(Page<TeamDTO> page, Integer userId) throws Exception {
+        return teamDao.getTeamsByUserId(page, userId);
     }
 
     @Override
-    public List<TeamDTO> getUserJoinedTeam(Integer userId) throws Exception {
-        List<Team> teams = teamDao.getUserJoinedTeam(userId);
-        List<TeamDTO> teamDTOS = ConversionUtils.convertList(teams, TeamDTO.class);
-        for (TeamDTO teamDTO :
-                teamDTOS) {
-            teamDTO.setTeamAvatar(ResourcePathConstant.VIRTUAL_TEAM_COVER_BASE + teamDTO.getTeamAvatar());
-        }
-        return teamDTOS;
+    public Page<TeamDTO> getUserJoinedTeam(Page<TeamDTO> page, Integer userId) throws Exception {
+
+        return teamDao.getUserJoinedTeam(page, userId);
     }
 
 }

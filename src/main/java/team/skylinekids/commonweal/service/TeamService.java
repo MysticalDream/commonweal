@@ -53,7 +53,7 @@ public interface TeamService {
      * @return
      * @throws Exception
      */
-    List<TeamDTO> getTeamsByUserId(Integer userId) throws Exception;
+    Page<TeamDTO> getTeamsByUserId(Page<TeamDTO> page, Integer userId) throws Exception;
 
     /**
      * 获取用户加入的队伍
@@ -62,7 +62,7 @@ public interface TeamService {
      * @return
      * @throws Exception
      */
-    List<TeamDTO> getUserJoinedTeam(Integer userId) throws Exception;
+    Page<TeamDTO> getUserJoinedTeam(Page<TeamDTO> page, Integer userId) throws Exception;
 
 
 }

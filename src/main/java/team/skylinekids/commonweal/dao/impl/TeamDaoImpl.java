@@ -3,6 +3,7 @@ package team.skylinekids.commonweal.dao.impl;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.dao.TeamDao;
 import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
+import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.dto.TeamDTO;
@@ -157,18 +158,37 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
     }
 
     @Override
-    public List<Team> getTeamsByUserId(Integer userId) throws Exception {
-        Team team = new Team();
-        team.setUserId(userId);
-        return this.selectList(team);
+    public Page<TeamDTO> getTeamsByUserId(Page<TeamDTO> page, Integer userId) throws Exception {
+        String sqlCondition = " WHERE user_id=" + userId;
+        Integer integer = this.selectCountByCondition(sqlCondition, new ArrayList<>());
+        List<Team> teams = this.selectListByConditionString(sqlCondition + " LIMIT " + page.getStartRow() + "," + page.getPageSize(), new ArrayList<>());
+        page.setTotal(integer);
+        List<TeamDTO> teamDTOS = ConversionUtils.convertList(teams, TeamDTO.class);
+        for (TeamDTO teamDTO :
+                teamDTOS) {
+            teamDTO.setTeamAvatar(ResourcePathConstant.VIRTUAL_TEAM_COVER_BASE + teamDTO.getTeamAvatar());
+        }
+        page.setSize(teamDTOS.size());
+        page.setList(teamDTOS);
+        page.setPagesAuto();
+        return page;
     }
 
     @Override
-    public List<Team> getUserJoinedTeam(Integer userId) throws Exception {
-        String sql = "SELECT " + SqlUtils.getSelectColumnsByField(ReflectUtils.getAllFields(Team.class), true) + " FROM " + this.getTableName() + " WHERE team_id IN(SELECT team_id FROM team_and_user_map WHERE user_id=?)";
-        logger.info("===>   Preparing:" + sql);
-        logger.info("===>   Parameters:" + "[" + userId + "]");
-        return this.getListBean(JDBCUtils.getConnection(), sql, userId);
+    public Page<TeamDTO> getUserJoinedTeam(Page<TeamDTO> page, Integer userId) throws Exception {
+        String sql = " WHERE team_id IN(SELECT team_id FROM team_and_user_map WHERE user_id=? AND status=1)";
+        Integer count = this.selectCountByCondition(sql, List.of(userId));
+        page.setTotal(count);
+        List<Team> teams = this.selectListByConditionString(sql + " LIMIT " + page.getStartRow() + "," + page.getPageSize(), List.of(userId));
+        List<TeamDTO> teamDTOS = ConversionUtils.convertList(teams, team.skylinekids.commonweal.pojo.dto.TeamDTO.class);
+        for (TeamDTO teamDTO :
+                teamDTOS) {
+            teamDTO.setTeamAvatar(ResourcePathConstant.VIRTUAL_TEAM_COVER_BASE + teamDTO.getTeamAvatar());
+        }
+        page.setList(teamDTOS);
+        page.setSize(teamDTOS.size());
+        page.setPagesAuto();
+        return page;
     }
 
 }

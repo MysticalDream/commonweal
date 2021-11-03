@@ -76,7 +76,7 @@ public interface TeamDao {
      * @return
      * @throws Exception
      */
-    List<Team> getTeamsByUserId(Integer userId) throws Exception;
+    Page<TeamDTO> getTeamsByUserId(Page<TeamDTO> page, Integer userId) throws Exception;
 
     /**
      * 获取用户加入的队伍的id
@@ -85,6 +85,6 @@ public interface TeamDao {
      * @return
      * @throws Exception
      */
-    List<Team> getUserJoinedTeam(Integer userId) throws Exception;
+    Page<TeamDTO> getUserJoinedTeam(Page<TeamDTO> page, Integer userId) throws Exception;
 
 }

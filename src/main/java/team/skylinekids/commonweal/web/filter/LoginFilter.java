@@ -29,7 +29,6 @@ public class LoginFilter implements Filter {
         HttpInfoWrapper wrapper = new HttpInfoWrapper((HttpServletResponse) response, (HttpServletRequest) request, null);
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String requestURI = httpServletRequest.getRequestURI();
-
         if (urlSet.contains(requestURI) && !wrapper.isLogin()) {
             ((HttpServletResponse) response).sendRedirect("/pages/login/come.html");
             return;

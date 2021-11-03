@@ -459,16 +459,19 @@ window.addEventListener('load', function () {
     province_d.addEventListener('click', function (e) {
         if (e.target.classList.contains('move_span')) {
             e.target.province ? seek_opt.data.province = e.target.province : null;
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
         } else {
             if (e.target.parentElement.classList.contains("province_d")) {
                 delete seek_opt.data.province;
                 delete seek_opt.data.city;
                 delete seek_opt.data.area;
+                seek_opt.data.pageNum = 1;
+                ajax(seek_opt);
             }
         }
         console.log('省份为：' + seek_opt.data.province);
     })
-
     sele_wrapper.addEventListener('click', function (e) {
         if (e.target.classList.contains('red_bg_d')) {
             if (e.target.city) {
@@ -481,24 +484,30 @@ window.addEventListener('load', function () {
             } else {
                 delete seek_opt.data.area;
             }
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
         }
         console.log('城市为：' + seek_opt.data.city);
         console.log('县区为：' + seek_opt.data.area);
-        seek_opt.data.pageNum = 1;
-        ajax(seek_opt);
+
+
         console.log(seek_opt);
     })
 
     theme_d.addEventListener('click', function (e) {
         if (e.target.classList.contains('item_d')) {
             seek_opt.data.itemCategory = e.target.innerText;
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
         }
         console.log(seek_opt.data.itemCategory);
     })
 
     people_d.addEventListener('click', function (e) {
         if (e.target.classList.contains('peo_d')) {
-            e.target.index == 0 ? null : seek_opt.data.numberScope = e.target.index;
+            e.target.index == 0 ?delete seek_opt.data.numberScope: seek_opt.data.numberScope = e.target.index;
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
             // seek_opt.data.numberScope=e.target.index;
         }
         console.log('人数范围区间为：' + seek_opt.data.numberScope);
@@ -508,9 +517,13 @@ window.addEventListener('load', function () {
         if (span_center.innerText == '项目名称' && search_d.value.trim() != '') {
             // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
             seek_opt.data.itemTitle = this.value;
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
         }
         if (span_center.innerText == '项目编号' && search_d.value.trim() != '') {
             seek_opt.data.itemId = this.value;
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
         }
     }
 
@@ -518,9 +531,13 @@ window.addEventListener('load', function () {
         if (span_center_1.innerText == '队伍名称' && this.value.trim() != '') {
             // trim(search_d.value)!=''?seek_opt.data.itemTitle=search_d.value:null;
             seek_opt.data.teamName = this.value;
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
         }
         if (span_center_1.innerText == '队伍编号' && this.value.trim() != '') {
             seek_opt.data.teamId = this.value;
+            seek_opt.data.pageNum = 1;
+            ajax(seek_opt);
         }
     }
 

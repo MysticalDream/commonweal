@@ -188,8 +188,8 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
     @Override
     public Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page, Integer id) throws Exception {
         String sqlCondition = " WHERE item_id IN(SELECT item_id FROM item_and_member_map WHERE target_id=" + id + " AND type=true AND status=1)";
-
         Integer integer = this.selectCountByCondition(sqlCondition, new ArrayList<>());
+        page.setTotal(integer);
         List<Item> items = this.selectListByConditionString(sqlCondition + " LIMIT " + page.getStartRow() + "," + page.getPageSize(), new ArrayList<>());
         List<ItemDTO> itemDTOS = new ArrayList<>(items.size());
         for (Item item :

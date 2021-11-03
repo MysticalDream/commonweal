@@ -132,9 +132,16 @@ public class TeamController {
     @AccessLevel
     @MyRequestPath(value = "/teams/user", type = {RequestMethod.GET})
     public String getUserOfTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Cookie userId = httpInfoWrapper.getCookie("userId");
-        List<TeamDTO> teamDTOS = teamService.getTeamsByUserId(Integer.parseInt(userId.getValue()));
-        return ResultUtils.getResult(ApiResultCode.SUCCESS, teamDTOS);
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+        Page<TeamDTO> page = new Page<>();
+        try {
+            page.setPageNum(httpInfoWrapper.getParameter("pageNum", Integer.class));
+            page.setPageSize(httpInfoWrapper.getParameter("pageSize", Integer.class));
+        } catch (Exception e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        Page<TeamDTO> teams = teamService.getTeamsByUserId(page, userId);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, teams);
     }
 
     /**
@@ -146,9 +153,16 @@ public class TeamController {
     @AccessLevel
     @MyRequestPath(value = "/teams/joined")
     public String getUserJoinedTeam(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Cookie userId = httpInfoWrapper.getCookie("userId");
-        List<TeamDTO> joinedTeam = teamService.getUserJoinedTeam(Integer.parseInt(userId.getValue()));
-        return ResultUtils.getResult(ApiResultCode.SUCCESS, joinedTeam);
+        Integer userId = httpInfoWrapper.getUser().getUserId();
+        Page<TeamDTO> page = new Page<>();
+        try {
+            page.setPageNum(httpInfoWrapper.getParameter("pageNum", Integer.class));
+            page.setPageSize(httpInfoWrapper.getParameter("pageSize", Integer.class));
+        } catch (Exception e) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        Page<TeamDTO> userJoinedTeam = teamService.getUserJoinedTeam(page, userId);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, userJoinedTeam);
     }
 
     /**
