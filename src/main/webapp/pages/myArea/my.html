@@ -32,13 +32,6 @@
                     <li class="my_move"><a href="../../index.html">首页</a></li>
                     <li class="special_d my_move">
                         <a href="../common/newPro.html">志愿项目</a>
-                        <!-- <div>
-                        <ul class="inner-ul_d">
-                            <li><a href="javascript:void(0)">创建项目</a></li>
-                            <li><a href="javascript:void(0)">自由组队</a></li>
-                            <li><a href="javascript:void(0)">成就展示</a></li>
-                        </ul>
-                    </div> -->
                     </li>
                     <li class="my_move"><a href="../common/expand.html">招募志愿者</a></li>
                     <li class="my_move"><a href="../common/agriculture.html">助农</a></li>
@@ -73,7 +66,7 @@
                                 <img src="../../images/slide2.png" alt="">
                                 <span>我加入的项目</span>
                             </li>
-                            <li>
+                            <li  class="plus_rota">
                                 <img src="../../images/slide3.png" alt="">
                                 <span>新建项目</span>
                             </li>
@@ -189,6 +182,7 @@
                   <div class="manager_box">
                     <h1>管理项目</h1>
                     <span class="delete_d">删除项目</span>
+                    <span class="backTo delete_d">返回</span>
                     <div class="manager_main">
                         <div class="manager_top">
                             <ul class="title_ul">
@@ -212,7 +206,7 @@
                                     </li>
                                     <li>
                                         待审核
-                                        <span class="number_span">
+                                        <span class="number_span wait_d">
                                             <!-- ${obj_pl.data.list.length} -->
                                         </span>
                                     </li>
@@ -263,8 +257,7 @@
                                             </label>
                                             <input type="file" name="cover" id="my_file">
                                         </form> 
-                                            <input type="text" id="achi_title"> 
-                                            <textarea placeholder="成就介绍" class="my_textarea"></textarea>
+                                        <textarea placeholder="成就介绍" class="my_textarea"></textarea>
                                     </div>
                                     <div></div>
                                 </div>
@@ -1211,8 +1204,8 @@
 
             }
         })
-        // render0(obj_test);
-        // getLi_cp(obj_test,ul_box1);
+        render0(obj_test);
+        getLi_cp(obj_test,ul_box1);
 
         let tag_d = document.querySelectorAll('.tag_d');
         let right_ds = document.querySelectorAll('.bottom_right_d');
@@ -1322,15 +1315,24 @@
 
 
         // 点击管理团队出现管理项目盒子
-            var arr=new Array();
-            function getId(box){
-                box.addEventListener('click',function(e){
-                    if(e.target.classList.contains('manager_btn')){
-                        arr.push(e.target.offsetParent.parentElement.parentElement.id);
-                        manager_box.style.display='block';
-                    }
-                })
-            }
+            // var arr=new Array();
+            // function getId(box){
+            //     box.addEventListener('click',function(e){
+            //         if(e.target.classList.contains('manager_btn')){
+            //             arr.push(e.target.offsetParent.parentElement.parentElement.id);
+            //             manager_box.style.display='block';
+            //         }
+            //     })
+            // }
+        function manager(box){
+            box.addEventListener('click',function(e){
+                if(e.target.classList.contains('manager_btn')){
+                    manager_box.style.display='block';
+                }
+            })
+        }
+
+        manager(ul_box1);
 
     </script>
      <!-- 管理界面的渲染 -->
@@ -1348,15 +1350,12 @@
                     oDivj.classList.add('line_div');
                     if(j==0){
                         oDivj.innerText=data.data.list[i].name;
-                        console.log(oDivj);
                     }
                     if(j==1){
                         oDivj.innerText=data.data.list[i].typeName;
-                        console.log(oDivj);
                     }
                     if(j==2){
                         oDivj.innerText=data.data.list[i].location;
-                        console.log(oDivj);
                     }
                     if(j==3){
                         // 用模板字符串时注意用innerHTML
@@ -1365,6 +1364,7 @@
                             <span class="dele_r">删除</span>
                         `;
                         oDivj.innerHTML=str;
+                        oDivj.classList.add('line_last');
                         console.log(oDivj);
                     }
                     oLi.appendChild(oDivj);
@@ -1399,7 +1399,7 @@
                     }
                     if(j==3){
                         // 用模板字符串时注意用innerHTML
-                        oDivj.classList.add('line_div_last');
+                        oDivj.classList.add('line_last');
                         let str=`
                             <img src="${agree_url}">
                             <span class="dele_r">同意</span>
@@ -1438,6 +1438,24 @@
                         },
                         success:function(data){
                             menber(data);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                    ajax({
+                        type:'get',
+                        url:'/items/apply/list/:'+p,
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageNum:1,
+                            pageSize:7,
+                        },
+                        success:function(data){
+                            let wait_d=document.querySelectorAll('.wait_d')[0];
+                            wait_d.innerText=data.data.list.length;
                         },
                         error:function(){
 
@@ -1499,16 +1517,20 @@
         }
 
         // 删除 同意 拒绝
+        // 数目要减一
        let table_ul=document.querySelectorAll('.table_ul');
         for(let i=0;i<table_ul.length;i++){
             table_ul[i].addEventListener('click',function(e){
-                if(e.target.classList.contains('dele_r')){
-                    e.target.parentElement.parentElement.style.display='none';
+                if(e.target.classList.contains('line_last')){
+                    e.target.parentElement.style.display='none';
                 }
             })
         }
 
-        
+        let backTo=document.querySelectorAll('.backTo')[0];
+        backTo.addEventListener('click',function(){
+            manager_box.style.display='none';
+        })
 
         // 触发条件是啥来着 
         var cover_photo;

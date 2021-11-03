@@ -489,7 +489,7 @@ window.addEventListener('load',function(){
     // }
     wrap_expand.addEventListener('click',function(){
         // 发送前好像还有加一句话,避免分页bug(财举修改的)
-        expand_opt.data.pageNum=1;
+        // expand_opt.data.pageNum=1;
         ajax(expand_opt);
     })
 })

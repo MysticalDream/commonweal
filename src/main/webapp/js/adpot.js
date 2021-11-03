@@ -154,6 +154,8 @@ window.addEventListener('load',function(){
     pet_opt.type = 'get';
     pet_opt.url = '/adopts';
     pet_opt.data = {};
+    pet_opt.data.pageNum = "1";
+    pet_opt.data.pageSize = "9";
     pet_opt.success = function (data) {
         // 渲染分页
         render(data);
@@ -165,9 +167,7 @@ window.addEventListener('load',function(){
     pet_opt.header = {
         'Content-Type': 'application/json'
     },
-    pet_opt.data.pageNum = "1";
-    pet_opt.data.pageSize = "9";
-
+  
     // 页面加载第一次发送数据
     ajax(pet_opt);
 
@@ -185,7 +185,6 @@ window.addEventListener('load',function(){
                 wrap:adpot_page,
                 changePage: function (page) {
                     pet_opt.data.pageNum = page;
-                    console.log(pet_opt.success);
                    ajax(pet_opt);
                 }
             });
