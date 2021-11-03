@@ -16,6 +16,7 @@ import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
+import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.http.Part;
@@ -104,12 +105,9 @@ public class AchievementController {
      * @param httpInfoWrapper
      * @return
      */
+    @AccessLevel
     @MyRequestPath(value = "/achievements/cover", type = {RequestMethod.POST})
     public String uploadAchievementCover(HttpInfoWrapper httpInfoWrapper) {
-        //验证登录
-//        if (!httpInfoWrapper.isLogin()) {
-//            return ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED);
-//        }
         Part coverPart = httpInfoWrapper.getPart("achievement_cover");
         if (coverPart == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
