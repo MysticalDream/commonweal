@@ -35,6 +35,7 @@
                 <li class="choice"><a href="#">首页</a></li>
                 <li><a href="pages/common/newPro.html">志愿项目</a></li>
                 <li><a href="pages/common/expand.html">招募志愿者</a></li>
+                <li><a href="pages/common/show.html">风采展示</a></li>
                 <li><a href="pages/common/agriculture.html">助农</a></li>
                 <li><a href="pages/common/adpot.html">领养动物</a></li>
                 <li><a href="#">关爱儿童</a></li>
@@ -416,40 +417,6 @@
         <a href="javascript:void(0)" class="menu-item"><span>招兵买马</span></a>
     </nav>
     <script src="./js/nav.js"></script>
-    <!-- <script>
-        ; !function (win) {
-            //导航
-            var navDivs = $('.menu-item');
-            //设置下标
-            Array.from(navDivs).forEach((e, index) => {
-                e.addEventListener("click", () => {
-                    curIndex = index;
-                    wrap.className = 'wrap active' + curIndex;
-                })
-            });
-
-            wrap.addEventListener('mousewheel', mo);
-            function mo(e) {
-                e.deltaY < 0 ? up() : down();
-                go();
-                //移除监听 避免频繁触发
-                wrap.removeEventListener('mousewheel', mo);
-                setTimeout(function () { wrap.addEventListener('mousewheel', mo) }, 500);
-
-            };
-            function up() {
-                curIndex = --curIndex < 0 ? 0 : curIndex;
-
-            }
-            function down() {
-                curIndex = ++curIndex == al.length ? al.length - 1 : curIndex;
-            }
-            function go() {
-                wrap.className = 'wrap active' + curIndex;
-            };
-
-        }(window);
-    </script> -->
 </body>
 
 </html>
