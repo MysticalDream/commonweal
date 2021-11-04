@@ -198,5 +198,14 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         return this.selectOne(item);
     }
 
+    @Override
+    public String getItemNameById(Integer id) throws Exception {
+        String s = "SELECT item_title FROM " + this.getTableName() + " WHERE item_id=" + id;
+        logger.info("===>   Preparing:" + s);
+        logger.info("===>   Parameters:" + "[]");
+        String singleValue = (String) this.getSingleValue(JDBCUtils.getConnection(), s);
+        return singleValue;
+    }
+
 
 }

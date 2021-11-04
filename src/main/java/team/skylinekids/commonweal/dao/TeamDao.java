@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.dao.core.GenericBaseDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.TeamDTO;
 import team.skylinekids.commonweal.pojo.po.Team;
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author MysticalDream
  */
-public interface TeamDao {
+public interface TeamDao extends GenericBaseDao<Team> {
     /**
      * 添加队伍
      *
@@ -87,4 +88,12 @@ public interface TeamDao {
      */
     Page<TeamDTO> getUserJoinedTeam(Page<TeamDTO> page, Integer userId) throws Exception;
 
+    /**
+     * 根据id获取团队名称
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    String getTeamNameById(Integer id) throws Exception;
 }

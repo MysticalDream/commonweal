@@ -72,11 +72,11 @@ public class AchievementController {
             Page<AchievementVO> achievementByLimit = achievementService.getAchievementVOByLimit(page, httpInfoWrapper.getUser().getUserId());
             return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementByLimit);
         }
-        Page<Achievement> page = new Page<>();
+        Page<AchievementVO> page = new Page<>();
         page.setPageSize(pageSize);
         page.setPageNum(pageNum);
-        Page<Achievement> achievementByLimit = achievementService.getAchievementByLimit(page);
-        return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementByLimit);
+        Page<AchievementVO> achievementVOPage = achievementService.getAchievementByLimit(page);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, achievementVOPage);
 
     }
 

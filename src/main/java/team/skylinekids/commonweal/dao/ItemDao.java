@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.dao.core.GenericBaseDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author MysticalDream
  */
-public interface ItemDao {
+public interface ItemDao extends GenericBaseDao<Item> {
     /**
      * 添加项目
      *
@@ -74,7 +75,7 @@ public interface ItemDao {
      * @return
      * @throws Exception
      */
-    Page<ItemDTO> getItemsByUserId(Page<ItemDTO> page,Integer id) throws Exception;
+    Page<ItemDTO> getItemsByUserId(Page<ItemDTO> page, Integer id) throws Exception;
 
     /**
      * 根据用户id获取用户参加的项目
@@ -83,7 +84,7 @@ public interface ItemDao {
      * @return
      * @throws Exception
      */
-    Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page,Integer id) throws Exception;
+    Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page, Integer id) throws Exception;
 
     /**
      * 获取项目更具item条件
@@ -93,4 +94,13 @@ public interface ItemDao {
      * @throws Exception
      */
     Item getItemByItemEntity(Item item) throws Exception;
+
+    /**
+     * 根据项目id获取项目名
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    String getItemNameById(Integer id) throws Exception;
 }

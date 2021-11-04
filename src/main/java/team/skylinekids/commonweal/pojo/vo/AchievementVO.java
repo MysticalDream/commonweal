@@ -54,9 +54,13 @@ public class AchievementVO {
     /**
      * 用户是否点赞 默认没有点赞
      */
-    private Boolean loved=false;
+    private Boolean loved = false;
+    /**
+     * 项目名称或队伍名称
+     */
+    private String name;
 
-    public AchievementVO(Integer id, String coverUrl, String introduction, Integer type, Integer typeId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber, String title, Boolean loved) {
+    public AchievementVO(Integer id, String coverUrl, String introduction, Integer type, Integer typeId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Long loveNumber, String title, Boolean loved, String name) {
         this.id = id;
         this.coverUrl = coverUrl;
         this.introduction = introduction;
@@ -67,6 +71,7 @@ public class AchievementVO {
         this.loveNumber = loveNumber;
         this.title = title;
         this.loved = loved;
+        this.name = name;
     }
 
     public AchievementVO() {
@@ -153,4 +158,11 @@ public class AchievementVO {
         this.loved = loved;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -1,14 +1,16 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.dao.core.GenericBaseDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
+import team.skylinekids.commonweal.pojo.vo.AchievementVO;
 
 import java.util.List;
 
 /**
  * @author MysticalDream
  */
-public interface AchievementDao {
+public interface AchievementDao extends GenericBaseDao<Achievement> {
     /**
      * 添加成就
      *
@@ -42,7 +44,7 @@ public interface AchievementDao {
      * @return
      * @throws Exception
      */
-    Page<Achievement> getAchievementByLimit(Page<Achievement> page, boolean sort) throws Exception;
+    Page<AchievementVO> getAchievementByLimit(Page<AchievementVO> page, boolean sort) throws Exception;
 
     /**
      * 根据所给状态更新点赞数

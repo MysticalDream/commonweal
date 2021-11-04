@@ -6,7 +6,9 @@ import team.skylinekids.commonweal.dao.core.MyGenericBaseDao;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Achievement;
+import team.skylinekids.commonweal.pojo.vo.AchievementVO;
 import team.skylinekids.commonweal.utils.JDBCUtils;
+import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class AchievementDaoImpl extends MyGenericBaseDao<Achievement> implements
     }
 
     @Override
-    public Page<Achievement> getAchievementByLimit(Page<Achievement> page, boolean sort) throws Exception {
+    public Page<AchievementVO> getAchievementByLimit(Page<AchievementVO> page, boolean sort) throws Exception {
         String s = sort ? "ASC" : "DESC";
         //条件语句
         String sqlCondition = " ORDER BY gmt_create " + s + " LIMIT " + page.getStartRow() + "," + page.getPageSize();
@@ -45,10 +47,11 @@ public class AchievementDaoImpl extends MyGenericBaseDao<Achievement> implements
                 achievements) {
             achievement.setCoverUrl(ResourcePathConstant.VIRTUAL_ACHIEVEMENT_IMG_BASE + achievement.getCoverUrl());
         }
+        List<AchievementVO> achievementVOS = ConversionUtils.convertList(achievements, AchievementVO.class);
         //总数
         page.setTotal(count);
         //设置列表
-        page.setList(achievements);
+        page.setList(achievementVOS);
         //设置当前数据大小
         page.setSize(achievements.size());
         //设置总页数

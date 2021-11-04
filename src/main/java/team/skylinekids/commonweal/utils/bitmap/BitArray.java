@@ -1,7 +1,5 @@
 package team.skylinekids.commonweal.utils.bitmap;
 
-import java.util.Map;
-
 /**
  * 位图
  * 点赞统计

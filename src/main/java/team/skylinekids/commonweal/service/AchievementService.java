@@ -38,7 +38,7 @@ public interface AchievementService {
      * @throws Exception
      * @deprecated
      */
-    Page<Achievement> getAchievementByLimit(Page<Achievement> page) throws Exception;
+    Page<AchievementVO> getAchievementByLimit(Page<AchievementVO> page) throws Exception;
 
     /**
      * 分页获取成就展示

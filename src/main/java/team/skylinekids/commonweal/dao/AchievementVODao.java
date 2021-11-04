@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.dao;
 
+import team.skylinekids.commonweal.dao.core.GenericBaseDao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.vo.AchievementVO;
 
@@ -8,7 +9,7 @@ import team.skylinekids.commonweal.pojo.vo.AchievementVO;
  *
  * @author MysticalDream
  */
-public interface AchievementVODao {
+public interface AchievementVODao extends GenericBaseDao<AchievementVO> {
     /**
      * 分页获取成就
      *

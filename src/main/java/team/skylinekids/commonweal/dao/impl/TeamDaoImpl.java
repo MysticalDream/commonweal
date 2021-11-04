@@ -177,4 +177,13 @@ public class TeamDaoImpl extends MyGenericBaseDao<Team> implements TeamDao {
         return page;
     }
 
+    @Override
+    public String getTeamNameById(Integer id) throws Exception {
+        String s = "SELECT team_name FROM " + this.getTableName() + " WHERE team_id=" + id;
+        logger.info("===>   Preparing:" + s);
+        logger.info("===>   Parameters:" + "[]");
+        String value = (String) this.getSingleValue(JDBCUtils.getConnection(), s);
+        return value;
+    }
+
 }
