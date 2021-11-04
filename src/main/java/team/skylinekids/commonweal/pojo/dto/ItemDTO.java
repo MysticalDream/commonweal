@@ -70,8 +70,18 @@ public class ItemDTO {
      * 项目状态 1---进行中 2----结束
      */
     private Integer status;
+    /**
+     * 项目分类
+     */
+    @IgnoreConvert
+    private String itemCategory1;
+    /**
+     * 项目地区
+     */
+    @IgnoreConvert
+    private String location;
 
-    public ItemDTO(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, Integer userId, String coverUrl, String duration, String itemCategory, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status) {
+    public ItemDTO(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, Integer userId, String coverUrl, String duration, String itemCategory, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status, String itemCategory1, String location) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemIntroduction = itemIntroduction;
@@ -86,6 +96,8 @@ public class ItemDTO {
         this.city = city;
         this.area = area;
         this.status = status;
+        this.itemCategory1 = itemCategory1;
+        this.location = location;
     }
 
     public ItemDTO() {
@@ -203,6 +215,22 @@ public class ItemDTO {
         this.status = status;
     }
 
+    public String getItemCategory1() {
+        return itemCategory1;
+    }
+
+    public void setItemCategory1(String itemCategory1) {
+        this.itemCategory1 = itemCategory1;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     @Override
     public String toString() {
         return "ItemDTO{" +
@@ -220,6 +248,8 @@ public class ItemDTO {
                 ", city='" + city + '\'' +
                 ", area='" + area + '\'' +
                 ", status=" + status +
+                ", itemCategory1='" + itemCategory1 + '\'' +
+                ", location='" + location + '\'' +
                 '}';
     }
 }

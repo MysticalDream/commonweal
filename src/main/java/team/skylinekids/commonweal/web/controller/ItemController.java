@@ -13,11 +13,13 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
 import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.po.ItemMemberMap;
+import team.skylinekids.commonweal.pojo.po.Province;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.pojo.vo.ItemMemberVO;
 import team.skylinekids.commonweal.service.ItemBOService;
 import team.skylinekids.commonweal.service.ItemMemberMapService;
 import team.skylinekids.commonweal.service.ItemService;
+import team.skylinekids.commonweal.service.ProvinceService;
 import team.skylinekids.commonweal.utils.CategoryUtils;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
@@ -46,6 +48,8 @@ public class ItemController {
     ItemMemberMapService itemMemberMapService = ServiceFactory.getItemMemberMapService();
 
     ItemBOService itemBOService = ServiceFactory.getItemBOService();
+
+    ProvinceService provinceService = ServiceFactory.getProvinceService();
 
     /**
      * 添加项目
@@ -121,6 +125,9 @@ public class ItemController {
         Item item = itemService.getItemById(pathVariable);
         ItemDTO itemDTO = ConversionUtils.convert(item, ItemDTO.class);
         itemDTO.setCoverUrl(ResourcePathConstant.VIRTUAL_ITEM_COVER_BASE + itemDTO.getCoverUrl());
+        itemDTO.setItemCategory1(CategoryUtils.getCategoryNameById(item.getItemCategoryId()));
+        Province province = new Province(item.getProvince(), item.getCity(), item.getArea());
+        itemDTO.setLocation(provinceService.getCityNameByCondition(province));
         return ResultUtils.getResult(ApiResultCode.SUCCESS, itemDTO);
 
     }
