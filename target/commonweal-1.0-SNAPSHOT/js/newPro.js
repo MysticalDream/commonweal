@@ -366,6 +366,7 @@ window.addEventListener('load', function () {
     seek_opt.data.pageSize = '9';
     ajax(seek_opt);
     // render(obj_w);
+    // renderDom(obj_w);
 
     var turnPage;
     var allpage;
@@ -458,10 +459,13 @@ window.addEventListener('load', function () {
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('nine_box');
+            oDiv.id=data.data.list[i].itemId;
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
-                <img src='${data.data.list[i].coverUrl}' class="check_more">
+                <a href="./detail.html?id=${oDiv.id}">
+                    <img src='${data.data.list[i].coverUrl}' class="check_more">
+                </a>
                 <h1>${data.data.list[i].itemTitle}</h1>
                 <p>${data.data.list[i].itemIntroduction}</p>
                 <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
@@ -479,6 +483,7 @@ window.addEventListener('load', function () {
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('nine_box');
+            oDiv.id=data.data.list[i].teamId;
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
@@ -595,6 +600,8 @@ window.addEventListener('load', function () {
 
             // 项目存在时删除队伍信息 队伍名存在时删除项目信息
             if (tag_li[i].index == 1) {
+                // 切换的时候把pageNum更改为1
+                seek_opt.data.pageNum=1;
                 seek_opt.url = '/teams/conditions';
                 seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
                 seek_opt.data.itemId ? delete seek_opt.data.itemId : null;
@@ -607,7 +614,7 @@ window.addEventListener('load', function () {
                 seek_opt.data.teamName ? delete seek_opt.data.teamName : null;
                 ajax(seek_opt);
             }
-            console.log(seek_opt);
+           
             for (let j = 0; j < tag_li.length; j++) {
                 tag_li[j].className = '';
                 tag_box[j].style.display = 'none';
@@ -637,5 +644,4 @@ window.addEventListener('load', function () {
         })
     }
 
-    // 点击跳转到链接
 })

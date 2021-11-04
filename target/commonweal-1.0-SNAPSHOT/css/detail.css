@@ -47,8 +47,16 @@
 }
 
 .detail_ul li p{
+    position: relative;
+    padding-top:10px;
+    padding-bottom: 10px;
     width: 80%;
-    height: 40px;
+    line-height: 35px;
+    font-family: SimSun;
+    text-indent: 2em;
+    letter-spacing: 4px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .detail_ul li div{
@@ -75,4 +83,5 @@
     letter-spacing: 3px;
     border-radius: 10px;
     color: #fff;
+    cursor: pointer;
 }
