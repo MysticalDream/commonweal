@@ -206,6 +206,31 @@ window.addEventListener('load',function(){
         turnpage_show.init();
     }
 
+     // 格式化时间
+     Date.prototype.Format = function (fmt) {
+        var o = {
+             //月份 
+             "M+": this.getMonth() + 1,
+             //日 
+             "d+": this.getDate(),
+             //小时 
+             "h+": this.getHours(),
+             //分
+             "m+": this.getMinutes(),
+             //秒 
+             "s+": this.getSeconds(),
+             //季度 
+             "q+": Math.floor((this.getMonth() + 3) / 3),
+             //毫秒 
+             "S": this.getMilliseconds()
+           };
+           if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+           for (var k in o)
+             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[
+               k]).substr(("" + o[k]).length)));
+           return fmt;
+   }
+
     // 数据内容的渲染 
     function renderDom(data) {
         // 容器的内容清空
@@ -213,14 +238,14 @@ window.addEventListener('load',function(){
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('show_item');
-            let url_1='../../images/beijing.jpg';
+            // let url_1='../../images/beijing.jpg';
             // let url_small='../../images/join.png';
             let url_left='../../images/left_tri.png';
             let url_ri='../../images/right_tri.png';
             // 注意点赞的图要放在like的背景图 这样点击了才可以换背景图（灰色like和红色like）
             let str1=`
             <div class="left_show_img">
-                <img src=${url_1}>
+                <img src=${data.data.list[i].coverUrl}>
                 <div class="triangle">
                     <img src="${url_left}">
                 </div>
@@ -234,7 +259,7 @@ window.addEventListener('load',function(){
                 <p>${data.data.list[i].introduction}</p>
                 <div class="decoration_red"></div>
                 <div class="bottom_text">
-                    <span>${data.data.list[i].gmtCreate}</span>
+                    <span>${new Date(data.data.list[i].gmtCreate).Format('yyyy年MM月dd日')}</span>
                     <div class="like">
                         <span>${data.data.list[i].loveNumber}</span>
                     <div>
@@ -254,11 +279,11 @@ window.addEventListener('load',function(){
                     <div class="like like_l">
                         <span>${data.data.list[i].loveNumber}</span>
                     </div>
-                    <span>${data.data.list[i].gmtCreate}</span>
+                    <span>${new Date(data.data.list[i].gmtCreate).Format('yyyy年MM月dd日')}</span>
                 </div>
             </div>
             <div class="right_show_img">
-                <img src=${url_1}>
+                <img src=${data.data.list[i].coverUrl}>
                 <div class="triangle tria_r">
                     <img src="${url_ri}">
                 </div>

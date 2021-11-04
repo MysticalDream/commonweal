@@ -198,6 +198,7 @@ window.addEventListener('load', function () {
             img.style.display = 'block';
         }
     })
+    
     xm_file.addEventListener('change', (e) => {
         if (xm_file.files.length)
             xm_submit.click();
