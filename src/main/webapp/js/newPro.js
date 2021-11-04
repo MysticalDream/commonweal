@@ -463,7 +463,7 @@ window.addEventListener('load', function () {
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
-                <a href="./detail.html?id=${oDiv.id}">
+                <a href="./detail.html?ddj=${oDiv.id}">
                     <img src='${data.data.list[i].coverUrl}' class="check_more">
                 </a>
                 <h1>${data.data.list[i].itemTitle}</h1>
