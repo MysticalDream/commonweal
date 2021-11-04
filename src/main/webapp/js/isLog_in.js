@@ -22,6 +22,9 @@ window.addEventListener('load', () => {
         // sign_in.classList.add("have_login");
         slideshow.appendChild(log_in);
         slideshow.appendChild(sign_in);
+        log_in.addEventListener('click', () => {
+            window.location.href = 'pages/myArea/my.html'
+        })
     } else {
         let log_in = document.createElement('div');
         log_in.classList.add('log_in');
