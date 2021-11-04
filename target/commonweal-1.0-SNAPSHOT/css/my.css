@@ -736,6 +736,8 @@ form span {
     height: 120px;
     border-radius: 10px;
     border:2px solid rgba(218, 213, 213, 1);
+    text-indent: 0.5em;
+
 }
 
 /* 渲染部分的样式 */

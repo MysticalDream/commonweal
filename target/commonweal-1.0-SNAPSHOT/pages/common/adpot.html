@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,9 +18,10 @@
     <script src="../../js/cookie.js"></script>
     <script src="../../js/isLog_in_adpot.js"></script>
 </head>
+
 <body>
-     <!-- 导航栏 -->
-     <div class="nav_s">
+    <!-- 导航栏 -->
+    <div class="nav_s">
         <div class="left"><span>创</span>益</div>
         <div class="middle">
             <ul class="nav_ul_s">
@@ -38,7 +40,7 @@
                 <li>
                     <a href="./agriculture.html">助农</a>
                 </li>
-                <li  class="pitch">
+                <li class="pitch">
                     <a href="./adpot.html">领养动物</a>
                 </li>
                 <li>
@@ -46,10 +48,10 @@
                 </li>
             </ul>
         </div>
-        <!-- <div class="right username">
-            <div class="pic"></div>
-            <span>common</span>
-        </div> -->
+        <div class="right username">
+            <!-- <div class="pic"></div>
+            <span>common</span> -->
+        </div>
     </div>
     <!-- 大照片 -->
     <div class="big_pic_s big_pic_adpot">
@@ -148,39 +150,40 @@
         </div>
     </div>
     <!-- 协议书 -->
-        <div class="adpot_mask_s">
-            <h2>领养动物协议</h2>
-            <p class="p_first">
-                请您在领养动物前，仔细阅读本协议，并确定我们对您个人信息的收集，处理等规则。如您不同意本协议的任何条款，则无法领养动物，如您选择领养动物，则代表您认可并接受本协议的全部内容。
-            </p>
-            <p>一、甲方将动物<span>免费</span>送给乙方领养。</p>
-            <p>二、乙方自愿接受甲方动物，并保证有经济能力饲养该动物。</p>
-            <p>三、乙方必须定时在平台如实反馈该动物的状况，<span>在领养后的每两个月必须上传1~2张该动物的生活照，如若在规定的期限内的吼30天还未上传，本平台工作人员将致电询问状况，如若在规定的期限内的后45天还未上传，本平台工作人员将上门查访。</span>
-            </p>
-            <p>四、若乙方不按规定履行领养义务，甲方有权单方面要求收回该动物。</p>
-            <p>五、本协议签订后的一周内，会有相关工作人员联系甲乙两方。</p>
-            <p>六、本协议自签订之日起生效，自生效日起，任何一方有违约的行为，另一方可单方面解除本合同。</p>
-            <hr>
-            <div class="bottom">
-                <button class="disagree">不同意</button>
-                <button class="agree">同意</button>
-            </div>
+    <div class="adpot_mask_s">
+        <h2>领养动物协议</h2>
+        <p class="p_first">
+            请您在领养动物前，仔细阅读本协议，并确定我们对您个人信息的收集，处理等规则。如您不同意本协议的任何条款，则无法领养动物，如您选择领养动物，则代表您认可并接受本协议的全部内容。
+        </p>
+        <p>一、甲方将动物<span>免费</span>送给乙方领养。</p>
+        <p>二、乙方自愿接受甲方动物，并保证有经济能力饲养该动物。</p>
+        <p>三、乙方必须定时在平台如实反馈该动物的状况，<span>在领养后的每两个月必须上传1~2张该动物的生活照，如若在规定的期限内的吼30天还未上传，本平台工作人员将致电询问状况，如若在规定的期限内的后45天还未上传，本平台工作人员将上门查访。</span>
+        </p>
+        <p>四、若乙方不按规定履行领养义务，甲方有权单方面要求收回该动物。</p>
+        <p>五、本协议签订后的一周内，会有相关工作人员联系甲乙两方。</p>
+        <p>六、本协议自签订之日起生效，自生效日起，任何一方有违约的行为，另一方可单方面解除本合同。</p>
+        <hr>
+        <div class="bottom">
+            <button class="disagree">不同意</button>
+            <button class="agree">同意</button>
         </div>
+    </div>
     <!-- 宠物协议书的JS -->
     <script>
-         function $(ele) {
+        function $(ele) {
             return document.querySelectorAll(ele);
         }
-        let disagree=$('.disagree')[0];
-        let agree=$('.agree')[0];
-        let adpot_mask_s=$('.adpot_mask_s')[0];
-        disagree.addEventListener('click',()=>{
+        let disagree = $('.disagree')[0];
+        let agree = $('.agree')[0];
+        let adpot_mask_s = $('.adpot_mask_s')[0];
+        disagree.addEventListener('click', () => {
             // 改成动画
-            adpot_mask_s.style.display='none';
+            adpot_mask_s.style.display = 'none';
         })
-        agree.addEventListener('click',()=>{
-            adpot_mask_s.style.display='none';
+        agree.addEventListener('click', () => {
+            adpot_mask_s.style.display = 'none';
         })
     </script>
 </body>
+
 </html>

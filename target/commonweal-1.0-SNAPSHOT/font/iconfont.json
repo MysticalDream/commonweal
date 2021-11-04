@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5798053",
+      "name": "皇冠",
+      "font_class": "crown",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "700793",
+      "name": "皇冠",
+      "font_class": "huangguan",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
       "icon_id": "6550618",
       "name": "上传",
       "font_class": "shangchuan",
