@@ -1665,9 +1665,10 @@
             }
         });
 
+        let my_file=document.querySelectorAll('#my_file')[0];
            // 触发条件是submit
-        item_cover.addEventListener('change', (e) => {
-        if (item_cover.files.length)
+        my_file.addEventListener('change', (e) => {
+        if (my_file.files.length)
             passive_click.click();
         })
 
