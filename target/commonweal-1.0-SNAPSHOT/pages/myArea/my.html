@@ -1650,7 +1650,7 @@
         var item_cover=document.querySelectorAll('#item_cover')[0];
         let pic_label=document.querySelector('.my_label');
         let passive_click=document.querySelectorAll('#passive_click')[0];
-
+        // 先发图片的请求 返回图片地址后渲染
         iframeAjax({
             form: item_cover,
             callback: function (datas) {
