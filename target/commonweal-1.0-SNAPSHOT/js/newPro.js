@@ -461,7 +461,7 @@ window.addEventListener('load', function () {
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
-                <img src='${data.data.list[i].coverUrl}'>
+                <img src='${data.data.list[i].coverUrl}' class="check_more">
                 <h1>${data.data.list[i].itemTitle}</h1>
                 <p>${data.data.list[i].itemIntroduction}</p>
                 <img src='${url_d_1}' class="le_dd"></img><span class="le_sp">${data.data.list[i].currentHeadcount}/${data.data.list[i].maximumNumberLimit}</span>
@@ -547,11 +547,13 @@ window.addEventListener('load', function () {
     search_d.onchange = function () {
         if (span_center.innerText == '项目名称' && search_d.value.trim() != '') {
             seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:seek_opt.data.itemTitle = this.value;
+            seek_opt.data.itemId? delete seek_opt.data.itemId:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
         if (span_center.innerText == '项目编号' && search_d.value.trim() != '') {
             seek_opt.data.itemId? delete seek_opt.data.itemId:seek_opt.data.itemId = this.value;
+            seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
@@ -560,11 +562,13 @@ window.addEventListener('load', function () {
     search_d_1.onchange = function () {
         if (span_center_1.innerText == '队伍名称' && this.value.trim() != '') {
             seek_opt.data.teamName? delete seek_opt.data.teamName:seek_opt.data.teamName = this.value;
+            seek_opt.data.teamId? delete seek_opt.data.teamId:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
         if (span_center_1.innerText == '队伍编号' && this.value.trim() != '') {
             seek_opt.data.teamId? delete seek_opt.data.teamId:seek_opt.data.teamId = this.value;
+            seek_opt.data.teamName? delete seek_opt.data.teamName:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
         }
@@ -632,4 +636,6 @@ window.addEventListener('load', function () {
             }
         })
     }
+
+    // 点击跳转到链接
 })

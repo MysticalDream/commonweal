@@ -250,13 +250,14 @@
                             <div class="manager_three">
                                 <div class="manager_table">
                                     <div class="achi_box">
-                                        <form action="/send/iframe" method="post" id="my_pic">
+                                        <form action="/cover" method="post" id="item_cover" enctype="multipart/form-data" accept=".jpg,.jpeg,.png">
                                             <label for="my_file" class="my_label">
                                                 <img src="../../images/up.png" class="file_img">
                                                 <p class="file_p">点击此处上传图片</p>
-                                                <input type="submit" id="passive_click" hidden>
+                                                <input type="file" name="achievement_cover" id="my_file" hidden>
+                                                <input type="hidden" name="part_name" value="achievement_cover">
+                                                <input type="submit" id="passive_click" name="提交图片" hidden>
                                             </label>
-                                            <input type="file" name="cover" id="my_file">
                                         </form> 
                                         <textarea placeholder="成就介绍" class="my_textarea"></textarea>
                                     </div>
@@ -848,7 +849,7 @@
                     <p class="right_icon_d">
                         <span>
                             <img src="../../images/管理员_角色管理.png" alt="">
-                            <span class="number_change manager_btn">管理团队</span>
+                            <span class="number_change manager_btn">我的团队</span>
                         </span>
                     </p>
                 </div>`;
@@ -875,7 +876,7 @@
                 let str=`<div class="inner_box inner_hide"></div>
                 <div class="out_box">
                     <div class="out_circle_d">
-                        <div><img src="${data.data.list[i].coverUrl}" style="width:100% height:100%"></div>
+                        <div><img src="${data.data.list[i].coverUrl}"></div>
                     </div>
                     <div class="pink_bottom">
                         <p>${data.data.list[i].teamIntroduction}</p>
@@ -916,7 +917,7 @@
                 let str=`<div class="inner_box inner_hide"></div>
                 <div class="out_box">
                     <div class="out_circle_d">
-                        <div><img src="${data.data.list[i].coverUrl}" style="width:100% height:100%"></div>
+                        <div><img src="${data.data.list[i].coverUrl}"></div>
                     </div>
                     <div class="pink_bottom">
                         <p>${data.data.list[i].teamIntroduction}</p>
@@ -1315,20 +1316,63 @@
         }
 
 
-        // 点击管理团队出现管理项目盒子
-            // var arr=new Array();
-            // function getId(box){
-            //     box.addEventListener('click',function(e){
-            //         if(e.target.classList.contains('manager_btn')){
-            //             arr.push(e.target.offsetParent.parentElement.parentElement.id);
-            //             manager_box.style.display='block';
-            //         }
-            //     })
-            // }
+            var obj_test_1={
+"code": 200, 
+ 
+"message": "操作成功", 
+ 
+"success": true, 
+ 
+"data": {
+"pageSize": 3, 
+ 
+"pageNum": 1, 
+ 
+"total": 2, 
+ 
+"size": 2, 
+ 
+"pages": 1, 
+ 
+"list": [
+{
+"listId": 5, 
+ 
+"type": false, 
+ 
+"typeName": "队伍", 
+ 
+"targetId": 1, 
+ 
+"name": "天才队伍", 
+ 
+"location": "广东省" 
+ 
+},
+{
+"listId": 4, 
+ 
+"type": true, 
+ 
+"typeName": "个人", 
+ 
+"targetId": 2, 
+ 
+"name": "Java", 
+ 
+"location": "广东省" 
+ 
+}
+] 
+ 
+} 
+ 
+}
         var p;
         function manager(box){
             box.addEventListener('click',function(e){
                 if(e.target.classList.contains('manager_btn')){
+                    // 获取li的id
                     p=e.target.offsetParent.parentElement.parentElement.id;
                     manager_box.style.display='block';
                     ajax({
@@ -1349,6 +1393,7 @@
 
                         }
                     })
+                    // menber(obj_test_1);
                     ajax({
                         type:'get',
                         url:'/items/apply/list/'+p,
@@ -1371,13 +1416,13 @@
             })
         }
 
+        //  只有我创建的项目才有管理项目这个盒子
         manager(ul_box1);
 
     </script>
      <!-- 管理界面的渲染 -->
      <script> 
-
-var obj_test_2={
+    var obj_test_2={
         "code": 200, 
          
         "message": "操作成功", 
@@ -1478,13 +1523,16 @@ var obj_test_2={
                     oLi.appendChild(oDivj);
                 }
                 table_ul.appendChild(oLi);
+                oSpan.innerText=table_ul.children.length-1;
             }
             
         }
 
+
         function apply(data){
-            let oSpan=document.querySelectorAll('.number_span')[1];
             let table_ul=document.querySelectorAll('.table_ul')[1];
+            let oSpan=document.querySelectorAll('.number_span')[1];
+          
             for(let i=0;i<data.data.list.length;i++){
                 let agree_url='../../images/argee.png';
                 let dis_url='../../images/disa.png';
@@ -1508,9 +1556,9 @@ var obj_test_2={
                         // 用模板字符串时注意用innerHTML
                         let str=`
                             <img src="${agree_url}" class="click_dele">
-                            <span class="dele_r click_dele">同意</span>
+                            <span class="dele_r click_dele argee_dd">同意</span>
                             <img src="${dis_url}" class="click_dele">
-                            <span class="dele_r click_dele">拒绝</span>
+                            <span class="dele_r click_dele disagree_dd">拒绝</span>
                         `;
                         oDivj.innerHTML=str;
                         oDivj.classList.add('line_last');
@@ -1521,7 +1569,6 @@ var obj_test_2={
                 table_ul.appendChild(oLi);
                 oSpan.innerText=table_ul.children.length-1;
             }
-            
         }
 
         
@@ -1541,6 +1588,7 @@ var obj_test_2={
             })
         }
 
+        var count_ajax=1;
         // 审核成员列表（同意or拒绝那个表）
         for(let i=0;i<content_li.length;i++){
             content_li[i].addEventListener('click',function(){
@@ -1551,7 +1599,8 @@ var obj_test_2={
                 manager_content[i].style.display='block';
                 this.classList.add('mana_cur');
                 if(i==1){
-                    ajax({
+                    if(count_ajax==1){
+                        ajax({
                         type:'get',
                         // p区分不同的数据
                         url:'/items/apply/list/'+p,
@@ -1569,7 +1618,8 @@ var obj_test_2={
 
                         }
                     })
-                    // apply(obj_test_2);
+                    }
+                    count_ajax=0;
                 }
             })
         }
@@ -1579,6 +1629,9 @@ var obj_test_2={
        let number_span=document.querySelectorAll('.number_span');
         for(let i=0;i<table_ul.length;i++){
             table_ul[i].addEventListener('click',function(e){
+                if(e.target.classList.contains('argee_dd')){
+                    alert('已同意');
+                }
                 if(e.target.classList.contains('click_dele')){
                     e.target.parentElement.parentElement.remove();
                     number_span[i].innerText=table_ul[i].children.length-1;
@@ -1586,6 +1639,7 @@ var obj_test_2={
             })
         }
 
+        // 返回
         let backTo=document.querySelectorAll('.backTo')[0];
         backTo.addEventListener('click',function(){
             manager_box.style.display='none';
@@ -1593,16 +1647,12 @@ var obj_test_2={
 
         
         var cover_photo;
-        var my_pic=document.querySelectorAll('#my_pic')[0];
+        var item_cover=document.querySelectorAll('#item_cover')[0];
         let pic_label=document.querySelector('.my_label');
         let passive_click=document.querySelectorAll('#passive_click')[0];
-        // 触发条件是submit
-        pic_label.addEventListener('click',()=>{
-            passive_click.click();
-        })
 
         iframeAjax({
-            form: my_pic,
+            form: item_cover,
             callback: function (datas) {
                 // img_up样式
                 console.log(datas);
@@ -1615,10 +1665,17 @@ var obj_test_2={
             }
         });
 
+        let my_file=document.querySelectorAll('#my_file')[0];
+           // 触发条件是submit
+        my_file.addEventListener('change', (e) => {
+        if (my_file.files.length)
+            passive_click.click();
+        })
+
         // 点击提交按钮触发提交信息和文本框的内容
         let send_d=document.querySelectorAll('.send_d')[0];
         let my_textarea=document.querySelectorAll('.my_textarea')[0];
-        let achi_title=document.querySelectorAll('.achi_title')[0];
+        // let achi_title=document.querySelectorAll('.achi_title')[0];
             send_d.addEventListener('click',function(){
                 ajax({
                     type:'post',    
@@ -1626,14 +1683,12 @@ var obj_test_2={
                     coverUrl:cover_photo,
                     // 文本域的value
                     introduction:my_textarea.value,
-                    title:achi_title.value.trim(),
                     header:{
                         'Content-Type':application/json
                     },
                     success:function(){
                         alert('上传成功');
                         my_textarea.value='';
-                        achi_title.value='';
                         pic_label.innerHTML='';
                         let img=document.createElement('img');
                         img.src="../../images/up.png";

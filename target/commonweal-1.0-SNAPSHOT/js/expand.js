@@ -395,13 +395,13 @@ window.addEventListener('load',function(){
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('expand_box');
-            let url_1='../../images/beijing.jpg';
+            // let url_1='../../images/beijing.jpg';
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let url_pai='../../images/pai.png';
             let str=`
             <div class="expand_imgbox">
-                <img src="${url_1}">
+                <img src="${data.data.list[i].coverUrl}">
             </div>
             <div>
                 <img src="${url_pai}">
