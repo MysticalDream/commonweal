@@ -1,0 +1,108 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.mask_join_in {
+    position: relative;
+    width: 650px;
+    height: 400px;
+    padding: 0px 30px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .25);
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: come 0.5s ease-in-out forwards;
+}
+
+@keyframes come {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.mask_join_in h2 {
+    font-weight: 400;
+    line-height: 35px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.mask_join_in p {
+    line-height: 25px;
+    font-size: 14px;
+    color: rgb(204, 66, 64);
+    text-align: center;
+}
+
+.mask_join_in ul {
+    position: relative;
+    height: 30px;
+}
+
+.mask_join_in ul>li {
+    position: absolute;
+    line-height: 25px;
+    font-size: 14px;
+}
+
+.mask_join_in ul>li.middle {
+    left: 200px;
+}
+
+.mask_join_in ul>li.right {
+    right: 25px;
+}
+
+.mask_join_in .content .middle {
+    left: 220px;
+}
+
+.mask_join_in .content .right {
+    top: 6px;
+    right: 33px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.mask_join_in .content .right.spc {
+    background-color: rgb(204, 66, 64);
+}
+
+.mask_join_in button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    height: 35px;
+    padding: 0 30px;
+    line-height: 35px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    transform: translateX(-50%);
+    color: #fff;
+    background-color: rgb(204, 66, 64);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

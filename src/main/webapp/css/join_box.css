@@ -1,0 +1,78 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.mask_join {
+    position: relative;
+    width: 60%;
+    height: 380px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .25);
+    animation: come 0.5s ease-in-out forwards;
+}
+
+@keyframes come {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.mask_join h2 {
+    font-weight: 400;
+    text-align: center;
+    line-height: 93px;
+}
+
+.mask_join button {
+    position: absolute;
+    height: 40px;
+    padding: 0 85px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(204, 66, 64);
+    letter-spacing: 2px;
+    font-size: 19px;
+    color: #fff;
+    line-height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.mask_join .first {
+    top: 130px;
+}
+
+.mask_join .second {
+    top: 230px;
+}
+
+.wait {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background-color: rgb(204, 66, 64);
+    padding: 0px 30px;
+    display: none;
+}
