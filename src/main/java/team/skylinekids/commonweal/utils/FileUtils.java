@@ -283,6 +283,27 @@ public class FileUtils {
         }
     }
 
+    public static boolean copyFile(InputStream inStream, OutputStream outStream) {
+        byte[] buff = new byte[1024];
+        int len;
+        try {
+            while ((len = inStream.read(buff)) != -1) {
+                outStream.write(buff, 0, len);
+            }
+            outStream.flush();
+            if (outStream != null) {
+                outStream.close();
+            }
+            if (inStream != null) {
+                inStream.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 剪切文件
      *

@@ -31,4 +31,9 @@ public class ProvinceDaoImpl extends MyGenericBaseDao<Province> implements Provi
         }
         return stringBuilder.toString();
     }
+
+    @Override
+    public Province getProvinceByCondition(Province province) throws Exception {
+        return this.selectOne(province);
+    }
 }

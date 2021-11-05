@@ -15,4 +15,9 @@ public class ProvinceServiceImpl implements ProvinceService {
     public String getCityNameByCondition(Province province) throws Exception {
         return provinceDao.getCityNameByCondition(province);
     }
+
+    @Override
+    public Province getProvinceByCondition(Province province) throws Exception {
+        return provinceDao.getProvinceByCondition(province);
+    }
 }

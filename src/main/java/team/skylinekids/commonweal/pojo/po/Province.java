@@ -56,6 +56,20 @@ public class Province implements Serializable {
         this.area = area;
     }
 
+    public Province(String province) {
+        this.province = province;
+        this.city = "0";
+        this.area = "0";
+        this.town = "0";
+    }
+
+    public Province(String province, String city) {
+        this.province = province;
+        this.city = city;
+        this.area = "0";
+        this.town = "0";
+    }
+
     public Long getId() {
         return id;
     }
