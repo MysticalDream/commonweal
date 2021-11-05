@@ -1,7 +1,9 @@
 window.addEventListener('load', () => {
-    let first = document.querySelector('.first');
-    let second = document.querySelector('.second');
+    let first = document.querySelector('.mask_join>.first');
+    let second = document.querySelector('.mask_join>.second');
     let wait = document.querySelector('.wait');
+    let mask_join=document.querySelector('.mask_join');
+    let mask_join_in=document.querySelector('.mask_join_in');
     // 获取项目id
     first.addEventListener('click', () => {
             wait.style.display = 'block';
@@ -13,7 +15,12 @@ window.addEventListener('load', () => {
         // let itemId = getCookie("itemId");
     second.addEventListener('click', () => {
         // 给个标记 然后跳转
-        window.location.href = 'join_in_box.html';
+        // window.location.href = 'join_in_box.html';
+        mask_join.style.display='none';
+        setTimeout(()=>{
+            mask_join_in.style.display='block';
+            mask_join_in.classList.add('drop_down');
+        },200)
         // 要获取团队人数
         // targetid!=2
     })

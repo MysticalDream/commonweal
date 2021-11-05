@@ -3,23 +3,34 @@
     margin: 0px;
 }
 
-body {
+body{
     position: relative;
+}
+
+.body_full {
+    visibility: hidden;
+    /* fixed定位 */
+    position:fixed;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, .6);
+    top:0px;
+    left:0px;
 }
 
 .mask_join {
-    position: relative;
+    position: absolute;
+    top:15%;
     width: 60%;
     height: 380px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .25);
     animation: come 0.5s ease-in-out forwards;
+    z-index: 999;
 }
 
 @keyframes come {
@@ -37,6 +48,7 @@ body {
     font-weight: 400;
     text-align: center;
     line-height: 93px;
+    letter-spacing: 2px;
 }
 
 .mask_join button {

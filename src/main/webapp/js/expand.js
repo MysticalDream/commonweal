@@ -349,7 +349,10 @@ window.addEventListener('load',function(){
     }
 
     //计算距离招募结束的时间
-    function getDistanceTime(endTime) {
+    function getDistanceTime(startTime,endTime) {
+        if(new Date(startTime)>new Date()){
+            return "待开始";
+        }
         var day = (new Date(endTime) - new Date()) / (86400000);
         return day < 0 ? "已结束" : day < 1 ? Math.floor(24 * day) + "小时" : Math.floor(day) + "天";
     }
@@ -412,7 +415,7 @@ window.addEventListener('load',function(){
                 <li>地点:${data.data.list[i].location}</li>
                 <li>招募开始时间:${new Date(data.data.list[i].begin).Format('yyyy年MM月dd日')}</li>
                 <li>招募结束时间:${new Date(data.data.list[i].end).Format('yyyy年MM月dd日')}</li>
-                <li>距离招募结束:${getDistanceTime(data.data.list[i].end)}</li>
+                <li>距离招募结束:${getDistanceTime(data.data.list[i].begin,data.data.list[i].end)}</li>
             </ul>
             <div class="foot_mes">
             <img src='${url_d_1}' class="le_dd">
@@ -437,7 +440,6 @@ window.addEventListener('load',function(){
                 delete expand_opt.data.area;
             }
         }
-        console.log('省份为：' + expand_opt.data.province);
     })
 
     // 城市县区
@@ -454,8 +456,6 @@ window.addEventListener('load',function(){
                 delete expand_opt.data.area;
             }
         }
-        console.log('城市为：' + seek_opt.data.city);
-        console.log('县区为：' + seek_opt.data.area);
     })
 
     // 主题
@@ -463,7 +463,6 @@ window.addEventListener('load',function(){
         if (e.target.classList.contains('item_d')) {
             expand_opt.data.recruitCategory = e.target.innerText;
         }
-        console.log(expand_opt.data.recruitCategory);
     })
 
     // 人数
@@ -471,7 +470,6 @@ window.addEventListener('load',function(){
         if (e.target.classList.contains('peo_d')) {
             e.target.index == 0 ? delete  expand_opt.data.numberScope: expand_opt.data.numberScope = e.target.index;
         }
-        console.log('人数范围区间为：' + expand_opt.data.numberScope);
     })
 
     // 招募状态
@@ -489,7 +487,8 @@ window.addEventListener('load',function(){
     // }
     wrap_expand.addEventListener('click',function(){
         // 发送前好像还有加一句话,避免分页bug(财举修改的)
-        // expand_opt.data.pageNum=1;
+        // 新加的491这一句
+        expand_opt.data.pageNum=1;
         ajax(expand_opt);
     })
 })
