@@ -13,7 +13,7 @@
 body {
     align-items: center;
     background-color: var(--white);
-    background: url("../images/login_.jpg");
+    background: url("../images/login_1.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -22,6 +22,17 @@ body {
     height: 100vh;
     place-items: center;
     margin: 0;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+#signIn {
+    background-color: #fff;
+    color: rgb(47, 57, 84);
 }
 
 .form__title {
@@ -48,7 +59,7 @@ body {
     overflow: hidden;
     position: relative;
     width: 100%;
-    margin-top: 35px;
+    margin-top: 72px;
 }
 
 .container__form {
@@ -99,7 +110,7 @@ body {
 
 .overlay {
     background-color: var(--lightblue);
-    background: url("../images/login_.jpg");
+    background: url("../images/login_2.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -154,7 +165,7 @@ body {
     /* border: 1px solid var(--blue); */
     /* color: var(--white); */
     background-color: RGBA(47, 57, 84, 1);
-    color:#fff;
+    color: #fff;
     cursor: pointer;
     font-size: 0.8rem;
     /* font-weight: bold; */
