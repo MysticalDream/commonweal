@@ -478,6 +478,10 @@ html {
     color: #fff;
 }
 
+.more_s.volunteer_more:hover a {
+    color: rgb(47, 56, 85);
+}
+
 .volunteer .volunteer_box {
     position: relative;
     margin: 0 auto;
@@ -573,7 +577,8 @@ html {
     /* overflow: hidden; */
 }
 
-.volunteer .volunteer_rd .search_cicle .search_box:hover input {
+
+/* .volunteer .volunteer_rd .search_cicle .search_box:hover input {
     width: 260px;
     padding: 0 10px;
 }
@@ -582,7 +587,7 @@ html {
     border-left: 0px;
     right: -10px;
     color: #bc604b;
-}
+} */
 
 .volunteer .volunteer_rd .search_cicle .search_box input {
     width: 0px;
@@ -741,6 +746,10 @@ html {
     text-decoration: none;
 }
 
+.more_s.show_more:hover a {
+    color: #f3532f;
+}
+
 .show .show_box {
     position: relative;
     margin: 0 auto;
@@ -894,6 +903,10 @@ html {
     text-decoration: none;
 }
 
+.more_s.recruitment_more:hover a {
+    color: rgb(47, 56, 85);
+}
+
 .recruitment .recruitment_box {
     position: relative;
     width: 1250px;
@@ -1011,6 +1024,10 @@ html {
 .more_s.agriculture_more a {
     color: rgb(47, 56, 85);
     text-decoration: none;
+}
+
+.more_s.agriculture_more:hover a {
+    color: #f3532f;
 }
 
 .agriculture .agriculture_box {
@@ -1140,7 +1157,7 @@ html {
     letter-spacing: 3px;
     font-weight: 700;
     /* font-family: 'DOUYU-Font'; */
-    font-weight: lighter;
+    font-weight: bold;
 }
 
 
@@ -1158,6 +1175,10 @@ html {
 .more_s.adopt_more a {
     color: #fff;
     text-decoration: none;
+}
+
+.more_s.adopt_more:hover a {
+    color: #f3532f;
 }
 
 .adopt .adopt_box {
@@ -1245,6 +1266,10 @@ html {
 .more_s.children_more a {
     color: rgb(47, 56, 85);
     text-decoration: none;
+}
+
+.more_s.children_more:hover a {
+    color: #f3532f;
 }
 
 .children .children_box {
@@ -1369,6 +1394,10 @@ html {
 .more_s.recruit_more a {
     color: rgb(47, 56, 85);
     text-decoration: none;
+}
+
+.more_s.recruit_more:hover a {
+    color: #f3532f;
 }
 
 .recruit .recruit_box {

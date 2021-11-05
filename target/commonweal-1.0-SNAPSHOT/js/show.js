@@ -238,6 +238,7 @@ window.addEventListener('load',function(){
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('show_item');
+            oDiv.id=data.data.list[i].id;
             // let url_1='../../images/beijing.jpg';
             // let url_small='../../images/join.png';
             let url_left='../../images/left_tri.png';
@@ -252,7 +253,7 @@ window.addEventListener('load',function(){
             </div>
             <div class="right_show_text">
                 <div class="show_title">
-                    <span>${data.data.list[i].title}</span>
+                    <span>${data.data.list[i].name}</span>
                     <span class="red_d"></span>
                     <span class="blue_d"></span>
                 </div>
@@ -291,6 +292,41 @@ window.addEventListener('load',function(){
             `;
             i%2==0? oDiv.innerHTML=str1:oDiv.innerHTML=str2;
             show_box.appendChild(oDiv);
+            // 点赞
+            oDiv.addEventListener('click',(e)=>{
+                if(e.target.classList.contains('like')){
+                    // ajax({
+                    //     type:'put',
+                    //     url:'/thumb',
+                    //     data:{
+                    //         achievementId:oDiv.id,
+                    //     },
+                    //     header:{
+                    //         'Content-Type':'application/json'
+                    //     },
+                    //     success:function(data){
+                    //         if(data.success){
+                                e.target.style.backgroundImage='../../images/like_red.png';
+                                e.target.classList.add('liked');
+                                e.target.children[0].innerText=e.target.children[0].innerText+1;
+                    //         }
+                    //     },
+                    //     error:function(){
+
+                    //     }
+                    // })
+                }
+                if(e.target.classList.contains('liked')){
+                    e.target.style.backgroundImage='../../images/like_grey.png';
+                    e.target.classList.remove('liked');
+                    e.target.children[0].innerText=e.target.children[0].innerText-1;
+                    if(e.target.children[0].innerText==0){
+                        e.target.children[0].innerText=0;
+                    }
+                }
+            })
         }
     }
+
+
 })
