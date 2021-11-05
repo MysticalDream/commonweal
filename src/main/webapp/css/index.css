@@ -1037,6 +1037,10 @@ html {
     width: 405px;
 }
 
+.recruitment .recruitment_nd .right>button.opa {
+    opacity: 0;
+}
+
 .recruitment .recruitment_nd .right>button {
     width: 150px;
     height: 46px;
