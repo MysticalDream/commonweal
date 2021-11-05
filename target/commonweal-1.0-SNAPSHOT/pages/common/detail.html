@@ -13,6 +13,7 @@
     <script src="../../js/ajax.js"></script>
     <script src="../../js/recruit.js"></script>
     <script src="../../js/recruit.js"></script>
+    <script src="../../js/ajax.js"></script>
 </head>
 
 <body>
@@ -190,16 +191,21 @@
             return reg.test(val);
         };
 
-        function getUrlParamObject(url) {
-            const params = url.slice(url.indexOf('?') + 1, url.length);
-            const group = params.split('&');
-            const data = new Object();
-            for (const index in group) {
-                const arr = group[index].split('=');
-                data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
-            }
-            return data;
-        };
+            // 获取拼接的参数
+            function isNumber(val) {
+                var reg = /^[0-9]+\.?[0-9]*$/;
+                return reg.test(val);
+            };
+            function getUrlParamObject(url) {
+                const params = url.slice(url.indexOf('?') + 1, url.length);
+                const group = params.split('&');
+                const data = new Object();
+                for (const index in group) {
+                    const arr = group[index].split('=');
+                    data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
+                }
+                return data;
+            };
 
         function getContent(data) {
             let str = `
@@ -240,11 +246,13 @@
             main_content.innerHTML = str;
         }
 
+            // getContent(obj_pp);
+
         ajax({
-            type: 'get',
-            url: '/items/' + getUrlParamObject(window.location.search),
-            header: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+            type:'get',
+            url:'/items/'+getUrlParamObject(window.location.search).ddj,
+            header:{
+                'Content-Type':'application/x-www-form-urlencoded'
             },
             success: function (data) {
                 getContent(data);
@@ -253,31 +261,8 @@
 
             }
         })
-//         var obj_pp={
-// "code": 200,
-// "message": "操作成功",
-// "success": true, //成功响应
-// "data": {
-// "itemId": 1,
-// "itemTitle": "“幸福星”心理关爱热线服务",
-// "itemIntroduction": "热线以关怀每个个体生命、提高全体民众心理素质为宗旨，通过专业的心理热线，化解民众内心矛盾冲突，积极引导社会大众由“心安”到“平安”，从源头防范和降低社会风险，杜绝“小问题”引发为“大事件”",
-// "gmtCreate": "2021-10-30 16:33:23",
-// "userId": 1,
-// "coverUrl": "/upload/images/avatars/item/da228578744c42abbba0eddaa19ab06b.jpg",
-// "duration": "1月",
-// "maximumNumberLimit": 10,
-// "currentHeadcount": 0, //当前人数
-// "province": "44",
-// "city": "01",
-// "area": "06",
-// "status": 1,
-// "itemCategory1": "社区服务",
-// "location": "广东省广州市天河区"
-// } //返回数据
-// }
-        // getContent(obj_pp);
     })
-</script>
+    </script>
 </body>
 
 </html>

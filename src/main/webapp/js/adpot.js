@@ -234,7 +234,7 @@ window.addEventListener('load',function(){
 
     adpot_box.addEventListener('click',function(e){
         if(e.target.classList.contains('take_care')){
-            e.target.style.display='block';
+            document.querySelector(".adpot_mask_s").style.display='block';
         }
     })
 

@@ -250,7 +250,7 @@
                             <div class="manager_three">
                                 <div class="manager_table">
                                     <div class="achi_box">
-                                        <form action="/cover" method="post" id="item_cover" enctype="multipart/form-data" accept=".jpg,.jpeg,.png">
+                                        <form action="/cover" method="post" id="achievement_cover" enctype="multipart/form-data" accept=".jpg,.jpeg,.png">
                                             <label for="my_file" class="my_label">
                                                 <img src="../../images/up.png" class="file_img">
                                                 <p class="file_p">点击此处上传图片</p>
@@ -1648,13 +1648,13 @@
 
         
         var cover_photo;
-        var item_cover=document.querySelectorAll('#item_cover')[0];
+        var achievement_cover=document.querySelectorAll('#achievement_cover')[0];
         let pic_label=document.querySelector('.my_label');
         let passive_click=document.querySelectorAll('#passive_click')[0];
         let img_up=document.querySelectorAll('.img_up')[0];
         // 先发图片的请求 返回图片地址后渲染
         iframeAjax({
-            form: item_cover,
+            form: achievement_cover,
             callback: function (datas) {
                 // img_up样式
                 console.log(datas);
@@ -1686,7 +1686,7 @@
                     // 文本域的value
                     introduction:my_textarea.value.trim(),
                     header:{
-                        'Content-Type':application/json
+                        'Content-Type':'application/json'
                     },
                     success:function(){
                         alert('上传成功');

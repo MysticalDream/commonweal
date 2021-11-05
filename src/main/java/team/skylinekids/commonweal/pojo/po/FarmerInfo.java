@@ -60,8 +60,12 @@ public class FarmerInfo implements Serializable {
      * 县区
      */
     private String area;
+    /**
+     * 乡镇
+     */
+    private String town;
 
-    public FarmerInfo(Integer id, String coverUrl, String introduction, String tel, String realName, LocalDateTime gmtCreate, LocalDateTime gmtModified, String location, String province, String city, String area) {
+    public FarmerInfo(Integer id, String coverUrl, String introduction, String tel, String realName, LocalDateTime gmtCreate, LocalDateTime gmtModified, String location, String province, String city, String area, String town) {
         this.id = id;
         this.coverUrl = coverUrl;
         this.introduction = introduction;
@@ -73,6 +77,7 @@ public class FarmerInfo implements Serializable {
         this.province = province;
         this.city = city;
         this.area = area;
+        this.town = town;
     }
 
     public FarmerInfo() {
@@ -166,4 +171,11 @@ public class FarmerInfo implements Serializable {
         this.area = area;
     }
 
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
 }

@@ -250,13 +250,14 @@
                             <div class="manager_three">
                                 <div class="manager_table">
                                     <div class="achi_box">
-                                        <form action="/cover" method="post" id="item_cover" enctype="multipart/form-data" accept=".jpg,.jpeg,.png">
+                                        <form action="/cover" method="post" id="achievement_cover" enctype="multipart/form-data" accept=".jpg,.jpeg,.png">
                                             <label for="my_file" class="my_label">
                                                 <img src="../../images/up.png" class="file_img">
                                                 <p class="file_p">点击此处上传图片</p>
                                                 <input type="file" name="achievement_cover" id="my_file" hidden>
                                                 <input type="hidden" name="part_name" value="achievement_cover">
                                                 <input type="submit" id="passive_click" name="提交图片" hidden>
+                                                <img src="" alt="" class="img_up">
                                             </label>
                                         </form> 
                                         <textarea placeholder="成就介绍" class="my_textarea"></textarea>
@@ -1647,21 +1648,22 @@
 
         
         var cover_photo;
-        var item_cover=document.querySelectorAll('#item_cover')[0];
+        var achievement_cover=document.querySelectorAll('#achievement_cover')[0];
         let pic_label=document.querySelector('.my_label');
         let passive_click=document.querySelectorAll('#passive_click')[0];
+        let img_up=document.querySelectorAll('.img_up')[0];
         // 先发图片的请求 返回图片地址后渲染
         iframeAjax({
-            form: item_cover,
+            form: achievement_cover,
             callback: function (datas) {
                 // img_up样式
                 console.log(datas);
-                pic_label.innerHTML='';
-                let img_up=document.createElement('img');
-                img_up.classList.add('img_up');
+                // let img_up=document.createElement('img');
+                // img_up.classList.add('img_up');
                 cover_photo=datas.data;
-                img.src = datas.data;
-                pic_label.appendChild(img_up);
+                img_up.src = datas.data;
+                // pic_label.appendChild(img_up);
+                img_up.style.display='block';
             }
         });
 
@@ -1682,18 +1684,18 @@
                     url:'/achievements',
                     coverUrl:cover_photo,
                     // 文本域的value
-                    introduction:my_textarea.value,
+                    introduction:my_textarea.value.trim(),
                     header:{
-                        'Content-Type':application/json
+                        'Content-Type':'application/json'
                     },
                     success:function(){
                         alert('上传成功');
                         my_textarea.value='';
-                        pic_label.innerHTML='';
-                        let img=document.createElement('img');
-                        img.src="../../images/up.png";
-                        let p=document.createElement('p');
-                        p.innerText='点击此处上传图片';
+                        img_up.style.display='none';
+                        // let img=document.createElement('img');
+                        // img.src="../../images/up.png";
+                        // let p=document.createElement('p');
+                        // p.innerText='点击此处上传图片';
                     }
                 })
             })

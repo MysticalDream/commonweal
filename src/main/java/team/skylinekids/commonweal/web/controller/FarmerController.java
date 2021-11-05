@@ -8,8 +8,10 @@ import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.FarmerInfo;
+import team.skylinekids.commonweal.pojo.po.Province;
 import team.skylinekids.commonweal.pojo.query.FarmerInfoCondition;
 import team.skylinekids.commonweal.service.FarmerInfoService;
+import team.skylinekids.commonweal.service.ProvinceService;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
@@ -26,6 +28,7 @@ import javax.servlet.http.Part;
 public class FarmerController {
     private final Logger logger = Logger.getLogger(FarmerController.class);
     FarmerInfoService farmerInfoService = ServiceFactory.getFarmerInfoService();
+    ProvinceService provinceService = ServiceFactory.getProvinceService();
 
     /**
      * 获取助农信息
@@ -38,6 +41,16 @@ public class FarmerController {
     public String getFarmerInfoList(HttpInfoWrapper httpInfoWrapper) throws Exception {
         FarmerInfoCondition farmerInfoCondition = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), FarmerInfoCondition.class);
         Page<FarmerInfo> farmerInfoList = farmerInfoService.getFarmerInfoList(farmerInfoCondition);
+
+        Province province = new Province();
+
+        for (FarmerInfo farmerInfo : farmerInfoList.getList()) {
+            province.setProvince(farmerInfo.getProvince());
+            province.setCity(farmerInfo.getCity());
+            province.setArea(farmerInfo.getArea());
+            province.setTown(farmerInfo.getTown());
+            farmerInfo.setLocation(provinceService.getCityNameByCondition(province));
+        }
         return ResultUtils.getResult(ApiResultCode.SUCCESS, farmerInfoList);
     }
 
