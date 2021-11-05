@@ -36,10 +36,10 @@ window.addEventListener('load', () => {
         slideshow.appendChild(log_in);
         slideshow.appendChild(sign_in);
         sign_in.addEventListener('click', () => {
-            window.location.href = 'pages/myArea/my.html';
+            window.location.href = 'pages/login/come.html';
         })
         log_in.addEventListener('click', () => {
-            window.location.href = 'pages/myArea/my.html';
+            window.location.href = 'pages/login/come.html';
         })
     }
 })
