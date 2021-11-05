@@ -35,5 +35,11 @@ window.addEventListener('load', () => {
         sign_in.innerHTML = '注册';
         slideshow.appendChild(log_in);
         slideshow.appendChild(sign_in);
+        sign_in.addEventListener('click', () => {
+            window.location.href = 'pages/myArea/my.html';
+        })
+        log_in.addEventListener('click', () => {
+            window.location.href = 'pages/myArea/my.html';
+        })
     }
 })
