@@ -655,9 +655,10 @@ window.addEventListener('load', function () {
     // 点击了我要加入出现以个人形式加入还是团队形式加入
     let pro_main=document.querySelectorAll('.pro_main')[0];
     let body_full=document.querySelectorAll('.body_full')[0];
-    pro_main.addEventListener('click',()=>{
+    pro_main.addEventListener('click',(e)=>{
         if(e.target.classList.contains('ri_sp')){
-            body_full.style.display='block';
+            body_full.style.visibility='visible';
+
         }
     }) 
 })
