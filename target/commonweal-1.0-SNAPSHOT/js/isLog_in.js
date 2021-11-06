@@ -47,17 +47,18 @@ window.addEventListener('load', () => {
             window.location.href = 'pages/myArea/my.html';
         })
         exit.addEventListener('click', () => {
-            username.remove(pic);
-            username.remove(span);
-            username.remove(operation);
-            username.remove(triangle);
-            let slideshow = document.querySelector('.slideshow');
-            let log_in = document.createElement('div');
-            log_in.innerText = "登录 | 注册";
-            log_in.classList.add('log_in');
-            slideshow.appendChild(log_in);
-            log_in.addEventListener('click', () => {
-                window.location.href = 'pages/login/come.html'
+            ajax({
+                type: 'delete',
+                url: '/sessions',
+                data: {},
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function(data) {
+                    if (data.success) {
+                        window.location.href = "pages/login/come.html";
+                    }
+                }
             })
         })
     } else { //用户未登录
