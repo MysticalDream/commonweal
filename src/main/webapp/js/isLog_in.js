@@ -15,14 +15,14 @@ window.addEventListener('load', () => {
         span.innerText = getCookie("username");
         let operation = document.createElement('div');
         operation.classList.add('.operation');
-        let my = document.createElement('.my');
+        let my = document.createElement('div');
         my.classList.add('my');
         my.innerHTML = '我的';
         let incoWode = document.createElement('i');
         incoWode.classList.add('iconfont');
         incoWode.classList.add('icon-wode');
         my.appendChild(incoWode);
-        let exit = document.createElement('.exit');
+        let exit = document.createElement('div');
         exit.classList.add('exit');
         exit.innerHTML = '退出';
         let incoTuichu = document.createElement('i');
