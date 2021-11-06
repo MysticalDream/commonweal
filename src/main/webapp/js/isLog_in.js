@@ -5,8 +5,10 @@ window.addEventListener('load', () => {
         let username = document.querySelector('.username');
         let pic = document.createElement('div');
         pic.classList.add('pic');
-        let img_u = document.querySelector('.user_img');
+        let img_u = document.createElement('img');
+        img_u.classList.add('user_img');
         img_u.src = getCookie("avatarUrl");
+        pic.appendChild(img_u);
         let span = document.createElement('span');
         span.innerText = getCookie("username");
         let operation = document.createElement('div');

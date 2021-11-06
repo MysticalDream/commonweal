@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../css/adpot.css">
     <link rel="stylesheet" href="../../css/project.css">
     <link rel="stylesheet" href="../../css/adpot_deal.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
     <script src="../../js/recruit.js"></script>
     <script src="../../js/ajax.js"></script>
     <script src="../../js/adpot.js"></script>
@@ -49,8 +50,15 @@
             </ul>
         </div>
         <div class="right username">
-            <!-- <div class="pic"></div>
-            <span>common</span> -->
+            <!-- <div class="pic">
+                <img src="../../images/cat1.jpg" alt="" class="user_img">
+            </div>
+            <span>common</span>
+            <div class="operation">
+                <div class="my"><i class="iconfont icon-wode"></i>我的</div>
+                <div class="exit"><i class="iconfont icon-tuichu"></i>退出</div>
+            </div>
+            <div class="triangle"></div> -->
         </div>
     </div>
     <!-- 大照片 -->
@@ -178,13 +186,13 @@
         let disagree = $('.disagree')[0];
         let agree = $('.agree')[0];
         let adpot_mask_s = $('.adpot_mask_s')[0];
-        let body_full=$('.body_full')[0];
+        let body_full = $('.body_full')[0];
         disagree.addEventListener('click', () => {
             // 改成动画
-            body_full.style.visibility= 'hidden';
+            body_full.style.visibility = 'hidden';
         })
         agree.addEventListener('click', () => {
-            body_full.style.visibility= 'hidden';
+            body_full.style.visibility = 'hidden';
         })
     </script>
 </body>
