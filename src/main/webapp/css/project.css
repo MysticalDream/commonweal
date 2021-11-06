@@ -171,6 +171,10 @@ li {
     letter-spacing: 2px;
 }
 
+.pro_main .sele_wrapper{
+    width: 95%;
+}
+
 .sele_wrapper {
     width: 90%;
     /* height: 300px; */
@@ -270,7 +274,7 @@ li {
     height: 25px;
     border-radius: 10px;
     margin-top: 25px;
-    margin-left: 45px;
+    margin-left: 40px;
     padding-left: 108px;
     outline: none;
     background-color: #F1EFEF;
@@ -305,22 +309,35 @@ li {
     position: relative;
     display: inline-block;
     width: 220px;
-    height: 250px;
+    height: 260px;
     margin-top: 65px;
-    margin-left: 45px;
+    margin-left: 75px;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(49, 39, 39, 0.11);
     cursor: pointer;
 }
 
+.nine_box:nth-child(1){
+    margin-left: 20px;
+}
+
+.nine_box:nth-child(4){
+    margin-left: 20px;
+}
+
+.nine_box:nth-child(7){
+    margin-left: 20px;
+}
+
 .nine_box img:first-child {
     width: 220px;
-    height: 60%;
+    height: 150px;
     position: absolute;
     top: 0px;
     left: 0px;
 }
+
 
 .nine_box img {
     position: absolute;
@@ -383,6 +400,7 @@ li {
 
 .tagged_box {
     position: relative;
+    margin-left:10px;
 }
 
 .left_em {
