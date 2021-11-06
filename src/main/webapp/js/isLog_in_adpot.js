@@ -2,7 +2,7 @@ window.addEventListener('load', () => {
     // 用户已登录
 
     let username = document.querySelector('.username');
-    if (getCookie("userid") != 'undefined') {
+    if (getCookie("userId") != 'undefined') {
         let pic = document.createElement('div');
         pic.classList.add('pic');
         let user_img = document.createElement('img');

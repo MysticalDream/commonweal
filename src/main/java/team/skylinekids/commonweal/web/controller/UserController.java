@@ -89,6 +89,7 @@ public class UserController {
         httpInfoWrapper.setCookies(ConversionUtils.oToStringMap(new UserDTO()), 0);
         //退出登录
         httpInfoWrapper.removeUserFromSession();
+        logger.info("退出登录");
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
 
     }

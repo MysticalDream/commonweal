@@ -1,8 +1,8 @@
 window.addEventListener('load', () => {
     // 用户已登录
 
-    if (getCookie("userid") != "undefined") {
-        let username = document.querySelector('.username');
+    let username = document.querySelector('.username');
+    if (getCookie("userId") != 'undefined') {
         let pic = document.createElement('div');
         pic.classList.add('pic');
         let user_img = document.createElement('img');
@@ -58,6 +58,14 @@ window.addEventListener('load', () => {
             log_in.addEventListener('click', () => {
                 window.location.href = 'pages/login/come.html'
             })
+        })
+    } else {
+        let log_in = document.createElement('div');
+        log_in.classList.add('log_in');
+        log_in.innerText = '登录 | 注册';
+        username.appendChild(log_in);
+        log_in.addEventListener('click', () => {
+            window.location.href = '../login/come.html';
         })
     }
 })
