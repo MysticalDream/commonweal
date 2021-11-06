@@ -1,11 +1,11 @@
-body .big_pic_show{
+body .big_pic_show {
     background: url(../images/bg_show.jpg) center -50px;
 }
 
-.show_main{
+.show_main {
     width: 75%;
     /* height: 900px; */
-    margin:15px auto;
+    margin: 15px auto;
     /* background-color: turquoise; */
 }
 
@@ -13,70 +13,70 @@ body .big_pic_show{
     width: 100%;
 } */
 
-.show_item{
+.show_item {
     position: relative;
     width: 93%;
     height: 260px;
     background-color: #f8f8f8;
     margin-bottom: 30px;
-    margin-left:63px;
+    margin-left: 63px;
     border-radius: 10px;
-    margin-top:50px;
+    margin-top: 50px;
     /* overflow: hidden; */
 }
 
-.show_item .left_show_img{
+.show_item .left_show_img {
     width: 50%;
     height: 100%;
     border-radius: 10px;
     position: absolute;
     overflow: hidden;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
 }
 
-.left_show_img img{
+.left_show_img img {
     width: 100%;
     height: 100%;
     position: absolute;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
 }
 
-.triangle{
+.triangle {
     position: absolute;
-    right:18px;
-    top:46%;
+    right: 18px;
+    top: 46%;
 }
 
-.triangle img{
+.triangle img {
     width: 24px;
     height: 28px;
 }
 
-.right_show_text{
+.right_show_text {
     position: absolute;
-    top:0px;
-    left:50%;
+    top: 0px;
+    left: 50%;
     width: 50%;
     height: 100%;
-    border-top-right-radius:10px;
-    border-bottom-right-radius:10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     box-shadow: 4px 0px 1px #CF583C;
 }
 
-.show_title{
+.show_title {
     position: relative;
     width: 170px;
-    right:-60%;
-    top:15%;
+    right: -60%;
+    top: 15%;
     font-family: SimSun;
-    font-size:17px;
+    font-size: 17px;
     letter-spacing: 4px;
     font-weight: 700;
 }
 
-.show_title span:nth-child(1){
+.show_title span:nth-child(1) {
     position: relative;
     display: inline-block;
     width: 116px;
@@ -84,95 +84,96 @@ body .big_pic_show{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    top:-2px;
-    left:8px;
+    top: -2px;
+    left: 8px;
 }
 
-.right_show_text p{
+.right_show_text p {
     position: relative;
     width: 320px;
     height: 100px;
     line-height: 35px;
-    top:22%;
-    left:9%;
+    top: 22%;
+    left: 9%;
     letter-spacing: 2px;
     font-family: SimSun;
-    color:#686464;
+    color: #686464;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
 }
 
-.decoration_red{
+.decoration_red {
     position: absolute;
     width: 50px;
     height: 5px;
     background-color: #CF583C;
     border-radius: 5px;
     bottom: 45px;
-    left:65px;
+    left: 65px;
 }
 
-.bottom_text{
+.bottom_text {
     position: absolute;
     width: 100%;
     height: 45px;
-    bottom:0px;
+    bottom: 0px;
     line-height: 45px;
     font-family: SimSun;
-    font-size:14px;
+    font-size: 14px;
+    user-select: none;
 }
 
-.bottom_text>span{
+.bottom_text > span {
     position: relative;
-    left:30px;
-    color:#767474;
+    left: 30px;
+    color: #767474;
 }
 
-.right_show_text .bottom_text>div{
+.right_show_text .bottom_text > div {
     display: inline-block;
     width: 30px;
-    height:45px;
+    height: 45px;
     position: absolute;
-    right:20px;
+    right: 20px;
     background: url(../images/like_grey.png) no-repeat 8px 14px;
-    padding-left:30px;
+    padding-left: 30px;
     cursor: pointer;
 }
 
 /* 图片在右侧的样式 */
 
-.show_item .right_show_img{
+.show_item .right_show_img {
     width: 50%;
     height: 100%;
     border-radius: 10px;
     position: absolute;
     overflow: hidden;
-    top:0px;
-    right:0px;
+    top: 0px;
+    right: 0px;
 }
 
-.right_show_img img{
+.right_show_img img {
     width: 100%;
     height: 100%;
     position: absolute;
-    top:0px;
-    right:0px;
+    top: 0px;
+    right: 0px;
     border-radius: 10px;
 }
 
-.show_title_l{
+.show_title_l {
     position: relative;
-    left:25px;
-    top:40px;
+    left: 25px;
+    top: 40px;
     font-family: SimSun;
-    font-size:17px;
+    font-size: 17px;
     letter-spacing: 4px;
     font-weight: 700;
 }
 
-.show_title_l span:nth-child(3){
+.show_title_l span:nth-child(3) {
     padding-left: 4px;
     display: inline-block;
     width: 116px;
@@ -182,75 +183,75 @@ body .big_pic_show{
     white-space: nowrap;
 }
 
-.left_show_text{
+.left_show_text {
     height: 100%;
     border-radius: 10px;
     box-shadow: -4px 0px 1px #CF583C;
 }
 
-.left_show_text p{
+.left_show_text p {
     position: relative;
     width: 320px;
     height: 100px;
-    top:60px;
-    left:45px;
+    top: 60px;
+    left: 45px;
     letter-spacing: 2px;
     font-family: SimSun;
-    color:#686464;
+    color: #686464;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
 }
 
-.left_show_text .bottom_text>div{
+.left_show_text .bottom_text > div {
     display: inline-block;
     width: 30px;
-    height:45px;
+    height: 45px;
     position: absolute;
-    left:40px;
+    left: 40px;
     background: url(../images/like_grey.png) no-repeat 8px 14px;
-    padding-left:30px;
+    padding-left: 30px;
     cursor: pointer;
 }
 
-.left_show_text .bottom_text{
+.left_show_text .bottom_text {
     width: 300px;
 }
 
-.left_show_text .bottom_text>span{
-    left:230px;
+.left_show_text .bottom_text > span {
+    left: 230px;
 }
 
-.left_show_text .red_l{
-    left:300px;
+.left_show_text .red_l {
+    left: 300px;
 }
 
-.right_show_img .tria_r{
+.right_show_img .tria_r {
     position: absolute;
     width: 24px;
     height: 28px;
-    top:123px;
-    left:-6px;
+    top: 123px;
+    left: -6px;
 }
 
-.red_d{
+.red_d {
     position: relative;
     display: inline-block;
     width: 4px;
     height: 17px;
-    background-color:#CD4140;
-    left:7px;
-    top:-5px;
+    background-color: #CD4140;
+    left: 7px;
+    top: -5px;
 
 }
 
-.blue_d{
+.blue_d {
     position: relative;
     display: inline-block;
     width: 4px;
     height: 10px;
     background-color: #3584D1;
-    top:-5px;
+    top: -5px;
 }
 

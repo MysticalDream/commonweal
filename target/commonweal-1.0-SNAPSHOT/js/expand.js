@@ -483,10 +483,10 @@ window.addEventListener('load',function(){
     // 招募状态
     expand_situ.addEventListener('click',function(e){
         if(e.target.classList.contains('situation')){
-            e.target.index!==undefined?expand_opt.data.status=e.target.index:null;
+            e.target.index!==undefined?expand_opt.data.status=e.target.index: delete expand_opt.data.status;
             expand_opt.data.pageNum=1;
             ajax(expand_opt);
-            expand_opt.data.status?delete expand_opt.data.status:null;
+            // expand_opt.data.status ? : null;
         }
     })
 
