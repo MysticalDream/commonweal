@@ -169,11 +169,11 @@ window.addEventListener('load',function(){
     show_opt.data.pageSize = "5";
 
     // 页面加载第一次发送数据
-    // ajax(show_opt);
+    ajax(show_opt);
 
     // 找个示例对象来处理
-    render(obj_show);
-    renderDom(obj_show);
+    // render(obj_show);
+    // renderDom(obj_show);
 
     var turnpage_show;
     // 分页组件的渲染
