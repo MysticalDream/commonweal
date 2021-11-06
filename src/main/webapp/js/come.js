@@ -89,7 +89,7 @@ signIn.addEventListener('click', () => {
     // 折行到这里说明格式是正确的 我们现在吧数据传给后端 判断该用户是否存在
     ajax({
         type: "post",
-        url: "https://mock.apipost.cn/app/mock/project/adb58a24-e8c9-40fc-9b10-2d8da179d593/sessions",
+        url: "/sessions",
         data: {
             "username": username2.value,
             "password": pwd2.value
@@ -105,8 +105,8 @@ signIn.addEventListener('click', () => {
             // setCookie("avatarUrl", datas.data.avatarUrl);
             // setCookie("location", datas.data.location);
             if (datas.success) {
-                // window.location.replace("/");
-                window.location.href = "../../index.html"
+                window.location.replace("/");
+                // window.location.href = "../../index.html"
             } else {
                 alert(datas.message);
             }
