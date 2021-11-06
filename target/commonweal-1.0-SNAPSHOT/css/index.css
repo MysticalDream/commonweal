@@ -1037,7 +1037,11 @@ html {
     width: 405px;
 }
 
-.recruitment .recruitment_nd .right button {
+.recruitment .recruitment_nd .right>button.opa {
+    opacity: 0;
+}
+
+.recruitment .recruitment_nd .right>button {
     width: 150px;
     height: 46px;
     margin-top: 30px;
@@ -1046,9 +1050,10 @@ html {
     border: none;
     border: 4px solid #d2543b;
     font-size: 14px;
-    opacity: 0;
+    opacity: 1;
     font-family: 'DOUYU-Font';
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 

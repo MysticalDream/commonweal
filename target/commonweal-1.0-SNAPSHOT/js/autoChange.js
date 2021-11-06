@@ -8,16 +8,16 @@ window.addEventListener('load',function(){
     }
     // let timeContin=true;
     let number = 0;
-        let timer = setInterval(function() {
-            // if (timeContin==true) {
-                for (let j = 0; j < imgs_d.length; j++) {
-                    imgs_d[j].style.display='none';
-                }
-                imgs_d[number].style.display='block';
-                number++;
-                if (number == imgs_d.length) {
-                    number = 0;
-                }
-            // }
-        }, 5000)
+    setInterval(function() {
+        // if (timeContin==true) {
+        for (let j = 0; j < imgs_d.length; j++) {
+            imgs_d[j].style.display='none';
+        }
+        imgs_d[number].style.display='block';
+        number++;
+        if (number == imgs_d.length) {
+            number = 0;
+        }
+        // }
+    }, 5000);
 })
