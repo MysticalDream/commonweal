@@ -260,7 +260,7 @@ window.addEventListener('load',function(){
                 <p>${data.data.list[i].introduction}</p>
                 <div class="decoration_red"></div>
                 <div class="bottom_text">
-                    <span>${new Date(data.data.list[i].gmtCreate).format('yyyy年MM月dd日')}</span>
+                    <span>${new Date(data.data.list[i].gmtCreate).Format('yyyy年MM月dd日')}</span>
                     <div class="like">
                         <span>${data.data.list[i].loveNumber}</span>
                     <div>
@@ -280,7 +280,7 @@ window.addEventListener('load',function(){
                     <div class="like like_l">
                         <span>${data.data.list[i].loveNumber}</span>
                     </div>
-                    <span>${new Date(data.data.list[i].gmtCreate).format('yyyy年MM月dd日')}</span>
+                    <span>${new Date(data.data.list[i].gmtCreate).Format('yyyy年MM月dd日')}</span>
                 </div>
             </div>
             <div class="right_show_img">
