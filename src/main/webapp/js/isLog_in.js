@@ -1,45 +1,76 @@
 window.addEventListener('load', () => {
-    // 判断有没有userid 有的话页面的登录和注册要改变 没有的话就不做任何操作
-    let slideshow = document.querySelector('.slideshow');
+    // 首先先请空吧
+    // 用户已登录
     if (getCookie("userId") !== "undefined") {
-        // 创建登录和注册两个圈圈
-        // let log_in = document.querySelector('.log_in');
-        // let sign_in = document.querySelector('.sign_in');
-        // 注册按钮
-        let log_in = document.createElement('div');
-        log_in.classList.add('log_in');
-        log_in.style.background = "rgba(255,255,255,0)"
-        let sign_in = document.createElement('div');
-        sign_in.classList.add('sign_in');
-        sign_in.classList.add('sign_in2');
-        sign_in.innerHTML = getCookie("username");
-        // sign_in.parentNode.removeChild(sign_in);
-        // 将登录按钮的内容换成头像
-        let img = document.createElement('img');
-        img.src = getCookie("avatarUrl");
-        log_in.appendChild(img);
-        // log_in.classList.add("have_login");
-        // sign_in.classList.add("have_login");
-        slideshow.appendChild(log_in);
-        slideshow.appendChild(sign_in);
-        log_in.addEventListener('click', () => {
-            window.location.href = 'pages/myArea/my.html'
+        let username = document.querySelector('.username');
+        let pic = document.createElement('div');
+        pic.classList.add('pic');
+        let img_u = document.createElement('img');
+        img_u.src = getCookie("avatarUrl");
+        img_u.style.width = "100%";
+        img_u.style.height = "100%";
+        img_u.style.borderRadius = "50%";
+        pic.appendChild(img_u);
+        let span = document.createElement('span');
+        span.innerText = getCookie("username");
+        let operation = document.createElement('div');
+        operation.classList.add('.operation');
+        let my = document.createElement('.my');
+        my.classList.add('my');
+        my.innerHTML = '我的';
+        let incoWode = document.createElement('i');
+        incoWode.classList.add('iconfont');
+        incoWode.classList.add('icon-wode');
+        my.appendChild(incoWode);
+        let exit = document.createElement('.exit');
+        exit.classList.add('exit');
+        exit.innerHTML = '退出';
+        let incoTuichu = document.createElement('i');
+        incoTuichu.classList.add('iconfont');
+        incoTuichu.classList.add('icon-tuichu');
+        exit.appendChild(incoTuichu);
+        operation.appendChild(my);
+        operation.appendChild(exit);
+        let triangle = document.createElement('div');
+        triangle.classList.add('triangle');
+        username.appendChild(pic);
+        username.appendChild(span);
+        username.appendChild(operation);
+        username.appendChild(triangle);
+        pic.addEventListener('mousemove', () => {
+            operation.style.display = 'block';
+            triangle.style.display = 'block';
         })
-    } else {
-        let log_in = document.createElement('div');
-        log_in.classList.add('log_in');
-        log_in.style.background = '#fff';
-        log_in.innerHTML = '登录';
-        let sign_in = document.createElement('div');
-        sign_in.classList.add('sign_in');
-        sign_in.innerHTML = '注册';
-        slideshow.appendChild(log_in);
-        slideshow.appendChild(sign_in);
-        sign_in.addEventListener('click', () => {
-            window.location.href = 'pages/login/come.html';
+        pic.addEventListener('mouseout', () => {
+            operation.style.display = 'none';
+            triangle.style.display = 'none';
         })
+        my.addEventListener('click', () => {
+            window.location.href = 'pages/myArea/my.html';
+        })
+        exit.addEventListener('click', () => {
+            username.remove(pic);
+            username.remove(span);
+            username.remove(operation);
+            username.remove(triangle);
+            let slideshow = document.querySelector('.slideshow');
+            let log_in = document.createElement('div');
+            log_in.innerText = "登录 | 注册";
+            log_in.classList.add('log_in');
+            slideshow.appendChild(log_in);
+            log_in.addEventListener('click', () => {
+                window.location.href = 'pages/login/come.html'
+            })
+        })
+    } else { //用户未登录
+        let slideshow = document.querySelector('.slideshow');
+        let log_in = document.createElement('div');
+        log_in.innerText = "登录 | 注册";
+        log_in.classList.add('log_in');
+        slideshow.appendChild(log_in);
         log_in.addEventListener('click', () => {
-            window.location.href = 'pages/login/come.html';
+            window.location.href = 'pages/login/come.html'
         })
     }
+
 })
