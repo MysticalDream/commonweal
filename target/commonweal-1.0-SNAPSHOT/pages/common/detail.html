@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../../css/backtop.css">
     <link rel="stylesheet" href="../../css/recruit.css">
     <link rel="stylesheet" href="../../css/font.css">
     <link rel="stylesheet" href="../../css/detail.css">
@@ -181,6 +182,10 @@
         </ul>
     </div>
 </div>
+<!-- 置顶 -->
+<a id="button_back" title="返回顶部"></a>
+
+<script src="../../js/backtop.js"></script>
 
 <script>
     window.addEventListener('load', () => {
@@ -191,14 +196,14 @@
         };
 
         function getUrlParamObject(url) {
-             const params = url.slice(url.indexOf('?') + 1, url.length);
-             const group = params.split('&');
-             const data = new Object();
-             for (const index in group) {
-                 const arr = group[index].split('=');
-                 data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
-             }
-              return data;
+         const params = url.slice(url.indexOf('?') + 1, url.length);
+          const group = params.split('&');
+          const data = new Object();
+          for (const index in group) {
+            const arr = group[index].split('=');
+            data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
+          }
+           return data;
         };
 
         function getContent(data) {
