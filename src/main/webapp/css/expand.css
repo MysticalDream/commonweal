@@ -88,7 +88,7 @@ body .big_pic_expand{
     background-color:#fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 5px 5px 5px rgb(0,0,0,0.1);
 }
 
 .expand_box:nth-child(3){

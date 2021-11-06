@@ -64,7 +64,6 @@ body {
     border: none;
     border-radius: 5px;
     font-size: 14px;
-    transition: all 0.3s;
     cursor: pointer;
 }
 
