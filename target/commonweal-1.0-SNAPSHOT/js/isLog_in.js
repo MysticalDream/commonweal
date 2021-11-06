@@ -15,18 +15,22 @@ window.addEventListener('load', () => {
         operation.classList.add('operation');
         let my = document.createElement('div');
         my.classList.add('my');
-        my.innerHTML = '我的';
         let incoWode = document.createElement('i');
         incoWode.classList.add('iconfont');
         incoWode.classList.add('icon-wode');
+        let span_o = document.createElement('span');
+        span_o.innerText = '我的';
         my.appendChild(incoWode);
+        my.appendChild(span_o);
         let exit = document.createElement('div');
         exit.classList.add('exit');
-        exit.innerHTML = '退出';
         let incoTuichu = document.createElement('i');
         incoTuichu.classList.add('iconfont');
         incoTuichu.classList.add('icon-tuichu');
+        let span_o2 = document.createElement('span');
+        span_o2.innerText = '退出';
         exit.appendChild(incoTuichu);
+        exit.appendChild(span_o2);
         operation.appendChild(my);
         operation.appendChild(exit);
         let triangle = document.createElement('div');
@@ -44,7 +48,7 @@ window.addEventListener('load', () => {
             triangle.style.display = 'none';
         })
         my.addEventListener('click', () => {
-            window.location.href = 'pages/myArea/my.html';
+            window.location.href = '/pages/myArea/my.html';
         })
         exit.addEventListener('click', () => {
             ajax({
@@ -56,7 +60,16 @@ window.addEventListener('load', () => {
                 },
                 success: function(data) {
                     if (data.success) {
-                        window.location.href = "pages/login/come.html";
+                        window.location.href = "/pages/login/come.html";
+                    } else {
+                        let error_exit = document.querySelector('.error_exit');
+                        error_exit.style.display = 'block';
+                        let timer_exit = setTimeout(() => {
+                            if (timer_exit) {
+                                clearTimeout(timer_exit);
+                            }
+                            error_exit.style.display = 'none'
+                        }, 2000);
                     }
                 }
             })
@@ -68,7 +81,7 @@ window.addEventListener('load', () => {
         log_in.classList.add('log_in');
         slideshow.appendChild(log_in);
         log_in.addEventListener('click', () => {
-            window.location.href = 'pages/login/come.html'
+            window.location.href = '/pages/login/come.html'
         })
     }
 

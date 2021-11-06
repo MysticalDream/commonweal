@@ -94,16 +94,33 @@ window.addEventListener('load', function () {
     }
 
     // 鼠标滑过外层盒子时，里层盒子旋转
-    let out_box = this.document.querySelectorAll('.out_box');
-    let inner_box = this.document.querySelectorAll('.inner_hide');
-    console.log(out_box.length);
-    console.log(inner_box.length);
-    for (let i = 0; i < out_box.length; i++) {
-        out_box[i].addEventListener('mouseover', function () {
-            inner_box[i].classList.add('rotate_slowly');
-        })
-    }
+    // let out_box = this.document.querySelectorAll('.out_box');
+    // let inner_box = this.document.querySelectorAll('.inner_hide');
+    // console.log(out_box.length);
+    // console.log(inner_box.length);
+    // for (let i = 0; i < out_box.length; i++) {
+    //     out_box[i].addEventListener('mouseover', function () {
+    //         inner_box[i].classList.add('rotate_slowly');
+    //     })
+    // }
+    ;(function () {
+        function $(mat) {
+            return document.querySelectorAll(mat);
+        }
 
+        var pa = $('div.bottom_right_d.zI_d.right_first > ul')[0];
+        pa.addEventListener("mouseover", function (e) {
+            var np = e.target;
+            if (np.classList.contains("out_box")) {
+                np.previousElementSibling.classList.add('rotate_slowly');
+                const leaveFunc = function (e) {
+                    np.previousElementSibling.classList.remove('rotate_slowly');
+                    np.removeEventListener("mouseleave", leaveFunc);
+                };
+                np.addEventListener("mouseleave", leaveFunc);
+            }
+        });
+    })();
     let plus_d = this.document.querySelectorAll('.plus_rota')[0];
     let mask = this.document.querySelector('.mask_s');
     let form_ss = this.document.querySelector('.form_s');
@@ -198,7 +215,7 @@ window.addEventListener('load', function () {
             img.style.display = 'block';
         }
     })
-    
+
     xm_file.addEventListener('change', (e) => {
         if (xm_file.files.length)
             xm_submit.click();
@@ -273,4 +290,21 @@ window.addEventListener('load', function () {
         })
     })
 
-})
+});
+window.addEventListener("load", function () {
+    function $(mat) {
+        return document.querySelectorAll(mat);
+    }
+
+    const pic = $(" div.avator_circle")[0];
+    const name = $('div.avator_name > p')[0];
+    const location = $('div.avator_name > div > span:nth-child(2)')[0];
+    if (getCookie('userId') !== 'undefined') {
+        name.innerText = getCookie('username');
+        pic.style.backgroundImage = `url(${getCookie('avatarUrl')}`;
+        pic.style.backgroundSize = '100% 100%';
+        location.innerText = getCookie("location");
+    }
+
+
+});
