@@ -15,18 +15,18 @@ window.addEventListener('load', () => {
         operation.classList.add('operation');
         let my = document.createElement('div');
         my.classList.add('my');
-        my.innerHTML = '我的';
         let incoWode = document.createElement('i');
         incoWode.classList.add('iconfont');
         incoWode.classList.add('icon-wode');
         my.appendChild(incoWode);
+        my.innerHTML = '我的';
         let exit = document.createElement('div');
         exit.classList.add('exit');
-        exit.innerHTML = '退出';
         let incoTuichu = document.createElement('i');
         incoTuichu.classList.add('iconfont');
         incoTuichu.classList.add('icon-tuichu');
         exit.appendChild(incoTuichu);
+        exit.innerHTML = '退出';
         operation.appendChild(my);
         operation.appendChild(exit);
         let triangle = document.createElement('div');
@@ -57,6 +57,15 @@ window.addEventListener('load', () => {
                 success: function(data) {
                     if (data.success) {
                         window.location.href = "/pages/login/come.html";
+                    } else {
+                        let error_exit = document.querySelector('.error_exit');
+                        error_exit.style.display = 'block';
+                        let timer_exit = setTimeout(() => {
+                            if (timer_exit) {
+                                clearTimeout(timer_exit);
+                            }
+                            error_exit.style.display = 'none'
+                        }, 2000);
                     }
                 }
             })

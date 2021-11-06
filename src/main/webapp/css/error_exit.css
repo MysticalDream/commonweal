@@ -1,0 +1,25 @@
+.error_exit {
+    position: absolute;
+    top: 10px;
+    left: 43%;
+    height: 40px;
+    line-height: 40px;
+    width: 200px;
+    text-align: center;
+    background-color: rgb(188, 96, 75);
+    color: #fff;
+    z-index: 15;
+    animation: come_error 0.5s forwards;
+    display: none;
+}
+
+@keyframes come_error {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
