@@ -43,7 +43,7 @@ window.addEventListener('load', () => {
             triangle.style.display = 'none';
         })
         my.addEventListener('click', () => {
-            window.location.href = 'pages/myArea/my.html';
+            window.location.href = '/pages/myArea/my.html';
         })
         exit.addEventListener('click', () => {
             username.remove(pic);
@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
             log_in.classList.add('log_in');
             slideshow.appendChild(log_in);
             log_in.addEventListener('click', () => {
-                window.location.href = 'pages/login/come.html'
+                window.location.href = '/pages/login/come.html'
             })
         })
     } else {
@@ -65,7 +65,7 @@ window.addEventListener('load', () => {
         log_in.innerText = '登录 | 注册';
         username.appendChild(log_in);
         log_in.addEventListener('click', () => {
-            window.location.href = '../login/come.html';
+            window.location.href = '/../login/come.html';
         })
     }
 })

@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
             triangle.style.display = 'none';
         })
         my.addEventListener('click', () => {
-            window.location.href = 'pages/myArea/my.html';
+            window.location.href = '/pages/myArea/my.html';
         })
         exit.addEventListener('click', () => {
             ajax({
@@ -56,7 +56,7 @@ window.addEventListener('load', () => {
                 },
                 success: function(data) {
                     if (data.success) {
-                        window.location.href = "pages/login/come.html";
+                        window.location.href = "/pages/login/come.html";
                     }
                 }
             })
@@ -68,7 +68,7 @@ window.addEventListener('load', () => {
         log_in.classList.add('log_in');
         slideshow.appendChild(log_in);
         log_in.addEventListener('click', () => {
-            window.location.href = 'pages/login/come.html'
+            window.location.href = '/pages/login/come.html'
         })
     }
 
