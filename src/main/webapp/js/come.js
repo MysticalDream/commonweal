@@ -36,45 +36,45 @@ fistForm.addEventListener("submit", (e) => e.preventDefault());
 secondForm.addEventListener("submit", (e) => e.preventDefault());
 // 点击注册按钮
 signUp.addEventListener('click', () => {
-    // 先用正则表达式判断用户名 地区 电话 密码是否合法
-    if (!reg1.test(username.value)) {
-        alert("用户名格式错误");
-        return false;
-    }
-    if (!reg2.test(pwd.value) || !reg2.test(pwd3.value)) {
-        alert("密码格式错误");
-        return false;
-    }
-    if (!reg3.test(phone.value)) {
-        alert("电话格式错误");
-        return false;
-    }
-    // 执行到这里说明格式是正确的 这个时候可以将数据传给后台了
-    ajax({
-        type: "get",
-        url: "/tokens/signup",
-        success: function (response) {
-            ajax({
-                type: "post",
-                url: "/users",
-                data: {
-                    "username": username.value,
-                    "password1": pwd.value,
-                    "password2": pwd3.value,
-                    "tel": phone.value,
-                    "location": area.value
-                },
-                header: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    success: function (datas) {
-                        console.log(datas);
-                    }
-                }
-            })
+        // 先用正则表达式判断用户名 地区 电话 密码是否合法
+        if (!reg1.test(username.value)) {
+            alert("用户名格式错误");
+            return false;
         }
-    });
-})
-// 点击登录按钮
+        if (!reg2.test(pwd.value) || !reg2.test(pwd3.value)) {
+            alert("密码格式错误");
+            return false;
+        }
+        if (!reg3.test(phone.value)) {
+            alert("电话格式错误");
+            return false;
+        }
+        // 执行到这里说明格式是正确的 这个时候可以将数据传给后台了
+        ajax({
+            type: "get",
+            url: "/tokens/signup",
+            success: function(response) {
+                ajax({
+                    type: "post",
+                    url: "/users",
+                    data: {
+                        "username": username.value,
+                        "password1": pwd.value,
+                        "password2": pwd3.value,
+                        "tel": phone.value,
+                        "location": area.value
+                    },
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        success: function(datas) {
+                            console.log(datas);
+                        }
+                    }
+                })
+            }
+        });
+    })
+    // 点击登录按钮
 signIn.addEventListener('click', () => {
     // 先用正则表达式判断用户名 密码是否符合格式
     // alert(1);
@@ -89,7 +89,7 @@ signIn.addEventListener('click', () => {
     // 折行到这里说明格式是正确的 我们现在吧数据传给后端 判断该用户是否存在
     ajax({
         type: "post",
-        url: "/sessions",
+        url: "https://mock.apipost.cn/app/mock/project/adb58a24-e8c9-40fc-9b10-2d8da179d593/sessions",
         data: {
             "username": username2.value,
             "password": pwd2.value
@@ -97,7 +97,7 @@ signIn.addEventListener('click', () => {
         header: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        success: function (datas) {
+        success: function(datas) {
             // // 将数据存储到cookie中
             // setCookie("username", datas.data.username);
             // setCookie("userId", datas.data.userId);
@@ -105,7 +105,8 @@ signIn.addEventListener('click', () => {
             // setCookie("avatarUrl", datas.data.avatarUrl);
             // setCookie("location", datas.data.location);
             if (datas.success) {
-                window.location.replace("/");
+                // window.location.replace("/");
+                window.location.href = "../../index.html"
             } else {
                 alert(datas.message);
             }

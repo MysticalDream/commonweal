@@ -5,16 +5,12 @@ window.addEventListener('load', () => {
         let username = document.querySelector('.username');
         let pic = document.createElement('div');
         pic.classList.add('pic');
-        let img_u = document.createElement('img');
+        let img_u = document.querySelector('.user_img');
         img_u.src = getCookie("avatarUrl");
-        img_u.style.width = "40px";
-        img_u.style.height = "40px";
-        img_u.style.borderRadius = "50%";
-        pic.appendChild(img_u);
         let span = document.createElement('span');
         span.innerText = getCookie("username");
         let operation = document.createElement('div');
-        operation.classList.add('.operation');
+        operation.classList.add('operation');
         let my = document.createElement('div');
         my.classList.add('my');
         my.innerHTML = '我的';
@@ -41,7 +37,7 @@ window.addEventListener('load', () => {
             operation.style.display = 'block';
             triangle.style.display = 'block';
         })
-        pic.addEventListener('mouseout', () => {
+        username.addEventListener('mouseleave', () => {
             operation.style.display = 'none';
             triangle.style.display = 'none';
         })
