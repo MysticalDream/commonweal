@@ -313,9 +313,9 @@ window.addEventListener('load',function(){
     expand_opt.data.pageNum = "1";
     expand_opt.data.pageSize = "9";
     // 页面加载第一次发送数据
-    // ajax(expand_opt);
-    render(obj_expand);
-    renderDom(obj_expand);
+    ajax(expand_opt);
+    // render(obj_expand);
+    // renderDom(obj_expand);
 
     // 开一个分页实例
     var turnpage_ex;
