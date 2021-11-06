@@ -551,31 +551,39 @@ window.addEventListener('load', function () {
 
     search_d.onchange = function () {
         if (span_center.innerText == '项目名称' && search_d.value.trim() != '') {
-            seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:seek_opt.data.itemTitle = this.value;
+            // seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:seek_opt.data.itemTitle = this.value;
+            seek_opt.data.itemTitle=this.value;
             seek_opt.data.itemId? delete seek_opt.data.itemId:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
+            delete seek_opt.data.itemTitle;
         }
         if (span_center.innerText == '项目编号' && search_d.value.trim() != '') {
-            seek_opt.data.itemId? delete seek_opt.data.itemId:seek_opt.data.itemId = this.value;
+            // seek_opt.data.itemId? delete seek_opt.data.itemId:seek_opt.data.itemId = this.value;
+            seek_opt.data.itemId=this.value;
             seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
+            delete seek_opt.data.itemId;
         }
     }
 
     search_d_1.onchange = function () {
         if (span_center_1.innerText == '队伍名称' && this.value.trim() != '') {
-            seek_opt.data.teamName? delete seek_opt.data.teamName:seek_opt.data.teamName = this.value;
+            // seek_opt.data.teamName? delete seek_opt.data.teamName:seek_opt.data.teamName = this.value;
+            seek_opt.data.teamName=this.value;
             seek_opt.data.teamId? delete seek_opt.data.teamId:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
+            delete seek_opt.data.teamName;
         }
         if (span_center_1.innerText == '队伍编号' && this.value.trim() != '') {
-            seek_opt.data.teamId? delete seek_opt.data.teamId:seek_opt.data.teamId = this.value;
+            // seek_opt.data.teamId? delete seek_opt.data.teamId:seek_opt.data.teamId = this.value;
+            seek_opt.data.teamId=this.value;
             seek_opt.data.teamName? delete seek_opt.data.teamName:null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
+            delete seek_opt.data.teamId;
         }
     }
 
@@ -644,4 +652,13 @@ window.addEventListener('load', function () {
         })
     }
 
+    // 点击了我要加入出现以个人形式加入还是团队形式加入
+    let pro_main=document.querySelectorAll('.pro_main')[0];
+    let body_full=document.querySelectorAll('.body_full')[0];
+    pro_main.addEventListener('click',(e)=>{
+        if(e.target.classList.contains('ri_sp')){
+            body_full.style.visibility='visible';
+
+        }
+    }) 
 })

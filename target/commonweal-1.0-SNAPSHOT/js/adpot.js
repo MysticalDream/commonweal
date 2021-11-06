@@ -232,9 +232,14 @@ window.addEventListener('load',function(){
         }
     }
 
+    function $(ele) {
+        return document.querySelectorAll(ele);
+    }
+
     adpot_box.addEventListener('click',function(e){
         if(e.target.classList.contains('take_care')){
-            document.querySelector(".adpot_mask_s").style.display='block';
+            document.querySelector(".body_full").style.visibility='visible';
+            document.querySelector('.adpot_mask_s').classList.add('drop_down');
         }
     })
 

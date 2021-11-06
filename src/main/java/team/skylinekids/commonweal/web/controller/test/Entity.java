@@ -1,10 +1,10 @@
 package team.skylinekids.commonweal.web.controller.test;
 
 public class Entity {
-    String title;
+    String name;
 
-    public Entity(String title) {
-        this.title = title;
+    public Entity(String name) {
+        this.name = name;
     }
 
     public Entity() {
