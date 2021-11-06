@@ -305,6 +305,4 @@ window.addEventListener("load", function () {
         pic.style.backgroundSize = '100% 100%';
         location.innerText = getCookie("location");
     }
-
-
 });

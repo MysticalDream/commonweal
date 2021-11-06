@@ -12,11 +12,11 @@
 /*    background-color: rgba(0, 0, 0, .6);*/
 /*}*/
 
-body{
+body {
     position: relative;
 }
 
- .body_full {
+.body_full {
     visibility: hidden;
     position: fixed;
     width: 100vw;
@@ -29,16 +29,30 @@ body{
     left: 0px;
 }
 
+.exit_icon {
+    width: 20px;
+    height: 20px;
+    background: url("../images/exit.png") no-repeat 100% 100%;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 210px;
+    top: 37px;
+}
+
+.exit_icon:hover {
+    cursor: pointer;
+}
+
 .mask_join {
-     position: absolute;
-     top: 15%;
+    position: absolute;
+    top: 15%;
     width: 60%;
     height: 380px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .25);
     animation: come 0.5s ease-in-out forwards;
-     z-index: 999;
+    z-index: 999;
 }
 
 @keyframes come {
@@ -85,6 +99,11 @@ body{
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+#button_back_to {
+    left: 55px;
+    top: 10px;
 }
 
 .mask_join .first {
