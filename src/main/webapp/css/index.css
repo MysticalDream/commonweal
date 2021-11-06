@@ -464,6 +464,15 @@ html {
     left: 100px;
 }
 
+.intro .intro_nd .intro_nd_lf h2 {
+    width: 460px;
+    height: 70px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 30px;
+}
+
 .intro .intro_nd .intro_nd_lf p {
     width: 460px;
     font-size: 16px;
@@ -1781,4 +1790,8 @@ html {
 
 .footer .footer_rg ul:last-child {
     margin-right: 0px;
+}
+
+margin-right: 0px;
+
 }

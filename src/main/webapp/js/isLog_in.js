@@ -19,14 +19,14 @@ window.addEventListener('load', () => {
         incoWode.classList.add('iconfont');
         incoWode.classList.add('icon-wode');
         my.appendChild(incoWode);
-        my.innerHTML = '我的';
+        my.innerText = '我的';
         let exit = document.createElement('div');
         exit.classList.add('exit');
         let incoTuichu = document.createElement('i');
         incoTuichu.classList.add('iconfont');
         incoTuichu.classList.add('icon-tuichu');
         exit.appendChild(incoTuichu);
-        exit.innerHTML = '退出';
+        exit.innerText = '退出';
         operation.appendChild(my);
         operation.appendChild(exit);
         let triangle = document.createElement('div');
