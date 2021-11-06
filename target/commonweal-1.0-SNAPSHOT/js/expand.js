@@ -433,6 +433,8 @@ window.addEventListener('load',function(){
     expand_p.addEventListener('click', function (e) {
         if (e.target.classList.contains('move_span')) {
             e.target.province ? expand_opt.data.province = e.target.province : null;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         } else {
             if (e.target.parentElement.classList.contains("province_d")) {
                 delete expand_opt.data.province;
@@ -455,6 +457,8 @@ window.addEventListener('load',function(){
             } else {
                 delete expand_opt.data.area;
             }
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         }
     })
 
@@ -462,6 +466,8 @@ window.addEventListener('load',function(){
     expand_theme.addEventListener('click', function (e) {
         if (e.target.classList.contains('item_d')) {
             expand_opt.data.recruitCategory = e.target.innerText;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         }
     })
 
@@ -469,6 +475,8 @@ window.addEventListener('load',function(){
     expand_peo.addEventListener('click', function (e) {
         if (e.target.classList.contains('peo_d')) {
             e.target.index == 0 ? delete  expand_opt.data.numberScope: expand_opt.data.numberScope = e.target.index;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         }
     })
 
@@ -476,6 +484,9 @@ window.addEventListener('load',function(){
     expand_situ.addEventListener('click',function(e){
         if(e.target.classList.contains('situation')){
             e.target.index!==undefined?expand_opt.data.status=e.target.index:null;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
+            expand_opt.data.status?delete expand_opt.data.status:null;
         }
     })
 
@@ -485,10 +496,8 @@ window.addEventListener('load',function(){
     //         expand_opt.data.
     //     }
     // }
-    wrap_expand.addEventListener('click',function(){
-        // 发送前好像还有加一句话,避免分页bug(财举修改的)
-        // 新加的491这一句
-        expand_opt.data.pageNum=1;
-        ajax(expand_opt);
-    })
+    // wrap_expand.addEventListener('click',function(){
+    //     expand_opt.data.pageNum=1;
+    //     ajax(expand_opt);
+    // })
 })

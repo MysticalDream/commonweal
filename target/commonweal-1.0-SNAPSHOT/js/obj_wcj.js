@@ -61,6 +61,102 @@ var obj_w = {
                 "province": "44",
                 "city": "01",
                 "status": 1 //现在先忽略该字段
+            },
+            {
+                "itemId": 3, //id
+                "itemTitle": "爱心", //标题
+                "itemIntroduction": "爱心之旅", //项目介绍
+                "gmtCreate": "2021-10-19 21:17:15", //创建时间
+                "userId": 2, //创建者id
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
+                "duration": "2个月", //预计持续时间
+                "itemCategory": "社区服务", //分类
+                "maximumNumberLimit": 10, //最大人数
+                "currentHeadcount": 2,
+
+                "province": "44",
+                "city": "01",
+                "status": 1 //现在先忽略该字段
+            },
+            {
+                "itemId": 3, //id
+                "itemTitle": "爱心", //标题
+                "itemIntroduction": "爱心之旅", //项目介绍
+                "gmtCreate": "2021-10-19 21:17:15", //创建时间
+                "userId": 2, //创建者id
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
+                "duration": "2个月", //预计持续时间
+                "itemCategory": "社区服务", //分类
+                "maximumNumberLimit": 10, //最大人数
+                "currentHeadcount": 2,
+
+                "province": "44",
+                "city": "01",
+                "status": 1 //现在先忽略该字段
+            },
+            {
+                "itemId": 3, //id
+                "itemTitle": "爱心", //标题
+                "itemIntroduction": "爱心之旅", //项目介绍
+                "gmtCreate": "2021-10-19 21:17:15", //创建时间
+                "userId": 2, //创建者id
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
+                "duration": "2个月", //预计持续时间
+                "itemCategory": "社区服务", //分类
+                "maximumNumberLimit": 10, //最大人数
+                "currentHeadcount": 2,
+
+                "province": "44",
+                "city": "01",
+                "status": 1 //现在先忽略该字段
+            },
+            {
+                "itemId": 3, //id
+                "itemTitle": "爱心", //标题
+                "itemIntroduction": "爱心之旅", //项目介绍
+                "gmtCreate": "2021-10-19 21:17:15", //创建时间
+                "userId": 2, //创建者id
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
+                "duration": "2个月", //预计持续时间
+                "itemCategory": "社区服务", //分类
+                "maximumNumberLimit": 10, //最大人数
+                "currentHeadcount": 2,
+
+                "province": "44",
+                "city": "01",
+                "status": 1 //现在先忽略该字段
+            },
+            {
+                "itemId": 3, //id
+                "itemTitle": "爱心", //标题
+                "itemIntroduction": "爱心之旅", //项目介绍
+                "gmtCreate": "2021-10-19 21:17:15", //创建时间
+                "userId": 2, //创建者id
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
+                "duration": "2个月", //预计持续时间
+                "itemCategory": "社区服务", //分类
+                "maximumNumberLimit": 10, //最大人数
+                "currentHeadcount": 2,
+
+                "province": "44",
+                "city": "01",
+                "status": 1 //现在先忽略该字段
+            },
+            {
+                "itemId": 3, //id
+                "itemTitle": "爱心", //标题
+                "itemIntroduction": "爱心之旅", //项目介绍
+                "gmtCreate": "2021-10-19 21:17:15", //创建时间
+                "userId": 2, //创建者id
+                "coverUrl": '../../images/lunbotu3.jpg', //封面
+                "duration": "2个月", //预计持续时间
+                "itemCategory": "社区服务", //分类
+                "maximumNumberLimit": 10, //最大人数
+                "currentHeadcount": 2,
+
+                "province": "44",
+                "city": "01",
+                "status": 1 //现在先忽略该字段
             }
         ] //获取到的数据
     } //返回数据
@@ -290,7 +386,215 @@ var obj_expand={
      
     "title": "支援招募" 
      
-    }
+    },
+    {
+        "recruitId": 1, 
+         
+        "introduction": "招募志愿者了，快来呀", 
+         
+        "begin": "2021-10-20 00:00:00", 
+         
+        "end": "2021-10-30 00:00:00", 
+         
+        "location": "广东广州", 
+         
+        "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+         
+        "maximumNumberLimit": 100, 
+         
+        "currentHeadcount": 0, 
+         
+        "province": "44", 
+         
+        "city": "01", 
+         
+        "area": "", 
+         
+        "title": "支援招募" 
+         
+    },
+    {
+            "recruitId": 1, 
+             
+            "introduction": "招募志愿者了，快来呀", 
+             
+            "begin": "2021-10-20 00:00:00", 
+             
+            "end": "2021-10-30 00:00:00", 
+             
+            "location": "广东广州", 
+             
+            "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+             
+            "maximumNumberLimit": 100, 
+             
+            "currentHeadcount": 0, 
+             
+            "province": "44", 
+             
+            "city": "01", 
+             
+            "area": "", 
+             
+            "title": "支援招募" 
+             
+    },
+    {
+        "recruitId": 1, 
+         
+        "introduction": "招募志愿者了，快来呀", 
+         
+        "begin": "2021-10-20 00:00:00", 
+         
+        "end": "2021-10-30 00:00:00", 
+         
+        "location": "广东广州", 
+         
+        "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+         
+        "maximumNumberLimit": 100, 
+         
+        "currentHeadcount": 0, 
+         
+        "province": "44", 
+         
+        "city": "01", 
+         
+        "area": "", 
+         
+        "title": "支援招募" 
+         
+        },
+        {
+            "recruitId": 1, 
+             
+            "introduction": "招募志愿者了，快来呀", 
+             
+            "begin": "2021-10-20 00:00:00", 
+             
+            "end": "2021-10-30 00:00:00", 
+             
+            "location": "广东广州", 
+             
+            "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+             
+            "maximumNumberLimit": 100, 
+             
+            "currentHeadcount": 0, 
+             
+            "province": "44", 
+             
+            "city": "01", 
+             
+            "area": "", 
+             
+            "title": "支援招募" 
+             
+        },
+        {
+                "recruitId": 1, 
+                 
+                "introduction": "招募志愿者了，快来呀", 
+                 
+                "begin": "2021-10-20 00:00:00", 
+                 
+                "end": "2021-10-30 00:00:00", 
+                 
+                "location": "广东广州", 
+                 
+                "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+                 
+                "maximumNumberLimit": 100, 
+                 
+                "currentHeadcount": 0, 
+                 
+                "province": "44", 
+                 
+                "city": "01", 
+                 
+                "area": "", 
+                 
+                "title": "支援招募" 
+                 
+        },
+        {
+            "recruitId": 1, 
+             
+            "introduction": "招募志愿者了，快来呀", 
+             
+            "begin": "2021-10-20 00:00:00", 
+             
+            "end": "2021-10-30 00:00:00", 
+             
+            "location": "广东广州", 
+             
+            "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+             
+            "maximumNumberLimit": 100, 
+             
+            "currentHeadcount": 0, 
+             
+            "province": "44", 
+             
+            "city": "01", 
+             
+            "area": "", 
+             
+            "title": "支援招募" 
+             
+            },
+            {
+                "recruitId": 1, 
+                 
+                "introduction": "招募志愿者了，快来呀", 
+                 
+                "begin": "2021-10-20 00:00:00", 
+                 
+                "end": "2021-10-30 00:00:00", 
+                 
+                "location": "广东广州", 
+                 
+                "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+                 
+                "maximumNumberLimit": 100, 
+                 
+                "currentHeadcount": 0, 
+                 
+                "province": "44", 
+                 
+                "city": "01", 
+                 
+                "area": "", 
+                 
+                "title": "支援招募" 
+                 
+            },
+            {
+                    "recruitId": 1, 
+                     
+                    "introduction": "招募志愿者了，快来呀", 
+                     
+                    "begin": "2021-10-20 00:00:00", 
+                     
+                    "end": "2021-10-30 00:00:00", 
+                     
+                    "location": "广东广州", 
+                     
+                    "coverUrl": "/upload/images/recruit/32aecad833c54f4b86bb5fdd16529f40.png", 
+                     
+                    "maximumNumberLimit": 100, 
+                     
+                    "currentHeadcount": 0, 
+                     
+                    "province": "44", 
+                     
+                    "city": "01", 
+                     
+                    "area": "", 
+                     
+                    "title": "支援招募" 
+                     
+            }
     ] 
      
     } 

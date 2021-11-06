@@ -260,7 +260,7 @@ window.addEventListener('load',function(){
                 <p>${data.data.list[i].introduction}</p>
                 <div class="decoration_red"></div>
                 <div class="bottom_text">
-                    <span>${new Date(data.data.list[i].gmtCreate).Format('yyyy年MM月dd日')}</span>
+                    <span>${new Date(data.data.list[i].gmtCreate).format('yyyy年MM月dd日')}</span>
                     <div class="like">
                         <span>${data.data.list[i].loveNumber}</span>
                     <div>
@@ -272,7 +272,7 @@ window.addEventListener('load',function(){
                 <div class="show_title_l">
                     <span class="red_d"></span>
                     <span class="blue_d"></span>
-                    <span>${data.data.list[i].title}</span>
+                    <span>${data.data.list[i].name}</span>
                 </div>
                 <p>${data.data.list[i].introduction}</p>
                 <div class="decoration_red red_l"></div>
@@ -280,7 +280,7 @@ window.addEventListener('load',function(){
                     <div class="like like_l">
                         <span>${data.data.list[i].loveNumber}</span>
                     </div>
-                    <span>${new Date(data.data.list[i].gmtCreate).Format('yyyy年MM月dd日')}</span>
+                    <span>${new Date(data.data.list[i].gmtCreate).format('yyyy年MM月dd日')}</span>
                 </div>
             </div>
             <div class="right_show_img">
@@ -294,35 +294,17 @@ window.addEventListener('load',function(){
             show_box.appendChild(oDiv);
             // 点赞
             oDiv.addEventListener('click',(e)=>{
-                if(e.target.classList.contains('like')){
-                    // ajax({
-                    //     type:'put',
-                    //     url:'/thumb',
-                    //     data:{
-                    //         achievementId:oDiv.id,
-                    //     },
-                    //     header:{
-                    //         'Content-Type':'application/json'
-                    //     },
-                    //     success:function(data){
-                    //         if(data.success){
-                                e.target.style.backgroundImage='../../images/like_red.png';
-                                e.target.classList.add('liked');
-                                e.target.children[0].innerText=e.target.children[0].innerText+1;
-                    //         }
-                    //     },
-                    //     error:function(){
-
-                    //     }
-                    // })
-                }
                 if(e.target.classList.contains('liked')){
-                    e.target.style.backgroundImage='../../images/like_grey.png';
-                    e.target.classList.remove('liked');
-                    e.target.children[0].innerText=e.target.children[0].innerText-1;
-                    if(e.target.children[0].innerText==0){
-                        e.target.children[0].innerText=0;
-                    }
+                    e.target.style.backgroundImage='url(../../images/like_grey.png)';
+                    // e.target.classList.add('like');
+                    e.target.children[0].innerText--;
+                    e.target.children[0].innerText<=0?e.target.children[0].innerText=0:null;
+                    e.target.classList.remove('like');
+                }
+                if(e.target.classList.contains('like')){
+                    e.target.style.backgroundImage='url(../../images/like_red.png)';
+                    e.target.classList.add('liked');
+                    e.target.children[0].innerText++;
                 }
             })
         }

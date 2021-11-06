@@ -7,8 +7,8 @@ window.addEventListener('load', () => {
         pic.classList.add('pic');
         let img_u = document.createElement('img');
         img_u.src = getCookie("avatarUrl");
-        img_u.style.width = "100%";
-        img_u.style.height = "100%";
+        img_u.style.width = "40px";
+        img_u.style.height = "40px";
         img_u.style.borderRadius = "50%";
         pic.appendChild(img_u);
         let span = document.createElement('span');
