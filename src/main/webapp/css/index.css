@@ -936,7 +936,7 @@ html {
     width: 85%;
     height: 60px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
     letter-spacing: 3px;
     line-height: 20px;
     font-size: 12px;
@@ -980,8 +980,8 @@ html {
 
 .show .show_rd>div .dianzan {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 5px;
+    right: 5px;
     width: 58px;
     height: 20px;
     line-height: 20px;
