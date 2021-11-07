@@ -978,6 +978,23 @@ html {
     color: rgb(211, 146, 50);
 }
 
+.show .show_rd>div .dianzan {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 58px;
+    height: 20px;
+    line-height: 20px;
+    /* background-color: red; */
+    font-size: 14px;
+    color: #999;
+}
+
+.show .show_rd>div .dianzan i {
+    margin-right: 5px;
+    color: #e75f43;
+}
+
 
 /* 招募志愿者板块 */
 
