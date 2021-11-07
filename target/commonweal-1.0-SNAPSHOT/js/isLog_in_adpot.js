@@ -79,7 +79,7 @@ window.addEventListener('load', () => {
         log_in.innerText = '登录 | 注册';
         username.appendChild(log_in);
         log_in.addEventListener('click', () => {
-            window.location.href = '/../login/come.html';
+            window.location.href = '/pages/login/come.html';
         })
     }
 })

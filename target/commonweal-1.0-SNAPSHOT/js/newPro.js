@@ -193,9 +193,52 @@ window.addEventListener('load', function () {
                 // 写在这就把子节点 市的span也装进去
                 arr_2.push(city_div);
             }
+            //---------------------------------------
+            //收起
+            var myDIv = document.createElement('div');
+            //更多
+            var moreDiv = document.createElement('div');
 
+            myDIv.innerHTML = '收起';
+            myDIv.style.cssText = "display:inline-block;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;";
+            myDIv.addEventListener("click", function (e) {
+                province_d.style.maxHeight = '48px';
+                province_d.style.overflow = 'hidden';
+                moreDiv.style.display = "inline-block";
+            });
+            moreDiv.innerText = '更多';
+            moreDiv.style.cssText = 'display:inline-block;position:absolute;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;right:10px ; top:10px ;';
+
+            moreDiv.addEventListener("click", function (e) {
+                province_d.style.maxHeight = 'initial';
+                province_d.style.overflow = 'unset';
+                this.style.display = 'none';
+            });
+            //收起
+            let node = myDIv.cloneNode(true);
+            //更多
+            let node1 = moreDiv.cloneNode(true);
+            node1.addEventListener("click", function () {
+                theme_d.style.maxHeight = 'initial';
+                theme_d.style.overflow = 'unset';
+                node.style.display = "inline-block";
+                node1.style.display = 'none';
+            });
+            node.style.display = "none";
+            node.addEventListener("click", function (e) {
+                theme_d.style.maxHeight = '48px';
+                theme_d.style.overflow = 'hidden';
+                node.style.display = "none";
+                node1.style.display = 'inline-block';
+            });
+            theme_d.appendChild(node);
+            theme_d.appendChild(node1);
+            province_d.appendChild(myDIv);
+            province_d.appendChild(moreDiv);
+            //---------------------------------------
             // 点击事件
             let contry = $('.red_bg')[0];
+
             for (let i = 0; i < arr_1.length; i++) {
                 arr_1[i].addEventListener('click', function () {
                     contry.classList.remove('red_bg');
@@ -212,6 +255,7 @@ window.addEventListener('load', function () {
                     arr_2[i].firstChild.classList.add('red_bg_d');
                 })
             }
+
             contry.addEventListener('click', function () {
                 this.classList.add('red_bg');
                 for (let j = 0; j < arr_2.length; j++) {
@@ -335,7 +379,7 @@ window.addEventListener('load', function () {
     var box = $('.box')[0];
     var box_t = $('.box')[1];
     var wrapper = $('.wrapper')[0];
-    var wrapper_n=$('.wrapper_n')[0];
+    var wrapper_n = $('.wrapper_n')[0];
     var li_jug = $('.pro_box>ul>li')[0];
     var seek_opt = new Object();
     seek_opt.type = "get";
@@ -371,6 +415,7 @@ window.addEventListener('load', function () {
     var turnPage;
     var allpage;
     var turnPage_d;
+
     // 开一个分页实例
     function render(data) {
         if (!turnPage) {
@@ -411,7 +456,7 @@ window.addEventListener('load', function () {
         turnPage.init();
     }
 
-    function render_d(data){
+    function render_d(data) {
         if (!turnPage_d) {
             allpage = data.data.pages;
             turnPage_d = new TurnPage({
@@ -450,7 +495,7 @@ window.addEventListener('load', function () {
         turnPage_d.init();
     }
 
-    
+
     // 渲染数据
     function renderDom(data) {
         // 容器的内容清空
@@ -459,7 +504,7 @@ window.addEventListener('load', function () {
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('nine_box');
-            oDiv.id=data.data.list[i].itemId;
+            oDiv.id = data.data.list[i].itemId;
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
@@ -483,7 +528,7 @@ window.addEventListener('load', function () {
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('nine_box');
-            oDiv.id=data.data.list[i].teamId;
+            oDiv.id = data.data.list[i].teamId;
             let url_d_1 = '../../images/peo_d.png';
             let url_d_2 = '../../images/join.png';
             let str = `<div>
@@ -504,7 +549,7 @@ window.addEventListener('load', function () {
             e.target.province ? seek_opt.data.province = e.target.province : null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
-        } else {
+        } else if (e.target.tagName == 'SPAN') {
             if (e.target.parentElement.classList.contains("province_d")) {
                 delete seek_opt.data.province;
                 delete seek_opt.data.city;
@@ -542,7 +587,7 @@ window.addEventListener('load', function () {
 
     people_d.addEventListener('click', function (e) {
         if (e.target.classList.contains('peo_d')) {
-            e.target.index == 0 ?delete seek_opt.data.numberScope: seek_opt.data.numberScope = e.target.index;
+            e.target.index == 0 ? delete seek_opt.data.numberScope : seek_opt.data.numberScope = e.target.index;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
             // seek_opt.data.numberScope=e.target.index;
@@ -552,16 +597,16 @@ window.addEventListener('load', function () {
     search_d.onchange = function () {
         if (span_center.innerText == '项目名称' && search_d.value.trim() != '') {
             // seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:seek_opt.data.itemTitle = this.value;
-            seek_opt.data.itemTitle=this.value;
-            seek_opt.data.itemId? delete seek_opt.data.itemId:null;
+            seek_opt.data.itemTitle = this.value;
+            seek_opt.data.itemId ? delete seek_opt.data.itemId : null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
             delete seek_opt.data.itemTitle;
         }
         if (span_center.innerText == '项目编号' && search_d.value.trim() != '') {
             // seek_opt.data.itemId? delete seek_opt.data.itemId:seek_opt.data.itemId = this.value;
-            seek_opt.data.itemId=this.value;
-            seek_opt.data.itemTitle? delete seek_opt.data.itemTitle:null;
+            seek_opt.data.itemId = this.value;
+            seek_opt.data.itemTitle ? delete seek_opt.data.itemTitle : null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
             delete seek_opt.data.itemId;
@@ -571,16 +616,16 @@ window.addEventListener('load', function () {
     search_d_1.onchange = function () {
         if (span_center_1.innerText == '队伍名称' && this.value.trim() != '') {
             // seek_opt.data.teamName? delete seek_opt.data.teamName:seek_opt.data.teamName = this.value;
-            seek_opt.data.teamName=this.value;
-            seek_opt.data.teamId? delete seek_opt.data.teamId:null;
+            seek_opt.data.teamName = this.value;
+            seek_opt.data.teamId ? delete seek_opt.data.teamId : null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
             delete seek_opt.data.teamName;
         }
         if (span_center_1.innerText == '队伍编号' && this.value.trim() != '') {
             // seek_opt.data.teamId? delete seek_opt.data.teamId:seek_opt.data.teamId = this.value;
-            seek_opt.data.teamId=this.value;
-            seek_opt.data.teamName? delete seek_opt.data.teamName:null;
+            seek_opt.data.teamId = this.value;
+            seek_opt.data.teamName ? delete seek_opt.data.teamName : null;
             seek_opt.data.pageNum = 1;
             ajax(seek_opt);
             delete seek_opt.data.teamId;
@@ -609,7 +654,7 @@ window.addEventListener('load', function () {
             // 项目存在时删除队伍信息 队伍名存在时删除项目信息
             if (tag_li[i].index == 1) {
                 // 切换的时候把pageNum更改为1
-                seek_opt.data.pageNum=1;
+                seek_opt.data.pageNum = 1;
                 seek_opt.url = '/teams/conditions';
                 seek_opt.data.itemCategory ? delete seek_opt.data.itemCategory : null;
                 seek_opt.data.itemId ? delete seek_opt.data.itemId : null;
@@ -622,7 +667,7 @@ window.addEventListener('load', function () {
                 seek_opt.data.teamName ? delete seek_opt.data.teamName : null;
                 ajax(seek_opt);
             }
-           
+
             for (let j = 0; j < tag_li.length; j++) {
                 tag_li[j].className = '';
                 tag_box[j].style.display = 'none';
@@ -653,12 +698,12 @@ window.addEventListener('load', function () {
     }
 
     // 点击了我要加入出现以个人形式加入还是团队形式加入
-    let pro_main=document.querySelectorAll('.pro_main')[0];
-    let body_full=document.querySelectorAll('.body_full')[0];
-    pro_main.addEventListener('click',(e)=>{
-        if(e.target.classList.contains('ri_sp')){
-            body_full.style.visibility='visible';
+    let pro_main = document.querySelectorAll('.pro_main')[0];
+    let body_full = document.querySelectorAll('.body_full')[0];
+    pro_main.addEventListener('click', (e) => {
+        if (e.target.classList.contains('ri_sp')) {
+            body_full.style.visibility = 'visible';
 
         }
-    }) 
+    })
 })

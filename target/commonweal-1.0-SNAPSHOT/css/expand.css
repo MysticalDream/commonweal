@@ -3,7 +3,7 @@ body .big_pic_expand{
 }
 
 .expand_main{
-    width: 85%;
+    width: 87%;
     margin:15px auto;
 }
 
@@ -88,7 +88,7 @@ body .big_pic_expand{
     background-color:#fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 5px 5px 5px rgb(0,0,0,0.1);
+    box-shadow: 2px 2px 2px rgb(0,0,0,0.1);
 }
 
 .expand_box:nth-child(3){

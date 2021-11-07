@@ -195,6 +195,48 @@ window.addEventListener('load',function(){
                 arr_2.push(city_div);
             }
 
+            //收起
+            var myDIv = document.createElement('div');
+            //更多
+            var moreDiv = document.createElement('div');
+
+            myDIv.innerHTML = '收起';
+            myDIv.style.cssText = "display:inline-block;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;";
+            myDIv.addEventListener("click", function (e) {
+                agri.style.maxHeight = '48px';
+                agri.style.overflow = 'hidden';
+                moreDiv.style.display = "inline-block";
+            });
+            moreDiv.innerText = '更多';
+            moreDiv.style.cssText = 'display:inline-block;position:absolute;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;right:10px ; top:10px ;';
+
+            moreDiv.addEventListener("click", function (e) {
+                agri.style.maxHeight = 'initial';
+                agri.style.overflow = 'unset';
+                this.style.display = 'none';
+            });
+            // //收起
+            // let node = myDIv.cloneNode(true);
+            // //更多
+            // let node1 = moreDiv.cloneNode(true);
+            // node1.addEventListener("click", function () {
+            //     // theme_d.style.maxHeight = 'initial';
+            //     // theme_d.style.overflow = 'unset';
+            //     node.style.display = "inline-block";
+            //     node1.style.display = 'none';
+            // });
+            // node.style.display = "none";
+            // node.addEventListener("click", function (e) {
+            //     theme_d.style.maxHeight = '48px';
+            //     theme_d.style.overflow = 'hidden';
+            //     node.style.display = "none";
+            //     node1.style.display = 'inline-block';
+            // });
+            // theme_d.appendChild(node);
+            // theme_d.appendChild(node1);
+            agri.appendChild(myDIv);
+            agri.appendChild(moreDiv);
+
             // 点击事件
             let contry = $('.ag_contry')[0];
             for (let i = 0; i < arr_1.length; i++) {
@@ -299,7 +341,7 @@ window.addEventListener('load',function(){
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             let url_d = '../../images/beijing.jpg';
-            let url_d_1 = '../../images/peo_d.png';
+            let url_d_1 = '../../images/tree.png';
             // let url_d_2 = '../../images/join.png';
             let str=`<div class="big_recg">
             <div class="img_container">

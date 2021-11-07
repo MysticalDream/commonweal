@@ -1,9 +1,9 @@
 window.addEventListener('load', function () {
     let li_open = document.querySelectorAll('.bottom_left_d>ul>li');
     let show_box = document.querySelectorAll('.slide_ul_d');
-    for (let i = 0; i < li_open.length; i++) {
+    for (let i = 0; i < 2; i++) {
         li_open[i].addEventListener('mouseover', function () {
-            for (let j = 0; j < li_open.length; j++) {
+            for (let j = 0; j < 2; j++) {
                 show_box[j].style.width = '0px';
                 li_open[j].classList.remove('cur_li');
             }

@@ -295,21 +295,47 @@ window.addEventListener('load', function () {
             i % 2 == 0 ? oDiv.innerHTML = str1 : oDiv.innerHTML = str2;
             show_box.appendChild(oDiv);
             // 点赞
-            oDiv.addEventListener('click', (e) => {
-                if (e.target.classList.contains('liked')) {
-                    e.target.style.background = 'url(../../images/like_grey.png) no-repeat 8px 14px';
-                    // e.target.classList.add('like');
-                    e.target.children[0].innerText--;
-                    e.target.children[0].innerText <= 0 ? e.target.children[0].innerText = 0 : null;
-                    e.target.classList.remove('liked');
-                    e.target.classList.add('like');
-                } else {
-                    if (e.target.classList.contains('like')) {
-                        e.target.style.background = 'url(../../images/like_red.png) no-repeat 8px 14px';
-                        e.target.classList.remove('like');
-                        e.target.classList.add('liked');
-                        e.target.children[0].innerText++;
-                    }
+            oDiv.addEventListener('click', function (e) {
+                if (getCookie("userId") == 'undefined') {
+                    return;
+                }
+                if (e.target.classList.contains('liked') || e.target.classList.contains('like')) {
+                    ajax({
+                        type: 'post',
+                        url: '/thumb',
+                        data: {
+                            "achievementId": this.id
+                        },
+                        header: {
+                            'Content-Type': 'application/json'
+                        },
+                        success: function (data) {
+                            if (!data.success) {
+                                if (data.code == 4001) {
+                                    alert("未登录");
+                                }
+                                return;
+                            }
+                            if (e.target.classList.contains('liked')) {
+                                e.target.style.background = 'url(../../images/like_grey.png) no-repeat 8px 14px';
+                                // e.target.classList.add('like');
+                                e.target.children[0].innerText--;
+                                e.target.children[0].innerText <= 0 ? e.target.children[0].innerText = 0 : null;
+                                e.target.classList.remove('liked');
+                                e.target.classList.add('like');
+                            } else {
+                                if (e.target.classList.contains('like')) {
+                                    e.target.style.background = 'url(../../images/like_red.png) no-repeat 8px 14px';
+                                    e.target.classList.remove('like');
+                                    e.target.classList.add('liked');
+                                    e.target.children[0].innerText++;
+
+                                }
+                            }
+                        },
+                        error: function () {
+                        }
+                    });
                 }
             })
         }

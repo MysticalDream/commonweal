@@ -197,6 +197,47 @@ window.addEventListener('load',function(){
                 arr_2.push(city_div);
             }
 
+            //收起
+            var myDIv = document.createElement('div');
+            //更多
+            var moreDiv = document.createElement('div');
+
+            myDIv.innerHTML = '收起';
+            myDIv.style.cssText = "display:inline-block;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;";
+            myDIv.addEventListener("click", function (e) {
+                expand_p.style.maxHeight = '48px';
+                expand_p.style.overflow = 'hidden';
+                moreDiv.style.display = "inline-block";
+            });
+            moreDiv.innerText = '更多';
+            moreDiv.style.cssText = 'display:inline-block;position:absolute;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;right:10px ; top:10px ;';
+
+            moreDiv.addEventListener("click", function (e) {
+                expand_p.style.maxHeight = 'initial';
+                expand_p.style.overflow = 'unset';
+                this.style.display = 'none';
+            });
+            //收起
+            let node = myDIv.cloneNode(true);
+            //更多
+            let node1 = moreDiv.cloneNode(true);
+            node1.addEventListener("click", function () {
+                expand_theme.style.maxHeight = 'initial';
+                expand_theme.style.overflow = 'unset';
+                node.style.display = "inline-block";
+                node1.style.display = 'none';
+            });
+            node.style.display = "none";
+            node.addEventListener("click", function (e) {
+                expand_theme.style.maxHeight = '48px';
+                expand_theme.style.overflow = 'hidden';
+                node.style.display = "none";
+                node1.style.display = 'inline-block';
+            });
+            expand_theme.appendChild(node);
+            expand_theme.appendChild(node1);
+            expand_p.appendChild(myDIv);
+            expand_p.appendChild(moreDiv);
             // 点击事件
             let contry = $('.e_contry')[0];
             for (let i = 0; i < arr_1.length; i++) {
@@ -440,6 +481,7 @@ window.addEventListener('load',function(){
                 delete expand_opt.data.province;
                 delete expand_opt.data.city;
                 delete expand_opt.data.area;
+                ajax(expand_opt);
             }
         }
     })
