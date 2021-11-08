@@ -7,32 +7,32 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top:60px;
+    margin-top: 60px;
     overflow: hidden;
 
 }
 
-.turn-page-wrapper>* {
+.turn-page-wrapper > * {
     padding: 0;
     margin: 0;
     list-style: none;
 }
 
-.turn-page-wrapper>li,
-.turn-page-wrapper>span {
+.turn-page-wrapper > li,
+.turn-page-wrapper > span {
     float: left;
     margin: 0 8px;
     font-size: 14px;
     font-family: SimSun;
-    color:#000;
+    color: #000;
 }
 
-.turn-page-wrapper>li {
+.turn-page-wrapper > li {
     background-color: #EBE9E9;
     padding: 5px 10px;
     cursor: pointer;
     font-size: 14px;
-    border-radius:4px
+    border-radius: 4px
 }
 
 
@@ -44,10 +44,10 @@
     display: block;
 }
 
-.turn-page-wrapper>li.current-page {
+.turn-page-wrapper > li.current-page {
     background-color: #CD4140;
     color: #fff;
-    border-radius:4px;
+    border-radius: 4px;
 }
 
 .turn-page-wrapper .turn_to {
@@ -91,7 +91,7 @@ li {
     background-color: #bc604b;
 }
 
-.footer>div {
+.footer > div {
     float: left;
     margin-left: 50px;
 }
@@ -171,11 +171,16 @@ li {
     letter-spacing: 2px;
 }
 
+.pro_main .sele_wrapper {
+    width: 95%;
+}
+
 .sele_wrapper {
     width: 90%;
     /* height: 300px; */
     margin-top: 30px;
     margin-left: 10px;
+    /*width: 96%;*/
 }
 
 .sele_wrapper img {
@@ -208,6 +213,8 @@ li {
     line-height: 35px;
     position: relative;
     margin-left: 45px;
+    max-height: 48px;
+    overflow: hidden;
 }
 
 .red_bg {
@@ -249,6 +256,9 @@ li {
     line-height: 35px;
     margin-left: 45px;
     margin-top: 20px;
+    max-height: 48px;
+    overflow: hidden;
+    position: relative;
 }
 
 .theme_d span,
@@ -270,7 +280,7 @@ li {
     height: 25px;
     border-radius: 10px;
     margin-top: 25px;
-    margin-left: 45px;
+    margin-left: 40px;
     padding-left: 108px;
     outline: none;
     background-color: #F1EFEF;
@@ -305,22 +315,35 @@ li {
     position: relative;
     display: inline-block;
     width: 220px;
-    height: 250px;
+    height: 260px;
     margin-top: 65px;
-    margin-left: 45px;
+    margin-left: 75px;
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(49, 39, 39, 0.11);
     cursor: pointer;
 }
 
+.nine_box:nth-child(1) {
+    margin-left: 20px;
+}
+
+.nine_box:nth-child(4) {
+    margin-left: 20px;
+}
+
+.nine_box:nth-child(7) {
+    margin-left: 20px;
+}
+
 .nine_box img:first-child {
     width: 220px;
-    height: 60%;
+    height: 150px;
     position: absolute;
     top: 0px;
     left: 0px;
 }
+
 
 .nine_box img {
     position: absolute;
@@ -383,6 +406,7 @@ li {
 
 .tagged_box {
     position: relative;
+    margin-left: 10px;
 }
 
 .left_em {
@@ -446,7 +470,7 @@ li {
 /* 页脚部分 */
 
 .footer {
-    position:relative;
+    position: relative;
     /* bottom: 0px; */
     margin-top: 70px;
     left: 53%;
@@ -459,7 +483,7 @@ li {
     background-color: #bc604b;
 }
 
-.footer>div {
+.footer > div {
     float: left;
     margin-left: 50px;
 }
@@ -506,6 +530,6 @@ li {
 }
 
 /* 特殊 */
-.left_foot{
-    left:49%;
+.left_foot {
+    left: 49%;
 }

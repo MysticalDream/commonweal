@@ -1,8 +1,10 @@
 window.addEventListener('load', function () {
     var curIndex = 0;
+
     function $(ele) {
         return document.querySelectorAll(ele);
     }
+
     var al = $('.wrap>div');
     var wrap = $('.wrap')[0];
     var left_flag = $('.left_flag')[0];
@@ -45,108 +47,99 @@ window.addEventListener('load', function () {
         }, 800);
 
     };
+
     function up() {
         curIndex = --curIndex < 0 ? 0 : curIndex;
 
     }
+
     function down() {
         curIndex = ++curIndex == al.length ? al.length - 1 : curIndex;
     }
+
     function go() {
         wrap.className = 'wrap active' + curIndex;
+        var a, b, c, d;
         if (curIndex == 1) {
-            setTimeout(function () {
+            a = setTimeout(function () {
                 nd_p.classList.add('btn_up');
-            }, 1000)
-            setTimeout(function () {
+            }, 1000);
+            b = setTimeout(function () {
                 left_btn.classList.add('btn_up');
-            }, 1500)
-            setTimeout(function () {
+            }, 1500);
+            c = setTimeout(function () {
                 right_btn.classList.add('btn_up');
-            }, 1800)
+            }, 1800);
         }
+
         if (curIndex == 2) {
-            for (let i = 0; i < 3; i++) {
-                clearTimeout(i);
-            }
-            setTimeout(function () {
+            clearTimeout(a), clearTimeout(b), clearTimeout(c);
+            a = setTimeout(function () {
                 left_flag.classList.add('flag_up');
             }, 1000)
-            setTimeout(function () {
+            b = setTimeout(function () {
                 right_flag.classList.add('right_up');
             }, 1500)
         }
         if (curIndex == 3) {
-            for (let i = 0; i < 2; i++) {
-                clearTimeout(i);
-            }
-            setTimeout(function () {
+            clearTimeout(a), clearTimeout(b);
+            a = setTimeout(function () {
                 show_rd[0].classList.add('btn_up');
             }, 1000)
-            setTimeout(function () {
+            b = setTimeout(function () {
                 show_rd[1].classList.add('btn_up');
             }, 1200)
-            setTimeout(function () {
+            c = setTimeout(function () {
                 show_rd[2].classList.add('btn_up');
             }, 1400)
         }
         if (curIndex == 4) {
-            for (let i = 0; i < 3; i++) {
-                clearTimeout(i)
-            }
-            setTimeout(function () {
+            clearTimeout(a), clearTimeout(b), clearTimeout(c);
+            a = setTimeout(function () {
                 recu.classList.add('btn_up');
             }, 1000)
-            setTimeout(function () {
+            b = setTimeout(function () {
                 pic.classList.add('left_come');
             }, 1300)
-            setTimeout(function () {
+            c = setTimeout(function () {
                 r_btn.classList.add('btn_up');
             }, 1600)
         }
         if (curIndex == 5) {
-            for (let i = 0; i < 3; i++) {
-                clearTimeout(i)
-            }
-            setTimeout(function () {
+            clearTimeout(a), clearTimeout(b), clearTimeout(c);
+            a = setTimeout(function () {
                 circle[0].classList.add('btn_up');
             }, 1000)
-            setTimeout(function () {
+            b = setTimeout(function () {
                 circle[1].classList.add('btn_up');
             }, 1200)
-            setTimeout(function () {
+            c = setTimeout(function () {
                 juxing[0].classList.add('btn_up');
             }, 1000)
-            setTimeout(function () {
+            d = setTimeout(function () {
                 juxing[1].classList.add('btn_up');
             }, 1200)
         }
         if (curIndex == 6) {
-            for (let i = 0; i < 4; i++) {
-                clearTimeout(i)
-            }
-            setTimeout(function () {
+            clearTimeout(a), clearTimeout(b), clearTimeout(c), clearTimeout(d);
+            a = setTimeout(function () {
                 ad.classList.add('btn_up');
             }, 1000)
         }
         if (curIndex == 7) {
-            for (let i = 0; i < 1; i++) {
-                clearTimeout(i)
-            }
-            setTimeout(function () {
+            clearTimeout(a);
+            a = setTimeout(function () {
                 btn_item[0].classList.add('btn_up');
                 btn_item[1].classList.add('btn_up');
                 btn_item[2].classList.add('btn_up');
             }, 1000)
-            setTimeout(function () {
+            b = setTimeout(function () {
                 btn_ul[0].classList.add('btn_up');
                 btn_ul[1].classList.add('btn_up');
                 btn_ul[2].classList.add('btn_up');
                 btn_ul[3].classList.add('btn_up');
             }, 1400)
         }
-        for (let i = 0; i < 2; i++) {
-            clearTimeout(i)
-        }
+       // clearTimeout(a), clearTimeout(b);
     };
 })

@@ -1,12 +1,12 @@
 /**
- * 
+ *
  * @param {*} options 当前翻页实例的数据
  *             currentPage 当前页码
  *             allPage  总页码
  *             wrap    当前的翻页实例插入的位置
  *             changePage 切换页码的回调函数
  */
- function TurnPage(options) {
+function TurnPage(options) {
     // 当前页码
     this.currentPage = options.currentPage || 1;
     // 总的页码
@@ -14,15 +14,17 @@
     // 要插入的地方
     this.wrap = options.wrap || document.body;
     // 回调函数 方便外部使用内部东西
-    this.changePage = options.changePage || function() {};
+    this.changePage = options.changePage || function () {
+    };
 }
+
 // 初始化效果的方法
-TurnPage.prototype.init = function() {
-        this.fillHTML();
-        this.bindEvent();
-    }
-    // 填充翻页的结构 添加一个if语句过滤一下按钮按了后触发的bug
-TurnPage.prototype.fillHTML = function() {
+TurnPage.prototype.init = function () {
+    this.fillHTML();
+    this.bindEvent();
+}
+// 填充翻页的结构 添加一个if语句过滤一下按钮按了后触发的bug
+TurnPage.prototype.fillHTML = function () {
     // 每次调用都将wrap里面的内容置空
     this.wrap.innerHTML = '';
     var turnPageWrapper = document.createElement('ul');
@@ -101,54 +103,54 @@ TurnPage.prototype.fillHTML = function() {
     turnPageWrapper.appendChild(turn_to_btn);
     this.wrap.appendChild(turnPageWrapper);
 }
-TurnPage.prototype.bindEvent = function() {
+TurnPage.prototype.bindEvent = function () {
     var self = this;
     // 给当前翻页区绑定事件
     this.wrap.onclick = e => {
-            // 点击上一页
-            if (e.target.classList.contains('prev')) {
-                self.currentPage--;
-                self.fillHTML();
-                self.changePage(self.currentPage);
-            } else if (e.target.classList.contains('next')) {
-                self.currentPage++;
-                self.fillHTML();
-                self.changePage(self.currentPage);
-            } else if (e.target.classList.contains('num')) {
-                let number = parseInt(e.target.innerText);
+        // 点击上一页
+        if (e.target.classList.contains('prev')) {
+            self.currentPage--;
+            self.fillHTML();
+            self.changePage(self.currentPage);
+        } else if (e.target.classList.contains('next')) {
+            self.currentPage++;
+            self.fillHTML();
+            self.changePage(self.currentPage);
+        } else if (e.target.classList.contains('num')) {
+            let number = parseInt(e.target.innerText);
+            self.currentPage = number;
+            // console.log(number);
+            self.fillHTML();
+            self.changePage(self.currentPage);
+        } else if (e.target.classList.contains('turn_to_btn')) {
+            let turn_to = document.querySelector('.turn_to');
+            // let turn_to_1=document.querySelectorAll('.turn_to')[1];
+            let number = parseInt(turn_to.value);
+            // 要判断里面的元素是不是可以用的
+            if (!number == '') {
+                console.log(number);
                 self.currentPage = number;
-                // console.log(number);
                 self.fillHTML();
-                self.changePage(self.currentPage);
-            } else if (e.target.classList.contains('turn_to_btn')) {
-                let turn_to = document.querySelector('.turn_to');
-                // let turn_to_1=document.querySelectorAll('.turn_to')[1];
-                let number = parseInt(turn_to.value);
-                // 要判断里面的元素是不是可以用的 
-                if (!number == '') {
-                    console.log(number);
-                    self.currentPage = number;
-                    self.fillHTML();
-                    self.changePage(self.currentPage)
-                    turn_to.value = '';
-                }
-
+                self.changePage(self.currentPage)
+                turn_to.value = '';
             }
+
+        }
     }
 }
 
 
-window.addEventListener('load',function(){
+window.addEventListener('load', function () {
     function $(ele) {
         return document.querySelectorAll(ele);
     }
 
     //  分页组件容器
-    var show_page=$('.show_page')[0]; 
+    var show_page = $('.show_page')[0];
     // 数据内容容器
-    var show_box=$('.show_box')[0];
+    var show_box = $('.show_box')[0];
 
-     // 从这里开始
+    // 从这里开始
     // 动态添加对象的属性
     var show_opt = new Object();
     show_opt.type = 'get';
@@ -165,7 +167,7 @@ window.addEventListener('load',function(){
     show_opt.header = {
         'Content-Type': 'application/json'
     },
-    show_opt.data.pageNum = "1";
+        show_opt.data.pageNum = "1";
     show_opt.data.pageSize = "5";
 
     // 页面加载第一次发送数据
@@ -176,6 +178,7 @@ window.addEventListener('load',function(){
     // renderDom(obj_show);
 
     var turnpage_show;
+
     // 分页组件的渲染
     function render(data) {
         if (!turnpage_show) {
@@ -183,15 +186,14 @@ window.addEventListener('load',function(){
             turnpage_show = new TurnPage({
                 currentPage: data.data.pageNum,
                 allPage: data.data.pages,
-                wrap:show_page,
+                wrap: show_page,
                 changePage: function (page) {
                     show_opt.data.pageNum = page;
                     console.log(show_opt.success);
-                   ajax(show_opt);
+                    ajax(show_opt);
                 }
             });
-        }
-        else if (allpage != data.data.pages) {
+        } else if (allpage != data.data.pages) {
             allpage = data.data.pages;
             turnpage_show = new TurnPage({
                 currentPage: data.data.pageNum,
@@ -206,30 +208,30 @@ window.addEventListener('load',function(){
         turnpage_show.init();
     }
 
-     // 格式化时间
-     Date.prototype.Format = function (fmt) {
+    // 格式化时间
+    Date.prototype.Format = function (fmt) {
         var o = {
-             //月份 
-             "M+": this.getMonth() + 1,
-             //日 
-             "d+": this.getDate(),
-             //小时 
-             "h+": this.getHours(),
-             //分
-             "m+": this.getMinutes(),
-             //秒 
-             "s+": this.getSeconds(),
-             //季度 
-             "q+": Math.floor((this.getMonth() + 3) / 3),
-             //毫秒 
-             "S": this.getMilliseconds()
-           };
-           if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-           for (var k in o)
-             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[
-               k]).substr(("" + o[k]).length)));
-           return fmt;
-   }
+            //月份
+            "M+": this.getMonth() + 1,
+            //日
+            "d+": this.getDate(),
+            //小时
+            "h+": this.getHours(),
+            //分
+            "m+": this.getMinutes(),
+            //秒
+            "s+": this.getSeconds(),
+            //季度
+            "q+": Math.floor((this.getMonth() + 3) / 3),
+            //毫秒
+            "S": this.getMilliseconds()
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[
+                k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
 
     // 数据内容的渲染 
     function renderDom(data) {
@@ -238,12 +240,13 @@ window.addEventListener('load',function(){
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('show_item');
+            oDiv.id = data.data.list[i].id;
             // let url_1='../../images/beijing.jpg';
             // let url_small='../../images/join.png';
-            let url_left='../../images/left_tri.png';
-            let url_ri='../../images/right_tri.png';
+            let url_left = '../../images/left_tri.png';
+            let url_ri = '../../images/right_tri.png';
             // 注意点赞的图要放在like的背景图 这样点击了才可以换背景图（灰色like和红色like）
-            let str1=`
+            let str1 = `
             <div class="left_show_img">
                 <img src=${data.data.list[i].coverUrl}>
                 <div class="triangle">
@@ -252,7 +255,7 @@ window.addEventListener('load',function(){
             </div>
             <div class="right_show_text">
                 <div class="show_title">
-                    <span>${data.data.list[i].title}</span>
+                    <span>${data.data.list[i].name}</span>
                     <span class="red_d"></span>
                     <span class="blue_d"></span>
                 </div>
@@ -266,12 +269,12 @@ window.addEventListener('load',function(){
                 </div>
             </div>
             `;
-            let str2=`
+            let str2 = `
             <div class="left_show_text">
                 <div class="show_title_l">
                     <span class="red_d"></span>
                     <span class="blue_d"></span>
-                    <span>${data.data.list[i].title}</span>
+                    <span>${data.data.list[i].name}</span>
                 </div>
                 <p>${data.data.list[i].introduction}</p>
                 <div class="decoration_red red_l"></div>
@@ -289,8 +292,54 @@ window.addEventListener('load',function(){
                 </div>
             </div>
             `;
-            i%2==0? oDiv.innerHTML=str1:oDiv.innerHTML=str2;
+            i % 2 == 0 ? oDiv.innerHTML = str1 : oDiv.innerHTML = str2;
             show_box.appendChild(oDiv);
+            // 点赞
+            oDiv.addEventListener('click', function (e) {
+                if (getCookie("userId") == 'undefined') {
+                    return;
+                }
+                if (e.target.classList.contains('liked') || e.target.classList.contains('like')) {
+                    ajax({
+                        type: 'post',
+                        url: '/thumb',
+                        data: {
+                            "achievementId": this.id
+                        },
+                        header: {
+                            'Content-Type': 'application/json'
+                        },
+                        success: function (data) {
+                            if (!data.success) {
+                                if (data.code == 4001) {
+                                    alert("未登录");
+                                }
+                                return;
+                            }
+                            if (e.target.classList.contains('liked')) {
+                                e.target.style.background = 'url(../../images/like_grey.png) no-repeat 8px 14px';
+                                // e.target.classList.add('like');
+                                e.target.children[0].innerText--;
+                                e.target.children[0].innerText <= 0 ? e.target.children[0].innerText = 0 : null;
+                                e.target.classList.remove('liked');
+                                e.target.classList.add('like');
+                            } else {
+                                if (e.target.classList.contains('like')) {
+                                    e.target.style.background = 'url(../../images/like_red.png) no-repeat 8px 14px';
+                                    e.target.classList.remove('like');
+                                    e.target.classList.add('liked');
+                                    e.target.children[0].innerText++;
+
+                                }
+                            }
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+            })
         }
     }
+
+
 })

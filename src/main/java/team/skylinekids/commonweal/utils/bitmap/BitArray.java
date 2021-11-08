@@ -15,12 +15,24 @@ public class BitArray {
         bitArray = new int[size / 32 + 1];
     }
 
-    public void set(int num) {
+    public void set(int num, boolean flag) {
+        //num/32
         int arrayIndex = num >> 5;
-        //num%(n-1)
+        //num%(n-1) num%32
         int bitIndex = num & 31;
+        if (flag) {
+            bitArray[arrayIndex] |= 1 << bitIndex;
+        } else {
+            bitArray[arrayIndex] &= ~(1 << bitIndex);
+        }
+    }
 
-        bitArray[arrayIndex] |= 1 << bitIndex;
+    public void add(int num) {
+        set(num, true);
+    }
+
+    public void delete(int num) {
+        set(num, false);
     }
 
     public boolean isExist(int num) {

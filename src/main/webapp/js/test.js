@@ -10,7 +10,6 @@ window.addEventListener('load', () => {
         for (let j = 0; j < line.length; j++) {
             let hect = line[j].getBoundingClientRect().top;
             if (hect <= 200) {
-
                 left_line[j].style.left = '0px';
                 middle_line[j].style.left = '80px';
                 right_line[j].style.left = '235px';

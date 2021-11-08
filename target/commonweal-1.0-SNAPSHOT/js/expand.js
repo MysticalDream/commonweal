@@ -197,6 +197,47 @@ window.addEventListener('load',function(){
                 arr_2.push(city_div);
             }
 
+            //收起
+            var myDIv = document.createElement('div');
+            //更多
+            var moreDiv = document.createElement('div');
+
+            myDIv.innerHTML = '收起';
+            myDIv.style.cssText = "display:inline-block;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;";
+            myDIv.addEventListener("click", function (e) {
+                expand_p.style.maxHeight = '48px';
+                expand_p.style.overflow = 'hidden';
+                moreDiv.style.display = "inline-block";
+            });
+            moreDiv.innerText = '更多';
+            moreDiv.style.cssText = 'display:inline-block;position:absolute;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;right:10px ; top:10px ;';
+
+            moreDiv.addEventListener("click", function (e) {
+                expand_p.style.maxHeight = 'initial';
+                expand_p.style.overflow = 'unset';
+                this.style.display = 'none';
+            });
+            //收起
+            let node = myDIv.cloneNode(true);
+            //更多
+            let node1 = moreDiv.cloneNode(true);
+            node1.addEventListener("click", function () {
+                expand_theme.style.maxHeight = 'initial';
+                expand_theme.style.overflow = 'unset';
+                node.style.display = "inline-block";
+                node1.style.display = 'none';
+            });
+            node.style.display = "none";
+            node.addEventListener("click", function (e) {
+                expand_theme.style.maxHeight = '48px';
+                expand_theme.style.overflow = 'hidden';
+                node.style.display = "none";
+                node1.style.display = 'inline-block';
+            });
+            expand_theme.appendChild(node);
+            expand_theme.appendChild(node1);
+            expand_p.appendChild(myDIv);
+            expand_p.appendChild(moreDiv);
             // 点击事件
             let contry = $('.e_contry')[0];
             for (let i = 0; i < arr_1.length; i++) {
@@ -349,7 +390,10 @@ window.addEventListener('load',function(){
     }
 
     //计算距离招募结束的时间
-    function getDistanceTime(endTime) {
+    function getDistanceTime(startTime,endTime) {
+        if(new Date(startTime)>new Date()){
+            return "待开始";
+        }
         var day = (new Date(endTime) - new Date()) / (86400000);
         return day < 0 ? "已结束" : day < 1 ? Math.floor(24 * day) + "小时" : Math.floor(day) + "天";
     }
@@ -412,7 +456,7 @@ window.addEventListener('load',function(){
                 <li>地点:${data.data.list[i].location}</li>
                 <li>招募开始时间:${new Date(data.data.list[i].begin).Format('yyyy年MM月dd日')}</li>
                 <li>招募结束时间:${new Date(data.data.list[i].end).Format('yyyy年MM月dd日')}</li>
-                <li>距离招募结束:${getDistanceTime(data.data.list[i].end)}</li>
+                <li>距离招募结束:${getDistanceTime(data.data.list[i].begin,data.data.list[i].end)}</li>
             </ul>
             <div class="foot_mes">
             <img src='${url_d_1}' class="le_dd">
@@ -430,14 +474,16 @@ window.addEventListener('load',function(){
     expand_p.addEventListener('click', function (e) {
         if (e.target.classList.contains('move_span')) {
             e.target.province ? expand_opt.data.province = e.target.province : null;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         } else {
             if (e.target.parentElement.classList.contains("province_d")) {
                 delete expand_opt.data.province;
                 delete expand_opt.data.city;
                 delete expand_opt.data.area;
+                ajax(expand_opt);
             }
         }
-        console.log('省份为：' + expand_opt.data.province);
     })
 
     // 城市县区
@@ -453,31 +499,36 @@ window.addEventListener('load',function(){
             } else {
                 delete expand_opt.data.area;
             }
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         }
-        console.log('城市为：' + seek_opt.data.city);
-        console.log('县区为：' + seek_opt.data.area);
     })
 
     // 主题
     expand_theme.addEventListener('click', function (e) {
         if (e.target.classList.contains('item_d')) {
             expand_opt.data.recruitCategory = e.target.innerText;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         }
-        console.log(expand_opt.data.recruitCategory);
     })
 
     // 人数
     expand_peo.addEventListener('click', function (e) {
         if (e.target.classList.contains('peo_d')) {
             e.target.index == 0 ? delete  expand_opt.data.numberScope: expand_opt.data.numberScope = e.target.index;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
         }
-        console.log('人数范围区间为：' + expand_opt.data.numberScope);
     })
 
     // 招募状态
     expand_situ.addEventListener('click',function(e){
         if(e.target.classList.contains('situation')){
-            e.target.index!==undefined?expand_opt.data.status=e.target.index:null;
+            e.target.index!==undefined?expand_opt.data.status=e.target.index: delete expand_opt.data.status;
+            expand_opt.data.pageNum=1;
+            ajax(expand_opt);
+            // expand_opt.data.status ? : null;
         }
     })
 
@@ -487,9 +538,8 @@ window.addEventListener('load',function(){
     //         expand_opt.data.
     //     }
     // }
-    wrap_expand.addEventListener('click',function(){
-        // 发送前好像还有加一句话,避免分页bug(财举修改的)
-        // expand_opt.data.pageNum=1;
-        ajax(expand_opt);
-    })
+    // wrap_expand.addEventListener('click',function(){
+    //     expand_opt.data.pageNum=1;
+    //     ajax(expand_opt);
+    // })
 })

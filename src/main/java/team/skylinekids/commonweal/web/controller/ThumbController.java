@@ -28,7 +28,7 @@ public class ThumbController {
      * @throws Exception
      */
     @AccessLevel
-    @MyRequestPath(value = "/thumb", type = {RequestMethod.PUT})
+    @MyRequestPath(value = "/thumb", type = {RequestMethod.POST})
     public String thumb(HttpInfoWrapper httpInfoWrapper) throws Exception {
         String jsonString = httpInfoWrapper.getJsonString();
         Thumb thumb = GsonUtils.j2O(jsonString, Thumb.class);

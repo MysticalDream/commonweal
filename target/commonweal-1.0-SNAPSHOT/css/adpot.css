@@ -3,19 +3,33 @@ body .big_pic_adpot{
 }
 
 .adpot_main{
-    width: 75%;
+    width: 80%;
     margin:15px auto;
+}
+
+ .adpot_main .wrap_pet{
+    width: 100%;
 }
 
 .pet_box{
     display: inline-block;
     width: 265px;
     height: 360px;
-    margin-left:35px;
+    margin-left:98px;
+    margin-top:50px;
 }
 
 .pet_box:nth-child(1){
     margin-left:5px;
+    margin-top:0px;
+}
+
+.pet_box:nth-child(2){
+    margin-top:0px;
+}
+
+.pet_box:nth-child(3){
+    margin-top:0px;
 }
 
 .pet_box:nth-child(4){
@@ -68,12 +82,23 @@ body .big_pic_adpot{
 
 .pet_bottom ul{
     position: relative;
+    width: 230px;
+    height: 115px;
     font-size: 15px;
     font-family: SimSun;
     line-height: 23px;
     top:-15px;
     left:20px;
     letter-spacing: 3px;
+    overflow: hidden;
+}
+
+.pet_bottom ul li{
+    width: 210px;
+    height: 23px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .pet_bottom button{
@@ -94,3 +119,39 @@ body .big_pic_adpot{
     line-height: 40px;
 }
 
+.body_full{
+    visibility: hidden;
+    /* fixed定位 */
+    position:fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .6);
+    top:0px;
+    left:0px;
+    z-index: 1000;
+}
+
+.drop_down{
+    animation: come 0.5s ease-in-out forwards;
+    -webkit-animation: come 0.5s ease-in-out forwards;
+}
+
+
+@keyframes come {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.adpot_main .footer{
+    width: 100vw;
+    left:48%;
+}

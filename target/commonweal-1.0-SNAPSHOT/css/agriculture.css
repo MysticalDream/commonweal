@@ -8,11 +8,12 @@
     background: url(../images/zhunong.jpg) center top;
 }
 
-/* .wrap_ag{
-    height: 100vh;
-} */
+.wrap_ag{
+    width: 96%;
+}
 
 .wrap_ag .agri_d{
+
     margin-top:10px;
     line-height: 35px;
     margin-left: 30px;
@@ -69,22 +70,29 @@
 }
 
 .text_container h3{
+    width: 400px;
     font-size: 16px;
     position: relative;
     top:5px;
     left:103px;
     font-family: 'Adobe Heiti Std R';
     letter-spacing: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .text_container p{
     position: relative;
-    width: 500px;
-    height: 40px;
+    width: 490px;
+    height: 92px;
     top:30px;
     left:75px;
     font-size: 14px;
     letter-spacing: 4px;
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
 .text_container .bg_cir{

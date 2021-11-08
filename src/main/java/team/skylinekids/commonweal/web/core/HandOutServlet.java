@@ -80,6 +80,7 @@ public class HandOutServlet extends HttpServlet {
             // 资源不存在
             if (handleInfo == null) {
                 logger.debug("404:资源不存在:" + uri + "[原uri:" + tempUri + "]");
+                response.setContentType("application/json");
                 response.getWriter().write(ResultUtils.getResult(ApiResultCode.THE_PAGE_NOT_FOUND));
                 return;
             }
@@ -89,6 +90,7 @@ public class HandOutServlet extends HttpServlet {
          */
         Method method = handleInfo.getMethodByRequestType(request.getMethod());
         if (method == null) {
+            response.setContentType("application/json");
             response.getWriter().write(ResultUtils.getResult(ApiResultCode.REQUEST_METHOD_NOT_ALLOWED));
             logger.debug("405:请求方法不允许");
             return;
@@ -105,6 +107,7 @@ public class HandOutServlet extends HttpServlet {
             LevelCode currentAccessLevel = getCurrentAccessLevel(request, response);
             if (currentAccessLevel != null && currentAccessLevel.getLevel() < levelCode.getLevel()) {
                 logger.info("无权访问");
+                response.setContentType("application/json");
                 response.getWriter().write(ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED));
                 return;
             }
@@ -115,6 +118,7 @@ public class HandOutServlet extends HttpServlet {
             result = method.invoke(object, new HttpInfoWrapper(response, request, pathVariable));
         } catch (Exception e) {
             logger.error("方法调用异常:" + e.getMessage(), e);
+            response.setContentType("application/json");
             response.getWriter().write(ResultUtils.getResult(ApiResultCode.SERVER_RUNNING_EXCEPTION));
         }
 
@@ -174,6 +178,7 @@ public class HandOutServlet extends HttpServlet {
         } else if (levelNum == 10) {
             return LevelCode.SPECIAL_LOGIN_LEVEL;
         } else {
+            response.setContentType("application/json");
             response.getWriter().write(ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED));
             return null;
         }

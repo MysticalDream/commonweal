@@ -77,7 +77,8 @@ li {
     line-height: 43px;
 }
 
-.nav_s .right {
+
+/* .nav_s .right {
     width: 200px;
     height: 50px;
     margin-left: 40px;
@@ -96,6 +97,105 @@ li {
     border-radius: 50%;
     vertical-align: center;
     background-color: red;
+} */
+
+.nav_s>.right {
+    position: absolute;
+    width: 180px;
+    height: 43px;
+    right: 5px;
+    top: 2px;
+    line-height: 43px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #000;
+    z-index: 10;
+}
+
+.nav_s>.right>* {
+    float: left;
+}
+
+.nav_s>.right .pic {
+    width: 40px;
+    height: 40px;
+    margin-top: 3px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: center;
+    background-color: red;
+    cursor: pointer;
+}
+
+.nav_s>.right .pic img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.nav_s>.right .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 35px;
+    left: 10px;
+    border: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+    display: none;
+    transition: all 0.5s;
+}
+
+.nav_s>.right .operation {
+    position: absolute;
+    top: 48px;
+    width: 130px;
+    height: 90px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #2f3855;
+    font-size: 16px;
+    border-radius: 5px;
+    display: none;
+    transition: all 0.5s;
+}
+
+.nav_s>.right .operation>div {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.nav_s>.right .operation>div:hover {
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.nav_s>.right .operation i {
+    margin-right: 20px;
+}
+
+.nav_s .right .log_in {
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    top: 3px;
+    right: 5px;
+    /* background-color: #fff; */
+    /* color: rgb(189, 95, 74); */
+    color: #000;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 3px;
+    z-index: 10;
+    cursor: pointer;
+    font-size: 400;
+}
+
+.nav_s .right .log_in:hover {
+    color: rgb(189, 95, 74);
 }
 
 

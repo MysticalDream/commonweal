@@ -8,8 +8,8 @@ class BitArrayTest {
 
     @Test
     void set() {
-        bitArray.set(10);
-        bitArray.set(20);
+        bitArray.set(10,true);
+        bitArray.set(20,true);
         System.out.println(bitArray.isExist(20));
     }
 

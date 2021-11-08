@@ -132,22 +132,105 @@ html {
 
 .slideshow .log_in,
 .slideshow .sign_in {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 40px;
     position: absolute;
-    top: 10px;
-    border-radius: 50%;
-    background-color: #fff;
-    line-height: 60px;
+    top: 3px;
+    /* background-color: #fff; */
+    /* color: rgb(189, 95, 74); */
+    color: #fff;
+    line-height: 40px;
     text-align: center;
     font-size: 16px;
     letter-spacing: 3px;
     z-index: 10;
     cursor: pointer;
+    font-weight: 700;
+}
+
+.slideshow>.right {
+    position: absolute;
+    top: 2px;
+    right: -30px;
+    width: 180px;
+    height: 43px;
+    line-height: 43px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    z-index: 10;
+}
+
+.slideshow>.right>* {
+    float: left;
+}
+
+.slideshow>.right .pic {
+    width: 40px;
+    height: 40px;
+    margin-top: 3px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: center;
+    background-color: red;
+    cursor: pointer;
+}
+
+.slideshow>.right .pic img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.slideshow>.right .triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 35px;
+    left: 10px;
+    border: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+    display: none;
+    transition: all 0.5s;
+}
+
+.slideshow>.right .operation {
+    position: absolute;
+    top: 48px;
+    width: 130px;
+    height: 90px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #2f3855;
+    font-size: 16px;
+    border-radius: 5px;
+    display: none;
+    transition: all 0.5s;
+}
+
+.slideshow>.right .operation>div {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    cursor: pointer;
+}
+
+.slideshow>.right .operation>div:hover {
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.slideshow>.right .operation i {
+    margin-right: 20px;
+}
+
+.slideshow .log_in:hover {
+    color: rgb(189, 95, 74);
 }
 
 .slideshow .log_in {
-    right: 125px;
+    right: 45px;
 }
 
 .slideshow .log_in img {
@@ -176,7 +259,7 @@ html {
     position: absolute;
     top: 0px;
     left: 260px;
-    background-color: rgba(0, 0, 0, .1);
+    /* background-color: rgba(0, 0, 0, .1); */
     font-size: 16px;
     font-weight: 700;
     z-index: 15;
@@ -236,7 +319,7 @@ html {
 }
 
 .slideshow .slide_contain .first .white_title {
-    color: #fff;
+    color: #e33b17;
     margin-left: 6px;
 }
 
@@ -381,6 +464,15 @@ html {
     left: 100px;
 }
 
+.intro .intro_nd .intro_nd_lf h2 {
+    width: 460px;
+    height: 70px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 30px;
+}
+
 .intro .intro_nd .intro_nd_lf p {
     width: 460px;
     font-size: 16px;
@@ -478,6 +570,10 @@ html {
     color: #fff;
 }
 
+.more_s.volunteer_more:hover a {
+    color: rgb(47, 56, 85);
+}
+
 .volunteer .volunteer_box {
     position: relative;
     margin: 0 auto;
@@ -573,7 +669,8 @@ html {
     /* overflow: hidden; */
 }
 
-.volunteer .volunteer_rd .search_cicle .search_box:hover input {
+
+/* .volunteer .volunteer_rd .search_cicle .search_box:hover input {
     width: 260px;
     padding: 0 10px;
 }
@@ -582,7 +679,7 @@ html {
     border-left: 0px;
     right: -10px;
     color: #bc604b;
-}
+} */
 
 .volunteer .volunteer_rd .search_cicle .search_box input {
     width: 0px;
@@ -741,6 +838,10 @@ html {
     text-decoration: none;
 }
 
+.more_s.show_more:hover a {
+    color: #f3532f;
+}
+
 .show .show_box {
     position: relative;
     margin: 0 auto;
@@ -835,7 +936,7 @@ html {
     width: 85%;
     height: 60px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
     letter-spacing: 3px;
     line-height: 20px;
     font-size: 12px;
@@ -877,6 +978,23 @@ html {
     color: rgb(211, 146, 50);
 }
 
+.show .show_rd>div .dianzan {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 58px;
+    height: 20px;
+    line-height: 20px;
+    /* background-color: red; */
+    font-size: 14px;
+    color: #999;
+}
+
+.show .show_rd>div .dianzan i {
+    margin-right: 5px;
+    color: #e75f43;
+}
+
 
 /* 招募志愿者板块 */
 
@@ -892,6 +1010,10 @@ html {
 .more_s.recruitment_more a {
     color: #fff;
     text-decoration: none;
+}
+
+.more_s.recruitment_more:hover a {
+    color: rgb(47, 56, 85);
 }
 
 .recruitment .recruitment_box {
@@ -942,10 +1064,6 @@ html {
     opacity: 0;
 }
 
-.recruitment .recruitment_nd>div {
-    float: left;
-}
-
 .recruitment .recruitment_nd .pic {
     position: relative;
     margin-left: -46px;
@@ -957,23 +1075,67 @@ html {
     opacity: 0;
 }
 
+.recruitment .recruitment_nd .pic .pic_ul {
+    position: relative;
+    top: -2px;
+}
+
+.recruitment .recruitment_nd .pic .pic_ul .pic_li {
+    position: absolute;
+    transition: all .5s ease;
+}
+
+.recruitment .recruitment_nd .pic .point {
+    position: absolute;
+    top: 100px;
+    right: -560px;
+    width: 20px;
+    height: 80px;
+    /* background-color: red; */
+    z-index: 20;
+}
+
+.recruitment .recruitment_nd .pic .point li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    background-color: #999;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.recruitment .recruitment_nd .pic .point .light {
+    width: 10px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #d2543b;
+}
+
 .recruitment .recruitment_nd .pic img {
-    width: 100%;
-    height: 100%;
+    width: 336px;
+    height: 268px;
     border-radius: 16px;
     box-shadow: 4px 4px 25px rgba(0, 0, 0, .1);
 }
 
 .recruitment .recruitment_nd .right {
+    position: relative;
+    top: -318px;
+    left: 375px;
+    width: 405px;
+    margin: 0px;
     margin-top: 76px;
-    margin-left: 110px;
+    /* margin-left: 110px; */
     letter-spacing: 3px;
     opacity: 1;
     font-family: 'DOUYU-Font';
+    z-index: 1;
 }
 
 .recruitment .recruitment_nd .right h3 {
     margin-bottom: 12px;
+    width: 405px;
     font-size: 20px;
     line-height: 47px;
 }
@@ -981,9 +1143,14 @@ html {
 .recruitment .recruitment_nd .right p {
     font-size: 14px;
     line-height: 30px;
+    width: 405px;
 }
 
-.recruitment .recruitment_nd .right button {
+.recruitment .recruitment_nd .right>button.opa {
+    opacity: 0;
+}
+
+.recruitment .recruitment_nd .right>button {
     width: 150px;
     height: 46px;
     margin-top: 30px;
@@ -992,9 +1159,10 @@ html {
     border: none;
     border: 4px solid #d2543b;
     font-size: 14px;
-    opacity: 0;
+    opacity: 1;
     font-family: 'DOUYU-Font';
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 
@@ -1011,6 +1179,10 @@ html {
 .more_s.agriculture_more a {
     color: rgb(47, 56, 85);
     text-decoration: none;
+}
+
+.more_s.agriculture_more:hover a {
+    color: #f3532f;
 }
 
 .agriculture .agriculture_box {
@@ -1140,7 +1312,7 @@ html {
     letter-spacing: 3px;
     font-weight: 700;
     /* font-family: 'DOUYU-Font'; */
-    font-weight: lighter;
+    font-weight: bold;
 }
 
 
@@ -1158,6 +1330,10 @@ html {
 .more_s.adopt_more a {
     color: #fff;
     text-decoration: none;
+}
+
+.more_s.adopt_more:hover a {
+    color: #f3532f;
 }
 
 .adopt .adopt_box {
@@ -1245,6 +1421,10 @@ html {
 .more_s.children_more a {
     color: rgb(47, 56, 85);
     text-decoration: none;
+}
+
+.more_s.children_more:hover a {
+    color: #f3532f;
 }
 
 .children .children_box {
@@ -1369,6 +1549,10 @@ html {
 .more_s.recruit_more a {
     color: rgb(47, 56, 85);
     text-decoration: none;
+}
+
+.more_s.recruit_more:hover a {
+    color: #f3532f;
 }
 
 .recruit .recruit_box {

@@ -13,10 +13,9 @@ body {
 }
 
 .adpot_mask_s {
-    display: none;
     position: fixed;
-    top:80px;
-    left:25%;
+    /* top:80px;
+    left:25%; */
     height: 440px;
     width: 600px;
     background-color: #fff;
@@ -65,7 +64,6 @@ body {
     border: none;
     border-radius: 5px;
     font-size: 14px;
-    transition: all 0.3s;
     cursor: pointer;
 }
 
