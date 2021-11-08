@@ -936,7 +936,7 @@ html {
     width: 85%;
     height: 60px;
     margin: 0 auto;
-    margin-top: 40px;
+    margin-top: 20px;
     letter-spacing: 3px;
     line-height: 20px;
     font-size: 12px;
@@ -976,6 +976,23 @@ html {
 
 .show .show_rd>div .icon-crown.third {
     color: rgb(211, 146, 50);
+}
+
+.show .show_rd>div .dianzan {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 58px;
+    height: 20px;
+    line-height: 20px;
+    /* background-color: red; */
+    font-size: 14px;
+    color: #999;
+}
+
+.show .show_rd>div .dianzan i {
+    margin-right: 5px;
+    color: #e75f43;
 }
 
 
