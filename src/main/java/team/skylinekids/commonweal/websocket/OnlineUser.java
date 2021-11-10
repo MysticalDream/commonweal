@@ -1,4 +1,4 @@
-package team.skylinekids.commonweal.pojo.bo.websocket;
+package team.skylinekids.commonweal.websocket;
 
 import javax.websocket.Session;
 

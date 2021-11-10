@@ -1,4 +1,4 @@
-package team.skylinekids.commonweal.service.chat.config;
+package team.skylinekids.commonweal.websocket.config;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.HandshakeResponse;

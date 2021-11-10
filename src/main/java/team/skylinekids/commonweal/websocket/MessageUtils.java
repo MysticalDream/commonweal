@@ -1,4 +1,4 @@
-package team.skylinekids.commonweal.pojo.bo.websocket;
+package team.skylinekids.commonweal.websocket;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
@@ -11,9 +11,9 @@ import java.util.*;
  * @Description 消息类
  * @date 2017/12/16 19:08
  */
-public class Message {
+public class MessageUtils {
 
-    private static Logger logger = Logger.getLogger(Message.class);
+    private static Logger logger = Logger.getLogger(MessageUtils.class);
 
     /**
      * 消息类型
