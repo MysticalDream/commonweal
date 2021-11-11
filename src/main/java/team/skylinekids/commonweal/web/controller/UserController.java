@@ -41,7 +41,7 @@ public class UserController {
     public String login(HttpInfoWrapper httpWrapper) throws Exception {
         if (httpWrapper.isLogin()) {
             //已经登录无需登录
-            httpWrapper.getHttpServletResponse().sendRedirect("/");
+//            httpWrapper.getHttpServletResponse().sendRedirect("/");
             return ResultUtils.getResult(ApiResultCode.REDIRECT, "/");
         }
         //用户名

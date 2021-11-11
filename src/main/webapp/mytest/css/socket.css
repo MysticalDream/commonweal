@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+}
+
+#login_form {
+    text-align: center;
+}
+
+input[type=submit] {
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 50px;
+}
+
+#main {
+    text-align: center;
+}
+
+#main::after {
+    display: block;
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+input[type=text] {
+    outline-style: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 13px 14px;
+    width: 620px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "Microsoft soft";
+}
+
+textarea#content {
+    width: 530px;
+    height: 230px;
+    resize: none;
+    padding: 5px;
+    font-size: 18px;
+}
+
+button#connect, button#close, button#send, button#open_live {
+    line-height: 42px;
+    height: 42px;
+    width: 104px;
+    color: #ffffff;
+    background-color: #4a8cf7;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: Arial;
+    border: 2px solid #0be865;
+    border-radius: 9px;
+    box-shadow: inset 0px 0px 0px 0px #ffffff;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button#send {
+    position: relative;
+    right: 103px;
+    bottom: -43px;
+}
+
+button#connect:hover, button#close:hover, button#send:hover, button#open_live:hover {
+    background-color: #4a8c77;
+}
+
+div#info {
+    margin-left: 50px;
+    width: 542px;
+    height: 242px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    float: left;
+}
+
+div#info > div {
+    margin-bottom: 10px;
+    position: relative;
+    left: 0px;
+}

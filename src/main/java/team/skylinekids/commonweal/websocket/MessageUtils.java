@@ -73,6 +73,36 @@ public class MessageUtils {
     }
 
     /**
+     * 广播除了
+     *
+     * @param message
+     * @param onlineUser
+     * @param onlineUsers
+     */
+    public static void broadcastWithout(String message, OnlineUser onlineUser, Collection<OnlineUser> onlineUsers) {
+        /***************************在线用户***************************/
+        StringBuffer userStr = new StringBuffer();
+        for (OnlineUser user : onlineUsers) {
+            userStr.append(user.getUsername() + ",");
+        }
+        userStr.deleteCharAt(userStr.length() - 1);
+        logger.info("[broadcast] message = " + message + ", onlineUsers = " + userStr);
+        /***************************在线用户***************************/
+        for (OnlineUser user : onlineUsers) {
+            if (user == onlineUser) {
+                continue;
+            }
+            try {
+                user.getSession().getBasicRemote().sendText(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+                logger.info("消息发送失败！" + e.getMessage());
+                continue;
+            }
+        }
+    }
+
+    /**
      * 广播消息
      *
      * @param message     消息
@@ -105,7 +135,7 @@ public class MessageUtils {
      * @param onlineUser
      */
     public static void singleSend(String message, OnlineUser onlineUser) {
-        logger.info("[singleSend] message = " + message + ", toUser = " + onlineUser.getUsername());
+        // logger.info("[singleSend] message = " + message + ", toUser = " + onlineUser.getUsername());
         try {
             onlineUser.getSession().getBasicRemote().sendText(message);
         } catch (IOException e) {

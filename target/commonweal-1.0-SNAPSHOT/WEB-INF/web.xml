@@ -9,6 +9,10 @@
     <session-config>
         <session-timeout>1440</session-timeout>
     </session-config>
+    <context-param>
+        <param-name>org.apache.tomcat.websocket.textBufferSize</param-name>
+        <param-value>5242800</param-value>
+    </context-param>
     <!--上下文初始化参数-->
     <context-param>
         <param-name>log4j-properties-location</param-name>
