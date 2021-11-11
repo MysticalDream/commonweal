@@ -89,7 +89,12 @@ async function startLive(offerSdp) {
     let stream;
     try {
         message.log('尝试调取本地摄像头/麦克风');
-        stream = await navigator.mediaDevices.getUserMedia({video: true, audio: true});
+
+        if (target === 'offer') {
+            stream = await navigator.mediaDevices.getDisplayMedia({video: true, audio: true});
+        } else {
+            stream = await navigator.mediaDevices.getUserMedia({video: true, audio: true});
+        }
         message.log('摄像头/麦克风获取成功！');
         localVideo.srcObject = stream;
     } catch {
