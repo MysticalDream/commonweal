@@ -18,4 +18,12 @@ public interface SessionKeyConstant {
      * 同意状态键
      */
     String AGREEMENT_KEY = "AGREEMENT_KEY";
+    /**
+     * 用户id
+     */
+    String USER_ID = "USER_ID";
+    /**
+     * 用户名
+     */
+    String USER_NAME = "USER_NAME";
 }

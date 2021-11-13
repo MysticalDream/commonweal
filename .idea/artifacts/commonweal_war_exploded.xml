@@ -14,6 +14,11 @@
           <element id="module-output" name="commonweal" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-websocket:8.5.69" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:8.5.69" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-websocket-api:8.5.69" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-juli:8.5.69" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util:8.5.69" />
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
         </element>
       </element>
