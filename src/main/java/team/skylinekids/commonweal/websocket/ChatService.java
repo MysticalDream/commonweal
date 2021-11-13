@@ -3,8 +3,8 @@ package team.skylinekids.commonweal.websocket;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.pojo.po.User;
-import team.skylinekids.commonweal.utils.HTMLFilter;
 import team.skylinekids.commonweal.utils.TimeUtils;
+import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.websocket.config.HttpSessionConfig;
 
 import javax.servlet.http.HttpSession;
@@ -126,7 +126,7 @@ public class ChatService {
         Map<String, Object> msg = new HashMap<>();
         msg.put("content", content);
         if (onlineUserMap.size() > 0) {
-            String message = MessageUtils.getMessage(msg.toString(), MessageUtils.NOTICE, onlineUserMap.values());
+            String message = MessageUtils.getMessage(GsonUtils.o2J(msg), MessageUtils.NOTICE, onlineUserMap.values());
             // MessageUtils.broadcast(message, onlineUserMap.values());
         } else {
             logger.info("content : [" + TimeUtils.getTime24() + " : " + removeUser.getUsername() + " 离开聊天室，当前在线人数为 " + getOnlineCount() + "位" + "]");

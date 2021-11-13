@@ -37,6 +37,7 @@ socket.onopen = () => {
     target === 'offer' && (button.style.display = 'block');
 }
 socket.onerror = () => message.error('信令通道创建失败！');
+
 socket.onmessage = e => {
     const data = JSON.parse(e.data);
     console.log("onmessage:", data);
@@ -92,6 +93,8 @@ async function startLive(offerSdp) {
 
         if (target === 'offer') {
             stream = await navigator.mediaDevices.getDisplayMedia({video: true, audio: true});
+            let stream2 = await navigator.mediaDevices.getUserMedia({audio: true});
+            stream.addTrack(stream2.getAudioTracks()[0]);
         } else {
             stream = await navigator.mediaDevices.getUserMedia({video: true, audio: true});
         }
@@ -116,12 +119,10 @@ async function startLive(offerSdp) {
         send(offer);
     } else {
         message.log('接收到发送方SDP');
-
         peer.setRemoteDescription(offerSdp).then(() => {
         }).catch((e) => {
             console.log(e);
         });
-
         message.log('创建接收方（应答）SDP');
         const answer = await peer.createAnswer();
         message.log(`传输接收方（应答）SDP`);

@@ -1,7 +1,5 @@
 package team.skylinekids.commonweal.websocket;
 
-import java.util.Collection;
-
 /**
  * 消息传输
  *
@@ -11,14 +9,41 @@ public class TransportMessage {
     /**
      * 消息
      */
-    private Message message;
+    private Message data;
     /**
      * 类型
      */
-    String type;
-    /**
-     * 在线用户
-     */
-    Collection<OnlineUser> onlineUserCollections;
+   private String type;
 
+    public TransportMessage(Message data, String type) {
+        this.data = data;
+        this.type = type;
+    }
+
+    public TransportMessage() {
+    }
+
+    public Message getData() {
+        return data;
+    }
+
+    public void setData(Message data) {
+        this.data = data;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "TransportMessage{" +
+                "data=" + data +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

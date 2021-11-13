@@ -178,3 +178,116 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
         }
     }
 }(window);
+
+//计数器
+(function (global, factory) {
+    typeof exports === "object" && typeof module !== "undefined"
+        ? (module.exports = factory())
+        : typeof define === "function" && define.amd
+        ? define(factory)
+        : ((global = global || self), (global.myCounter = factory()));
+})(
+    this, function () {
+        //辅助函数
+
+        function $(matcher) {
+            return document.querySelectorAll(matcher);
+        }
+
+        function isElementNode(node) {
+            return node.nodeType === 1;
+        }
+
+        /**
+         * 防抖函数 执行最后一次
+         * @param {*} func 业务代码
+         * @param {*} delay 延时
+         * @returns
+         */
+        function antiShake(func, delay) {
+            var t = null;
+            return function () {
+                if (t !== null) {
+                    clearTimeout(t);
+                }
+                t = setTimeout(() => {
+                    func.call(this);
+                }, delay);
+            };
+        }
+
+        /**
+         * 节流函数 减少执行次数
+         * @param {*} func 业务代码
+         * @param {*} delay 延时
+         */
+        function throttle(func, delay) {
+            var flag = true;
+            return function () {
+                if (flag) {
+                    setTimeout(() => {
+                        func.call(this);
+                        flag = true;
+                    }, delay);
+                }
+                flag = false;
+            };
+        }
+
+        /**
+         *
+         * @param opt 显示标签 监听对象 限制字数 文字模板
+         */
+        function myCounter(opt) {
+            const tag = isElementNode(opt.tag) ? opt.tag : $(opt.tag)[0];
+            const listenObj = isElementNode(opt.el) ? opt.el : $(opt.el)[0];
+            const txtTemplate = opt.txtTemplate || "?";
+            tag.innerText = txtTemplate.replace(/[?？]/g, listenObj.value.length);
+            //限制字数
+            this.limit = opt.limit;
+            const that = this;
+            'maxLength' in listenObj && listenObj.setAttribute("maxlength", this.limit);
+            listenObj.addEventListener(
+                "input",
+                throttle(function () {
+                    if (this.value.length > that.limit) {
+                        this.value = this.value.substring(0, that.limit);
+                    }
+                    tag.innerText = txtTemplate.replace(/[?？]/g, this.value.length);
+                }, 200)
+            );
+        }
+
+        return myCounter;
+    });
+/**
+ * 校验只要是数字（包含正负整数，0以及正负浮点数）就返回true
+ **/
+;
+
+function isNumber(val) {
+    const reg = /^[0-9]+\.?[0-9]*$/;
+    return reg.test(val);
+};
+/**
+ * 获取地址栏参数键值对形式
+ */
+;
+
+function getUrlParamObject(url) {
+    const params = url.slice(url.indexOf('?') + 1, url.length);
+    const group = params.split('&');
+    const data = new Object();
+    for (const index in group) {
+        const arr = group[index].split('=');
+        data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
+    }
+    return data;
+};
+
+const urlManager = {
+    get(key) {
+        return getUrlParamObject(window.location.search)[key];
+
+    }
+};
