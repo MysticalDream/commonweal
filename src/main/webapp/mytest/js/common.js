@@ -291,3 +291,19 @@ const urlManager = {
 
     }
 };
+
+/**
+ * 查找兄弟节点
+ * @param elem
+ * @returns {*[]}
+ */
+function sibling(elem) {
+    const r = [];
+    let n = elem.parentNode.firstChild;
+    for (; n; n = n.nextSibling) {
+        if (n.nodeType === 1 && n !== elem) {
+            r.push(n);
+        }
+    }
+    return r;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>直播页面</title>
+    <link rel="stylesheet" href="../css/live2.css">
+    <script src="../js/common.js"></script>
+    <script src="../js/socket.js"></script>
+    <script src="../js/hash.js"></script>
+    <script src="../../js/ajax.js"></script>
+</head>
+<body>
+
+<main>
+
+    <section class="left_area">
+        <nav class="left_nav">
+            <a href="#/setting">设置</a>
+            <a href="#/message">消息区域</a>
+        </nav>
+
+        <div class="setting">
+            <div class="select">
+                <div class="item camera">
+                    <span>摄像头</span>
+                    <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="21" r="16" fill="none" stroke="#333" stroke-width="4"/>
+                        <circle cx="24" cy="21" r="7" fill="none" stroke="#333" stroke-width="4"/>
+                        <path d="M16 43L32 43" stroke="#333" stroke-width="4" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                        <path d="M24 37V43" stroke="#333" stroke-width="4" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="item screen"><span>屏幕分享</span>
+                    <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M42 18V40C42 41.1046 41.1046 42 40 42H8C6.89543 42 6 41.1046 6 40V18" stroke="#333"
+                              stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 8C6 6.89543 6.89543 6 8 6H40C41.1046 6 42 6.89543 42 8V18H6V8Z" fill="none"
+                              stroke="#333" stroke-width="4" stroke-linejoin="round"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z"
+                              fill="#333"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z"
+                              fill="#333"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M24 14C25.1046 14 26 13.1046 26 12C26 10.8954 25.1046 10 24 10C22.8954 10 22 10.8954 22 12C22 13.1046 22.8954 14 24 14Z"
+                              fill="#333"/>
+                    </svg>
+                </div>
+                <div class="item photograph"><span>拍照</span>
+                    <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <g transform="translate(0.000000, -0.000000)">
+                                <rect fill-opacity="0.01" fill="#FFFFFF" x="0" y="0" width="48" height="48"
+                                      stroke-width="4" stroke="none" fill-rule="evenodd"/>
+                                <circle stroke="#333" stroke-width="4" fill="none" fill-rule="nonzero"
+                                        stroke-linejoin="round" cx="10" cy="36" r="6"/>
+                                <path d="M40.0614849,8 C24,28.4331467 15.8047379,38.6805435 14.2426407,40.2426407 C11.8994949,42.5857864 8.10050506,42.5857864 5.75735931,40.2426407"
+                                      stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                                      fill="none" fill-rule="evenodd"/>
+                                <circle stroke="#333" stroke-width="4" fill="none" fill-rule="nonzero"
+                                        stroke-linejoin="round" cx="38" cy="36" r="6"/>
+                                <path d="M42.2426407,40.2426407 C39.8994949,42.5857864 36.1005051,42.5857864 33.7573593,40.2426407 C32.1952621,38.6805435 24,28.4459921 8.00071241,8"
+                                      stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                                      fill="none" fill-rule="evenodd"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="item picture"><span>图片</span>
+                    <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <rect width="48" height="48" fill="white" fill-opacity="0.01" stroke-linejoin="round"
+                                  stroke-width="4" stroke="none" fill-rule="evenodd"/>
+                            <g transform="translate(5.000000, 8.000000)">
+                                <path d="M2,0 L36,0 C37.1045695,-2.02906125e-16 38,0.8954305 38,2 L38,30 C38,31.1045695 37.1045695,32 36,32 L2,32 C0.8954305,32 1.3527075e-16,31.1045695 0,30 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z"
+                                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke="#333"
+                                      fill="none" fill-rule="evenodd"/>
+                                <circle stroke-width="4" stroke-linecap="round" cx="9.5" cy="8.5" r="1.5"
+                                        stroke-linejoin="round" stroke="#333" fill="none" fill-rule="evenodd"/>
+                                <path d="M10,16 L15,20 L21,13 L38,26 L38,30 C38,31.1045695 37.1045695,32 36,32 L2,32 C0.8954305,32 2.27508946e-13,31.1045695 2.27373675e-13,30 L2.27373675e-13,26 L10,16 Z"
+                                      stroke-width="4" fill="none" fill-rule="nonzero" stroke-linejoin="round"
+                                      stroke="#333"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <!--弹出层-->
+            <div class="model" id="model1" style="display: none">
+                <div><label for="videoSource">摄像头设备: </label><select id="videoSource"></select></div>
+                <!--                <div><label for="audioOutput">音频输出设备: </label><select id="audioOutput"></select></div>-->
+                <div><label for="audioSource">音频输入设备: </label><select id="audioSource"></select></div>
+            </div>
+            <div class="model" id="model2" style="display: none">
+
+            </div>
+        </div>
+
+        <div class="message_area">
+            <!--        聊天展示-->
+            <div class="show_info">
+            </div>
+            <!--  聊天输入-->
+            <div class="chat_room">
+                <textarea id="comment_area" placeholder="发表评论"></textarea>
+                <span class="tag"></span>
+                <div id="send_btn">发送</div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="right_area">
+        <video id="local_video" autoplay muted>你的浏览器不支持video标签</video>
+        <button class="start_live">开始直播</button>
+    </section>
+</main>
+
+<script src="../js/live2.js"></script>
+</body>
+</html>
