@@ -12,6 +12,6 @@ import java.util.List;
 public class NotNullTest {
     @Test
     void test() throws IOException {
-        System.out.println(new File("https://pic.quanjing.com/2i/2u/QJ6344076635.jpg").getName());
+
     }
 }

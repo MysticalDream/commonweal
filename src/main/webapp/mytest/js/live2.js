@@ -3,6 +3,7 @@ window.addEventListener("load", function () {
     function peerConnectionFactory() {
         this.localStream = null;
         this.peerConnections = {};
+        window.senders = [];
         let that = this;
         //设置媒体流
         this.setLocalStream = (stream) => {
@@ -38,7 +39,8 @@ window.addEventListener("load", function () {
             if (that.localStream) {
                 that.localStream.getTracks().forEach(element => {
                     console.log('添加轨道到pc', element);
-                    pc.addTrack(element, that.localStream);
+                    window.senders = [];
+                    window.senders.push(pc.addTrack(element, that.localStream));
                 });
             } else {
                 console.log("localStream为空", that.localStream);
@@ -261,6 +263,7 @@ window.addEventListener("load", function () {
                     });
                 }
                 model1.style.display = "none";
+                $startLive.style.display = "none";
             }
         });
         win.Array.from(select_wrap[0].children).forEach((e, index) => {

@@ -2,8 +2,12 @@ package team.skylinekids.commonweal.web.controller;
 
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.RequestMethod;
+import team.skylinekids.commonweal.factory.ServiceFactory;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.dto.UserDTO;
+import team.skylinekids.commonweal.pojo.po.LiveRoom;
+import team.skylinekids.commonweal.pojo.po.User;
+import team.skylinekids.commonweal.service.LiveService;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.UUIDUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
@@ -23,6 +27,8 @@ import java.io.IOException;
  */
 public class LiveController {
 
+    LiveService liveService = ServiceFactory.getLiveService();
+
     /**
      * 创建直播间
      *
@@ -30,12 +36,16 @@ public class LiveController {
      */
     @AccessLevel
     @MyRequestPath(value = "/live", type = {RequestMethod.POST})
-    public String createLive(HttpInfoWrapper httpInfoWrapper) throws IOException {
+    public String createLive(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        User user = httpInfoWrapper.getUser();
+        UserDTO userDTO = ConversionUtils.convert(user, UserDTO.class);
+        LiveRoom liveRoom = GsonUtils.j2O(httpInfoWrapper.getJsonString(), LiveRoom.class);
+        liveRoom.setUserId(user.getUserId());
+        liveService.handleLiveRoomInfo(liveRoom);
         RoomVO roomVO = GsonUtils.j2O(httpInfoWrapper.getJsonString(), RoomVO.class);
-        String uuid = UUIDUtils.getPureUUID();
-        UserDTO userDTO = ConversionUtils.convert(httpInfoWrapper.getUser(), UserDTO.class);
+        String uuid = liveRoom.getUuid();
         roomVO.setUserDTO(userDTO);
-        roomVO.setCoverUrl("/upload/images/achievements/20211101124744.jpg");
+        roomVO.setCoverUrl(roomVO.getCoverUrl());
         roomVO.setUuid(uuid);
         LiveManager.put(uuid, roomVO);
         LiveChatServer.initLiveUsers(uuid);

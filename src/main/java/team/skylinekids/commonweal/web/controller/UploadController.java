@@ -73,6 +73,10 @@ public class UploadController extends HttpServlet {
                 tempPath = ResourcePathConstant.DISK_ADOPT_TEMP_IMG_BASE;
                 virtualPath = ResourcePathConstant.VIRTUAL_ADOPT_COVER_TEMP_BASE;
                 break;
+            case "live_cover":
+                tempPath = ResourcePathConstant.DISK_LIVE_TEMP_BASE;
+                virtualPath = ResourcePathConstant.VIRTUAL_LIVE_COVER_TEMP_BASE;
+                break;
             default:
                 return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }

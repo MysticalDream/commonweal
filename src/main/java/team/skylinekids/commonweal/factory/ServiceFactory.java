@@ -62,4 +62,8 @@ public class ServiceFactory {
         return ProxyFactory.getTransactionProxy(new AdoptServiceImpl());
     }
 
+    public static LiveService getLiveService() {
+        return ProxyFactory.getTransactionProxy(new LiveServiceImpl());
+    }
+
 }

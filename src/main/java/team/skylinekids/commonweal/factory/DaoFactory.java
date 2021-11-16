@@ -72,4 +72,8 @@ public class DaoFactory {
     public static ItemMemberDao getItemReviewVODao() {
         return new ItemMemberDaoImpl();
     }
+
+    public static LiveRoomDao getLiveRoomDao() {
+        return new LiveRoomDaoImpl();
+    }
 }
