@@ -29,7 +29,7 @@ window.addEventListener("load", function () {
                 .then(e => {
                     peerConnection.createAnswer().then(description1 => {
                         peerConnection.setLocalDescription(description1)
-                            .then(r => win.console.log("创建answer并设置本地描述符",r));
+                            .then(r => win.console.log("创建answer并设置本地描述符", r));
                         let d = {
                             type: "answer_data",
                             data: {
@@ -45,7 +45,7 @@ window.addEventListener("load", function () {
 
             iceCandidates.forEach(element => {
                 peerConnection.addIceCandidate(element)
-                    .then(r => win.console.log("添加远端候选者失败", r));
+                    .then(_ => win.console.log("添加远端候选者成功"));
             });
         };
         ws.subscribe("offer_data", handOffer);
@@ -57,20 +57,28 @@ window.addEventListener("load", function () {
             el: $('.show_info'),
             showUserInfo(msg) {
                 this.el.innerHTML += `<div class="content_item">
-                <span class="username_span">${msg.username}:</span>
+                <span class="username_span">${msg.fromUsername}:</span>
                 <span class="info_span">${msg.content}</span>
             </div>`;
             }
             , showNotification(msg) {
                 this.el.innerHTML += `<div class="content_item">
-                <span class="username_span">${msg.username}</span>
-                <span class="info_span">${msg.message}</span>
+                <span class="username_span">${msg.fromUsername}:</span>
+                <span class="info_span">${msg.content}</span>
             </div>`;
             }
         };
-        for (let i = 0; i < 100; i++) {
-            message.showUserInfo({username: "啸月传说", content: "加油"});
-        }
+        const handleMessage = (data) => {
+            message.showUserInfo(data);
+        };
+        ws.subscribe("message", handleMessage);
+        ws.subscribe("info", handleMessage);
+
+
+        ws.subscribe("stop_live", () => {
+            peerConnection.close();
+        });
+
 
         //设置宽高
         video.addEventListener('canplay', function (ev) {
@@ -91,9 +99,18 @@ window.addEventListener("load", function () {
         }, false);
         // 发送信息
         send_btn.addEventListener("click", function () {
-            let val = comment_area.value.trim();
+            let val = comment_area.value && comment_area.value.trim();
             if (val !== '') {
-
+                ws && ws.send(win.JSON.stringify(
+                    {
+                        type: "message",
+                        data: {
+                            content: val
+                        }
+                    }
+                ));
+                comment_area.value = "";
+                comment_area.dispatchEvent(new win.Event("input", {bubbles: true}))
             }
         });
         myCounter({

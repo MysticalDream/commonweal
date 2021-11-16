@@ -90,12 +90,9 @@
             </div>
             <!--弹出层-->
             <div class="model" id="model1" style="display: none">
+                <div><span>当前模式:</span><span id="pattern"></span></div>
                 <div><label for="videoSource">摄像头设备: </label><select id="videoSource"></select></div>
-                <!--                <div><label for="audioOutput">音频输出设备: </label><select id="audioOutput"></select></div>-->
                 <div><label for="audioSource">音频输入设备: </label><select id="audioSource"></select></div>
-            </div>
-            <div class="model" id="model2" style="display: none">
-
             </div>
         </div>
 
@@ -115,8 +112,8 @@
 
     <section class="right_area">
         <video id="local_video" autoplay muted>你的浏览器不支持video标签</video>
-        <button class="start_live">开始直播</button>
     </section>
+    <button class="start_live">开始直播</button>
 </main>
 
 <script src="../js/live2.js"></script>

@@ -47,6 +47,10 @@ public class Message {
         this.time = LocalDateTime.now();
     }
 
+    public Message(Integer fromId) {
+        this.fromId = fromId;
+    }
+
     public Message() {
     }
 

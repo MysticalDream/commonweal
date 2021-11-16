@@ -17,7 +17,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 直播聊天
@@ -32,11 +33,38 @@ public class LiveChatServer {
     private static Map<String, Set<OnlineUser>> liveUsers = new ConcurrentHashMap<>();
 
     private static Map<String, Session> liveSession = new ConcurrentHashMap<>();
-
+    /**
+     * 线程池
+     */
+    private static final ExecutorService es = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors() * 2,
+            Runtime.getRuntime().availableProcessors() * 2, 0L, TimeUnit.MILLISECONDS,
+            new LinkedBlockingQueue<>(), nameThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
     private OnlineUser onlineUser;
 
+    /**
+     * 自定义threadfactory
+     *
+     * @return
+     */
+    private static ThreadFactory nameThreadFactory() {
+        AtomicInteger atomicInteger = new AtomicInteger(1);
+        ThreadFactory threadFactory = (Runnable runnable) -> {
+            Thread thread = new Thread(runnable);
+            thread.setName("线程号:" + atomicInteger.getAndIncrement());
+            return thread;
+        };
+        return threadFactory;
+    }
 
+    /**
+     * 开启连接
+     *
+     * @param liveId
+     * @param session
+     * @param config
+     * @throws IOException
+     */
     @OnOpen
     public void onOpen(@PathParam("liveId") String liveId, Session session, EndpointConfig config) throws IOException {
         Integer userId = (Integer) config.getUserProperties().get(SessionKeyConstant.USER_ID);
@@ -45,10 +73,15 @@ public class LiveChatServer {
             session.close(new CloseReason(CloseReason.CloseCodes.getCloseCode(4004), "未知房间"));
             return;
         }
+        if (userId == null) {
+            session.close();
+            return;
+        }
         RoomVO roomVO = LiveManager.get(liveId);
         Integer id = roomVO.getUserDTO().getUserId();
         //房间主人
         if (id.equals(userId)) {
+            System.out.println("主播id:" + id + ",open:" + session.isOpen());
             liveSession.put(roomVO.getUuid(), session);
         }
 
@@ -65,23 +98,87 @@ public class LiveChatServer {
 
     @OnMessage
     public void onMessage(@PathParam("liveId") String liveId, String data) throws IOException {
+        //主播session
         Session session = liveSession.get(liveId);
-        TransportMessage message = GsonUtils.j2O(data, TransportMessage.class);
-        System.out.println(message);
-        switch (message.getType()) {
+        System.out.println("onmessage:" + session.isOpen());
+        TransportMessage transportMessage = GsonUtils.j2O(data, TransportMessage.class);
+        System.out.println(transportMessage);
+        //TODO 此处赶时间，不过可以用工厂加策略模式替换解耦
+        switch (transportMessage.getType()) {
             case MessageType.REQUEST_OFFER:
             case MessageType.ANSWER_DATA:
                 session.getBasicRemote().sendText(data);
                 break;
             case MessageType.OFFER_DATA:
-                System.out.println("开始发送offer_data");
-                Integer toId = message.getData().getToId();
-                Session sessionById = getSessionById(liveId, toId);
-                sessionById.getBasicRemote().sendText(data);
+                sendOfferHandler(liveId, data, transportMessage);
+                break;
+            case MessageType.START_LIVE:
+                startLiveHandler(liveId, session);
+                break;
+            case MessageType.STOP_LIVE:
+                stopLiveHandler(liveId, data);
+                break;
+            case MessageType.MESSAGE:
+                transportMessage.getData().setFromUsername(onlineUser.getUsername());
+                MessageUtils.broadcast(GsonUtils.o2J(transportMessage), liveUsers.get(liveId));
                 break;
             default:
+                logger.info("没有该消息处理:" + transportMessage.getType());
         }
-       // MessageUtils.broadcast(GsonUtils.o2J(message), liveUsers.get(liveId));
+        // MessageUtils.broadcast(GsonUtils.o2J(transportMessage), liveUsers.get(liveId));
+    }
+
+    /**
+     * 停止直播
+     *
+     * @param liveId
+     * @param data
+     */
+    private static void stopLiveHandler(String liveId, String data) {
+        es.execute(() -> {
+            MessageUtils.broadcast(data, liveUsers.get(liveId));
+        });
+    }
+
+    /**
+     * 发送offer处理
+     *
+     * @param liveId
+     * @param data
+     * @param message
+     * @throws IOException
+     */
+    private static void sendOfferHandler(String liveId, String data, TransportMessage message) throws IOException {
+        System.out.println("开始发送offer_data");
+        Integer toId = message.getData().getToId();
+        if (toId != null) {
+            Session sessionById = getSessionById(liveId, toId);
+            sessionById.getBasicRemote().sendText(data);
+        }
+    }
+
+    /**
+     * 开启直播
+     *
+     * @param liveId
+     * @param session
+     */
+    private static void startLiveHandler(String liveId, Session session) {
+        //开启线程广播
+        es.execute(() -> {
+            for (OnlineUser onlineUser :
+                    liveUsers.get(liveId)) {
+                TransportMessage transportMessage = new TransportMessage(new Message(onlineUser.getUserId()), MessageType.REQUEST_OFFER);
+                System.out.println("开启直播通知:" + transportMessage);
+                try {
+                    synchronized (session) {
+                        session.getBasicRemote().sendText(GsonUtils.o2J(transportMessage));
+                    }
+                } catch (IOException e) {
+                    logger.error("广播主播开启错误");
+                }
+            }
+        });
     }
 
     @OnClose
@@ -95,7 +192,7 @@ public class LiveChatServer {
 
         Message message = new Message(onlineUser.getUserId(), null, "离开直播间");
         message.setFromUsername(onlineUser.getUsername());
-        TransportMessage transportMessage = new TransportMessage(message, MessageType.MESSAGE);
+        TransportMessage transportMessage = new TransportMessage(message, MessageType.INFO);
 
         MessageUtils.broadcast(GsonUtils.o2J(transportMessage), userSet);
     }

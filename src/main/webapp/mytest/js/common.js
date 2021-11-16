@@ -256,6 +256,7 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
                     tag.innerText = txtTemplate.replace(/[?？]/g, this.value.length);
                 }, 200)
             );
+
         }
 
         return myCounter;
@@ -306,4 +307,12 @@ function sibling(elem) {
         }
     }
     return r;
+}
+
+/**
+ * 获取json字符串
+ * @param obj
+ */
+function getJSONString(obj) {
+    return window.JSON.stringify(obj);
 }

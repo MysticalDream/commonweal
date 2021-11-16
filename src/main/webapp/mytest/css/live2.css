@@ -38,32 +38,39 @@ html, body {
 
 
 main {
-    width: 100%;
+    position: relative;
     color: white;
     text-align: center;
-    margin-top: 10px;
+    margin: 50px auto 0 auto;
+    max-width: 75em;;
 }
 
+main::after {
+    display: block;
+    content: "";
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
 
 /*BFC布局*/
 .left_area {
     position: relative;
     float: left;
-    width: 500px;
+    width: 350px;
     height: 500px;
     background-color: #55c4ff;
-    margin-left: 5px;
 }
 
 .right_area {
     position: relative;
     overflow: hidden;
-    margin-right: 5px;
-    padding-bottom: 100px;
 }
 
 video#local_video {
-    width: 100%;
+    width: calc(100% - 200px);
+    height: calc(100% * 0.75);
+    background-color: #000000;
 }
 
 button.start_live {
@@ -81,8 +88,8 @@ button.start_live, button.stop_live {
     font-family: Microsoft YaHei;
     color: white;
     font-size: 17px;
-    right: 10px;
-    bottom: 20px;
+    right: 120px;
+    bottom: -35px;
     transition: all .5s;
 }
 
@@ -276,5 +283,13 @@ div.content_item span.info_span:hover {
 }
 
 #model1 > div {
-    margin-top: 20px;
+    margin-top: calc(100% - 3 * 100px);
+}
+
+#model1 > div:nth-child(2) > label {
+    display: block;
+}
+
+#model1 > div:nth-child(3) > label {
+    display: block;
 }

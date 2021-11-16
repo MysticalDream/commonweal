@@ -20,11 +20,19 @@ public interface MessageType {
      */
     String OFFER_DATA = "offer_data";
     /**
-     * 应答者信心
+     * 应答者信息
      */
     String ANSWER_DATA = "answer_data";
     /**
      * 请求发起
      */
     String REQUEST_OFFER = "request_offer";
+    /**
+     * 开始直播
+     */
+    String START_LIVE = "start_live";
+    /**
+     * 停止直播
+     */
+    String STOP_LIVE = "stop_live";
 }

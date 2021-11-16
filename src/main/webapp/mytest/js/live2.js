@@ -75,6 +75,7 @@ window.addEventListener("load", function () {
     });
     //核心
     ;(function (win) {
+        let living = false;
         const right_area = $('section.right_area');
         const videoElement = $("#local_video");
         const $startLive = $('.start_live');
@@ -83,6 +84,8 @@ window.addEventListener("load", function () {
         const message_area = $('.message_area');
         const setting = $('.setting');
         const select_wrap = $("div.setting>div");
+        const send_btn = $('#send_btn');
+        const comment_content = $('#comment_area');
         //选择
         const audioInputSelect = $('select#audioSource');
         const videoSelect = $('select#videoSource');
@@ -93,6 +96,10 @@ window.addEventListener("load", function () {
         let streaming = false;
         let ws;
         const pcFactory = new peerConnectionFactory();
+        const message_btn = $('section.left_area > nav > a:nth-child(2)');
+        let wsUrl;
+
+        const pattern = $('#pattern');
 
         const handleRequest = (data) => {
             let fromId = data.fromId;
@@ -117,14 +124,15 @@ window.addEventListener("load", function () {
                 success: function (data) {
                     win.console.log(data);
                     let uuid = data.data.uuid;
-                    ws = new mySocket('ws://' + win.location.host + '/livechat/' + uuid);
+                    wsUrl = 'ws://' + win.location.host + '/livechat/' + uuid;
+                    ws = new mySocket(wsUrl);
                     pcFactory.bindWs(ws);
                     ws.subscribe("request_offer", handleRequest);
                     ws.subscribe("message", (data) => {
                         message.showUserInfo(data);
                     });
-                    ws.subscribe("info", () => {
-
+                    ws.subscribe("info", (data) => {
+                        message.showNotification(data);
                     });
                 },
                 error: function (data) {
@@ -132,6 +140,7 @@ window.addEventListener("load", function () {
                 }
             });
         };
+
         openLive();
 
         videoElement.addEventListener("canplay", function () {
@@ -140,8 +149,8 @@ window.addEventListener("load", function () {
                 if (win.isNaN(height)) {
                     height = width / (4 / 3);
                 }
-                videoElement.setAttribute('width', width);
-                videoElement.setAttribute('height', height);
+                // videoElement.setAttribute('width', width);
+                // videoElement.setAttribute('height', height);
                 streaming = true;
                 try {
                     videoElement.play();
@@ -159,6 +168,10 @@ window.addEventListener("load", function () {
         });
 
         hashRouter.register("/setting", () => {
+            if (living) {
+                win.history.back();
+                return;
+            }
             nav[0].className = "active";
             nav[1].className = "";
             setting.style.display = "block";
@@ -177,6 +190,22 @@ window.addEventListener("load", function () {
             win.console.log("404");
         });
         hashRouter.load();
+        //点击发送消息
+        send_btn.addEventListener("click", (e) => {
+            let value = comment_content.value && comment_content.value.trim();
+            if (value) {
+                ws && ws.send(win.JSON.stringify(
+                    {
+                        type: "message",
+                        data: {
+                            content: value
+                        }
+                    }
+                ));
+                comment_content.value = "";
+                comment_content.dispatchEvent(new win.Event("input", {bubbles: true}));
+            }
+        });
         win.navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
 
 
@@ -192,8 +221,8 @@ window.addEventListener("load", function () {
             }
             , showNotification(msg) {
                 this.el.innerHTML += `<div class="content_item">
-                <span class="username_span">${msg.username}</span>
-                <span class="info_span">${msg.message}</span>
+                <span class="username_span">${msg.fromUsername}</span>
+                <span class="info_span">${msg.content}</span>
             </div>`;
             }
         };
@@ -201,11 +230,37 @@ window.addEventListener("load", function () {
         //直播按钮
         $startLive.addEventListener("click", (e) => {
             if ($startLive.classList.contains("start_live")) {
+                // //开始直播
+                if (!ws) {
+                    return;
+                }
+                if (ws.ws.readyState !== 1) {
+                    ws.reconnection();
+                }
+                ws.send(win.JSON.stringify({
+                    type: "start_live",
+                    data: {}
+                }));
                 $startLive.innerText = "结束直播";
                 $startLive.className = "stop_live";
+                living = true;
+                message_btn.click();
             } else {
+                //直播结束
+                if (!ws) {
+                    return;
+                }
+                ws.send(win.JSON.stringify({type: "stop_live", data: {}}));
                 $startLive.innerText = "开始直播";
                 $startLive.className = "start_live";
+                ws.close();
+                living = false;
+                if (pcFactory.localStream) {
+                    pcFactory.localStream.getTracks().forEach(track => {
+                        track.stop();
+                    });
+                }
+                model1.style.display = "none";
             }
         });
         win.Array.from(select_wrap[0].children).forEach((e, index) => {
@@ -234,20 +289,24 @@ window.addEventListener("load", function () {
         //选择素材
         //摄像头
         function useCamera(obj) {
-            videoElement.style.transform = "rotateY(180deg)";
+            // videoElement.style.transform = "rotateY(180deg)";
             videoElement.srcObject = null;
             streaming = false;
             startCamera();
+            pattern.innerText = "摄像";
             model1.style.display = "block";
+            model1.children[1].style.display = "block";
         };
 
         //分享屏幕
         function useScreen(obj) {
-            videoElement.style.transform = "rotateY(0deg)";
+            // videoElement.style.transform = "rotateY(0deg)";
             videoElement.srcObject = null;
-            model1.style.display = "none";
+            model1.style.display = "block";
+            model1.children[1].style.display = "none";
             streaming = false;
             startScreen();
+            pattern.innerText = "屏幕分享";
         };
 
         //拍照
@@ -290,7 +349,7 @@ window.addEventListener("load", function () {
         };
 
         function handleError(error) {
-            win.console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
+            alert('error:' + error.message);
         };
 
         /**
@@ -322,26 +381,38 @@ window.addEventListener("load", function () {
             win.navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
         };
 
-        audioInputSelect.onchange = startCamera;
+        audioInputSelect.onchange = (e) => {
+            model1.children[0].style.display == 'none' ? startScreen() : startCamera();
+        };
         videoSelect.onchange = startCamera;
 
         /**
          * 开启屏幕共享
          */
-        function startScreen() {
+        async function startScreen() {
             if (pcFactory.localStream) {
                 pcFactory.localStream.getTracks().forEach(track => {
                     track.stop();
                 });
             }
-            const constraints = {
+
+            const audioSource = audioInputSelect.value;
+
+            const constraints1 = {
+                audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
+            };
+            const constraints2 = {
                 audio: true,
                 video: true
             };
-            win.navigator.mediaDevices.getDisplayMedia(constraints).then((stream) => {
-                videoElement.srcObject = stream;
-                pcFactory.setLocalStream(stream);
-            });
+
+            let stream1 = await win.navigator.mediaDevices.getUserMedia(constraints1);
+            let stream = await win.navigator.mediaDevices.getDisplayMedia(constraints2);
+            stream.addTrack(stream1.getAudioTracks()[0]);
+            pcFactory.setLocalStream(stream);
+            videoElement.srcObject = stream;
+            gotDevices(await win.navigator.mediaDevices.enumerateDevices());
         };
     })(window);
-});
+})
+;
