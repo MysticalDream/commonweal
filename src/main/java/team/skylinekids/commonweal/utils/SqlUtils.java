@@ -446,5 +446,28 @@ public final class SqlUtils {
 
     }
 
+    /**
+     * 设置主键值
+     *
+     * @param entity
+     * @param value
+     * @param <T>
+     */
+    public static <T> void setPrimaryKeyValue(T entity, Object value) {
+        Field[] fields = ReflectUtils.getAllFields(entity);
+        try {
+            for (Field field :
+                    fields) {
+                TableId tableId = field.getDeclaredAnnotation(TableId.class);
+                if (tableId != null) {
+                    field.set(entity, value);
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

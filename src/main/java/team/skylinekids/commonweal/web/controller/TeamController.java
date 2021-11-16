@@ -77,7 +77,7 @@ public class TeamController {
      */
     @MyRequestPath(value = "/teams/cover", type = {RequestMethod.POST})
     public String uploadTeamAvatar(HttpInfoWrapper httpInfoWrapper) {
-        Part coverPart = httpInfoWrapper.getPart("team_cover");
+        Part coverPart = httpInfoWrapper.getPart("team_cover").get(0);
         if (coverPart == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }

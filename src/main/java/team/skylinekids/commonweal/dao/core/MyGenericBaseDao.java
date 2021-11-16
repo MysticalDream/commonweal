@@ -70,7 +70,13 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
         Connection connection = JDBCUtils.getConnection();
 
         int i = this.update(connection, insertSql, array);
-
+        if (i == 1) {
+            logger.info("===>   Preparing:SELECT LAST_INSERT_ID()");
+            int id = ((Number) this.
+                    getSingleValue(JDBCUtils.getConnection(), "SELECT LAST_INSERT_ID()")).intValue();
+            logger.info("===>   Result:" + id);
+            SqlUtils.setPrimaryKeyValue(entity, id);
+        }
         return i;
     }
 

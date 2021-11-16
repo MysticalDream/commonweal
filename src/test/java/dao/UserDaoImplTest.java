@@ -18,6 +18,7 @@ class UserDaoImplTest {
         user.setUsername("000");
         user.setTel("0123019203");
         int i = userDao.addUser(user);
+        System.out.println(user);
         System.out.println(i);
     }
 

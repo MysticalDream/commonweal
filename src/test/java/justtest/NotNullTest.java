@@ -12,6 +12,7 @@ import java.util.List;
 public class NotNullTest {
     @Test
     void test() throws IOException {
-
+        Object o=1;
+        System.out.println(o instanceof Character);
     }
 }

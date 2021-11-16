@@ -108,7 +108,7 @@ public class AchievementController {
     @AccessLevel
     @MyRequestPath(value = "/achievements/cover", type = {RequestMethod.POST})
     public String uploadAchievementCover(HttpInfoWrapper httpInfoWrapper) {
-        Part coverPart = httpInfoWrapper.getPart("achievement_cover");
+        Part coverPart = httpInfoWrapper.getPart("achievement_cover").get(0);
         if (coverPart == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
