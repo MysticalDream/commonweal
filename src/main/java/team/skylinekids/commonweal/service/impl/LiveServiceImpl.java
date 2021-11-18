@@ -1,9 +1,13 @@
 package team.skylinekids.commonweal.service.impl;
 
 import team.skylinekids.commonweal.dao.LiveRoomDao;
+import team.skylinekids.commonweal.enums.ApiResultCode;
+import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.DaoFactory;
 import team.skylinekids.commonweal.pojo.po.LiveRoom;
 import team.skylinekids.commonweal.service.LiveService;
+import team.skylinekids.commonweal.utils.FileUtils;
+import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.UUIDUtils;
 
 /**
@@ -32,13 +36,25 @@ public class LiveServiceImpl implements LiveService {
 
     @Override
     public void handleLiveRoomInfo(LiveRoom liveRoom) throws Exception {
-        LiveRoom room = this.getLiveRoom(liveRoom);
+        LiveRoom roomCondition = new LiveRoom();
+        roomCondition.setUserId(liveRoom.getUserId());
+        LiveRoom room = this.getLiveRoom(roomCondition);
+        String coverUrl = liveRoom.getCoverUrl();
+        String fileName = FileUtils.getFileName(coverUrl);
+        liveRoom.setCoverUrl(fileName);
+        //uuid不可设置
+        liveRoom.setUuid(null);
         if (room == null) {
             String uuid = UUIDUtils.getPureUUID();
+            //把封面从暂存区放到真正的目录中
+            if (!FileUtils.cutFile(ResourcePathConstant.DISK_LIVE_TEMP_BASE + fileName, ResourcePathConstant.DISK_LIVE_IMG_BASE + fileName)) {
+                throw new Exception("文件保存出错");
+            }
             liveRoom.setUuid(uuid);
             this.addLiveRoom(liveRoom);
         } else {
             liveRoom.setLiveId(room.getLiveId());
+            liveRoom.setUuid(room.getUuid());
             this.updateLiveRoom(liveRoom);
         }
     }

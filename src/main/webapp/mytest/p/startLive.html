@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>开启直播</title>
+    <link rel="stylesheet" href="../css/startLive.css">
+    <script src="../js/common.js"></script>
+    <script src="../../js/ajax.js"></script>
+</head>
+<body>
+
+<main>
+
+    <section>
+        <h1>开播设置</h1>
+        <!--        封面-->
+        <form action="/cover" method="post" enctype="multipart/form-data" id="cover_form">
+            <h2>直播封面：</h2>
+            <label for="cover_input" id="cover_label">
+                <span>选择封面</span>
+                <span>替换</span>
+            </label>
+            <input type="file" name="live_cover" id="cover_input" hidden required>
+            <input type="hidden" name="part_name" value="live_cover">
+        </form>
+        <!--        主要内容-->
+        <form action="javascript:void(0)" method="post" id="main_form">
+            <input type="hidden" name="coverUrl" id="cover">
+            <h2>直播分类：</h2>
+            <select name="categoryId" id="category" title="直播分类">
+            </select>
+            <h2>直播标题：</h2>
+            <input name="title" type="text" id="title" placeholder="请输入你的直播间标题～" autocomplete="off" required>
+            <span id="counter1"></span>
+            <h2>直播介绍：</h2>
+            <div class="intro_wrap">
+                <textarea id="intro" name="intro" autocomplete="off" rows="2" placeholder="请输入你的直播间简介～"
+                          required></textarea>
+            </div>
+            <div class="sub_footer">
+                <input type="submit" id="save" value="进入直播间">
+            </div>
+        </form>
+
+    </section>
+</main>
+<script src="../js/startLive.js"></script>
+</body>
+</html>

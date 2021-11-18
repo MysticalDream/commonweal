@@ -49,26 +49,26 @@
                               fill="#333"/>
                     </svg>
                 </div>
-                <div class="item photograph"><span>拍照</span>
-                    <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <g>
-                            <g transform="translate(0.000000, -0.000000)">
-                                <rect fill-opacity="0.01" fill="#FFFFFF" x="0" y="0" width="48" height="48"
-                                      stroke-width="4" stroke="none" fill-rule="evenodd"/>
-                                <circle stroke="#333" stroke-width="4" fill="none" fill-rule="nonzero"
-                                        stroke-linejoin="round" cx="10" cy="36" r="6"/>
-                                <path d="M40.0614849,8 C24,28.4331467 15.8047379,38.6805435 14.2426407,40.2426407 C11.8994949,42.5857864 8.10050506,42.5857864 5.75735931,40.2426407"
-                                      stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
-                                      fill="none" fill-rule="evenodd"/>
-                                <circle stroke="#333" stroke-width="4" fill="none" fill-rule="nonzero"
-                                        stroke-linejoin="round" cx="38" cy="36" r="6"/>
-                                <path d="M42.2426407,40.2426407 C39.8994949,42.5857864 36.1005051,42.5857864 33.7573593,40.2426407 C32.1952621,38.6805435 24,28.4459921 8.00071241,8"
-                                      stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
-                                      fill="none" fill-rule="evenodd"/>
-                            </g>
-                        </g>
-                    </svg>
-                </div>
+                <!--                <div class="item photograph"><span>拍照</span>-->
+                <!--                    <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">-->
+                <!--                        <g>-->
+                <!--                            <g transform="translate(0.000000, -0.000000)">-->
+                <!--                                <rect fill-opacity="0.01" fill="#FFFFFF" x="0" y="0" width="48" height="48"-->
+                <!--                                      stroke-width="4" stroke="none" fill-rule="evenodd"/>-->
+                <!--                                <circle stroke="#333" stroke-width="4" fill="none" fill-rule="nonzero"-->
+                <!--                                        stroke-linejoin="round" cx="10" cy="36" r="6"/>-->
+                <!--                                <path d="M40.0614849,8 C24,28.4331467 15.8047379,38.6805435 14.2426407,40.2426407 C11.8994949,42.5857864 8.10050506,42.5857864 5.75735931,40.2426407"-->
+                <!--                                      stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"-->
+                <!--                                      fill="none" fill-rule="evenodd"/>-->
+                <!--                                <circle stroke="#333" stroke-width="4" fill="none" fill-rule="nonzero"-->
+                <!--                                        stroke-linejoin="round" cx="38" cy="36" r="6"/>-->
+                <!--                                <path d="M42.2426407,40.2426407 C39.8994949,42.5857864 36.1005051,42.5857864 33.7573593,40.2426407 C32.1952621,38.6805435 24,28.4459921 8.00071241,8"-->
+                <!--                                      stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"-->
+                <!--                                      fill="none" fill-rule="evenodd"/>-->
+                <!--                            </g>-->
+                <!--                        </g>-->
+                <!--                    </svg>-->
+                <!--                </div>-->
                 <div class="item picture"><span>图片</span>
                     <svg width="24" height="24" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                         <g>
@@ -114,6 +114,69 @@
         <video id="local_video" autoplay muted>你的浏览器不支持video标签</video>
     </section>
     <button class="start_live">开始直播</button>
+    <aside>
+        <input type="checkbox" class="menu-open" name="menu-open" id="menu-open" hidden>
+        <label class="menu-open-button" for="menu-open">
+            <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                <path d="M44 16C44 22.6274 38.6274 28 32 28C29.9733 28 28.0639 27.4975 26.3896 26.6104L9 44L4 39L21.3896 21.6104C20.5025 19.9361 20 18.0267 20 16C20 9.37258 25.3726 4 32 4C34.0267 4 35.9361 4.50245 37.6104 5.38959L30 13L35 18L42.6104 10.3896C43.4975 12.0639 44 13.9733 44 16Z"
+                      fill="#454545" stroke="#454545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </label>
+        <a href="javascript:void(0)" class="menu-item" title="拍照">
+            <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                <path d="M15 12L18 6H30L33 12H15Z" fill="#454545" stroke="#454545" stroke-width="4"
+                      stroke-linejoin="round"/>
+                <rect x="4" y="12" width="40" height="30" rx="3" fill="#454545" stroke="#454545" stroke-width="4"
+                      stroke-linejoin="round"/>
+                <path d="M24 35C28.4183 35 32 31.4183 32 27C32 22.5817 28.4183 19 24 19C19.5817 19 16 22.5817 16 27C16 31.4183 19.5817 35 24 35Z"
+                      fill="#FFF" stroke="#FFF" stroke-width="4" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="javascript:void(0)" class="menu-item" title="录制">
+            <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                <rect x="4" y="11" width="32" height="26" rx="2" stroke="#454545" stroke-width="4"/>
+                <circle cx="20" cy="24" r="6" fill="#454545" stroke="#454545" stroke-width="4" stroke-linecap="round"
+                        stroke-linejoin="round"/>
+                <path d="M36 29L44 33V15L36 19" stroke="#454545" stroke-width="4" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="javascript:void(0)" class="menu-item voice-open" title="闭麦" id="voice">
+            <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                <rect x="17" y="4" width="14" height="27" rx="7" fill="#454545" stroke="#454545" stroke-width="4"
+                      stroke-linejoin="round"/>
+                <path d="M9 23C9 31.2843 15.7157 38 24 38C32.2843 38 39 31.2843 39 23" stroke="#454545" stroke-width="4"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 38V44" stroke="#454545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+            <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M31 24V11C31 7.13401 27.866 4 24 4C20.134 4 17 7.13401 17 11V24C17 27.866 20.134 31 24 31C27.866 31 31 27.866 31 24Z"
+                      stroke="#454545" stroke-width="4" stroke-linejoin="round"/>
+                <path d="M39.0001 23C39.0001 25.1333 38.5547 27.1626 37.752 29" stroke="#454545" stroke-width="4"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 23C9 31.2843 15.7157 38 24 38C25.7532 38 27.4361 37.6992 29 37.1465" stroke="#454545"
+                      stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M24 38V44" stroke="#454545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M42 42L6 6" stroke="#454545" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+        <a href="javascript:void(0)" class="menu-item" title="退出直播间">
+            <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                <path d="M23.9917 6L6 6L6 42H24" stroke="#454545" stroke-width="4" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M33 33L42 24L33 15" stroke="#454545" stroke-width="4" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+                <path d="M16 23.9917H42" stroke="#454545" stroke-width="4" stroke-linecap="round"
+                      stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </aside>
 </main>
 
 <script src="../js/live2.js"></script>

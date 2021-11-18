@@ -32,12 +32,17 @@ public class Message {
      * 时间
      */
     private LocalDateTime time;
+    /**
+     * 备注
+     */
+    private String remark;
 
-    public Message(Integer fromId, Integer toId, String content, LocalDateTime time) {
+    public Message(Integer fromId, Integer toId, String content, LocalDateTime time, String remark) {
         this.fromId = fromId;
         this.toId = toId;
         this.content = content;
         this.time = time;
+        this.remark = remark;
     }
 
     public Message(Integer fromId, Integer toId, String content) {
@@ -94,6 +99,22 @@ public class Message {
         this.fromUsername = fromUsername;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getToUsername() {
+        return toUsername;
+    }
+
+    public void setToUsername(String toUsername) {
+        this.toUsername = toUsername;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
@@ -103,6 +124,7 @@ public class Message {
                 ", toUsername='" + toUsername + '\'' +
                 ", content='" + content + '\'' +
                 ", time=" + time +
+                ", remark='" + remark + '\'' +
                 '}';
     }
 }

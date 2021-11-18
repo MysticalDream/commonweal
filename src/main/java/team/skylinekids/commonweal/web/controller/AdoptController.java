@@ -120,4 +120,15 @@ public class AdoptController {
         return ResultUtils.getResult(ApiResultCode.SUCCESS, adoptList);
     }
 
+    /**
+     * 添加领养反馈
+     *
+     * @param httpInfoWrapper
+     * @return
+     */
+    @AccessLevel
+    @MyRequestPath(value = "/adopt/feedback", type = {RequestMethod.POST})
+    public String addFeedback(HttpInfoWrapper httpInfoWrapper) {
+        return "";
+    }
 }

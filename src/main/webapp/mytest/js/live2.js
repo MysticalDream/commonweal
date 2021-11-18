@@ -68,6 +68,80 @@ window.addEventListener("load", function () {
             }
         }
     };
+
+    //辅助函数
+    /**
+     * get请求
+     * @param opt
+     * @returns {Promise}
+     */
+    function get(opt) {
+        return new Promise((resolve, reject) => {
+            ajax({
+                type: 'get',
+                url: opt.url || "",
+                data: opt.data || {},
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    resolve(data);
+                },
+                error: function (data) {
+                    reject(data);
+                }
+            });
+        });
+    }
+
+    /**
+     * post请求
+     * @param opt
+     */
+    function post(opt) {
+
+        return new Promise((resolve, reject) => {
+            ajax({
+                type: 'post',
+                url: opt.url,
+                data: opt.data,
+                header: {
+                    'Content-Type': opt['Content-Type'] || 'application/x-www-form-urlencoded'
+                },
+                success: function (data) {
+                    resolve(data);
+                },
+                error: function (data) {
+                    reject(data);
+                }
+            });
+        });
+    }
+
+    /**
+     * josn请求
+     * @param opt
+     * @returns {Promise}
+     */
+    function postJson(opt) {
+        return new Promise((resolve, reject) => {
+            ajax({
+                type: 'post',
+                url: opt.url,
+                data: opt.data,
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                success: function (data) {
+                    resolve(data);
+                },
+                error: function (data) {
+                    reject(data);
+                }
+            });
+        });
+    }
+
     //计数
     myCounter({
         tag: $('.tag'),
@@ -102,48 +176,63 @@ window.addEventListener("load", function () {
         let wsUrl;
 
         const pattern = $('#pattern');
+        //声音
+        const $voice = $('#voice');
 
         const handleRequest = (data) => {
+            if (!living) {
+                return;
+            }
             let fromId = data.fromId;
             pcFactory.getRTCPeerConnection(fromId);
         };
 
+
+        $voice.addEventListener("click", () => {
+            if ($voice.classList.contains("voice-open")) {
+                $voice.classList.remove("voice-open");
+                $voice.classList.add("voice-close");
+                $voice.title = "开麦";
+                if (win.senders.length) {
+
+                }
+            } else {
+                $voice.classList.add("voice-open");
+                $voice.classList.remove("voice-close");
+                $voice.title = "闭麦";
+            }
+        });
+        // win.onbeforeunload = function (e) {
+        //     e = e || win.event;
+        //     const text = '直播即将关闭,确认关闭吗?';
+        //     // 兼容IE8和Firefox 4之前的版本
+        //     if (e) {
+        //         e.returnValue = text;
+        //     }
+        //
+        //     // Chrome, Safari, Firefox 4+, Opera 12+ , IE 9+
+        //     return text;
+        // };
+
         /**
          * 开启直播
          */
-        function openLive() {
-            ajax({
-                type: 'post',
-                url: '/live',
-                data: {
-                    title: "测试直播",
-                    intro: "测试测试",
-                    categoryId: 1
-                },
-                header: {
-                    'Content-Type': 'application/json'
-                },
-                success: function (data) {
-                    win.console.log(data);
-                    let uuid = data.data.uuid;
-                    wsUrl = 'ws://' + win.location.host + '/livechat/' + uuid;
-                    ws = new mySocket(wsUrl);
-                    pcFactory.bindWs(ws);
-                    ws.subscribe("request_offer", handleRequest);
-                    ws.subscribe("message", (data) => {
-                        message.showUserInfo(data);
-                    });
-                    ws.subscribe("info", (data) => {
-                        message.showNotification(data);
-                    });
-                },
-                error: function (data) {
-                    win.console.log(data);
-                }
-            });
-        };
+        get({url: "/live"}).then(data => {
+            win.console.log(data);
+            let uuid = data.data.uuid;
+            wsUrl = 'ws://' + win.location.host + '/livechat/' + uuid;
+            ws = new mySocket(wsUrl);
+            pcFactory.bindWs(ws);
+            ws.subscribe("request_offer", handleRequest);
 
-        openLive();
+            ws.subscribe("message", (data) => {
+                message.showUserInfo(data);
+            });
+            ws.subscribe("info", (data) => {
+                message.showNotification(data);
+            });
+        }).catch(e => win.console.log(e));
+
 
         videoElement.addEventListener("canplay", function () {
             if (!streaming) {
@@ -215,8 +304,12 @@ window.addEventListener("load", function () {
         const message = {
             el: $('.show_info'),
             showUserInfo(msg) {
+                let str = ``;
+                if (msg.remark === 'live_own') {
+                    str = `<span style="background-color: #DD4A68;border-radius: 4px;color: white;margin-right: 6px;padding: 2px;font-size: 10px;">主播</span>`;
+                }
                 this.el.innerHTML += `<div class="content_item">
-                <span class="username_span">${msg.fromUsername}:</span>
+                <span class="username_span">${str}${msg.fromUsername}:</span>
                 <span class="info_span">${msg.content}</span>
             </div>`;
                 this.el.scrollTop = this.el.scrollHeight;
@@ -289,6 +382,23 @@ window.addEventListener("load", function () {
                     });
             }
         });
+
+        function showModel1(opt = false) {
+            if (opt) {
+                pattern.innerText = "摄像";
+                model1.style.display = "block";
+                model1.children[1].style.display = "block";
+            } else {
+                model1.style.display = "block";
+                model1.children[1].style.display = "none";
+                pattern.innerText = "屏幕分享";
+            }
+        }
+
+        function closeModel1() {
+            model1.style.display = "none";
+        }
+
         //选择素材
         //摄像头
         function useCamera(obj) {
@@ -296,20 +406,16 @@ window.addEventListener("load", function () {
             videoElement.srcObject = null;
             streaming = false;
             startCamera();
-            pattern.innerText = "摄像";
-            model1.style.display = "block";
-            model1.children[1].style.display = "block";
+            showModel1(true);
         };
 
         //分享屏幕
         function useScreen(obj) {
             // videoElement.style.transform = "rotateY(0deg)";
             videoElement.srcObject = null;
-            model1.style.display = "block";
-            model1.children[1].style.display = "none";
             streaming = false;
             startScreen();
-            pattern.innerText = "屏幕分享";
+            showModel1();
         };
 
         //拍照
@@ -352,7 +458,9 @@ window.addEventListener("load", function () {
         };
 
         function handleError(error) {
-            alert('error:' + error.message);
+            win.alert(error.message === 'Permission denied' ? "请开启设备权限" : error.message)
+            stopTrack();
+            closeModel1();
         };
 
         /**
@@ -366,15 +474,19 @@ window.addEventListener("load", function () {
             return win.navigator.mediaDevices.enumerateDevices();
         }
 
-        /**
-         * 开启摄像头
-         */
-        function startCamera() {
+        function stopTrack() {
             if (pcFactory.localStream) {
                 pcFactory.localStream.getTracks().forEach(track => {
                     track.stop();
                 });
             }
+        }
+
+        /**
+         * 开启摄像头
+         */
+        function startCamera() {
+            stopTrack();
             const audioSource = audioInputSelect.value;
             const videoSource = videoSelect.value;
             const constraints = {
@@ -387,17 +499,15 @@ window.addEventListener("load", function () {
         audioInputSelect.onchange = (e) => {
             model1.children[0].style.display == 'none' ? startScreen() : startCamera();
         };
+
         videoSelect.onchange = startCamera;
 
         /**
          * 开启屏幕共享
          */
         async function startScreen() {
-            if (pcFactory.localStream) {
-                pcFactory.localStream.getTracks().forEach(track => {
-                    track.stop();
-                });
-            }
+
+            stopTrack();
 
             const audioSource = audioInputSelect.value;
 
@@ -409,12 +519,18 @@ window.addEventListener("load", function () {
                 video: true
             };
 
-            let stream1 = await win.navigator.mediaDevices.getUserMedia(constraints1);
-            let stream = await win.navigator.mediaDevices.getDisplayMedia(constraints2);
-            stream.addTrack(stream1.getAudioTracks()[0]);
-            pcFactory.setLocalStream(stream);
-            videoElement.srcObject = stream;
-            gotDevices(await win.navigator.mediaDevices.enumerateDevices());
+            try {
+                let stream1 = await win.navigator.mediaDevices.getUserMedia(constraints1);
+                let stream = await win.navigator.mediaDevices.getDisplayMedia(constraints2);
+                stream.addTrack(stream1.getAudioTracks()[0]);
+                pcFactory.setLocalStream(stream);
+                videoElement.srcObject = stream;
+                win.navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(e => {
+                    win.console.log(e)
+                });
+            } catch (e) {
+                handleError(e);
+            }
         };
     })(window);
 })

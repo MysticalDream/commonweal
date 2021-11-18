@@ -135,8 +135,8 @@ public class AchievementController {
             return ResultUtils.getResult(ApiResultCode.SUCCESS, list);
         }
         List<Achievement> topThree = achievementService.getAchievementTopThree();
-        //30天更新一次
-        CacheUtils.put(CommonConstant.TOP3_KEY, topThree, 30, TimeUnit.DAYS);
+        //7天更新一次
+        CacheUtils.put(CommonConstant.TOP3_KEY, topThree, 7, TimeUnit.DAYS);
 
         //  CacheUtils.put(CommonConstant.TOP3_KEY, topThree, 60, TimeUnit.SECONDS);
 

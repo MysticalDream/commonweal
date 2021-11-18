@@ -100,6 +100,13 @@ public class LiveChatServer {
     public void onMessage(@PathParam("liveId") String liveId, String data) throws IOException {
         //主播session
         Session session = liveSession.get(liveId);
+        boolean flag = false;
+        Integer userId = this.onlineUser.getUserId();
+        RoomVO roomVO = LiveManager.get(liveId);
+        Integer id = roomVO.getUserDTO().getUserId();
+        if (userId.equals(id)) {
+            flag = true;
+        }
         System.out.println("onmessage:" + session.isOpen());
         TransportMessage transportMessage = GsonUtils.j2O(data, TransportMessage.class);
         System.out.println(transportMessage);
@@ -119,7 +126,11 @@ public class LiveChatServer {
                 stopLiveHandler(liveId, data);
                 break;
             case MessageType.MESSAGE:
-                transportMessage.getData().setFromUsername(onlineUser.getUsername());
+                Message data1 = transportMessage.getData();
+                data1.setFromUsername(onlineUser.getUsername());
+                if (flag) {
+                    data1.setRemark("live_own");
+                }
                 MessageUtils.broadcast(GsonUtils.o2J(transportMessage), liveUsers.get(liveId));
                 break;
             default:

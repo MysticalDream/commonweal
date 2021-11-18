@@ -56,8 +56,12 @@ window.addEventListener("load", function () {
         const message = {
             el: $('.show_info'),
             showUserInfo(msg) {
+                let str = ``;
+                if (msg.remark === 'live_own') {
+                    str = `<span style="background-color: #DD4A68;border-radius: 4px;color: white;margin-right: 6px;font-size: 10px;padding: 2px;">主播</span>`;
+                }
                 this.el.innerHTML += `<div class="content_item">
-                <span class="username_span">${msg.fromUsername}:</span>
+                <span class="username_span">${str}${msg.fromUsername}:</span>
                 <span class="info_span">${msg.content}</span>
             </div>`;
             }

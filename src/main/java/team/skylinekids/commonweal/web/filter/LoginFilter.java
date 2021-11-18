@@ -19,7 +19,8 @@ import java.util.Set;
 public class LoginFilter implements Filter {
 
     private final Logger logger = Logger.getLogger(LoginFilter.class);
-    private final Set<String> urlNeedLoginSet = Set.of("/pages/myArea/my.html");
+    private final Set<String> urlNeedLoginSet
+            = Set.of("/pages/myArea/my.html", "/mytest/p/live2.html", "/mytest/p/see.html");
     private final Set<String> urlNeedLeaveSet = Set.of("/pages/login/come.html");
 
     @Override

@@ -1,6 +1,7 @@
 package justtest;
 
 import org.junit.jupiter.api.Test;
+import team.skylinekids.commonweal.dao.UserDao;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.utils.SqlUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
@@ -12,7 +13,6 @@ import java.util.List;
 public class NotNullTest {
     @Test
     void test() throws IOException {
-        Object o=1;
-        System.out.println(o instanceof Character);
+        System.out.println(UserDao.class.getSimpleName());
     }
 }
