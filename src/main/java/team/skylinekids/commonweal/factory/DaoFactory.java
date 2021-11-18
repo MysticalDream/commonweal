@@ -10,6 +10,7 @@ import team.skylinekids.commonweal.dao.impl.*;
  * 不用自己手动一个一个地方的去创建对应的对象
  *
  * @author MysticalDream
+ * @deprecated
  */
 public class DaoFactory {
 

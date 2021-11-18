@@ -12,7 +12,7 @@ import java.util.Properties;
  */
 public class DaoFactory2 {
 
-    private static String PATH = "daoConfig.properties";
+    private final static String PATH = "daoConfig.properties";
 
     private DaoFactory2() {
     }
@@ -24,8 +24,9 @@ public class DaoFactory2 {
      * @param tClass
      * @return
      */
+    @SuppressWarnings("unchecked")
     public static <T> T getDaoImpl(Class<T> tClass) {
-        Object daoImpl = getDaoImpl(tClass.getSimpleName(), PATH);
+        Object daoImpl = BeanFactory.getBeanPro(tClass.getSimpleName(), PATH);
         if (tClass.isInstance(daoImpl)) {
             return (T) daoImpl;
         }
@@ -39,7 +40,7 @@ public class DaoFactory2 {
      * @return
      */
     public static Object getDaoImpl(String key) {
-        return getDaoImpl(key, PATH);
+        return BeanFactory.getBeanPro(key, PATH);
     }
 
     /**
@@ -48,6 +49,7 @@ public class DaoFactory2 {
      * @param key
      * @param filePath
      * @return
+     * @deprecated 已废弃
      */
     public static Object getDaoImpl(String key, String filePath) {
         Object bean = BeanFactory.getBean(key);

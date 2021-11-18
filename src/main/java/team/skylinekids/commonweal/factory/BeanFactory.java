@@ -1,9 +1,12 @@
 package team.skylinekids.commonweal.factory;
 
 import team.skylinekids.commonweal.factory.exception.BeanException;
+import team.skylinekids.commonweal.factory.exception.DaoBeanException;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * bean工厂
@@ -12,7 +15,7 @@ import java.util.Map;
  */
 public final class BeanFactory {
 
-    private static Map<String, Object> BEAN_CACHE = new HashMap<>();
+    private static final Map<String, Object> BEAN_CACHE = new HashMap<>();
 
     private BeanFactory() {
 
@@ -25,11 +28,8 @@ public final class BeanFactory {
     /**
      * 获取bean对象
      *
-     * @param key
-     * @param tClass
-     * @param <T>
-     * @return
      */
+    @SuppressWarnings("unchecked")
     public static <T> T getBean(String key, Class<T> tClass) {
         T o = (T) BEAN_CACHE.get(key);
         if (o != null) {
@@ -51,6 +51,26 @@ public final class BeanFactory {
             }
         }
         return o;
+    }
+
+    /**
+     * 从配置文件读取
+     *
+     */
+    public static Object getBeanPro(String key, String filePath) {
+        Object bean = BeanFactory.getBean(key);
+        if (bean == null) {
+            try {
+                Properties properties = new Properties();
+                InputStream inputStream = BeanFactory.class.getClassLoader().getResourceAsStream(filePath);
+                properties.load(inputStream);
+                String clazz = properties.getProperty(key);
+                bean = BeanFactory.getBean(key, Class.forName(clazz));
+            } catch (Exception e) {
+                throw new DaoBeanException();
+            }
+        }
+        return bean;
     }
 
 }
