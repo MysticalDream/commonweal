@@ -72,6 +72,7 @@ window.addEventListener("load", function () {
             </div>`;
             }
         };
+
         const handleMessage = (data) => {
             message.showUserInfo(data);
         };
