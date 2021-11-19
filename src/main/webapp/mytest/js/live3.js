@@ -158,6 +158,8 @@ function postJson(opt) {
     const $li1 = $('aside > ul > li:nth-child(1)');
     const $li2 = $('aside > ul > li:nth-child(2)');
     const $li3 = $('aside > ul > li:nth-child(3)');
+    //开启直播按钮
+    const $button = $('button.start_live');
 
 
     const handleRequest = (data) => {
@@ -176,16 +178,16 @@ function postJson(opt) {
         ws.subscribe("request_offer", handleRequest);
 
         ws.subscribe("message", (data) => {
-            message.showUserInfo(data);
+            message.showUserMessage(data);
         });
         ws.subscribe("info", (data) => {
-            message.showNotification(data);
+            message.showUserMessage(data);
         });
     }).catch(e => win.console.log(e));
 
-//计时开始
-    video.addEventListener("loadedmetadata", () => {
-        reTime();
+    //计时开始
+    const clocker = () => {
+        clearTimer();
         let hour, minute, second;
         hour = minute = second = 0;
         timer = win.setInterval(function () {
@@ -199,9 +201,9 @@ function postJson(opt) {
             }
             $living.textContent = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute) + ':' + (second < 10 ? '0' + second : second);
         }, 1000);
-    });
+    };
 
-    function reTime() {
+    function clearTimer() {
         win.clearInterval(timer);
     }
 
@@ -213,7 +215,7 @@ function postJson(opt) {
     function gotStream(stream) {
         video.srcObject = stream;
         pcFactory.setLocalStream(stream);
-        return win.navigator.mediaDevices.enumerateDevices();
+        // return win.navigator.mediaDevices.enumerateDevices();
     }
 
     //停止记录
@@ -235,12 +237,6 @@ function postJson(opt) {
      */
     function startCamera() {
         stopTrack();
-        // const audioSource = audioInputSelect.value;
-        // const videoSource = videoSelect.value;
-        // const constraints = {
-        //     audio: {deviceId: audioSource ? {exact: audioSource} : undefined},
-        //     video: {deviceId: videoSource ? {exact: videoSource} : undefined}
-        // };
         const constraints = {
             audio: true,
             video: true
@@ -273,7 +269,40 @@ function postJson(opt) {
             handleError(e);
         }
     };
+    //开启直播
+    $button.addEventListener("click", function () {
+        if (!ws) {
+            return;
+        }
+        if (ws.ws.readyState !== 1) {
+            ws.reconnection();
+        }
+        //结束直播
+        if (living) {
+            ws.send(win.JSON.stringify({type: "stop_live", data: {}}));
+            ws.close();
+            living = false;
+            if (pcFactory.localStream) {
+                stopTrack();
+            }
+            clearTimer();
+            $button.innerText = "开始直播";
+            $button.style.backgroundColor = "#2e78f3";
+            return;
+        }
+        //开始直播
+        ws.send(win.JSON.stringify({
+            type: "start_live",
+            data: {}
+        }));
+        living = true;
+        $button.innerText = "结束直播";
+        $button.style.backgroundColor = "#ff5252";
+        //开启计时
+        clocker();
+    });
 
+    //侧边工具
     $li1.addEventListener("click", function () {
         if (win.senders.length) {
             win.console.log(win.senders);
@@ -284,8 +313,14 @@ function postJson(opt) {
             win.console.log(win.senders);
         }
     });
+    //共享屏幕
     $li3.addEventListener("click", function () {
-        startScreen();
+        startScreen().then(r => {
+            ws.send(win.JSON.stringify({
+                type: "start_live",
+                data: {}
+            }));
+        });
     });
 
     /**
@@ -356,7 +391,7 @@ function postJson(opt) {
                 {
                     type: "message",
                     data: {
-                        fromId: cookieManager.getCookie("usrId"),
+                        fromId: cookieManager.getCookie("userId"),
                         content: trim
                     }
                 }

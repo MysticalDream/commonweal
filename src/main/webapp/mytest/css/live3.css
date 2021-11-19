@@ -165,7 +165,7 @@ aside > ul > li span {
     transform: translateY(-50%);
 }
 
-.btn button {
+.btn button.start_live {
     color: #fff;
     font-size: 12px;
     border: none;
@@ -178,7 +178,7 @@ aside > ul > li span {
     transition: all .5s;
 }
 
-.btn:hover button {
+.btn:hover button.start_live {
     background-color: #2e78f3;
 }
 

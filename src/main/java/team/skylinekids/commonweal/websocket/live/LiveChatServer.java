@@ -79,18 +79,22 @@ public class LiveChatServer {
         }
         RoomVO roomVO = LiveManager.get(liveId);
         Integer id = roomVO.getUserDTO().getUserId();
+
+        Message message = new Message(userId, null, "进入直播间");
         //房间主人
         if (id.equals(userId)) {
             System.out.println("主播id:" + id + ",open:" + session.isOpen());
             liveSession.put(roomVO.getUuid(), session);
+            message.setRemark("live_own");
         }
 
         onlineUser = new OnlineUser(userId, (String) config.getUserProperties().get(SessionKeyConstant.USER_NAME), session);
 
         userSet.add(onlineUser);
 
-        Message message = new Message(userId, null, "进入直播间");
+
         message.setFromUsername(onlineUser.getUsername());
+
         TransportMessage transportMessage = new TransportMessage(message, MessageType.MESSAGE);
         MessageUtils.broadcast(GsonUtils.o2J(transportMessage), userSet);
     }
@@ -107,7 +111,6 @@ public class LiveChatServer {
         if (userId.equals(id)) {
             flag = true;
         }
-        System.out.println("onmessage:" + session.isOpen());
         TransportMessage transportMessage = GsonUtils.j2O(data, TransportMessage.class);
         System.out.println(transportMessage);
         //TODO 此处赶时间，不过可以用工厂加策略模式替换解耦
@@ -200,7 +203,9 @@ public class LiveChatServer {
             return;
         }
         userSet.remove(onlineUser);
-
+        if (onlineUser == null) {
+            return;
+        }
         Message message = new Message(onlineUser.getUserId(), null, "离开直播间");
         message.setFromUsername(onlineUser.getUsername());
         TransportMessage transportMessage = new TransportMessage(message, MessageType.INFO);

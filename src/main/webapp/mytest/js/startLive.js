@@ -81,7 +81,7 @@
             txtTemplate: '?/20',
             limit: 20
         });
-        const liveUrl = "/mytest/p/live2.html";
+        const liveUrl = "/mytest/p/live3.html";
         const $mainForm = $('#main_form');
         const $save = $('#save');
         const $category = $('#category');

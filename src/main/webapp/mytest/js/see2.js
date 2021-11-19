@@ -146,7 +146,7 @@
                 {
                     type: "message",
                     data: {
-                        fromId: cookieManager.getCookie("usrId"),
+                        fromId: cookieManager.getCookie("userId"),
                         content: trim
                     }
                 }

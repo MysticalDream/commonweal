@@ -120,7 +120,7 @@ class mySocket {
     // 监听关闭
     onclose() {
         this.ws.onclose = (e) => {
-            console.log('onclose:'+window.JSON.stringify(e))
+            console.log('onclose:'+(e.reason))
 
             // 用户手动关闭的不重连
             if (this.isCustomClose) return
