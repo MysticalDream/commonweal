@@ -5,10 +5,12 @@
     let peerConnection;
     let timer;
     const $living = $('.living>span>span');
+    const $livingText = $('.living>span');
 
     video.addEventListener("loadedmetadata", () => {
         let hour, minute, second;
         hour = minute = second = 0;
+        $livingText.innerText = "直播中";
         timer = win.setInterval(function () {
             second += 1;
             if (second >= 60) {
@@ -21,6 +23,12 @@
             $living.textContent = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute) + ':' + (second < 10 ? '0' + second : second);
         }, 1000);
     });
+
+    function clearTimer() {
+        win.clearInterval(timer);
+        $livingText.innerText = "直播结束";
+        $living.innerText = "";
+    }
 
     //处理发送方
     const handOffer = (data) => {
@@ -53,7 +61,7 @@
                     ws.send(win.JSON.stringify(d));
                 });
             }).catch(e => {
-            win.console.log("设置远端描述符错误", e)
+            win.console.log("设置远端描述符错误", e);
         });
 
         iceCandidates.forEach(element => {
@@ -76,6 +84,7 @@
     ws.subscribe("stop_live", () => {
         win.clearInterval(timer);
         peerConnection.close();
+        clearTimer();
     });
 
     /**
@@ -172,10 +181,11 @@
             if (msg.remark === 'live_own') {
                 str = '主播';
             }
-            this.el.innerHTML += `<div class="chat_item">
+            this.el.innerHTML += `<div class="chat_item" style="text-align: ${msg.fromId==cookieManager.getCookie("userId")?"right":"left"} ">
 <div class="username">${msg.fromUsername}(${str})</div>
 <div class="message_text">${msg.content}</div>
 </div>`;
+            this.el.scrollTop = this.el.scrollHeight;
         },
         consume(msgStack) {
             for (let i = 0; i < msgStack.length; i++) {

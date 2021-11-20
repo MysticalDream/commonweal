@@ -101,6 +101,7 @@ aside {
     top: 0;
     background-color: #ffffff;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 aside > ul {
@@ -121,6 +122,21 @@ aside > ul > li {
     cursor: pointer;
 }
 
+aside > ul > li.normal .media_normal {
+    display: block;
+}
+
+aside > ul > li.normal .media_muted {
+    display: none;
+}
+
+aside > ul > li.muted .media_normal {
+    display: none;
+}
+
+aside > ul > li.muted .media_muted {
+    display: block;
+}
 
 aside > ul > li:not(:last-child) {
     margin-bottom: 20px;
@@ -174,12 +190,12 @@ aside > ul > li span {
     border-radius: 2px;
     width: 76px;
     height: 28px;
-    background-color: #4a8cf7;
+    background-color: #2f3855;
     transition: all .5s;
 }
 
 .btn:hover button.start_live {
-    background-color: #2e78f3;
+    background-color: #262e42;
 }
 
 .model_wrap {
@@ -214,7 +230,7 @@ aside > ul > li span {
 .model_content_wrap .content {
     width: 620px;
     height: 560px;
-    background: #ffffffd1;
+    background: #ffffff;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -281,7 +297,7 @@ aside > ul > li span {
 .model_header {
     position: relative;
     height: 48px;
-    border-bottom: 1px solid #343d49;
+    border-bottom: 1px solid #7e8185;;
     background: white;
     padding: 16px 24px;
     color: rgba(0, 0, 0, .85);
@@ -348,7 +364,7 @@ aside > ul > li span {
 .chat_bar {
     box-sizing: border-box;
     padding: 12px;
-    border-bottom: 1px solid #343d49;
+    border-bottom: 1px solid #7e8185;;
     display: flex;
     width: 100%;
     margin: 0 auto;

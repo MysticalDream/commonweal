@@ -154,12 +154,24 @@ function postJson(opt) {
     let timer;
     //直播计时
     const $living = $('.living>span>span');
+    const $livingText = $('.living>span');
     //侧边选择
     const $li1 = $('aside > ul > li:nth-child(1)');
     const $li2 = $('aside > ul > li:nth-child(2)');
     const $li3 = $('aside > ul > li:nth-child(3)');
+    const $li4 = $('aside > ul > li:nth-child(4)');
+    const $li5 = $('aside > ul > li:nth-child(5)');
     //开启直播按钮
     const $button = $('button.start_live');
+    //媒体流状态
+    let audioStreamState = false;
+    let systemAudioState = false;
+    let videoStreamState = false;
+    let change = false;
+    //镜像
+    let flip = false;
+
+    let chat_wrap = $('div.model_body > div > div.chat_content');
 
 
     const handleRequest = (data) => {
@@ -190,6 +202,7 @@ function postJson(opt) {
         clearTimer();
         let hour, minute, second;
         hour = minute = second = 0;
+        $livingText.innerText = "直播中";
         timer = win.setInterval(function () {
             second += 1;
             if (second >= 60) {
@@ -205,6 +218,8 @@ function postJson(opt) {
 
     function clearTimer() {
         win.clearInterval(timer);
+        $livingText.innerText = "直播结束";
+        $living.innerText = "";
     }
 
     /**
@@ -215,7 +230,45 @@ function postJson(opt) {
     function gotStream(stream) {
         video.srcObject = stream;
         pcFactory.setLocalStream(stream);
+        handleStream(stream);
+        if (living) {
+            ws.send(win.JSON.stringify({
+                type: "start_live",
+                data: {}
+            }));
+        }
         // return win.navigator.mediaDevices.enumerateDevices();
+    }
+
+    /**
+     * 处理流
+     * @param stream
+     */
+    function handleStream(stream) {
+        stream.getTracks().forEach(track => {
+            switch (track.kind) {
+                case "audio":
+                    if (track.label === 'System Audio' && track.enabled) {
+                        systemAudioState = true;
+                    } else if (track.enabled) {
+                        if (change) {
+                            track.enabled = audioStreamState;
+                            return;
+                        }
+                        audioStreamState = true
+                    }
+                    break;
+                case "video":
+                    if (track.enabled) {
+                        if (change) {
+                            track.enabled = videoStreamState;
+                            return;
+                        }
+                        videoStreamState = true;
+                    }
+                    break;
+            }
+        });
     }
 
     //停止记录
@@ -233,6 +286,16 @@ function postJson(opt) {
     };
 
     /**
+     * 处理屏幕共享
+     * @param stream
+     */
+    function handleDisplayStream(stream) {
+        stream.getVideoTracks()[0].addEventListener("ended", function () {
+            startCamera();
+        });
+    }
+
+    /**
      * 开启摄像头
      */
     function startCamera() {
@@ -243,8 +306,6 @@ function postJson(opt) {
         };
         win.navigator.mediaDevices.getUserMedia(constraints).then(gotStream).catch(handleError);
     };
-
-    startCamera();
 
     /**
      * 开启屏幕共享
@@ -262,13 +323,46 @@ function postJson(opt) {
         try {
             let stream1 = await win.navigator.mediaDevices.getUserMedia(constraints1);
             let stream = await win.navigator.mediaDevices.getDisplayMedia(constraints2);
+            handleDisplayStream(stream);
             stream.addTrack(stream1.getAudioTracks()[0]);
-            pcFactory.setLocalStream(stream);
-            video.srcObject = stream;
+            await gotStream(stream);
         } catch (e) {
             handleError(e);
         }
     };
+
+    /**
+     * 关闭/开启摄影
+     */
+    function handleVideo(opt = false) {
+        const localStream = pcFactory.localStream;
+        if (localStream) {
+            localStream.getVideoTracks()[0].enabled = opt;
+            videoStreamState = opt;
+        }
+    }
+
+    /**
+     * 开启/关闭麦克风
+     */
+    function handleAudio(opt = false) {
+        const localStream = pcFactory.localStream;
+        if (localStream) {
+            localStream.getAudioTracks().forEach(stream => {
+                switch (stream.label) {
+                    case "System Audio":
+                        break;
+                    default:
+                        stream.enabled = opt;
+                        audioStreamState = opt;
+                }
+            });
+        }
+    }
+
+    startCamera();
+
+
     //开启直播
     $button.addEventListener("click", function () {
         if (!ws) {
@@ -288,6 +382,7 @@ function postJson(opt) {
             clearTimer();
             $button.innerText = "开始直播";
             $button.style.backgroundColor = "#2e78f3";
+            audioStreamState = systemAudioState = videoStreamState = false;
             return;
         }
         //开始直播
@@ -303,24 +398,47 @@ function postJson(opt) {
     });
 
     //侧边工具
+
+    //声音
     $li1.addEventListener("click", function () {
+        change = true;
+        handleAudio(!audioStreamState);
+        this.className = (audioStreamState ? "normal" : "muted");
         if (win.senders.length) {
             win.console.log(win.senders);
         }
     });
+    //视频
     $li2.addEventListener("click", function () {
+        change = true;
+        handleVideo(!videoStreamState);
+        this.className = (videoStreamState ? "normal" : "muted");
         if (win.senders.length) {
             win.console.log(win.senders);
         }
+    });
+    //相机
+    $li3.addEventListener("click", function () {
+        startCamera();
+        // ws.send(win.JSON.stringify({
+        //     type: "start_live",
+        //     data: {}
+        // }));
     });
     //共享屏幕
-    $li3.addEventListener("click", function () {
+    $li4.addEventListener("click", function () {
         startScreen().then(r => {
-            ws.send(win.JSON.stringify({
-                type: "start_live",
-                data: {}
-            }));
+            // ws.send(win.JSON.stringify({
+            //     type: "start_live",
+            //     data: {}
+            // }));
         });
+    });
+
+    $li5.addEventListener("click", function () {
+        this.className = (flip ? "normal" : "muted")
+        video.style.transform = flip ? "rotateY(0)" : "rotateY(180deg)";
+        flip = !flip;
     });
 
     /**
@@ -417,10 +535,11 @@ function postJson(opt) {
             if (msg.remark === 'live_own') {
                 str = '主播';
             }
-            this.el.innerHTML += `<div class="chat_item">
+            this.el.innerHTML += `<div class="chat_item" style="text-align: ${msg.fromId==cookieManager.getCookie("userId")?"right":"left"} ">
 <div class="username">${msg.fromUsername}(${str})</div>
 <div class="message_text">${msg.content}</div>
 </div>`;
+            this.el.scrollTop = this.el.scrollHeight;
         },
         consume(msgStack) {
             for (let i = 0; i < msgStack.length; i++) {
