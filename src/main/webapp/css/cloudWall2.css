@@ -147,6 +147,10 @@ body {
     background-color: rgb(205, 235, 246);
 }
 
+.text .options button.choice {
+    background-color: rgb(205, 235, 246);
+}
+
 .text #fontSize {
     border: none;
     outline: none;
