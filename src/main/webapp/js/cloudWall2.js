@@ -96,7 +96,6 @@ window.addEventListener('load', () => {
             if (buttons[i].classList.contains('choice')) {
                 buttons[i].classList.remove('choice');
                 flag3 = false;
-                console.log(1);
             }
             if ((i >= 3 && i <= 5) || i == 10) {
                 for (let j = 0; j < buttons.length; j++) {
