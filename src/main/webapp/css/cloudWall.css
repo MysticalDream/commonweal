@@ -1,0 +1,214 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
+}
+
+
+/* 一开始展示的页面 */
+
+.wrap {
+    position: relative;
+}
+
+.wrap .middle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 537px;
+    letter-spacing: 5px;
+}
+
+.wrap .middle>div {
+    float: left;
+}
+
+.wrap .middle .child_hope {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(255, 238, 232);
+}
+
+.wrap .middle .child_hope .word {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(187, 88, 69);
+}
+
+.wrap .middle .our_hope {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(187, 88, 69);
+}
+
+.wrap .middle .contain {
+    width: 300px;
+    height: 400px;
+    background-color: pink;
+}
+
+.wrap .middle .contain h2 {
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 50px;
+    color: rgb(25, 39, 70);
+    font-size: 24px;
+}
+
+.wrap .middle .contain .card {
+    width: 250px;
+    height: 300px;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.wrap .middle .contain h3 {
+    margin-top: 15px;
+    text-align: center;
+    line-height: 30px;
+    color: rgb(187, 88, 69);
+    font-size: 18px;
+}
+
+.wrap .middle .our_hope h2,
+.wrap .middle .our_hope h3 {
+    color: #fff;
+}
+
+
+/* 点击左边图片后展示的页面 */
+
+.wrap .left {
+    position: absolute;
+    top: 0px;
+    left: -100%;
+    width: 100%;
+    height: 537px;
+    background-color: pink;
+    overflow: hidden;
+}
+
+.wrap .left span {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(187, 88, 67);
+}
+
+.wrap .left .cards {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 1700px;
+    height: 330px;
+    background-color: skyblue;
+}
+
+.wrap .left .cards li {
+    float: left;
+    margin-right: 20px;
+    width: 250px;
+    height: 330px;
+    background-color: #fff;
+}
+
+.wrap .left .write {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.wrap .left .line {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+
+/* 点击右边图片后展示的页面 */
+
+.wrap .right {
+    position: absolute;
+    top: 0px;
+    left: 100%;
+    width: 100%;
+    height: 537px;
+    background-color: pink;
+    overflow: hidden;
+}
+
+.wrap .right span {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    color: rgb(187, 88, 67);
+}
+
+.wrap .right .cards {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 1700px;
+    height: 330px;
+    background-color: skyblue;
+}
+
+.wrap .right .cards li {
+    float: left;
+    margin-right: 20px;
+    width: 250px;
+    height: 330px;
+    background-color: #fff;
+}
+
+.wrap .right .write {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.wrap .right .line {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #fff;
+}
