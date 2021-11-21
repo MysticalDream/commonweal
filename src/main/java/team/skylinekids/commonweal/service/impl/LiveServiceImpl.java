@@ -53,6 +53,12 @@ public class LiveServiceImpl implements LiveService {
             liveRoom.setUuid(uuid);
             this.addLiveRoom(liveRoom);
         } else {
+            if (!room.getCoverUrl().equals(liveRoom.getCoverUrl())) {
+                //把封面从暂存区放到真正的目录中
+                if (!FileUtils.cutFile(ResourcePathConstant.DISK_LIVE_TEMP_BASE + fileName, ResourcePathConstant.DISK_LIVE_IMG_BASE + fileName)) {
+                    throw new Exception("文件保存出错");
+                }
+            }
             liveRoom.setLiveId(room.getLiveId());
             liveRoom.setUuid(room.getUuid());
             this.updateLiveRoom(liveRoom);
