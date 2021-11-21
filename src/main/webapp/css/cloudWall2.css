@@ -1,16 +1,20 @@
 body {
-    height: 100vh;
+    height: auto;
+    width: 1280px;
+    overflow: hidden;
 }
 
 .contain {
     position: relative;
     top: 0px;
     left: 0px;
-    display: none;
+    display: block;
     width: 100%;
     height: 537px;
     background-color: rgb(189, 87, 69);
     letter-spacing: 5px;
+    transition: all 1s;
+    z-index: 11;
 }
 
 .contain span {
@@ -25,7 +29,7 @@ body {
 
 .contain .cards {
     position: absolute;
-    top: 160px;
+    top: 170px;
     left: 50%;
     transform: translateX(-50%);
     width: 1000px;
@@ -36,68 +40,78 @@ body {
 .contain .cards li {
     position: absolute;
     top: 0px;
-    width: 200px;
-    height: 300px;
+    width: 250px;
+    height: 350px;
     background-color: #fff;
     border-radius: 8px;
+    transition: all 1s;
 }
 
+
+/* 
+.contain .cards li .cover,
+.contain .cards li .back {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    transition: all 0.8s ease-in-out;
+}
+
+.contain .cards li .cover {
+    transform: rotateY(0deg);
+}
+
+.contain .cards li:hover .cover {
+    transform: rotateY(180deg);
+}
+
+.contain .cards li .back {
+    transform: rotateY(180deg);
+}
+
+.contain .cards li:hover .back {
+    transform: rotateY(0deg);
+} */
+
 .contain .cards .a {
-    transform: rotate(-25deg);
+    transform: translate(0%, -56px) rotate(-20deg);
     background-color: #fff;
 }
 
 .contain .cards .b {
-    transform: translate(37%, -38px) rotate(-17deg);
+    transform: translate(51%, -107px) rotate(-12deg);
     background-color: rgb(27, 19, 19);
     /* display: none; */
 }
 
 .contain .cards .c {
-    transform: translate(90%, -71px) rotate(-9deg);
+    transform: translate(105%, -140px) rotate(-5deg);
     background-color: rgb(243, 88, 88);
     /* display: none; */
 }
 
 .contain .cards .d {
-    transform: translate(140%, -88px) rotate(-2deg);
+    transform: translate(156%, -151px) rotate(0deg);
     background-color: rgb(36, 132, 195);
     /* display: none; */
 }
 
 .contain .cards .e {
-    transform: translate(185%, -93px) rotate(3deg);
+    transform: translate(212%, -136px) rotate(6deg);
     background-color: rgb(53, 184, 81);
     /* display: none; */
 }
 
 .contain .cards .f {
-    transform: translate(230%, -90px) rotate(8deg);
+    transform: translate(264%, -109px) rotate(12deg);
     background-color: rgb(36, 22, 144);
     /* display: none; */
 }
 
 .contain .cards .g {
-    transform: translate(280%, -77px) rotate(13deg);
+    transform: translate(312%, -67px) rotate(20deg);
     background-color: rgb(133, 19, 148);
-    /* display: none; */
-}
-
-.contain .cards .h {
-    transform: translate(330%, -54px) rotate(19deg);
-    background-color: rgb(240, 112, 187);
-    /* display: none; */
-}
-
-.contain .cards .i {
-    transform: translate(380%, -20px) rotate(25deg);
-    background-color: rgb(34, 109, 128);
-    /* display: none; */
-}
-
-.contain .cards .j {
-    transform: translate(416%, 12px) rotate(34deg);
-    background-color: rgb(98, 199, 224);
     /* display: none; */
 }
 
@@ -118,12 +132,15 @@ body {
 
 .text {
     position: relative;
-    top: 0px;
+    top: -537px;
     left: 0px;
     width: 100%;
     height: 537px;
     background-color: rgb(189, 87, 69);
     letter-spacing: 2px;
+    display: block;
+    transition: all 1s;
+    opacity: 0;
 }
 
 .text .options {
@@ -201,4 +218,16 @@ body {
     outline: none;
     overflow: auto;
     word-break: break-all;
+}
+
+.text .submit {
+    position: absolute;
+    bottom: 16px;
+    right: 300px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }

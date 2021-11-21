@@ -4,6 +4,11 @@ window.addEventListener('load', () => {
     const fontSize = document.querySelector('#fontSize');
     const emjoy = document.querySelector('.emjoy');
     const emjoys = document.querySelector('.emjoys');
+    const submit = document.querySelector('.submit');
+    let comments = document.querySelector('#comments');
+    const cards = document.querySelector('.cards').children;
+    const contain = document.querySelector('.contain');
+    const text = document.querySelector('.text');
     // 控制点击表情按钮会不会输出表情的
     let flag = false;
     // 控制点击表情按钮 那个表情的盒子出现不出现的
@@ -11,6 +16,7 @@ window.addEventListener('load', () => {
     let flag3 = true;
     let a;
     let font = 3;
+
     // 调节字体大小的
     // fontSize.addEventListener('click', () => {
     //         document.execCommand(fontSize.dataset.commad, false, 1);
@@ -61,33 +67,7 @@ window.addEventListener('load', () => {
         }
     })
 
-    // console.log(String.fromCodePoint('😀'.codePointAt()));
-    // buttons.forEach((button, index) => {
-    //     button.addEventListener('click', () => {
-    //         let theEvent = button.dataset.commad;
-    //         // 点击后给个背景颜色
-    //         if ((index >= 3 && index <= 5) || index == 10) {
-    //             // if (!flag3) {
-    //             //     button.style.backgroundColor = 'rgb(205, 235, 246)';
-    //             //     flag3 = true;
-    //             // } else {
-    //             //     button.style.backgroundColor = 'rgb(247, 247, 247)';
-    //             //     flag3 = false;
-    //             // }
-    //             buttons.forEach(button => {
-    //                 // 先遍历全部 去除choice类
-    //                 console.log();
-    //             })
-    //         }
-    //         if (theEvent === 'xiaolian' && flag) {
-    //             // output.innerHTML += a;
-    //             document.execCommand('insertText', false, a);
-    //             // expression.insertText(a);
-    //         } else {
-    //             document.execCommand(theEvent, false, null);
-    //         }
-    //     })
-    // })
+
     for (let i = 0; i < buttons.length; i++) {
         // 加粗和斜体不能同时选中 如果flag3为false的话 就说明 那个按钮只点了一次 点完后给它给为true 如果为true说明是再次点击 就要
         buttons[i].addEventListener('click', () => {
@@ -124,6 +104,33 @@ window.addEventListener('load', () => {
             } else {
                 document.execCommand(theEvent, false, null);
             }
+        })
+    }
+    submit.addEventListener('click', () => {
+            // 点击后返回刚刚选取卡片的页面 并且创建一个盒子 盒子里的内容放的就是刚刚填写的内容 然后给该盒子
+            comments.value = output.innerHTML;
+        })
+        // ----------------------
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', () => {
+            console.log(i);
+            // 点击后其他的循环一次给隐藏掉 就这个是显示的  
+            for (let j = 0; j < cards.length; j++) {
+                cards[j].style.display = 'none';
+                cards[j].style.opacity = 0;
+            }
+            cards[i].style.display = 'block';
+            cards[i].style.transform = "translate(156%, -151px) rotate(0deg)";
+            cards[i].style.opacity = 1;
+            // 点击后让这个大盒子隐藏 显示出编辑页面 
+            setTimeout(() => {
+                // contain.style.display = 'none';
+                contain.style.opacity = 0;
+                contain.style.zIndex = 10;
+                // text.style.display = 'block';
+                text.style.opacity = 1;
+                text.style.zIndex = 11;
+            }, 2000);
         })
     }
 })

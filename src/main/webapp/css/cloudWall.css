@@ -18,9 +18,10 @@ body {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 100%;
+    width: 1263px;
     height: 537px;
     letter-spacing: 5px;
+    margin: 0px auto;
 }
 
 .wrap .middle>div {
@@ -96,7 +97,7 @@ body {
     position: absolute;
     top: 0px;
     left: -100%;
-    width: 100%;
+    width: 1263px;
     height: 537px;
     background-color: pink;
     overflow: hidden;
@@ -158,7 +159,7 @@ body {
     position: absolute;
     top: 0px;
     left: 100%;
-    width: 100%;
+    width: 1263px;
     height: 537px;
     background-color: pink;
     overflow: hidden;
