@@ -1,0 +1,434 @@
+/* 宠物的反馈板块 */
+
+.pink_main{
+    width: 98vw;
+    min-height: 1700px;
+    background-color: #F7ECEC;
+    overflow: hidden;
+}
+
+body .footer{
+    left:49%;
+    background-color:rgba(205, 65, 64, .9);
+    margin-top:0px;
+}
+
+.main_center{
+    position: relative;
+    /* width: 85%; */
+    width: 1075px;
+    min-height: 1600px;
+    /* background-color: skyblue; */
+    margin:40px auto;
+    overflow: hidden;
+}
+
+.main_center .left_long{
+    width: 715px;
+    min-height: 1600px;
+    display: inline-block;
+    margin-left:20px;
+    background:#fff;
+    border-radius: 5px;
+}
+
+.main_center .right_up{
+    position: absolute;
+    right:10px;
+    top:10px;
+    display: inline-block;
+    width: 245px;
+    height: 287px;
+    background: url(../images/right_up.png) center center no-repeat;
+}
+
+
+.frame_inner{
+    position: absolute;
+    top:20%;
+    left:10%;
+    width: 80%;
+    height:200px;
+}
+
+.frame_inner ul{
+    position: relative;
+    width: 90%;
+    height: 93%;
+    margin-top:10px;
+    margin-left:15px;
+}
+
+.frame_inner ul li{
+    width: 90%;
+    height: 30px;
+    line-height: 20px;
+    font-size: 16px;
+    font-family: SimSun;
+    letter-spacing: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.frame_inner ul li:last-child{
+    height: 60px;
+    white-space:normal;
+}
+
+.img_first{
+    position: relative;
+    width: 560px;
+    left:10%;
+    margin-top:30px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.img_first img{
+    width: 100%;
+    border-radius: 8px;
+}
+
+.remark_area{
+    position: relative;
+    width: 80%;
+    left:10%;
+    margin-top: 20px;
+    font-family: SimSun;
+}
+
+.remark_area .remark_title span{
+    display: inline-block;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.remark_area .remark_title span:first-child{
+    position: relative;
+    left:-8px;
+    top:1px;
+    width: 5px;
+    height: 14px;
+    background-color: rgba(205, 65, 64, 1);
+}
+
+.remark_area .remark_title span:nth-child(2){
+   margin-left:5px;
+}
+
+.remark_user {
+    margin-top: 20px;
+    position: relative;
+}
+
+.remark_user>div{
+    display: inline-block;
+}
+
+.remark_user>div:nth-child(1){
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: coral;
+    position: relative;
+}
+
+.remark_user>div:nth-child(1) .red_ling{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    right:1px;
+    bottom: 2px;
+    background-color: rgba(205, 65, 64, 1);
+}
+
+.remark_user>div:nth-child(1) img{
+   position: absolute;
+   top:25%;
+   left:15%;
+}
+
+.remark_user>div:nth-child(2){
+    margin-left: 15px;
+    position: relative;
+    top:-5px;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: 2px;
+}
+
+.remark_user>div:nth-child(2) .id_box{
+    font-weight: 700;
+}
+
+.remark_date{
+    font-family: SimSun;
+    color:rgba(129, 128, 128, 1);
+}
+
+.remark_main{
+    width: 100%;
+    min-height: 270px;
+    background-color: RGBA(246, 245, 245, 1);
+    border-radius: 6px;
+    margin-top:20px;
+    overflow: hidden;
+}
+
+.remark_main p{
+    width: 90%;
+    height: 50px;
+    line-height: 25px;
+    margin-top:15px;
+    margin-left: 20px;
+    font-family: SimSun;
+    font-weight: 700;
+    letter-spacing: 2px;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+}
+
+.remark_main img{
+    width: 150px;
+    height: 150px;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-left:20px;
+}
+
+.remark_main span{
+    display: inline-block;
+    cursor: pointer;
+}
+
+.remark_main span img{
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align:bottom;
+}
+
+.remark_main div .message_span{
+    position: relative;
+    left:12px;
+}
+
+.remark_main span span{
+    font-size: 13px;
+}
+
+.remark_main>div{
+    position: absolute;
+    top:330px;
+    right:20px;
+}
+
+.remark_follow{
+    width: 100%;
+    min-height: 130px;
+    background-color: RGBA(246, 245, 245, 1);
+    border-radius: 6px;
+    margin-top:20px;
+    overflow: hidden;
+}
+
+.follow_div{
+    margin-top: 15px;
+    margin-left:10px;
+}
+
+.follow_avator{
+    position: relative;
+    display: inline-block;
+    top:2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: coral;
+    cursor:pointer;
+}
+
+.follow_text{
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-family: SimSun;
+    line-height: 17px;
+    margin-left:5px;
+}
+
+.follow_name{
+    position: relative;
+    top:-5px;
+    font-weight: 700;
+}
+
+.follow_content{
+    position: relative;
+    display: inline-block;
+    width: 280px;
+    top:-1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.follow_right{
+    position: relative;
+    display: inline-block;
+    top:-15px;
+}
+
+.follow_right img{
+    width: 16px;
+    vertical-align:middle;
+}
+
+.follow_right>span{
+    margin-left:15px;
+    cursor: pointer;
+}
+
+.like_span>span{
+    font-size: 12px;
+}
+
+.copy_area{
+    width: 100%;
+    min-height: 200px;
+    margin-top:35px;
+}
+
+.copy_area .follow_avator{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: coral;
+    position: relative;
+}
+
+.grey_area{
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+    background-color: rgba(246, 245, 245, 1);
+    margin-top:20px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.grey_area p{
+    margin-top:45px;
+    margin-left:40px;
+    width: 500px;
+    height: 90px;
+    line-height: 30px;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    letter-spacing: 4px;
+}
+
+.grey_area .follow_right{
+    position: absolute;
+    right:30px;
+    top:160px;
+}
+
+.more_wrap{
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin-top:15px;
+    align-items: center;
+    justify-content: center;
+    /* margin-bottom: 30px; */
+}
+
+
+.click_more{
+    width: 75%;
+    height: 60px;
+    border-bottom: 3px solid rgba(206, 201, 201, 1);
+    text-align: center;
+    line-height: 60px;
+}
+
+.click_more>span{
+    font-family: SimSun;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+
+.remark_input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:50px;
+    width: 100%;
+    height: 250px;
+    background-color: rgba(246, 245, 245, 1);
+    margin-bottom: 70px;
+    border-radius: 8px;
+}
+
+.inner_area{
+    position: relative;
+    width: 90%;
+    height: 85%;
+}
+
+.first_line img{
+    position: relative;
+    width: 30px;
+    margin-right:15px;
+    cursor: pointer;
+}
+
+.first_line button{
+    position: absolute;
+    top:0px;
+    right:20px;
+    width: 65px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: rgba(205, 65, 64, 1);
+    border: none;
+    color:#fff;
+    font-family: SimSun;
+    letter-spacing: 3px;
+    font-size:14px;
+    cursor: pointer;
+}
+
+.words_input{
+    position: absolute;
+    top:20%;
+    text-indent: 1em;
+    padding-top:8px;
+    width: 100%;
+    height: 73%;
+    border-radius: 8px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    font-family: SimSun;
+    font-size: 16px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color:rgba(127, 124, 124, 1);
+    resize: none;
+}
+
+.img_first img{
+    width: 100%;
+    cursor: pointer;
+}

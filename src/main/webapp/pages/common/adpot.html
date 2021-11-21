@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../../css/adpot_deal.css">
     <link rel="stylesheet" href="../../font/iconfont.css">
     <link rel="stylesheet" href="../../css/error_exit.css">
+    <script src="../../js/common.js"></script>
     <script src="../../js/recruit.js"></script>
     <script src="../../js/ajax.js"></script>
     <script src="../../js/adpot.js"></script>
@@ -72,6 +73,13 @@
         <span class="center_title">领养动物</span>
         <div class="big_pic_right_line"></div>
     </div>
+    <!-- 切换栏 -->
+    <div class="pro_box">
+        <ul>
+            <li class="pro_li_cur">待领养</li>
+            <li>已领养</li>
+        </ul>
+    </div>
     <!-- 主要内容 -->
     <div class="adpot_main">
         <div class="main_top_d">
@@ -80,6 +88,88 @@
             <span>领养动物</span>
         </div>
         <div class="sele_wrapper wrap_ag wrap_pet">
+            <div class="adpot_box"></div>
+            <div class="adpot_page"></div>
+            <div class="footer">
+                <div class="footer_lf">
+                    <h3>创益</h3>
+                    <ul class="first">
+                        <li>
+                            <a href="javascript:;">关于我们</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">联系我们</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">用户协议</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">加入我们</a>
+                        </li>
+                    </ul>
+                    <ul class="second">
+                        <li>
+                            <a href="javascript:;">友情链接</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">隐私政策</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">创益认证</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Investor Relations</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer_rg">
+                    <h3>传送门</h3>
+                    <ul class="first">
+                        <li>
+                            <a href="javascript:;">协议汇总</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">活动中心</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">活动专题页</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">侵权申诉</a>
+                        </li>
+                    </ul>
+                    <ul class="second">
+                        <li>
+                            <a href="javascript:;">帮助中心</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">用户反馈论坛</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">壁纸站</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">广告合作</a>
+                        </li>
+                    </ul>
+                    <ul class="third">
+                        <li>
+                            <a href="javascript:;">名人堂</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">管理中心</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">高级评论</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">企业号官网</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="sele_wrapper wrap_ag wrap_pet" style="display: none;">
             <div class="adpot_box"></div>
             <div class="adpot_page"></div>
             <div class="footer">
@@ -183,6 +273,26 @@
             </div>
         </div>
     </div>
+    <!-- 领养人信息 -->
+    <div class="body_fill">
+        <div class="adopt_frame">
+            <h2>领养动物相关个人信息填写</h2>
+            <div class="input_box">
+                <span>姓名</span>
+                <input type="text">
+                <span>电话号码</span>
+                <input type="text">
+                <span>身份证号码</span>
+                <input type="text">
+                <span>地址</span>
+                <input type="text">
+                <span>职业</span>
+                <input type="text">
+                <button class="left_btn">提交</button>
+                <button class="right_btn">退出</button>
+            </div>
+        </div>
+    </div>
     <!-- 置顶 -->
     <a id="button_back" title="返回顶部"></a>
 
@@ -191,7 +301,7 @@
     <div class="error_exit">
         退出账号异常
     </div>
-    <!-- 宠物协议书的JS -->
+    <!-- 宠物协议书和领养人信息的JS -->
     <script>
         function $(ele) {
             return document.querySelectorAll(ele);
@@ -201,13 +311,32 @@
         let agree = $('.agree')[0];
         let adpot_mask_s = $('.adpot_mask_s')[0];
         let body_full = $('.body_full')[0];
+        let body_fill=$('.body_fill')[0];
+        let fill_left=$('.left_btn')[0];
+        let fill_right=$('.right_btn')[0];
+        let frame_d=$('.adopt_frame')[0];
+        console.log(frame_d);
         disagree.addEventListener('click', () => {
             // 改成动画
             body_full.style.visibility = 'hidden';
         })
         agree.addEventListener('click', () => {
             body_full.style.visibility = 'hidden';
+            body_fill.style.visibility='visible';
+            // frame_d.classlist.add('drop_down');
+            console.log(frame_d);
+            // 之前把List打成了list！！！！！
+            frame_d.classList.add('drop_down');
         })
+
+        fill_left.addEventListener('click',()=>{
+            body_fill.style.visibility='hidden';
+        })
+
+        fill_right.addEventListener('click',()=>{
+            body_fill.style.visibility='hidden';
+        })
+
     </script>
 </body>
 
