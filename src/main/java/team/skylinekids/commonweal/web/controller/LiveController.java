@@ -9,7 +9,6 @@ import team.skylinekids.commonweal.pojo.dto.UserDTO;
 import team.skylinekids.commonweal.pojo.po.LiveRoom;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.service.LiveService;
-import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.convert.ConversionUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;

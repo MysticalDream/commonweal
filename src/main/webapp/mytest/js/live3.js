@@ -383,6 +383,7 @@ function postJson(opt) {
             $button.innerText = "开始直播";
             $button.style.backgroundColor = "#2e78f3";
             audioStreamState = systemAudioState = videoStreamState = false;
+            change = false;
             return;
         }
         //开始直播
@@ -535,7 +536,7 @@ function postJson(opt) {
             if (msg.remark === 'live_own') {
                 str = '主播';
             }
-            this.el.innerHTML += `<div class="chat_item" style="text-align: ${msg.fromId==cookieManager.getCookie("userId")?"right":"left"} ">
+            this.el.innerHTML += `<div class="chat_item" style="text-align: ${msg.fromId == cookieManager.getCookie("userId") ? "right" : "left"} ">
 <div class="username">${msg.fromUsername}(${str})</div>
 <div class="message_text">${msg.content}</div>
 </div>`;
