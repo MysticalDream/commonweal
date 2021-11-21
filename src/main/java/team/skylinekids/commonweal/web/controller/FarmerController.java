@@ -71,7 +71,7 @@ public class FarmerController {
      */
     @MyRequestPath(value = "/agriculture/cover", type = {RequestMethod.POST})
     public String uploadFarmerCover(HttpInfoWrapper httpInfoWrapper) {
-        Part coverPart = httpInfoWrapper.getPart("agriculture_cover");
+        Part coverPart = httpInfoWrapper.getPart("agriculture_cover").get(0);
         if (coverPart == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }

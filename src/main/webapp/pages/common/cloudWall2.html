@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云墙-我要写</title>
+    <link rel="stylesheet" href="../../font/douyuFont.otf">
+    <link rel="stylesheet" href="../../css/recruit.css">
+    <link rel="stylesheet" href="../../css/cloudWall2.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <!-- <script src="../../js/cloudWall2.js"></script> -->
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav_s">
+        <div class="left"><span>创</span>益</div>
+        <div class="middle">
+            <ul class="nav_ul_s">
+                <li>
+                    <a href="../../index.html">首页</a>
+                </li>
+                <li>
+                    <a href="./newPro.html">志愿项目</a>
+                </li>
+                <li>
+                    <a href="./expand.html">招募志愿者</a>
+                </li>
+                <li>
+                    <a href="./show.html">风采展示</a>
+                </li>
+                <li>
+                    <a href="./agriculture.html">助农</a>
+                </li>
+                <li>
+                    <a href="./adpot.html">领养动物</a>
+                </li>
+                <li class="pitch">
+                    <a href="javascript:;">关爱儿童</a>
+                </li>
+            </ul>
+        </div>
+        <div class="right username">
+            <!-- <div class="pic"></div>
+<span>common</span> -->
+        </div>
+    </div>
+    <!-- 选卡片前显示的 -->
+    <div class="contain">
+        <span>云墙</span>
+        <ul class="cards">
+            <li class="a"></li>
+            <li class="b"></li>
+            <li class="c"></li>
+            <li class="d"></li>
+            <li class="e"></li>
+            <li class="f"></li>
+            <li class="g"></li>
+            <li class="h"></li>
+            <li class="i"></li>
+            <li class="j"></li>
+        </ul>
+        <div class="word">
+            选一张喜欢的卡片<br> 写下你的祝福吧
+        </div>
+    </div>
+    <!-- 选卡片后显示的 -->
+    <div class="text">
+        <div class="options">
+            <button class="button-text" data-commad="undo" title="回退"><i
+                    class="iconfont icon-z_back_normal"></i></button>
+            <button class="button-text" data-commad="redo" title="前进"><i class="iconfont icon-qianjin-"></i></button>
+            <button class="button-text" data-commad="fontsize" title="字体大小">
+                <i class="iconfont icon-zitidaxiao">
+                    <select name="" id="fontSize">
+                        <option value="">12px</option>
+                        <option value="">18px</option>
+                        <option value="" selected>24px</option>
+                        <option value="">30px</option>
+                        <option value="">36px</option>
+                        <option value="">42px</option>
+                        <option value="">48px</option>
+                    </select>
+                </i>
+            </button>
+            <!-- <button class="button-text" id="fontSize" data-commad="fontsize"></button> -->
+            <button class="button-text" data-commad="italic" title="斜体"><i class="iconfont icon-xieti"></i></button>
+            <button class="button-text" data-commad="underline" title="下划线"><i
+                    class="iconfont icon-xiahuaxian1"></i></button>
+            <button class="button-text" data-commad="bold" title="加粗"><i class="iconfont icon-T-jiacu"></i></button>
+            <button class="button-text" data-commad="justifyLeft" title="左对齐"><i
+                    class="iconfont icon-zuoduiqi"></i></button>
+            <button class="button-text" data-commad="justifyCenter" title="居中对齐"><i
+                    class="iconfont icon-juzhongduiqi"></i></button>
+            <button class="button-text" data-commad="justifyRight" title="右对齐"><i
+                    class="iconfont icon-youduiqi"></i></button>
+            <button class="button-text" data-commad="justifyFull" title="两端对齐"><i
+                    class="iconfont icon-liangbianduiqi"></i></button>
+            <button class="button-text emjoy" data-commad="xiaolian" title="emjoy">
+                <i class="iconfont icon-xiaolian">
+                    <ul class="emjoys">
+                        <li>😀</li>
+                        <li>😉</li>
+                        <li>😁</li>
+                        <li>😆</li>
+                        <li>😅</li>
+                        <li>😂</li>
+                        <li>🤣</li>
+                        <li>😊</li>
+                        <li>🙂</li>
+                        <li>😄</li>
+                        <li>🙃</li>
+                        <li>😇</li>
+                        <li>😃</li>
+                        <li>😚</li>
+                        <li>🥰</li>
+                        <li>😙</li>
+                        <li>😍</li>
+                        <li>😗</li>
+                        <li>😘</li>
+                        <li>🤩</li>
+                        <li>😋</li>
+                        <li>😛</li>
+                        <li>😜</li>
+                        <li>🤪</li>
+                        <li>😝</li>
+                        <li>🤑</li>
+                        <li>🤔</li>
+                        <li>🤭</li>
+                        <li>🤗</li>
+                        <li>🤫</li>
+                        <li>😐</li>
+                        <li>😶</li>
+                        <li>🤨</li>
+                        <li>😬</li>
+                        <li>😏</li>
+                        <li>😑</li>
+                        <li>😒</li>
+                        <li>🙄</li>
+                        <li>🤐</li>
+                        <li>🤥</li>
+                        <li>😌</li>
+                        <li>😔</li>
+                        <li>😪</li>
+                        <li>😴</li>
+                        <li>🤤</li>
+                        <li>🥶</li>
+                        <li>🤧</li>
+                        <li>😷</li>
+                        <li>🤯</li>
+                        <li>🥴</li>
+                        <li>😵</li>
+                        <li>🤒</li>
+                        <li>🥵</li>
+                        <li>🤮</li>
+                        <li>🤕</li>
+                        <li>🤢</li>
+                        <li>🤠</li>
+                        <li>🥳</li>
+                        <li>🤓</li>
+                        <li>😎</li>
+                        <li>🧐</li>
+                        <li>😕</li>
+                        <li>😖</li>
+                        <li>😧</li>
+                        <li>🥺</li>
+                        <li>😫</li>
+                        <li>😱</li>
+                        <li>😞</li>
+                        <li>😯</li>
+                        <li>😮</li>
+                        <li>😭</li>
+                        <li>😟</li>
+                        <li>😓</li>
+                        <li>😩</li>
+                        <li>😢</li>
+                        <li>😲</li>
+                        <li>😨</li>
+                        <li>🥱</li>
+                        <li>😳</li>
+                        <li>🙁</li>
+                        <li>😥</li>
+                        <li>😣</li>
+                        <li>😦</li>
+                        <li>😰</li>
+                        <li>😤</li>
+                        <li>😈</li>
+                        <li>😡</li>
+                        <li>💀</li>
+                        <li>👿</li>
+                        <li>🤬</li>
+                        <li>😠</li>
+                        <li>💩</li>
+                        <li>🤡</li>
+                        <li>🤖</li>
+                        <li>👽</li>
+                        <li>👾</li>
+                        <li>👻</li>
+                        <li>👺</li>
+                        <li>👹</li>
+                        <li>🙀</li>
+                        <li>😽</li>
+                        <li>😸</li>
+                        <li>😿</li>
+                        <li>😾</li>
+                        <li>😻</li>
+                        <li>😺</li>
+                        <li>😼</li>
+                        <li>😹</li>
+                        <li>🙉</li>
+                        <li>🙊</li>
+                        <li>🙈</li>
+                        <li>🗯</li>
+                        <li>🕳</li>
+                        <li>🗨</li>
+                        <li>🧡</li>
+                        <li>💟</li>
+                        <li>💭</li>
+                        <li>🤎</li>
+                        <li>💞</li>
+                        <li>🤍</li>
+                        <li>💌</li>
+                        <li>🖤</li>
+                        <li>💢</li>
+                        <li>💓</li>
+                        <li>💯</li>
+                        <li>💕</li>
+                        <li>💋</li>
+                        <li>💨</li>
+                        <li>💦</li>
+                        <li>💫</li>
+                        <li>💗</li>
+                        <li>💔</li>
+                        <li>💘</li>
+                        <li>💚</li>
+                        <li>💙</li>
+                        <li>💜</li>
+                        <li>💛</li>
+                        <li>💥</li>
+                        <li>💖</li>
+                        <li>💬</li>
+                        <li>💣</li>
+                        <li>💤</li>
+                        <li>💝</li>
+                        <li>🤚</li>
+                        <li>🖖</li>
+                        <li>👋</li>
+                        <li>🖐</li>
+                        <li>✋</li>
+                        <li>🤙</li>
+                        <li>🤞</li>
+                        <li>🤟</li>
+                        <li>🤘</li>
+                        <li>🤏</li>
+                        <li>👌</li>
+                        <li>✌</li>
+                        <li>👆</li>
+                        <li>👇</li>
+                        <li>👈</li>
+                        <li>👉</li>
+                        <li>☝</li>
+                        <li>🤛</li>
+                        <li>🤜</li>
+                        <li>👍</li>
+                        <li>✊</li>
+                        <li>👊</li>
+                        <li>👎</li>
+                        <li>👐</li>
+                        <li>🤝</li>
+                        <li>👏</li>
+                        <li>🤲</li>
+                        <li>🙏</li>
+                        <li>🙌</li>
+                        <li>✍</li>
+                        <li>🤳</li>
+                        <li>💅</li>
+                        <li>👁</li>
+                        <li>👄</li>
+                        <li>👅</li>
+                        <li>👂</li>
+                        <li>👃</li>
+                        <li>🦴</li>
+                        <li>👀</li>
+                        <li>🦶</li>
+                        <li>🦵</li>
+                        <li>🦻</li>
+                        <li>🦷</li>
+                        <li>🦿</li>
+                        <li>🦾</li>
+                        <li>💪</li>
+                        <li>🧓</li>
+                        <li>🧑</li>
+                        <li>🧒</li>
+                        <li>👩</li>
+                        <li>👦</li>
+                        <li>👧</li>
+                        <li>👨</li>
+                        <li>👱</li>
+                        <li>👶</li>
+                        <li>👴</li>
+                        <li>👵</li>
+                        <li>🧔</li>
+                        <li>🙋</li>
+                        <li>🙍</li>
+                        <li>🙇</li>
+                        <li>🙎</li>
+                        <li>🧏</li>
+                        <li>🤦</li>
+                        <li>🙆</li>
+                        <li>💁</li>
+                        <li>🤷</li>
+                        <li>🙅</li>
+                        <li>👲</li>
+                        <li>👷</li>
+                        <li>💂</li>
+                        <li>🧕</li>
+                        <li>🕵</li>
+                        <li>👸</li>
+                        <li>👳</li>
+                        <li>👰</li>
+                        <li>👮</li>
+                        <li>🤱</li>
+                        <li>🤰</li>
+                        <li>🤴</li>
+                        <li>🤵</li>
+                        <li>🕴</li>
+                        <li>🧍</li>
+                        <li>💆</li>
+                        <li>💇</li>
+                        <li>💃</li>
+                        <li>👯</li>
+                        <li>🕺</li>
+                        <li>🏃</li>
+                        <li>🚶</li>
+                        <li>🧎</li>
+                        <li>🧗</li>
+                        <li>🧖</li>
+                        <li>🤹</li>
+                        <li>🤸</li>
+                        <li>🤺</li>
+                        <li>🤼</li>
+                        <li>🤾</li>
+                        <li>🚣</li>
+                        <li>🚵</li>
+                        <li>🚴</li>
+                        <li>🤽</li>
+                        <li>⛷</li>
+                        <li>🏋</li>
+                        <li>⛹</li>
+                        <li>🏌</li>
+                        <li>🏂</li>
+                        <li>🏇</li>
+                        <li>🏊</li>
+                        <li>🏄</li>
+                        <li>🧘</li>
+                        <li>🛌</li>
+                        <li>🛀</li>
+                        <li>💏</li>
+                        <li>👬</li>
+                        <li>👪</li>
+                        <li>👭</li>
+                        <li>👫</li>
+                        <li>💑</li>
+                        <li>🐮</li>
+                        <li>🐭</li>
+                        <li>🐫</li>
+                        <li>🐪</li>
+                        <li>🐯</li>
+                        <li>🦏</li>
+                        <li>🦍</li>
+                        <li>🦌</li>
+                        <li>🦊</li>
+                        <li>🦒</li>
+                        <li>🐀</li>
+                        <li>🐨</li>
+                        <li>🦘</li>
+                        <li>🦇</li>
+                        <li>🐎</li>
+                        <li>🐐</li>
+                        <li>🐏</li>
+                        <li>🐒</li>
+                        <li>🐑</li>
+                        <li>🐕</li>
+                        <li>🐖</li>
+                        <li>🐗</li>
+                        <li>🦓</li>
+                        <li>🐱</li>
+                        <li>🦛</li>
+                        <li>🐰</li>
+                        <li>🦝</li>
+                        <li>🐩</li>
+                        <li>🦔</li>
+                        <li>🐁</li>
+                        <li>🐄</li>
+                        <li>🐵</li>
+                        <li>🐆</li>
+                        <li>🐅</li>
+                        <li>🐇</li>
+                        <li>🐈</li>
+                        <li>🦄</li>
+                        <li>🐴</li>
+                        <li>🐶</li>
+                        <li>🐷</li>
+                        <li>🐹</li>
+                        <li>🐽</li>
+                        <li>🐾</li>
+                        <li>🐼</li>
+                        <li>🐻</li>
+                        <li>🦁</li>
+                        <li>🐣</li>
+                        <li>🐔</li>
+                        <li>🐤</li>
+                        <li>🦩</li>
+                        <li>🦢</li>
+                        <li>🐧</li>
+                        <li>🐦</li>
+                        <li>🐓</li>
+                        <li>🦜</li>
+                        <li>🦚</li>
+                        <li>🦃</li>
+                        <li>🦅</li>
+                        <li>🦉</li>
+                        <li>🦆</li>
+                        <li>🐸</li>
+                        <li>🐍</li>
+                        <li>🦎</li>
+                        <li>🐢</li>
+                        <li>🐊</li>
+                        <li>🦕</li>
+                        <li>🦖</li>
+                        <li>🐉</li>
+                        <li>🐲</li>
+                        <li>🐋</li>
+                        <li>🦈</li>
+                        <li>🐚</li>
+                        <li>🐳</li>
+                        <li>🐟</li>
+                        <li>🐙</li>
+                        <li>🐬</li>
+                        <li>🐡</li>
+                        <li>🐠</li>
+                        <li>🦋</li>
+                        <li>🦗</li>
+                        <li>🦟</li>
+                        <li>🦠</li>
+                        <li>🦂</li>
+                        <li>🐝</li>
+                        <li>🐞</li>
+                        <li>🐛</li>
+                        <li>🐜</li>
+                        <li>🕸</li>
+                        <li>🌹</li>
+                        <li>🌷</li>
+                        <li>🌺</li>
+                        <li>🌼</li>
+                        <li>🌻</li>
+                        <li>💐</li>
+                        <li>🥀</li>
+                        <li>🌸</li>
+                        <li>🌲</li>
+                        <li>🌳</li>
+                        <li>🌴</li>
+                        <li>🌵</li>
+                        <li>🌾</li>
+                        <li>🍀</li>
+                        <li>🌱</li>
+                        <li>🍂</li>
+                        <li>🍃</li>
+                        <li>🍁</li>
+                        <li>🌿</li>
+                        <li>🥝</li>
+                        <li>🥥</li>
+                        <li>🍓</li>
+                        <li>🍒</li>
+                        <li>🥭</li>
+                        <li>🍑</li>
+                        <li>🍋</li>
+                        <li>🍊</li>
+                        <li>🍉</li>
+                        <li>🍍</li>
+                        <li>🍈</li>
+                        <li>🍎</li>
+                        <li>🍇</li>
+                        <li>🍅</li>
+                        <li>🍌</li>
+                        <li>🍏</li>
+                        <li>🍐</li>
+                        <li>🧄</li>
+                        <li>🥜</li>
+                        <li>🌰</li>
+                        <li>🥑</li>
+                        <li>🥕</li>
+                        <li>🧅</li>
+                        <li>🥔</li>
+                        <li>🥒</li>
+                        <li>🥬</li>
+                        <li>🥦</li>
+                        <li>🍆</li>
+                        <li>🍄</li>
+                        <li>🌽</li>
+                        <li>🍳</li>
+                        <li>🧈</li>
+                        <li>🧇</li>
+                        <li>🍲</li>
+                        <li>🧆</li>
+                        <li>🌯</li>
+                        <li>🌮</li>
+                        <li>🌭</li>
+                        <li>🧀</li>
+                        <li>🧂</li>
+                        <li>🥯</li>
+                    </ul>
+                </i>
+            </button>
+        </div>
+        <div class="output" contenteditable="true">
+        </div>
+    </div>
+</body>
+<script src="../../js/cloudWall2.js"></script>
+
+</html>

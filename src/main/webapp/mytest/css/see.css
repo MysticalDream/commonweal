@@ -106,7 +106,7 @@ nav.room_nav span.active {
     width: 100%;
     padding: 10px;
     max-height: calc(100% - 218px);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 #room_right .show_info > div.content_item {

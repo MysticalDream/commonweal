@@ -1,4 +1,4 @@
-// 事件管理 发布订阅者模式
+// 事件管理 发布订阅者设计模式
 class EventManager {
     // 通过事件类型作为属性来管理不通的事件回调
     eventStack = {}
@@ -120,7 +120,7 @@ class mySocket {
     // 监听关闭
     onclose() {
         this.ws.onclose = (e) => {
-            console.log('onclose:'+window.JSON.stringify(e))
+            console.log('onclose:'+(e.reason))
 
             // 用户手动关闭的不重连
             if (this.isCustomClose) return

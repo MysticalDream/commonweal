@@ -29,6 +29,9 @@ function judge() {
     }
 }
 
+/**
+ * 忽略空值
+ */
 Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
     get() {
         const jsonData = {};
@@ -37,7 +40,7 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
             if (!jsonData[key]) {
                 const temp = formData.getAll(key).length > 1 ? formData.getAll(key) : formData.get(key);
                 if (judge().isArray(temp)) {
-                    temp.filter(e => !e)
+                    temp.filter(e => !e);
                     if (temp.length > 1) {
                         jsonData[key] = temp;
                     }
@@ -46,6 +49,21 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
                         jsonData[key] = temp;
                     }
                 }
+            }
+        });
+        return jsonData;
+    }
+});
+/**
+ * 不忽略空值
+ */
+Object.defineProperty(HTMLFormElement.prototype, 'jsondata2', {
+    get() {
+        const jsonData = {};
+        const formData = new FormData(this);
+        formData.forEach((value, key) => {
+            if (!jsonData[key]) {
+                jsonData[key] = formData.getAll(key).length > 1 ? formData.getAll(key) : formData.get(key);
             }
         });
         return jsonData;
@@ -98,6 +116,8 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
         //回调
         opt.callback = opt.callback || function () {
         };
+        opt.error = opt.error || function () {
+        };
         //表单
         var formEle = isElementNode(opt.form) ? opt.form : $(opt.form)[0];
         //随机名称
@@ -116,8 +136,16 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
 
         //响应
         function response() {
-            var result = iframe.contentWindow.document.body.outerText;
-            opt.callback(JSON.parse(result));
+            const result = iframe.contentWindow.document.body.outerText;
+
+            try {
+                const parse = JSON.parse(result);
+                opt.callback && opt.callback(parse);
+            } catch (e) {
+                opt.error && opt.error(e);
+            }
+
+
         }
 
         //注意：低版本 ie 支持 iframe 的 onload 事件,
@@ -128,6 +156,7 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
         } else {
             iframe.addEventListener("load", response, false);
         }
+
     }
 
     win.iframeAjax = responseResult;
@@ -256,6 +285,7 @@ Object.defineProperty(HTMLFormElement.prototype, 'jsondata', {
                     tag.innerText = txtTemplate.replace(/[?？]/g, this.value.length);
                 }, 200)
             );
+
         }
 
         return myCounter;
@@ -291,3 +321,79 @@ const urlManager = {
 
     }
 };
+
+/**
+ * 查找兄弟节点
+ * @param elem
+ * @returns {*[]}
+ */
+function sibling(elem) {
+    const r = [];
+    let n = elem.parentNode.firstChild;
+    for (; n; n = n.nextSibling) {
+        if (n.nodeType === 1 && n !== elem) {
+            r.push(n);
+        }
+    }
+    return r;
+}
+
+/**
+ * 获取json字符串
+ * @param obj
+ */
+function getJSONString(obj) {
+    return window.JSON.stringify(obj);
+}
+
+/**
+ * 防抖函数 执行最后一次
+ * @param {*} func 业务代码
+ * @param {*} delay 延时
+ * @returns
+ */
+function antiShake(func, delay) {
+    let t = null;
+    return function () {
+        if (t !== null) {
+            window.clearTimeout(t);
+        }
+        t = window.setTimeout(() => {
+            func.call(this);
+        }, delay);
+    };
+}
+
+/**
+ * 节流函数 减少执行次数
+ * @param {*} func 业务代码
+ * @param {*} delay 延时
+ */
+function throttle(func, delay) {
+    let flag = true;
+    return function () {
+        if (flag) {
+            window.setTimeout(() => {
+                func.call(this);
+                flag = true;
+            }, delay);
+        }
+        flag = false;
+    };
+}
+
+/**
+ * 跳转
+ * @param url
+ */
+function jump(url) {
+    window.location.href = url;
+}
+
+/**
+ * 重定向
+ * @param url
+ */
+function redirect(url) {
+    window.location.replace(url);
+}

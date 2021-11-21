@@ -7,6 +7,7 @@ import team.skylinekids.commonweal.service.impl.*;
  * 获取Service对象的代理工厂
  *
  * @author MysticalDream
+ * @deprecated 已废弃
  */
 public class ServiceFactory {
 
@@ -60,6 +61,10 @@ public class ServiceFactory {
 
     public static AdoptService getAdoptService() {
         return ProxyFactory.getTransactionProxy(new AdoptServiceImpl());
+    }
+
+    public static LiveService getLiveService() {
+        return ProxyFactory.getTransactionProxy(new LiveServiceImpl());
     }
 
 }

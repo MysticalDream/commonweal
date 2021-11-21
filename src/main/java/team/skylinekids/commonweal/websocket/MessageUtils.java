@@ -3,6 +3,7 @@ package team.skylinekids.commonweal.websocket;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 
+import javax.websocket.Session;
 import java.io.IOException;
 import java.util.*;
 
@@ -110,7 +111,7 @@ public class MessageUtils {
      */
     public static void broadcast(String message, Collection<OnlineUser> onlineUsers) {
         /***************************在线用户***************************/
-        StringBuffer userStr = new StringBuffer();
+        StringBuffer userStr = new StringBuffer("[?]");
         for (OnlineUser user : onlineUsers) {
             userStr.append(user.getUsername() + ",");
         }
@@ -119,7 +120,11 @@ public class MessageUtils {
         /***************************在线用户***************************/
         for (OnlineUser user : onlineUsers) {
             try {
-                user.getSession().getBasicRemote().sendText(message);
+
+                Session session = user.getSession();
+                synchronized (session) {
+                    session.getBasicRemote().sendText(message);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 logger.info("消息发送失败！" + e.getMessage());

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>观看页面</title>
+    <link rel="stylesheet" href="../css/see2.css">
+    <script src="../js/common.js"></script>
+    <script src="../js/socket.js"></script>
+</head>
+
+<body>
+
+<main>
+    <section class="wrap">
+        <header>
+            <div class="living">
+                <span>直播未开始<span></span></span>
+            </div>
+            <div class="live_info">
+                <span>晓月的直播间</span>
+            </div>
+        </header>
+        <section class="video_wrap">
+            <div class="video">
+                <video id="remote_video" controls autoplay playsinline></video>
+            </div>
+        </section>
+        <footer>
+            <ul class="footer_list">
+                <li class="member">
+                    <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 19C10 19 4.85714 21 4 28" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M38 19C38 19 43.1429 21 44 28" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M18 19C18 19 22.8 20.1667 24 26" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M30 19C30 19 25.2 20.1667 24 26" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M20 34C20 34 15.8 34.75 14 40" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M28 34C28 34 32.2 34.75 34 40" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <circle cx="24" cy="31" r="5" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="34" cy="14" r="6" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="14" cy="14" r="6" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>成员</span>
+                </li>
+                <li class="message">
+                    <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                        <path d="M4 6H44V36H29L24 41L19 36H4V6Z" fill="#89909c" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23 21H25.0025" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M33.0011 21H35" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M13.001 21H14.9999" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    <span>聊天</span>
+                </li>
+            </ul>
+            <div class="btn">
+                <button>退出</button>
+            </div>
+        </footer>
+    </section>
+
+    <template id="model_template">
+        <div class="model_wrap">
+            <div class="model_mask"></div>
+            <div class="model_content_wrap">
+                <div class="content">
+                    <div class="model_header">
+                        <button class="close_model">X</button>
+                        <div class="title">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="model_body"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+</main>
+<script src="../js/see2.js"></script>
+</body>
+</html>

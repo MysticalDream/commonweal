@@ -83,7 +83,7 @@ public class RecruitController {
      */
     @MyRequestPath(value = "/recruits/cover", type = {RequestMethod.POST})
     public String uploadRecruitImg(HttpInfoWrapper httpInfoWrapper) {
-        Part coverPart = httpInfoWrapper.getPart("recruit_cover");
+        Part coverPart = httpInfoWrapper.getPart("recruit_cover").get(0);
         if (coverPart == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }

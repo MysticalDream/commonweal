@@ -15,9 +15,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -43,7 +41,7 @@ public class HttpInfoWrapper {
     /**
      * 保存part的映射
      */
-    private Map<String, Part> partMap = new ConcurrentHashMap<>();
+    private Map<String, List<Part>> partMap = new ConcurrentHashMap<>();
     /**
      * 保存Cookie的map,键为cookie的键
      */
@@ -84,8 +82,9 @@ public class HttpInfoWrapper {
                     if (parts != null) {
                         for (Part part :
                                 parts) {
-                            if (partMap.put(part.getName(), part) != null) {
-                                throw new RuntimeException("Part的name重复了");
+                            List<Part> parts1 = partMap.putIfAbsent(part.getName(), new ArrayList<>(List.of(part)));
+                            if (parts1 != null) {
+                                parts1.add(part);
                             }
                         }
                     }
@@ -173,7 +172,7 @@ public class HttpInfoWrapper {
         httpSession.invalidate();
     }
 
-    public Part getPart(String name) {
+    public List<Part> getPart(String name) {
         return partMap.get(name);
     }
 
@@ -286,7 +285,7 @@ public class HttpInfoWrapper {
      * @param <T>参数类型
      * @return
      */
-    public <T> T getPathVariable(Class<T> clazz) throws JsonSyntaxException{
+    public <T> T getPathVariable(Class<T> clazz) throws JsonSyntaxException {
         try {
             return pathVariable == null ? null : GsonUtils.j2O(pathVariable, clazz);
         } catch (JsonSyntaxException e) {

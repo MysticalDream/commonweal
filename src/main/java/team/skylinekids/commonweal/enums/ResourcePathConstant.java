@@ -63,6 +63,14 @@ public interface ResourcePathConstant {
      * 领养动物
      */
     String DISk_ADOPT_IMG_BASE = DISK_IMAGE_BASE + "adopt/";
+    /**
+     * 直播暂存
+     */
+    String DISK_LIVE_TEMP_BASE = DISK_IMAGE_BASE + "temp/live/";
+    /**
+     * 直播
+     */
+    String DISK_LIVE_IMG_BASE = DISK_IMAGE_BASE + "live/";
 
     //--------------------------------------------------------------------------
     /**
@@ -126,5 +134,13 @@ public interface ResourcePathConstant {
      * 领养动物
      */
     String VIRTUAL_ADOPT_COVER_BASE = VIRTUAL_IMAGE_BASE + "adopt/";
+    /**
+     * 直播暂存
+     */
+    String VIRTUAL_LIVE_COVER_TEMP_BASE = VIRTUAL_IMAGE_BASE + "temp/live/";
+    /**
+     * 直播
+     */
+    String VIRTUAL_LIVE_COVER_BASE = VIRTUAL_IMAGE_BASE + "live/";
 
 }

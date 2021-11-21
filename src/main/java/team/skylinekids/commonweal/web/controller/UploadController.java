@@ -2,12 +2,10 @@ package team.skylinekids.commonweal.web.controller;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
-import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.utils.FileUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
-import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 上传图片控制器
@@ -73,11 +73,19 @@ public class UploadController extends HttpServlet {
                 tempPath = ResourcePathConstant.DISK_ADOPT_TEMP_IMG_BASE;
                 virtualPath = ResourcePathConstant.VIRTUAL_ADOPT_COVER_TEMP_BASE;
                 break;
+            case "live_cover":
+                tempPath = ResourcePathConstant.DISK_LIVE_TEMP_BASE;
+                virtualPath = ResourcePathConstant.VIRTUAL_LIVE_COVER_TEMP_BASE;
+                break;
             default:
                 return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
-        Part part = httpInfoWrapper.getPart(partName);
-        return handleCover(part, tempPath, virtualPath);
+        List<Part> parts = httpInfoWrapper.getPart(partName);
+        if (parts.size() == 1) {
+            return handleCover(parts.get(0), tempPath, virtualPath);
+        } else {
+            return handleCover(parts, tempPath, virtualPath);
+        }
     }
 
     /**
@@ -95,6 +103,32 @@ public class UploadController extends HttpServlet {
         try {
             String fileName = FileUtils.saveResourceByPart(coverPart, diskTempPath);
             return ResultUtils.getResult(ApiResultCode.SUCCESS, virtualTempPath + fileName);
+        } catch (Exception e) {
+            logger.error("封面上传处理失败", e);
+            return ResultUtils.getResult(ApiResultCode.RESOURCE_STORAGE_FAILED);
+        }
+    }
+
+    /**
+     * 处理多图上传
+     *
+     * @param partList
+     * @param diskTempPath
+     * @param virtualTempPath
+     * @return
+     */
+    private String handleCover(List<Part> partList, String diskTempPath, String virtualTempPath) {
+        if (partList == null || partList.size() == 0) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        try {
+            List<String> url = new ArrayList<>(partList.size());
+            for (Part part :
+                    partList) {
+                String fileName = FileUtils.saveResourceByPart(part, diskTempPath);
+                url.add(virtualTempPath + fileName);
+            }
+            return ResultUtils.getResult(ApiResultCode.SUCCESS, url);
         } catch (Exception e) {
             logger.error("封面上传处理失败", e);
             return ResultUtils.getResult(ApiResultCode.RESOURCE_STORAGE_FAILED);

@@ -12,8 +12,7 @@
 
 <main>
     <section id="room_left">
-        <!--        <div class="controls"></div>-->
-        <video id="remote_video" autoplay controls>
+        <video id="remote_video" autoplay controls playsinline>
             Sorry, your browser doesn't support embedded videos.
         </video>
     </section>
@@ -25,10 +24,7 @@
         </nav>
         <!--        聊天展示-->
         <div class="show_info">
-            <div class="content_item">
-                <span class="username_span">啸月传说</span>
-                <span class="info_span">进入直播间</span>
-            </div>
+
         </div>
         <!--            聊天输入-->
         <div class="chat_room">
@@ -39,103 +35,7 @@
 
     </section>
 </main>
-<script>
-    window.addEventListener("load", function () {
-        ;(function (win) {
-
-            const ws = new mySocket('ws://' + win.location.host + '/livechat/' + urlManager.get('liveId'));
-
-            const video = $('#remote_video');
-            let streaming = false;
-            let width = $('#room_left').offsetWidth;
-            let height;
-            const send_btn = $('#send_btn');
-            const comment_area = $('#comment_area');
-            let peerConnection;
-            //处理发送方
-            const handOffer = (data) => {
-                peerConnection = new win.RTCPeerConnection();
-                peerConnection.addEventListener("track", function (e) {
-                    if (e && e.streams) {
-                        if (video.srcObject !== e.streams[0]) {
-                            win.console.log("收到流", e.streams[0])
-                            video.srcObject = e.streams[0];
-                        }
-                    }
-                });
-                let {description, iceCandidates} = win.JSON.parse(data.content);
-                peerConnection.setRemoteDescription(new win.RTCSessionDescription(description))
-                    .then(e => {
-                        peerConnection.createAnswer().then(description1 => {
-                            peerConnection.setLocalDescription(description1);
-                            let d = {
-                                type: "answer_data",
-                                data: {
-                                    fromId: cookieManager.getCookie("userId"),
-                                    content: win.JSON.stringify(description1)
-                                }
-                            };
-                            ws.send(win.JSON.stringify(d));
-                        });
-                    });
-                iceCandidates.forEach(element => {
-                    peerConnection.addIceCandidate(element);
-                });
-
-            };
-            ws.subscribe("offer_data", handOffer);
-            let a = {type: "request_offer", data: {fromId: cookieManager.getCookie("userId")}};
-            ws.send(win.JSON.stringify(a));
-        //消息展示
-        const message = {
-            el: $('.show_info'),
-            showUserInfo(msg) {
-                this.el.innerHTML += `<div class="content_item">
-                <span class="username_span">${msg.username}:</span>
-                <span class="info_span">${msg.content}</span>
-            </div>`;
-            }
-            , showNotification(msg) {
-                this.el.innerHTML += `<div class="content_item">
-                <span class="username_span">${msg.username}</span>
-                <span class="info_span">${msg.message}</span>
-            </div>`;
-            }
-        };
-        for (let i = 0; i < 100; i++) {
-            message.showUserInfo({username: "啸月传说", content: "年后年号年后年号年后年号年后年号年后年号"});
-        }
-
-        //设置宽高
-        video.addEventListener('canplay', function (ev) {
-            if (!streaming) {
-                height = video.videoHeight / (video.videoWidth / width);
-                if (win.isNaN(height)) {
-                    height = width / (4 / 3);
-                }
-                video.setAttribute('width', width);
-                video.setAttribute('height', height);
-                streaming = true;
-                video.play();
-            }
-        }, false);
-        // 发送信息
-        send_btn.addEventListener("click", function () {
-            let val = comment_area.value.trim();
-            if (val !== '') {
-
-            }
-        });
-        myCounter({
-            tag: $('.tag'),
-            el: $('#comment_area'),
-            txtTemplate: '?/20',
-            limit: 20
-        });
-    })(window);
-    })
-    ;
-</script>
+<script src="../js/see.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>直播页面</title>
+    <link rel="stylesheet" href="../css/live3.css">
+    <script src="../js/common.js"></script>
+    <script src="../js/socket.js"></script>
+    <script src="../../js/ajax.js"></script>
+</head>
+<body>
+<main>
+    <section class="wrap">
+        <header>
+            <div class="living">
+                <span>直播未开始<span></span></span>
+            </div>
+            <div class="live_info">
+                <span>晓月的直播间</span>
+            </div>
+        </header>
+        <section class="video_wrap">
+            <div class="video">
+                <video id="local_video" autoplay playsinline></video>
+                <aside>
+                    <ul class="setting">
+
+                        <li class="normal">
+
+                            <div class="media_normal">
+                                <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                                    <rect x="17" y="4" width="14" height="27" rx="7" fill="#89909c" stroke="#89909c"
+                                          stroke-width="4" stroke-linejoin="round"/>
+                                    <path d="M9 23C9 31.2843 15.7157 38 24 38C32.2843 38 39 31.2843 39 23"
+                                          stroke="#89909c"
+                                          stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M24 38V44" stroke="#89909c" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                                <span>静音</span>
+                            </div>
+
+                            <div class="media_muted">
+                                <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M31 24V11C31 7.13401 27.866 4 24 4C20.134 4 17 7.13401 17 11V24C17 27.866 20.134 31 24 31C27.866 31 31 27.866 31 24Z"
+                                          stroke="#f60010" stroke-width="4" stroke-linejoin="round"/>
+                                    <path d="M39.0001 23C39.0001 25.1333 38.5547 27.1626 37.752 29" stroke="#f60010"
+                                          stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 23C9 31.2843 15.7157 38 24 38C25.7532 38 27.4361 37.6992 29 37.1465"
+                                          stroke="#f60010" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M24 38V44" stroke="#f60010" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M42 42L6 6" stroke="#f60010" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                                <span>解除静音</span>
+                            </div>
+                            <!--                            <input type="checkbox" hidden id="select1">-->
+                            <!--                            <label for="select1" class="select_label"></label>-->
+                            <!--                            <div class="select">-->
+                            <!--                                <ul>-->
+                            <!--                                    <li class="select_item selected"><span>1</span></li>-->
+                            <!--                                    <li class="select_item"><span>2</span></li>-->
+                            <!--                                </ul>-->
+                            <!--                            </div>-->
+                        </li>
+                        <li class="normal">
+                            <div class="media_normal">
+                                <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                                    <rect x="4" y="10" width="32" height="28" fill="#89909c" stroke="#89909c"
+                                          stroke-width="4" stroke-linejoin="round"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M44 14L36 20.75V27.25L44 34V14Z"
+                                          stroke="#89909c" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M17 19L23 24L17 29" stroke="#FFF" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                                <span>关闭视频</span></div>
+
+                            <div class="media_muted">
+                                <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                                    <path d="M4 12V38H20H28H30M18 10H20H36V24V27" stroke="#f60010" stroke-width="4"
+                                          stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M44 14L36 20.75V27.25L44 34V14Z"
+                                          stroke="#f60010" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M44 44L4 4" stroke="#f60010" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                                <span>开启视频</span>
+                            </div>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="21" r="16" fill="#89909c" stroke="#89909c" stroke-width="4"/>
+                                <circle cx="24" cy="21" r="7" fill="#FFF" stroke="#FFF" stroke-width="4"/>
+                                <path d="M16 43L32 43" stroke="#89909c" stroke-width="4" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                                <path d="M24 37V43" stroke="#89909c" stroke-width="4" stroke-linecap="round"
+                                      stroke-linejoin="round"/>
+                            </svg>
+                            <span>相机</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                                <path d="M12 35.0136H9H4V8.01267C4 6.90862 4.89543 6.01361 6 6.01361H42C43.1046 6.01361 44 6.90862 44 8.01267V35.0136H36"
+                                      stroke="#89909c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M24 32L14 42H34L24 32Z" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                      stroke-linejoin="round"/>
+                            </svg>
+                            <span>共享屏幕</span>
+                        </li>
+
+                        <li class="normal">
+                            <div class="media_normal">
+                                <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                                    <path d="M24 6V42" stroke="#89909c" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M4 34L16 12V34H4Z" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                          stroke-linejoin="round"/>
+                                    <path d="M44 34H32V12L44 34Z" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                                <span>镜像</span>
+                            </div>
+                            <div class="media_muted">
+                                <svg width="24" height="24" viewBox="0 0 48 48" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                                    <path d="M24 6V42" stroke="#f60010" stroke-width="4" stroke-linecap="round"
+                                          stroke-linejoin="round"/>
+                                    <path d="M4 34L16 12V34H4Z" fill="#f60010" stroke="#f60010" stroke-width="4"
+                                          stroke-linejoin="round"/>
+                                    <path d="M44 34H32V12L44 34Z" fill="#f60010" stroke="#f60010" stroke-width="4"
+                                          stroke-linejoin="round"/>
+                                </svg>
+                                <span>取消镜像</span>
+                            </div>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+        <footer>
+            <ul class="footer_list">
+                <li class="member">
+                    <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 19C10 19 4.85714 21 4 28" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M38 19C38 19 43.1429 21 44 28" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M18 19C18 19 22.8 20.1667 24 26" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M30 19C30 19 25.2 20.1667 24 26" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M20 34C20 34 15.8 34.75 14 40" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <path d="M28 34C28 34 32.2 34.75 34 40" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round"/>
+                        <circle cx="24" cy="31" r="5" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="34" cy="14" r="6" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="14" cy="14" r="6" fill="#89909c" stroke="#89909c" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>成员</span>
+                </li>
+                <li class="message">
+                    <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="48" height="48" fill="white" fill-opacity="0.01"/>
+                        <path d="M4 6H44V36H29L24 41L19 36H4V6Z" fill="#89909c" stroke="#89909c" stroke-width="4"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M23 21H25.0025" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M33.0011 21H35" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M13.001 21H14.9999" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                    <span>聊天</span>
+                </li>
+            </ul>
+            <div class="btn">
+                <button class="start_live">开启直播</button>
+            </div>
+        </footer>
+    </section>
+
+    <template id="model_template">
+        <div class="model_wrap">
+            <div class="model_mask"></div>
+            <div class="model_content_wrap">
+                <div class="content">
+                    <div class="model_header">
+                        <button class="close_model">X</button>
+                        <div class="title">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="model_body"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+</main>
+<script src="../js/live3.js"></script>
+</body>
+</html>
