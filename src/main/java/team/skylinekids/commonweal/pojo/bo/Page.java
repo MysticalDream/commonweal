@@ -133,4 +133,16 @@ public class Page<T> implements Serializable {
             pages++;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "pageSize=" + pageSize +
+                ", pageNum=" + pageNum +
+                ", total=" + total +
+                ", size=" + size +
+                ", pages=" + pages +
+                ", list=" + list +
+                '}';
+    }
 }

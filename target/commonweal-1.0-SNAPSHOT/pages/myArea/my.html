@@ -93,7 +93,16 @@
                         </li>
                     </ul>
                 </li>
-                <li><i class="iconfont icon-guanyuwomen" style="margin-left: 20px; display: block; font-size: 30px;"></i><span class="small_item_d">个人中心</span></li>
+                <li class="tag_d">
+                    <img src="../../images/pig.png" alt="" style="width: 32px;">
+                    <span>我的领养</span>
+                    <ul class="slide_ul_d" style="display: none;"></ul>
+                </li>
+                <li>
+                    <i class="iconfont icon-guanyuwomen" style="margin-left: 20px; display: block; font-size: 30px;"></i>
+                    <span class="small_item_d">个人中心</span>
+                    <ul class="slide_ul_d" style="display: none;"></ul>
+                </li>
             </ul>
         </div>
         <div class="bottom_right_d zI_d right_first" style="z-index: 1;">
@@ -184,7 +193,7 @@
         </ul> -->
             <!-- 管理界面 -->
             <div class="manager_box">
-                <h1>管理项目</h1>
+                <h1 class="blue_title">管理项目</h1>
                 <span class="delete_d">删除项目</span>
                 <span class="backTo delete_d">返回</span>
                 <div class="manager_main">
@@ -533,6 +542,9 @@
                 </div>
             </li>
         </ul> -->
+        </div>
+        <div class="bottom_right_d" style="opacity: 0;">
+            <h1 class="blue_title">我的领养</h1>
         </div>
     </div>
     <!-- 点击创建项目弹出来的框框 -->
@@ -1219,6 +1231,7 @@
     // getLi_cp(obj_test,ul_box1);
 
     let tag_d = document.querySelectorAll('.tag_d');
+    console.log(tag_d);
     let right_ds = document.querySelectorAll('.bottom_right_d');
     for (let i = 0; i < tag_d.length; i++) {
         tag_d[i].addEventListener('click', function () {

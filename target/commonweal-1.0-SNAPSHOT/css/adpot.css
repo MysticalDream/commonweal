@@ -4,7 +4,7 @@ body .big_pic_adpot{
 
 .adpot_main{
     width: 80%;
-    margin:15px auto;
+    margin:30px auto;
 }
 
  .adpot_main .wrap_pet{
@@ -154,4 +154,91 @@ body .big_pic_adpot{
 .adpot_main .footer{
     width: 100vw;
     left:48%;
+}
+
+.pet_bottom .adopted{
+    background-color: #2F3954;
+}
+
+.pet_title .blue_adopt{
+    color: #2F3954;
+}
+
+.body_fill{
+    visibility: hidden;
+    /* fixed定位 */
+    position: fixed;
+    width: 100vw;
+    height: 587px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7ECEC;
+    top:0px;
+    left:0px;
+    z-index: 1005;
+}
+
+.adopt_frame{
+    position: relative;
+    opacity: 0;
+    width: 429px;
+    height: 500px;
+    background: url(../images/message_frame.png) center center no-repeat; 
+}
+
+.adopt_frame span,.adopt_frame input{
+    display: block;
+}
+
+.adopt_frame h2{
+    width: 280px;
+    color:#2F3954;
+    font-family: DOUYU-Font;
+    font-size: 15px;
+    letter-spacing: 3px;
+    margin-left:80px;
+    margin-top:50px;
+}
+
+.input_box{
+    width: 75%;
+    margin:15px auto;
+}
+
+.input_box span,.input_box input{
+    margin-left: 40px;
+    /* margin-top:12px; */
+    outline: none;
+    padding-left: 10px;
+}
+
+.input_box span,.input_box button{
+    font-family: SimSun;
+    letter-spacing: 3px;
+    margin-top: 10px;
+}
+
+.input_box input{
+    width: 70%;
+    height: 20px;
+    margin-top: 12px;
+}
+
+.input_box button{
+    width: 70px;
+    height: 30px;
+    background-color: #E65E3E;
+    border: none;
+    color:#fff;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-left:55px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+.sele_wrapper .blue_foot{
+    position: relative;
+    top:7px;
 }
