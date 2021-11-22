@@ -58,7 +58,9 @@
 
 .bottom_dd {
     width: 100%;
-    height: 515px;
+    /* height原来是515px */
+    height: 514px;
+    /* height: 515px; */
     overflow: hidden;
     background-color: rgba(242, 240, 240, 1);
     /* background-color:#F8EDED; */
@@ -899,3 +901,160 @@ li .line_div:nth-child(4) img {
 .left_move_d {
     left: 5px;
 }
+
+/* 调整 */
+.adjust_li_1:hover img{
+    top:15.5px !important;
+    left:-4px !important;
+}
+
+.adjust_li_2:hover i{
+    position: relative;
+    left:-4px !important;
+}
+
+/* 个人中心 */
+
+.self_center{
+    top:73px;
+    height: 87%;
+    background-color: #F2F0F0;
+}
+
+.center_area{
+    position: relative;
+    width: 55%;
+    height: 100%;
+    left:25%;
+}
+
+.center_area .avator_circle{
+    position: relative;
+    top:4%;
+    left:45%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.center_area .avator_circle img{
+    width: 68px;
+    height: 68px;
+}
+
+.center_area textarea{
+    resize:none;
+    outline: none;
+    margin-left:11px;
+    width: 400px;
+    height: 93px;
+    padding-top: 7px;
+    border: 1px solid #DAD5D5;
+    border-radius: 8px;
+    text-indent: 1em;
+}
+
+.bottom_form{
+    margin-top: 35px;
+}
+
+.bottom_form span{
+    position: relative;
+    top:0px;
+    left:0px;
+    font-family: SimSun;
+    color:#000;
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.bottom_form input{
+    border: 1px solid #DAD5D5;
+    outline: none;
+    margin-left:11px;
+}
+
+/* .input_name{
+    width: 160px;
+    height: 30px;
+    border-radius: 6px;
+} */
+
+.bottom_form input{
+    width: 160px;
+    height: 30px;
+    border-radius: 6px;
+}
+
+.bottom_form .self_sign{
+    top:-75px;
+}
+
+.bottom_form button{
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+    color:#000;
+    border: none;
+    font-family: SimSun;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bottom_form .mimi{
+    letter-spacing: 2px;
+    width: 50px;
+    text-align: center;
+}
+
+.bottom_form ol li{
+    margin-top: 20px;
+}
+
+.input_name{
+    position: relative;
+    left:33px;
+}
+
+.bottom_form ol li span{
+    position: relative;
+}
+
+.bottom_form ol li:nth-child(1) span{
+    left:33px;
+}
+
+.bottom_form ol li:nth-child(3) span{
+  left:33px;
+}
+
+.bottom_form ol li:nth-child(3) button{
+    position: relative;
+    left:41px;
+    margin-right: 12px;
+}
+
+.bottom_form ol li:nth-child(3) .girl{
+    color:#fff;
+    background-color: #CD4140;
+    font-weight: 400;
+}
+
+.bottom_form ol li:nth-child(4) .area_live{
+    margin-left: 55px;
+}
+
+.bottom_form ol li:nth-child(5) span{
+   margin-left:33px;
+}
+
+.bottom_form ol li:nth-child(5) .phone_number_span{
+    margin-left: 52px;
+}
+
+.bottom_form ol li:nth-child(6) span{
+    margin-left:33px;
+}
+
