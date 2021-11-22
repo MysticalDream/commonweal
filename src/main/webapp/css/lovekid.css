@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body{
+    position: relative;
+}
+
 .teach_main{
     position: relative;
     width: 100%;
@@ -266,4 +270,16 @@ body .cloud_footer{
 
 .sub_part:last-child{
     margin-bottom: 80px;
+}
+
+.kid_side{
+    position: absolute;
+    top:200px;
+    right:0px;
+    width: 70px;
+    height: 400px;
+    z-index: 100;
+    background-color: skyblue;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
