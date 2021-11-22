@@ -30,4 +30,10 @@ public class AdoptDaoImpl extends MyGenericBaseDao<Adopt> implements AdoptDao {
         list.forEach(adopt -> adopt.setCoverUrl(ResourcePathConstant.VIRTUAL_ADOPT_COVER_BASE + adopt.getCoverUrl()));
         return page;
     }
+
+    @Override
+    public int updateAdoptUserId(Adopt adopt) throws Exception {
+        return this.update(adopt);
+    }
+
 }

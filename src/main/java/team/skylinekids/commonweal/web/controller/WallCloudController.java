@@ -1,5 +1,6 @@
 package team.skylinekids.commonweal.web.controller;
 
+import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.factory.ServiceFactory2;
@@ -21,6 +22,8 @@ import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
  */
 public class WallCloudController {
 
+    private Logger logger = Logger.getLogger(WallCloudController.class);
+
     WallCloudService wallCloudService = ServiceFactory2.getServiceImplProxy(WallCloudService.class);
 
     @MyRequestPath(value = "/wall", type = RequestMethod.POST)
@@ -35,9 +38,24 @@ public class WallCloudController {
 
     @MyRequestPath(value = "/wall/list", type = RequestMethod.GET)
     public String getPagination(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        Page<WallCloud> wallCloudPage = FillBeanUtils.fill(httpInfoWrapper.getParameterMap(), Page.class);
-        System.out.println(wallCloudPage);
-        wallCloudService.getPagination(wallCloudPage);
+        Integer pageSize;
+        Integer pageNum;
+        String flag;
+        try {
+            pageSize = Integer.parseInt(httpInfoWrapper.getParameter("pageSize"));
+            pageNum = Integer.parseInt(httpInfoWrapper.getParameter("pageNum"));
+            flag = httpInfoWrapper.getParameter("flag");
+            if ((!"true".equals(flag)) && (!"false".equals(flag))) {
+                throw new Exception("标志不符合");
+            }
+        } catch (Exception e) {
+            logger.error("领养请求分页语法错误", e);
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        Page<WallCloud> wallCloudPage = new Page<>();
+        wallCloudPage.setPageNum(pageNum);
+        wallCloudPage.setPageSize(pageSize);
+        wallCloudService.getPagination(wallCloudPage, flag);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, wallCloudPage);
     }
 }

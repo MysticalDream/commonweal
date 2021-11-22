@@ -21,9 +21,10 @@ public interface WallCloudDao {
      * 分页获取
      *
      * @param page
+     * @param flag
      * @throws Exception
      */
-    void getListByPagination(Page<WallCloud> page) throws Exception;
+    void getListByPagination(Page<WallCloud> page,String flag) throws Exception;
 
 
 }

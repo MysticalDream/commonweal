@@ -24,5 +24,5 @@ public interface WallCloudService {
      * @param page
      * @throws Exception
      */
-    void getPagination(Page<WallCloud> page) throws Exception;
+    void getPagination(Page<WallCloud> page,String flag) throws Exception;
 }
