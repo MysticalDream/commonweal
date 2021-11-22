@@ -184,7 +184,8 @@ body .big_pic_adpot{
     opacity: 0;
     width: 429px;
     height: 500px;
-    background: url(../images/message_frame.png) center center no-repeat; 
+    background:url(../images/pink_fra.jpg) center center no-repeat;
+    /* background: url(../images/message_frame.png) center center no-repeat;  */
 }
 
 .adopt_frame span,.adopt_frame input{
@@ -192,16 +193,20 @@ body .big_pic_adpot{
 }
 
 .adopt_frame h2{
-    width: 280px;
+    position: relative;
+    top:60px;
+    width: 260px;
     color:#2F3954;
     font-family: DOUYU-Font;
     font-size: 15px;
     letter-spacing: 3px;
-    margin-left:80px;
-    margin-top:50px;
+    margin-left:100px;
+    /* margin-top:50px; */
 }
 
 .input_box{
+    position: relative;
+    top:50px;
     width: 75%;
     margin:15px auto;
 }
@@ -222,7 +227,7 @@ body .big_pic_adpot{
 .input_box input{
     width: 70%;
     height: 20px;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .input_box button{
@@ -235,10 +240,86 @@ body .big_pic_adpot{
     font-size: 14px;
     margin-left:55px;
     cursor: pointer;
-    margin-top: 16px;
+    margin-top: 15px;
 }
 
 .sele_wrapper .blue_foot{
     position: relative;
     top:7px;
+}
+
+/* 提交成功 */
+.body_send{
+    visibility: hidden;
+    position: fixed;
+    width: 100vw;
+    height: 587px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7ECEC;
+    top: 0px;
+    left: 0px;
+    z-index: 8000;
+}
+
+.success_box{
+    width: 70%;
+    height: 400px;
+    background-color:#fff;
+    border-radius: 15px;
+}
+
+
+.success_box div img{
+    cursor: pointer;
+}
+
+.success_box div:nth-child(1){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 195px;
+}
+
+.success_box .last_div{
+    width: 100%;
+    height: 130px;
+}
+
+.success_box .last_div div{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success_box p{
+    font-family: SimSun;
+    letter-spacing: 3px;
+}
+
+.success_box div:nth-child(1) p{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+
+.lift_up_d{
+    animation: come_d 0.5s ease-in-out forwards;
+    -webkit-animation: come_d 0.5s ease-in-out forwards;
+}
+
+
+@keyframes come_d {
+    0% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }

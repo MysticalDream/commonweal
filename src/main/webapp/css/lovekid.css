@@ -1,0 +1,269 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.teach_main{
+    position: relative;
+    width: 100%;
+    min-width: none;
+    background-color: #F0E9E9;
+    overflow: hidden;
+}
+
+.cloud{
+    display: flex;
+    width: 170px;
+    height: 100px;
+    position: absolute;
+    left:-12px;
+    top:5px;
+    background:url(../images/yun.png) center center no-repeat;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    /* 妙用 */
+    transform: scale(.7);
+    z-index: 10;
+}
+
+.cloud span{
+    position: relative;
+    top:6px;
+    font-family: 'DOUYU-Font';
+    font-size: 23px;
+    letter-spacing: 3px;
+}
+
+.teach_center{
+    position: relative;
+    width: 80%;
+    margin:0 auto;
+}
+
+.first_line_d{
+    width: 100%;
+    height: 65px;
+    line-height: 120px;
+}
+
+.first_line_d img{
+    margin-left: 40px;
+}
+
+.first_line_d span{
+    font-family: 'DOUYU-Font';
+    font-size:27px;
+    letter-spacing: 3px;
+    margin-left: 12px;
+}
+
+.subjects{
+    width: 100%;
+    height: 220px;
+}
+
+.subjects ul{
+    position: relative;
+    top:10%;
+    width: 100%;
+    height: 90%;
+}
+
+.subjects ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top:5%;
+    width: 151px;
+    height: 95%;
+    float: left;
+    margin-right: 20px;
+    background-color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.subjects ul li:last-child{
+    position: relative;
+    top:-8.5px;
+    margin-right: 0px;
+}
+
+.check_m{
+    float: right;
+    font-family: SimSun;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.subjects ul li>div{
+    width: 100%;
+    text-align: center;
+    font-family: Simsun;
+    letter-spacing: 2px;
+}
+
+.subjects ul li div div img{
+    width: 64px;
+}
+
+.sub{
+    font-weight: 600;
+}
+
+.times{
+    color:#ADADAD;
+}
+
+.last_time{
+    margin-top: 10px;
+}
+
+.sub_part{
+    margin-top: 65px;
+    width: 100%;
+    height: 285px;
+}
+
+.first_sub{
+    margin-top: 40px;
+}
+
+.sub_part ul{
+    position: relative;
+    top:5px;
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+}
+
+.sub_part div:nth-child(1){
+    width: 100%;
+    height: 30px;
+}
+
+.red_small{
+    position: relative;
+    display: inline-block;
+    top:3px;
+    width: 6px;
+    height: 17px;
+    background-color: #D62C2C;
+}
+
+.sub_name{
+    font-family: 'DOUYU-Font';
+    letter-spacing: 3px;
+    margin-left: 5px;
+}
+
+.sub_part ul li{
+    float: left;
+    width: 233px;
+    height: 100%;
+    border-radius: 8px;
+    margin-right: 26px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.sub_part ul li:nth-child(4){
+   margin-right: 0px;
+}
+
+.sub_part ul li .pic_box{
+    width: 100%;
+    height: 74%;
+    background-color: tomato;
+}
+
+.sub_part ul li .pic_box img{
+    width:100%;
+    height: 100%;
+}
+
+ul li .box_bottom{
+    position: relative;
+    width: 100%;
+    height: 26%;
+}
+
+ul li .box_bottom .left_ava{
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    border-radius:24px;
+    background-color: wheat;
+    margin-top:7px;
+    margin-left: 8px;
+    overflow: hidden;
+}
+
+.left_ava img{
+    width: 100%;
+    height: 100%;
+}
+
+.right_mes{
+    display: inline-block;
+    position: absolute;
+    right:0px;
+    width: 72%;
+    height: 100%;
+    letter-spacing:3px;
+    font-family: Adobe Heiti Std;
+}
+
+.right_mes p{
+   position: relative;
+   top:6px;
+   font-size:15px;
+}
+
+.right_mes div span{
+    color:#979797
+}
+
+.right_mes div img{
+    width: 20px;
+}
+
+.right_mes .lan span{
+    letter-spacing: 2px;
+}
+
+.right_mes .lan span:nth-child(1){
+    position: relative;
+    top:-3px;
+    font-size: 14px;
+}
+
+.right_mes .second_spans{
+    display: inline-block;
+    position: relative;
+    left:10px;
+}
+
+.right_mes .second_spans img{
+    position: relative;
+    left:7px;
+}
+
+.right_mes .second_spans .maji_span{
+    display: inline-block;
+    transform: scale(.7);
+}
+
+body .cloud_footer{
+    margin-top: 0px;
+    left:49%;
+    background-color: #C93A44;
+}
+
+.sub_part:last-child{
+    margin-bottom: 80px;
+}

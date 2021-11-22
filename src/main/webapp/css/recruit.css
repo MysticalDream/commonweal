@@ -56,6 +56,8 @@ li {
     position: relative;
     float: left;
     margin: 0 20px;
+    font-family: Simsun;
+    font-weight: 600;
 }
 
 .nav_s .middle li:hover a {

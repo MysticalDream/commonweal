@@ -276,20 +276,36 @@
     <!-- 领养人信息 -->
     <div class="body_fill">
         <div class="adopt_frame">
-            <h2>领养动物相关个人信息填写</h2>
+            <h2>领养动物个人信息填写</h2>
             <div class="input_box">
                 <span>姓名</span>
-                <input type="text">
+                <input type="text" class="name_input">
                 <span>电话号码</span>
-                <input type="text">
+                <input type="text" class="phone_input">
                 <span>身份证号码</span>
-                <input type="text">
+                <input type="text" class="ident_input">
                 <span>地址</span>
-                <input type="text">
+                <input type="text" class="address_input">
                 <span>职业</span>
-                <input type="text">
+                <input type="text" class="prof_input">
                 <button class="left_btn">提交</button>
                 <button class="right_btn">退出</button>
+            </div>
+        </div>
+    </div>
+    <!-- 提交成功 -->
+    <div class="body_send">
+        <div class="success_box">
+            <div>
+                <img src="../../images/up.png" alt="">
+            </div>
+            <div class="last_div">
+                <div>
+                    <p>提交信息成功!</p>
+                </div>
+               <div>
+                    <p>等待平台管理员审核，审核结果会以短信形式告知，请耐心等待！</p>
+               </div>
             </div>
         </div>
     </div>
@@ -315,22 +331,86 @@
         let fill_left=$('.left_btn')[0];
         let fill_right=$('.right_btn')[0];
         let frame_d=$('.adopt_frame')[0];
-        console.log(frame_d);
+        let input_box=$('.input_box')[0];
+        let name_input=$('.name_input')[0];
+        let phone_input=$('.phone_input')[0];
+        let ident_input=$('.ident_input')[0];
+        let address_input=$('address_input')[0];
+        let prof_input=$('.prof_input')[0];
+        let body_send=$('.body_send')[0];
+        let success=$('.success_box')[0];
+
         disagree.addEventListener('click', () => {
             // 改成动画
-            body_full.style.visibility = 'hidden';
+            ajax({
+                type:'get',
+                url:'/adopt/sign',
+                header:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                data:{
+                    status:false
+                },
+                success:function(){
+                    body_full.style.visibility = 'hidden';
+                }
+            })
         })
+
+        
         agree.addEventListener('click', () => {
-            body_full.style.visibility = 'hidden';
-            body_fill.style.visibility='visible';
-            // frame_d.classlist.add('drop_down');
-            console.log(frame_d);
-            // 之前把List打成了list！！！！！
-            frame_d.classList.add('drop_down');
+            ajax({
+                type:'get',
+                url:'/adopt/sign',
+                header:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                data:{
+                    status:true
+                },
+                success:function(){
+                    body_full.style.visibility = 'hidden';
+                    body_fill.style.visibility='visible';
+                    // frame_d.classlist.add('drop_down');
+                    console.log(frame_d);
+                    // 之前把List打成了list！！！！！
+                    frame_d.classList.add('drop_down');
+                    frame_d.id=adpot_mask_s.id;
+                }
+            })
         })
 
         fill_left.addEventListener('click',()=>{
+
             body_fill.style.visibility='hidden';
+            body_send.style.visibility='visible';
+            success.classList.add('drop_down');
+            // var data={
+            //         realName:name_input.value.trim(),
+            //         tel:phone_input.value.trim(),
+            //         idNumber:ident_input.value.trim(),
+            //         profession:prof_input.value.trim(),
+            //         adoptId:frame_d.id
+            //     };
+            //     console.log(data);
+            ajax({
+                type:post,
+                url:'/adopt/user',
+                header:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                data:{
+                    realName:name_input.value.trim(),
+                    tel:phone_input.value.trim(),
+                    idNumber:ident_input.value.trim(),
+                    profession:prof_input.value.trim(),
+                    adoptId:frame_d.id
+                },
+                success:function(){
+                    body_fill.style.visibility='hidden';
+                    body_send.style.visibility='visible';
+                }
+            })
         })
 
         fill_right.addEventListener('click',()=>{

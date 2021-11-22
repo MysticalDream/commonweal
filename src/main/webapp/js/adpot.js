@@ -100,6 +100,7 @@ window.addEventListener('load',function(){
     }
 
 
+    // 全局变量保存要领养的ID
     // 数据内容的渲染 
     function renderDom(data) {
         // 容器的内容清空
@@ -120,7 +121,7 @@ window.addEventListener('load',function(){
                    <li>年龄：${data.data.list[i].age}</li>
                    <li>习性：${data.data.list[i].habit}</li>
                 </ul>
-                <button class="take_care">待领养</button>
+                <button class="take_care" id="${data.data.list[i].adoptId}">待领养</button>
             </div>
             `;
             oDiv.innerHTML=str;
@@ -156,6 +157,7 @@ window.addEventListener('load',function(){
     }
 
 
+
     function $(ele) {
         return document.querySelectorAll(ele);
     }
@@ -164,8 +166,11 @@ window.addEventListener('load',function(){
         if(e.target.classList.contains('take_care')){
             document.querySelector(".body_full").style.visibility='visible';
             document.querySelector('.adpot_mask_s').classList.add('drop_down');
+            document.querySelector('.adpot_mask_s').id=e.target.id;
         }
     })
+
+   
 
     // 切换栏
     let adopt_li=$('.pro_box>ul>li');
@@ -180,4 +185,5 @@ window.addEventListener('load',function(){
             item.classList.add('pro_li_cur');
         })
     })
+
 })
