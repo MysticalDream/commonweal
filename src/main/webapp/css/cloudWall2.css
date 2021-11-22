@@ -79,10 +79,42 @@ body {
     background-color: #fff;
 }
 
+.contain .cards .a.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .a.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .a.nochoice {
+    display: none;
+    opacity: 0;
+}
+
 .contain .cards .b {
     transform: translate(51%, -107px) rotate(-12deg);
     background-color: rgb(27, 19, 19);
     /* display: none; */
+}
+
+.contain .cards .b.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .b.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .b.nochoice {
+    display: none;
+    opacity: 0;
 }
 
 .contain .cards .c {
@@ -91,10 +123,42 @@ body {
     /* display: none; */
 }
 
+.contain .cards .c.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .c.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .c.nochoice {
+    display: none;
+    opacity: 0;
+}
+
 .contain .cards .d {
     transform: translate(156%, -151px) rotate(0deg);
     background-color: rgb(36, 132, 195);
     /* display: none; */
+}
+
+.contain .cards .d.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .d.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .d.nochoice {
+    display: none;
+    opacity: 0;
 }
 
 .contain .cards .e {
@@ -103,16 +167,64 @@ body {
     /* display: none; */
 }
 
+.contain .cards .e.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .e.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .e.nochoice {
+    display: none;
+    opacity: 0;
+}
+
 .contain .cards .f {
     transform: translate(264%, -109px) rotate(12deg);
     background-color: rgb(36, 22, 144);
     /* display: none; */
 }
 
+.contain .cards .f.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .f.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .f.nochoice {
+    display: none;
+    opacity: 0;
+}
+
 .contain .cards .g {
     transform: translate(312%, -67px) rotate(20deg);
     background-color: rgb(133, 19, 148);
     /* display: none; */
+}
+
+.contain .cards .g.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .g.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .g.nochoice {
+    display: none;
+    opacity: 0;
 }
 
 .contain .word {
@@ -125,6 +237,19 @@ body {
     font-size: 22px;
     color: #fff;
     text-align: center;
+}
+
+.contain .back {
+    position: absolute;
+    bottom: 10px;
+    right: 37px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
 }
 
 
@@ -222,7 +347,7 @@ body {
 
 .text .submit {
     position: absolute;
-    bottom: 16px;
+    top: 69px;
     right: 300px;
     width: 70px;
     height: 35px;
@@ -230,4 +355,18 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+    background-color: #fff;
+}
+
+.text .return {
+    position: absolute;
+    bottom: 16px;
+    left: 300px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
 }

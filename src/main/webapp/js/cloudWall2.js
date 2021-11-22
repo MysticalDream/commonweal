@@ -9,6 +9,8 @@ window.addEventListener('load', () => {
     const cards = document.querySelector('.cards').children;
     const contain = document.querySelector('.contain');
     const text = document.querySelector('.text');
+    const returnb = document.querySelector('.return');
+    const back = document.querySelector('.back');
     // 控制点击表情按钮会不会输出表情的
     let flag = false;
     // 控制点击表情按钮 那个表情的盒子出现不出现的
@@ -107,7 +109,8 @@ window.addEventListener('load', () => {
         })
     }
     submit.addEventListener('click', () => {
-            // 点击后返回刚刚选取卡片的页面 并且创建一个盒子 盒子里的内容放的就是刚刚填写的内容 然后给该盒子
+            // 点击后返回刚刚我要写的页面
+            window.location.href = 'cloudWall.html';
             comments.value = output.innerHTML;
         })
         // ----------------------
@@ -116,12 +119,15 @@ window.addEventListener('load', () => {
             console.log(i);
             // 点击后其他的循环一次给隐藏掉 就这个是显示的  
             for (let j = 0; j < cards.length; j++) {
-                cards[j].style.display = 'none';
-                cards[j].style.opacity = 0;
+                // cards[j].style.display = 'none';
+                // cards[j].style.opacity = 0;
+                cards[j].classList.add('nochoice');
             }
-            cards[i].style.display = 'block';
-            cards[i].style.transform = "translate(156%, -151px) rotate(0deg)";
-            cards[i].style.opacity = 1;
+            // cards[i].style.display = 'block';
+            // cards[i].style.transform = "translate(156%, -151px) rotate(0deg)";
+            // cards[i].style.opacity = 1;
+            cards[i].classList.remove('nochoice');
+            cards[i].classList.add('choice');
             // 点击后让这个大盒子隐藏 显示出编辑页面 
             setTimeout(() => {
                 // contain.style.display = 'none';
@@ -133,4 +139,23 @@ window.addEventListener('load', () => {
             }, 2000);
         })
     }
+    returnb.addEventListener('click', () => {
+        // 让所有的小卡片恢复显示状态 然后要改变一开始被选中的卡片
+        for (let j = 0; j < cards.length; j++) {
+            // cards[j].style.display = 'block';
+            // cards[j].style.opacity = 1;
+            cards[j].classList.remove('nochoice');
+            cards[j].classList.add('renew');
+            if (cards[j].classList.contains('choice')) {
+                cards[j].classList.remove('choice');
+            }
+        }
+        contain.style.opacity = 1;
+        contain.style.zIndex = 11;
+        text.style.opacity = 0;
+        text.style.zIndex = 10;
+    })
+    back.addEventListener('click', () => {
+        window.location.href = 'cloudWall.html';
+    })
 })

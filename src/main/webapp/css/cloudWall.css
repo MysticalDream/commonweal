@@ -5,6 +5,9 @@
 
 body {
     height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 1280px;
 }
 
 
@@ -12,16 +15,19 @@ body {
 
 .wrap {
     position: relative;
+    top: 0px;
+    left: 0px;
 }
 
 .wrap .middle {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 1263px;
+    width: 1280px;
     height: 537px;
     letter-spacing: 5px;
     margin: 0px auto;
+    transition: all 1s;
 }
 
 .wrap .middle>div {
@@ -97,10 +103,11 @@ body {
     position: absolute;
     top: 0px;
     left: -100%;
-    width: 1263px;
+    width: 1280px;
     height: 537px;
     background-color: pink;
     overflow: hidden;
+    transition: all 1s;
 }
 
 .wrap .left span {
@@ -112,13 +119,24 @@ body {
     color: rgb(187, 88, 67);
 }
 
-.wrap .left .cards {
+.wrap .left .box {
     position: absolute;
     top: 100px;
     left: 100px;
-    width: 1700px;
+    width: 1080px;
+    height: 330px;
+    overflow: hidden;
+    background-color: yellow;
+}
+
+.wrap .left .cards {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 1000000%;
     height: 330px;
     background-color: skyblue;
+    transition: all 0.5s ease;
 }
 
 .wrap .left .cards li {
@@ -139,6 +157,7 @@ body {
     line-height: 50px;
     background-color: #fff;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .wrap .left .line {
@@ -159,10 +178,11 @@ body {
     position: absolute;
     top: 0px;
     left: 100%;
-    width: 1263px;
+    width: 1280px;
     height: 537px;
     background-color: pink;
     overflow: hidden;
+    transition: all 1s;
 }
 
 .wrap .right span {
@@ -174,13 +194,25 @@ body {
     color: rgb(187, 88, 67);
 }
 
-.wrap .right .cards {
+.wrap .right .box {
     position: absolute;
     top: 100px;
     left: 100px;
-    width: 1700px;
+    width: 1080px;
+    height: 330px;
+    overflow: hidden;
+    background-color: pink;
+}
+
+.wrap .right .cards {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100000%;
     height: 330px;
     background-color: skyblue;
+    transition: all 0.5s ease;
+    /* overflow: hidden; */
 }
 
 .wrap .right .cards li {
@@ -201,6 +233,7 @@ body {
     line-height: 50px;
     background-color: #fff;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .wrap .right .line {
