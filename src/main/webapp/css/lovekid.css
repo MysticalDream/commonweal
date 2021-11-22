@@ -213,18 +213,21 @@ ul li .box_bottom .left_ava{
 }
 
 .right_mes{
-    display: inline-block;
+    /* display: inline-block; */
+    display: inline-flex;
     position: absolute;
     right:0px;
     width: 72%;
     height: 100%;
     letter-spacing:3px;
     font-family: Adobe Heiti Std;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .right_mes p{
    position: relative;
-   top:6px;
+   /* top:6px; */
    font-size:15px;
 }
 
@@ -273,13 +276,44 @@ body .cloud_footer{
 }
 
 .kid_side{
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top:200px;
+    top:100px;
     right:0px;
     width: 70px;
-    height: 400px;
+    height: 500px;
     z-index: 100;
-    background-color: skyblue;
+    background-color: #fff;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    font-family: Simsun;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+
+.kid_side ul li{
+    width: 74px;
+    height: 44px;
+    line-height: 27px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.kid_side ul li:nth-child(1){
+    margin-top: 0px;
+}
+
+.kid_side img{
+    display: block;
+    width: 22px;
+    margin-left: 26px;
+}
+
+.kid_side ul li span{
+    letter-spacing: 2px;
+    color:#261D55;
 }

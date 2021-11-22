@@ -19,6 +19,7 @@ window.addEventListener('load',function(){
     pet_opt.data = {};
     pet_opt.data.pageNum = "1";
     pet_opt.data.pageSize = "9";
+    pet_opt.data.option=false;
     pet_opt.success = function (data) {
         // 渲染分页
         render(data);
@@ -37,8 +38,8 @@ window.addEventListener('load',function(){
     // render(obj_pet);
     // renderDom(obj_pet);
 
-    render1(obj_pet);
-    renderDom1(obj_pet);
+    // render1(obj_pet);
+    // renderDom1(obj_pet);
 
     var turnpage_pet;
     var turnpage_pet1;
@@ -183,6 +184,27 @@ window.addEventListener('load',function(){
             })
             show(adopt_wrap[index]);
             item.classList.add('pro_li_cur');
+            if(index==1){
+                ajax({
+                    type:'get',
+                    url:'/adopts',
+                    header:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    data:{
+                        pageSize:9,
+                        pageNum:1,
+                        option:true,
+                    },
+                    success:function(data){
+                        render1(data);
+                        renderDom1(data);
+                    },
+                    error:function(){
+
+                    }
+                })
+            }
         })
     })
 

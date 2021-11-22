@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../css/font.css">
     <link rel="stylesheet" href="../../css/lovekid.css">
     <link rel="stylesheet" href="../../css/project.css">
+    <script src="../../js/common.js"></script>
+    <script src="../../js/animate.js"></script>
 </head>
 <body>
      <!-- 导航栏 -->
@@ -536,7 +538,7 @@
             <div class="sub_part">
                 <div>
                     <span class="red_small"></span>
-                    <span class="sub_name">物理</span>
+                    <span class="sub_name">化学</span>
                     <span class="check_m">查看更多&gt;</span>
                 </div>
                <ul>
@@ -633,7 +635,7 @@
             <div class="sub_part">
                 <div>
                     <span class="red_small"></span>
-                    <span class="sub_name">化学</span>
+                    <span class="sub_name">物理</span>
                     <span class="check_m">查看更多&gt;</span>
                 </div>
                <ul>
@@ -812,15 +814,74 @@
     <!-- 侧边栏 -->
     <div class="kid_side">
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>
+                <img src="../../images/zhibo.png" alt="">
+                <span>我要开播</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/yuyu.png" alt="">
+                <span>语文</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/shu.png" alt="">
+                <span>数学</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/ying.png" alt="">
+                <span>英语</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/sheng-.png" alt="">
+                <span>生物</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/hua.png" alt="">
+                <span>化学</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/wu.png" alt="">
+                <span>物理</span>
+            </li>
+            <li>
+                <img src="../../images/huidao.png" alt="">
+                <span>置顶</span>
+            </li>
         </ul>
     </div>
 </body>
+<script>
+    let kid_side=$('.kid_side')[0];
+    let kid_li=$('.kid_part');
+    let sub_part=$('.sub_part');
+
+    // window.scrollTo({
+    //     top: sub_part[i].offsetTop,
+    //     behavior: 'smooth'
+    // })
+    for(let i=0;i<sub_part.length;i++){
+        kid_li[i].addEventListener('click',()=>{
+            window.scrollTo({
+                top:sub_part[i].offsetTop,
+                behavior:'smooth'
+            })
+        })
+    }
+
+    // 刚刚没加【0】，导致is not a function 粗心
+    let last_kid=$('.kid_side>ul>li:last-child')[0];
+   
+    last_kid.addEventListener('click',()=>{
+        // window.scroll(0, window.pageYOffset + step);
+        animateY(window,0);
+    })
+    
+    window.addEventListener('scroll',()=>{
+        if (window.pageYOffset >= 200) {
+                kid_side.style.visibility = 'visible';
+                kid_side.style.position = 'fixed';
+            } else {
+                kid_side.style.visibility= 'hidden';
+            }
+    })
+</script>
 </html>
