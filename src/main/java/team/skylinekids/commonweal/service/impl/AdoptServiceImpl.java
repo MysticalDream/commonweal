@@ -19,7 +19,7 @@ public class AdoptServiceImpl implements AdoptService {
     }
 
     @Override
-    public Page<Adopt> getAdoptList(Page<Adopt> page) throws Exception {
-        return adoptDao.getAdoptList(page);
+    public Page<Adopt> getAdoptList(Page<Adopt> page,boolean option) throws Exception {
+        return adoptDao.getAdoptList(page,option);
     }
 }

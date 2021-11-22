@@ -6,11 +6,15 @@ import team.skylinekids.commonweal.enums.RequestMethod;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.factory.ServiceFactory;
+import team.skylinekids.commonweal.factory.ServiceFactory2;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Adopt;
+import team.skylinekids.commonweal.pojo.po.UserInfo;
 import team.skylinekids.commonweal.service.AdoptService;
+import team.skylinekids.commonweal.service.UserInfoService;
 import team.skylinekids.commonweal.utils.FileUtils;
+import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
@@ -28,6 +32,8 @@ public class AdoptController {
     private final Logger logger = Logger.getLogger(AdoptController.class);
 
     AdoptService adoptService = ServiceFactory.getAdoptService();
+
+    UserInfoService userInfoService = ServiceFactory2.getServiceImplProxy(UserInfoService.class);
 
     /**
      * 封面上传接口
@@ -48,14 +54,18 @@ public class AdoptController {
      * @return
      */
     @AccessLevel
-    @MyRequestPath(value = "/adopt/user", type = {RequestMethod.PUT})
-    public String adoptAnimal(HttpInfoWrapper httpInfoWrapper) {
+    @MyRequestPath(value = "/adopt/user", type = {RequestMethod.POST})
+    public String adoptAnimal(HttpInfoWrapper httpInfoWrapper) throws Exception {
         Boolean status = (Boolean) httpInfoWrapper.getHttpSessionAttribute(SessionKeyConstant.AGREEMENT_KEY);
-        if (!status) {
+        if (status == null || !status) {
             return ResultUtils.getResult(ApiResultCode.REJECT_THE_REQUEST);
         }
+        Map<String, String[]> parameterMap = httpInfoWrapper.getParameterMap();
+        String adoptId = parameterMap.remove("adoptId")[0];
+        UserInfo userInfo = FillBeanUtils.fill(parameterMap, UserInfo.class);
         Integer userId = httpInfoWrapper.getUser().getUserId();
-        return "";
+        userInfo.setUserId(userId);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 
     /**
@@ -106,6 +116,7 @@ public class AdoptController {
     public String getAdoptList(HttpInfoWrapper httpInfoWrapper) throws Exception {
         Integer pageSize;
         Integer pageNum;
+        String option = httpInfoWrapper.getParameter("option");
         try {
             pageSize = Integer.parseInt(httpInfoWrapper.getParameter("pageSize"));
             pageNum = Integer.parseInt(httpInfoWrapper.getParameter("pageNum"));
@@ -115,8 +126,14 @@ public class AdoptController {
         }
         Page<Adopt> page = new Page<>();
         page.setPageNum(pageNum);
+        Page<Adopt> adoptList;
         page.setPageSize(pageSize);
-        Page<Adopt> adoptList = adoptService.getAdoptList(page);
+
+        if ("true".equals(option)) {
+            adoptList = adoptService.getAdoptList(page, true);
+        } else {
+            adoptList = adoptService.getAdoptList(page, false);
+        }
         return ResultUtils.getResult(ApiResultCode.SUCCESS, adoptList);
     }
 

@@ -19,15 +19,15 @@ public class AdoptDaoImpl extends MyGenericBaseDao<Adopt> implements AdoptDao {
     }
 
     @Override
-    public Page<Adopt> getAdoptList(Page<Adopt> page) throws Exception {
-        String sql = " LIMIT " + page.getStartRow() + "," + page.getPageSize();
-        Integer count = this.selectAllCount();
-        List<Adopt> adopts = this.selectListByConditionString(sql, new ArrayList<>());
-        adopts.forEach(adopt -> adopt.setCoverUrl(ResourcePathConstant.VIRTUAL_ADOPT_COVER_BASE + adopt.getCoverUrl()));
-        page.setList(adopts);
-        page.setSize(adopts.size());
-        page.setTotal(count);
-        page.setPagesAuto();
+    public Page<Adopt> getAdoptList(Page<Adopt> page, boolean option) throws Exception {
+        List<Adopt> list;
+        String condition = option
+                //已领养
+                ? " WHERE IFNULL(adopt_user_id,'null')!='null' AND status=1 "
+                //未领养
+                : " WHERE status!=1 ";
+        list = this.getListByPagination(condition, page);
+        list.forEach(adopt -> adopt.setCoverUrl(ResourcePathConstant.VIRTUAL_ADOPT_COVER_BASE + adopt.getCoverUrl()));
         return page;
     }
 }

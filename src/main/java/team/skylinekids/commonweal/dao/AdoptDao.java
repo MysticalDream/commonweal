@@ -22,9 +22,12 @@ public interface AdoptDao {
      * 获取领养动物列表
      *
      * @param page
+     * @param option
      * @return
      * @throws Exception
      */
-    Page<Adopt> getAdoptList(Page<Adopt> page) throws Exception;
+    Page<Adopt> getAdoptList(Page<Adopt> page,boolean option) throws Exception;
+
+
 
 }
