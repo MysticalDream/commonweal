@@ -17,7 +17,7 @@ public class WallCloudDaoImpl extends MyGenericBaseDao<WallCloud> implements Wal
     }
 
     @Override
-    public void getListByPagination(Page<WallCloud> page) throws Exception {
-        this.getListByPagination(" ORDER BY gmt_create DESC ", page);
+    public void getListByPagination(Page<WallCloud> page, String flag) throws Exception {
+        this.getListByPagination(" WHERE flag=" + flag + " ORDER BY gmt_create DESC ", page);
     }
 }

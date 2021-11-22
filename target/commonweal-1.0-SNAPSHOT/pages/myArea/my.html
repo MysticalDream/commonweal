@@ -93,12 +93,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="tag_d">
+                <li class="tag_d adjust_li_1">
                     <img src="../../images/pig.png" alt="" style="width: 32px;">
                     <span>我的领养</span>
                     <ul class="slide_ul_d" style="display: none;"></ul>
                 </li>
-                <li>
+                <li class="tag_d adjust_li_2">
                     <i class="iconfont icon-guanyuwomen" style="margin-left: 20px; display: block; font-size: 30px;"></i>
                     <span class="small_item_d">个人中心</span>
                     <ul class="slide_ul_d" style="display: none;"></ul>
@@ -545,6 +545,35 @@
         </div>
         <div class="bottom_right_d" style="opacity: 0;">
             <h1 class="blue_title">我的领养</h1>
+        </div>
+        <div class="bottom_right_d self_center" style="opacity: 0;">
+            <div class="center_area">
+                <div class="avator_circle">
+                    <img src="../../images/touxiang.jpeg" alt="">
+                </div>
+                <form action="" class="bottom_form">
+                    <ol>
+                        <li>
+                            <span>昵称</span><input type="text" class="input_name">
+                        </li>
+                        <li>
+                            <span class="self_sign">个性签名</span><textarea name="" id="" placeholder="希望能尽自己的一份力，帮助别人"></textarea></br>
+                        </li>
+                        <li>
+                            <span>性别</span> <button>男</button> <button class="girl">女</button> <button class="mimi">保密</button>
+                        </li>
+                        <li>
+                            <span>出生日期</span><input type="text"><span class="area_live">所在地</span><input type="text">
+                        </li>
+                        <li>
+                            <span>学校</span><input type="text"> <span class="phone_number_span">手机号</span><input type="text">
+                        </li>
+                        <li>
+                            <span>密码</span><input type="text">
+                        </li>
+                    </ol>
+                </form>
+            </div>
         </div>
     </div>
     <!-- 点击创建项目弹出来的框框 -->
@@ -1231,8 +1260,9 @@
     // getLi_cp(obj_test,ul_box1);
 
     let tag_d = document.querySelectorAll('.tag_d');
-    console.log(tag_d);
+    console.log(tag_d.length);
     let right_ds = document.querySelectorAll('.bottom_right_d');
+    console.log(right_ds.length);
     for (let i = 0; i < tag_d.length; i++) {
         tag_d[i].addEventListener('click', function () {
             for (let j = 0; j < tag_d.length; j++) {

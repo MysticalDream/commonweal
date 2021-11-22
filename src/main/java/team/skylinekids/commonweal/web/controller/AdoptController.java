@@ -65,6 +65,8 @@ public class AdoptController {
         UserInfo userInfo = FillBeanUtils.fill(parameterMap, UserInfo.class);
         Integer userId = httpInfoWrapper.getUser().getUserId();
         userInfo.setUserId(userId);
+        userInfoService.addUserInfo(userInfo);
+
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 

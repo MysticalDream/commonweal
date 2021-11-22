@@ -36,6 +36,10 @@ public class WallCloud {
      */
     private Integer cardId;
     /**
+     * 标志 1-孩子们的愿望 0-寄语期望
+     */
+    private Boolean flag;
+    /**
      * 创建时间
      */
     private LocalDateTime gmtCreate;
@@ -48,12 +52,13 @@ public class WallCloud {
      */
     private Boolean isAvailable;
 
-    public WallCloud(Integer id, String content, String signature, Integer userId, Integer cardId, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean isAvailable) {
+    public WallCloud(Integer id, String content, String signature, Integer userId, Integer cardId, Boolean flag, LocalDateTime gmtCreate, LocalDateTime gmtModified, Boolean isAvailable) {
         this.id = id;
         this.content = content;
         this.signature = signature;
         this.userId = userId;
         this.cardId = cardId;
+        this.flag = flag;
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
         this.isAvailable = isAvailable;

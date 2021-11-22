@@ -27,4 +27,13 @@ public interface AdoptService {
      * @throws Exception
      */
     Page<Adopt> getAdoptList(Page<Adopt> page, boolean option) throws Exception;
+
+    /**
+     * 更新领养动物的用户的id
+     *
+     * @param adopt
+     * @return
+     * @throws Exception
+     */
+    int updateAdoptUserId(Adopt adopt) throws Exception;
 }

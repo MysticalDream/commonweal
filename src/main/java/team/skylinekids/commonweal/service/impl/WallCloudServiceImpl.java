@@ -21,7 +21,7 @@ public class WallCloudServiceImpl implements WallCloudService {
     }
 
     @Override
-    public void getPagination(Page<WallCloud> page) throws Exception {
-        wallCloudDao.getListByPagination(page);
+    public void getPagination(Page<WallCloud> page,String flag) throws Exception {
+        wallCloudDao.getListByPagination(page,flag);
     }
 }
