@@ -20,7 +20,6 @@ window.addEventListener('load', () => {
     let a;
     let font = 3;
     let that;
-    let picList = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'];
     // 获取拼接的参数
     function isNumber(val) {
         var reg = /^[0-9]+\.?[0-9]*$/;
@@ -45,7 +44,7 @@ window.addEventListener('load', () => {
             // buttons[2].click();
             // alert(1);
             // console.log(buttons[2]);
-            console.log(parseInt(fontSize.options[fontSize.selectedIndex].text));
+            // console.log(parseInt(fontSize.options[fontSize.selectedIndex].text));
             if (parseInt(fontSize.options[fontSize.selectedIndex].text) === 12) {
                 font = 1;
             } else if (parseInt(fontSize.options[fontSize.selectedIndex].text) === 18) {
@@ -126,40 +125,9 @@ window.addEventListener('load', () => {
             }
         })
     }
-    submit.addEventListener('click', () => {
-            ajax({
-                type: 'post',
-                url: '/wall',
-                data: {
-                    content: output.innerHTML,
-                    signature: sign.value,
-                    cardld: picList[that.dataset.cardId],
-                    flag: getUrlParamObject(window.location.href)['flag']
-                },
-                header: {
-                    'Content-Type': 'application/json'
-                },
-                success: function(data) {
-                    if (data.code === 200) {
-                        console.log(data);
-                    } else {
-                        let warn = document.querySelector('.warn');
-                        warn.style.display = 'block';
-                        let timer_warn = setTimeout(() => {
-                            if (timer_warn) {
-                                clearTimeout(timer_warn);
-                            }
-                            warn.style.display = 'none';
-                        }, 2000);
-                    }
-                }
-            });
-            output.innerHTML = '';
-            // 点击后返回刚刚我要写的页面
-            window.location.href = 'cloudWall.html';
-            comments.value = output.innerHTML;
-        })
-        // ----------------------
+
+
+    // ----------------------
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', () => {
                 that = cards[i];
@@ -181,7 +149,43 @@ window.addEventListener('load', () => {
             // 给所有的卡片添加一个id
         cards[i].dataset.cardId = i;
     }
+
+    submit.addEventListener('click', () => {
+
+        ajax({
+            type: 'post',
+            url: '/wall',
+            data: {
+                content: output.innerHTML,
+                signature: sign.value,
+                cardld: that.dataset.cardId,
+                flag: getUrlParamObject(window.location.href)['flag']
+            },
+            header: {
+                'Content-Type': 'application/json'
+            },
+            success: function(data) {
+                if (data.code === 200) {
+                    console.log(data);
+                } else {
+                    let warn = document.querySelector('.warn');
+                    warn.style.display = 'block';
+                    let timer_warn = setTimeout(() => {
+                        if (timer_warn) {
+                            clearTimeout(timer_warn);
+                        }
+                        warn.style.display = 'none';
+                    }, 2000);
+                }
+            }
+        });
+        output.innerHTML = '';
+        // 点击后返回刚刚我要写的页面
+        // window.location.href = 'cloudWall.html';
+        comments.value = output.innerHTML;
+    })
     returnb.addEventListener('click', () => {
+        output.innerHTML = '';
         // 让所有的小卡片恢复显示状态 然后要改变一开始被选中的卡片
         for (let j = 0; j < cards.length; j++) {
             // cards[j].style.display = 'block';
@@ -196,6 +200,7 @@ window.addEventListener('load', () => {
         contain.style.zIndex = 11;
         text.style.opacity = 0;
         text.style.zIndex = 10;
+
     })
     back.addEventListener('click', () => {
         window.location.href = 'cloudWall.html';

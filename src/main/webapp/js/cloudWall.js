@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
     const rgoBack = document.querySelector('.right .goBack');
     let pageNum1 = 1;
     let pageNum2 = 1;
-
+    let picList = ['theme.jpg', 'tree.png', 'tuichu.png', 'wu.png', 'wuli.png'];
     /**
      * 节流函数 减少执行次数
      * @param {*} func 业务代码
@@ -73,7 +73,7 @@ window.addEventListener('load', () => {
                             lcards.innerHTML += `
                             <li>
                                 <div class="cover">
-                                    <img src="${data.data.list[0].cardId}">
+                                    <img src="${picList[data.data.list[0].cardId]}">
                                 </div>
                                 <div class="back">${data.data.list[0].content}</div>
                             </li>
@@ -89,7 +89,7 @@ window.addEventListener('load', () => {
                 flag = true;
                 ajax({
                     type: 'get',
-                    url: '/wall/list?pageNum=1&pageSize=2&flag=false',
+                    url: '/wall/list',
                     data: {
                         pageNum: pageNum2,
                         pageSize: 4,
