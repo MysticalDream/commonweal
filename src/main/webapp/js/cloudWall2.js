@@ -158,7 +158,7 @@ window.addEventListener('load', () => {
             data: {
                 content: output.innerHTML,
                 signature: sign.value,
-                cardld: that.dataset.cardId,
+                cardId: that.dataset.cardId,
                 flag: getUrlParamObject(window.location.href)['flag']
             },
             header: {

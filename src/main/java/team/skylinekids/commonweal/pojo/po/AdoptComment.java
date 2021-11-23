@@ -27,7 +27,7 @@ public class AdoptComment {
     /**
      * 领养动物id
      */
-    private Integer adopt_id;
+    private Integer adoptId;
     /**
      * 评论的内容
      */
@@ -55,10 +55,10 @@ public class AdoptComment {
      */
     private LocalDateTime gmtModified;
 
-    public AdoptComment(Integer id, Integer userId, Integer adopt_id, String content, Integer praiseNum, Integer top, Boolean available, LocalDateTime gmtCreate, LocalDateTime gmtModified) {
+    public AdoptComment(Integer id, Integer userId, Integer adoptId, String content, Integer praiseNum, Integer top, Boolean available, LocalDateTime gmtCreate, LocalDateTime gmtModified) {
         this.id = id;
         this.userId = userId;
-        this.adopt_id = adopt_id;
+        this.adoptId = adoptId;
         this.content = content;
         this.praiseNum = praiseNum;
         this.top = top;
@@ -86,12 +86,12 @@ public class AdoptComment {
         this.userId = userId;
     }
 
-    public Integer getAdopt_id() {
-        return adopt_id;
+    public Integer getAdoptId() {
+        return adoptId;
     }
 
-    public void setAdopt_id(Integer adopt_id) {
-        this.adopt_id = adopt_id;
+    public void setAdoptId(Integer adoptId) {
+        this.adoptId = adoptId;
     }
 
     public String getContent() {

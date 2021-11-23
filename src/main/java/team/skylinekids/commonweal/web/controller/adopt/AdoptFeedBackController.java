@@ -7,6 +7,8 @@ import team.skylinekids.commonweal.service.CommentInfoService;
 import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
+import java.util.Map;
+
 /**
  * 领养动物反馈
  *
@@ -26,6 +28,7 @@ public class AdoptFeedBackController {
     @MyRequestPath(value = "/feedback", type = {RequestMethod.POST})
     @AccessLevel
     public String addFeedBack(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        Map<String, String[]> parameterMap = httpInfoWrapper.getParameterMap();
         return "";
     }
 
