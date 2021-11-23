@@ -2,7 +2,6 @@ package team.skylinekids.commonweal.service.impl;
 
 import team.skylinekids.commonweal.dao.ItemDao;
 import team.skylinekids.commonweal.dao.ItemMemberDao;
-import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.DaoFactory;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.dto.ItemDTO;
@@ -10,11 +9,6 @@ import team.skylinekids.commonweal.pojo.po.Item;
 import team.skylinekids.commonweal.pojo.query.ItemCondition;
 import team.skylinekids.commonweal.pojo.vo.ItemMemberVO;
 import team.skylinekids.commonweal.service.ItemService;
-import team.skylinekids.commonweal.utils.CategoryUtils;
-import team.skylinekids.commonweal.utils.convert.ConversionUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 项目服务实现类
@@ -73,5 +67,10 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item getItemByItemEntity(Item item) throws Exception {
         return itemDao.getItemByItemEntity(item);
+    }
+
+    @Override
+    public void checkItem(Item item) throws Exception {
+        this.updateItem(item);
     }
 }

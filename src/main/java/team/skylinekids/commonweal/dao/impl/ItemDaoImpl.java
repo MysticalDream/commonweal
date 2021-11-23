@@ -116,8 +116,11 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
 
         String sql = String.join(" AND ", conditionSql);
+
         if (!"".equals(sql)) {
-            sql = " WHERE " + sql;
+            sql = " WHERE check_status=1 AND " + sql;
+        } else {
+            sql = " WHERE check_status=1";
         }
         //分页
         Page<ItemDTO> page = new Page<>();
@@ -155,7 +158,7 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
 
     @Override
     public Page<ItemDTO> getItemsByUserId(Page<ItemDTO> page, Integer id) throws Exception {
-        String sqlCondition = " WHERE user_id=" + id;
+        String sqlCondition = " WHERE check_status=1 AND user_id=" + id;
         Integer count = this.selectCountByCondition(sqlCondition, new ArrayList<>());
         page.setTotal(count);
         List<Item> items = this.selectListByConditionString(sqlCondition + " LIMIT " + page.getStartRow() + "," + page.getPageSize(), new ArrayList<>());
@@ -205,6 +208,11 @@ public class ItemDaoImpl extends MyGenericBaseDao<Item> implements ItemDao {
         logger.info("===>   Parameters:" + "[]");
         String singleValue = (String) this.getSingleValue(JDBCUtils.getConnection(), s);
         return singleValue;
+    }
+
+    @Override
+    public List<Item> getPendingReviewItems(Page<Item> page) throws Exception {
+        return this.getListByPagination(" WHERE check_status=0 ", page);
     }
 
 

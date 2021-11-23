@@ -86,6 +86,11 @@ public class Adopt implements Serializable {
     public Adopt() {
     }
 
+    public Adopt(Integer adoptId, Integer adoptUserId) {
+        this.adoptId = adoptId;
+        this.adoptUserId = adoptUserId;
+    }
+
     public Integer getAdoptId() {
         return adoptId;
     }

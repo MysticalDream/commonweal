@@ -6,7 +6,6 @@ import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Adopt;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,7 +24,7 @@ public class AdoptDaoImpl extends MyGenericBaseDao<Adopt> implements AdoptDao {
                 //已领养
                 ? " WHERE IFNULL(adopt_user_id,'null')!='null' AND status=1 "
                 //未领养
-                : " WHERE status!=1 ";
+                : " WHERE IF(ISNULL(adopt_user_id),status=0,status=2) ";
         list = this.getListByPagination(condition, page);
         list.forEach(adopt -> adopt.setCoverUrl(ResourcePathConstant.VIRTUAL_ADOPT_COVER_BASE + adopt.getCoverUrl()));
         return page;

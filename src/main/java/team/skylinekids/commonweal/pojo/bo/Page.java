@@ -38,8 +38,6 @@ public class Page<T> implements Serializable {
     private List<T> list;
 
 
-
-
     public Page(int pageSize, int pageNum, int total, int size, List<T> list, int pages) {
         this.pageSize = pageSize;
         this.pageNum = pageNum;
@@ -47,6 +45,11 @@ public class Page<T> implements Serializable {
         this.size = size;
         this.list = list;
         this.pages = pages;
+    }
+
+    public Page(int pageSize, int pageNum) {
+        this.pageSize = pageSize;
+        this.pageNum = pageNum;
     }
 
     public Page() {
@@ -89,7 +92,7 @@ public class Page<T> implements Serializable {
         }
     }
 
-    public long getTotal() {
+    public int getTotal() {
         return total;
     }
 

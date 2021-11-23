@@ -61,12 +61,12 @@ public class AdoptController {
             return ResultUtils.getResult(ApiResultCode.REJECT_THE_REQUEST);
         }
         Map<String, String[]> parameterMap = httpInfoWrapper.getParameterMap();
-        String adoptId = parameterMap.remove("adoptId")[0];
+        int adoptId = Integer.parseInt(parameterMap.remove("adoptId")[0]);
         UserInfo userInfo = FillBeanUtils.fill(parameterMap, UserInfo.class);
         Integer userId = httpInfoWrapper.getUser().getUserId();
         userInfo.setUserId(userId);
         userInfoService.addUserInfo(userInfo);
-
+        adoptService.updateAdoptUserId(new Adopt(adoptId, userId));
         return ResultUtils.getResult(ApiResultCode.SUCCESS);
     }
 

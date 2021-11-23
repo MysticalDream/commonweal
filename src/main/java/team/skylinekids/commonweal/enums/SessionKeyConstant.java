@@ -11,6 +11,10 @@ public interface SessionKeyConstant {
      */
     String USER_STRING = "USER";
     /**
+     * 普通管理员
+     */
+    String COMMON_ADMIN_STRING = "COMMON_ADMIN";
+    /**
      * 令牌
      */
     String SIGNUP_TOKEN_STRING = "SIGNUP_TOKEN";

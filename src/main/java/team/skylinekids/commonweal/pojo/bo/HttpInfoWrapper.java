@@ -168,6 +168,7 @@ public class HttpInfoWrapper {
         httpSession.setAttribute(SessionKeyConstant.USER_STRING, user);
     }
 
+
     public void removeUserFromSession() {
         httpSession.invalidate();
     }

@@ -103,4 +103,15 @@ public interface ItemDao extends GenericBaseDao<Item> {
      * @throws Exception
      */
     String getItemNameById(Integer id) throws Exception;
+
+    /**
+     * 获取待审核项目列表（分页）
+     *
+     * @param page
+     * @return
+     * @throws Exception
+     */
+    List<Item> getPendingReviewItems(Page<Item> page) throws Exception;
+
+
 }

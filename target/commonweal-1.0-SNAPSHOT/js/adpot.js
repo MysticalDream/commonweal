@@ -19,6 +19,7 @@ window.addEventListener('load',function(){
     pet_opt.data = {};
     pet_opt.data.pageNum = "1";
     pet_opt.data.pageSize = "9";
+    pet_opt.data.option=false;
     pet_opt.success = function (data) {
         // 渲染分页
         render(data);
@@ -32,13 +33,13 @@ window.addEventListener('load',function(){
     },
   
     // 页面加载第一次发送数据
-    // ajax(pet_opt);
+    ajax(pet_opt);
 
-    render(obj_pet);
-    renderDom(obj_pet);
+    // render(obj_pet);
+    // renderDom(obj_pet);
 
-    render1(obj_pet);
-    renderDom1(obj_pet);
+    // render1(obj_pet);
+    // renderDom1(obj_pet);
 
     var turnpage_pet;
     var turnpage_pet1;
@@ -100,6 +101,7 @@ window.addEventListener('load',function(){
     }
 
 
+    // 全局变量保存要领养的ID
     // 数据内容的渲染 
     function renderDom(data) {
         // 容器的内容清空
@@ -120,7 +122,7 @@ window.addEventListener('load',function(){
                    <li>年龄：${data.data.list[i].age}</li>
                    <li>习性：${data.data.list[i].habit}</li>
                 </ul>
-                <button class="take_care">待领养</button>
+                <button class="take_care" id="${data.data.list[i].adoptId}">待领养</button>
             </div>
             `;
             oDiv.innerHTML=str;
@@ -156,6 +158,7 @@ window.addEventListener('load',function(){
     }
 
 
+
     function $(ele) {
         return document.querySelectorAll(ele);
     }
@@ -164,8 +167,11 @@ window.addEventListener('load',function(){
         if(e.target.classList.contains('take_care')){
             document.querySelector(".body_full").style.visibility='visible';
             document.querySelector('.adpot_mask_s').classList.add('drop_down');
+            document.querySelector('.adpot_mask_s').id=e.target.id;
         }
     })
+
+   
 
     // 切换栏
     let adopt_li=$('.pro_box>ul>li');
@@ -178,6 +184,28 @@ window.addEventListener('load',function(){
             })
             show(adopt_wrap[index]);
             item.classList.add('pro_li_cur');
+            if(index==1){
+                ajax({
+                    type:'get',
+                    url:'/adopts',
+                    header:{
+                        'Content-Type':'application/x-www-form-urlencoded'
+                    },
+                    data:{
+                        pageSize:9,
+                        pageNum:1,
+                        option:true,
+                    },
+                    success:function(data){
+                        render1(data);
+                        renderDom1(data);
+                    },
+                    error:function(){
+
+                    }
+                })
+            }
         })
     })
+
 })

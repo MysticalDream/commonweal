@@ -63,7 +63,7 @@ public interface ItemService {
      * @return
      * @throws Exception
      */
-    Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page,Integer id) throws Exception;
+    Page<ItemDTO> getUserEnterItemList(Page<ItemDTO> page, Integer id) throws Exception;
 
     /**
      * 获取项目审核列表
@@ -93,4 +93,12 @@ public interface ItemService {
      * @throws Exception
      */
     Item getItemByItemEntity(Item item) throws Exception;
+
+    /**
+     * 检查项目
+     *
+     * @param item
+     * @throws Exception
+     */
+    void checkItem(Item item) throws Exception;
 }

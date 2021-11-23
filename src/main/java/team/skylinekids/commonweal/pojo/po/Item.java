@@ -81,15 +81,15 @@ public class Item implements Serializable {
      */
     private Integer status;
     /**
-     * 项目是否通过了审核
+     * 项目是否通过了审核 0--未设置 1--审核通过 2--审核未通过
      */
-    private Boolean checkStatus;
+    private Integer checkStatus;
     /**
      * 项目发起人是否选择了需要审核
      */
     private Boolean needReview;
 
-    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status, Boolean checkStatus, Boolean needReview) {
+    public Item(Integer itemId, String itemTitle, String itemIntroduction, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer userId, Boolean available, String coverUrl, String duration, Integer itemCategoryId, Integer maxMen, Integer nowMen, String province, String city, String area, Integer status, Integer checkStatus, Boolean needReview) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemIntroduction = itemIntroduction;
@@ -241,11 +241,11 @@ public class Item implements Serializable {
         this.status = status;
     }
 
-    public Boolean getCheckStatus() {
+    public Integer getCheckStatus() {
         return checkStatus;
     }
 
-    public void setCheckStatus(Boolean checkStatus) {
+    public void setCheckStatus(Integer checkStatus) {
         this.checkStatus = checkStatus;
     }
 
