@@ -181,8 +181,8 @@ window.addEventListener('load', () => {
         });
         output.innerHTML = '';
         // 点击后返回刚刚我要写的页面
-        // window.location.href = 'cloudWall.html';
         comments.value = output.innerHTML;
+        window.location.href = 'cloudWall.html';
     })
     returnb.addEventListener('click', () => {
         output.innerHTML = '';

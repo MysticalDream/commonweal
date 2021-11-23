@@ -60,7 +60,7 @@ window.addEventListener('load', () => {
                     type: 'get',
                     url: '/wall/list',
                     data: {
-                        pageNum: pageNum1,
+                        pageNum: 1,
                         pageSize: 4,
                         flag: flag
                     },
@@ -91,7 +91,7 @@ window.addEventListener('load', () => {
                     type: 'get',
                     url: '/wall/list',
                     data: {
-                        pageNum: pageNum2,
+                        pageNum: 1,
                         pageSize: 4,
                         flag: flag
                     },
@@ -130,7 +130,32 @@ window.addEventListener('load', () => {
         evt.stopPropagation();
         if (evt.deltaY < 0) { //鼠标滚轮向上滚动
             pageNum2++;
-            console.log(rcards.offsetLeft + 100);
+            ajax({
+                type: 'get',
+                url: '/wall/list',
+                data: {
+                    pageNum: pageNum2,
+                    pageSize: 4,
+                    flag: flag
+                },
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function(data) {
+                    if (data.code === 200) {
+                        console.log(data);
+                        rcards.innerHTML += `
+                        <li>
+                            <div class="cover">
+                                <img src="${data.data.list[0].cardId}">
+                            </div>
+                            <div class="back">${data.data.list[0].content}</div>
+                        </li>
+                        `
+                    }
+                }
+            });
+            // console.log(rcards.offsetLeft + 100);
             rcards.style.left = rcards.offsetLeft - 1080 + 'px';
         } else { //鼠标滚轮向下滚动
             if (pageNum2 > 1) {
@@ -151,6 +176,31 @@ window.addEventListener('load', () => {
         evt.stopPropagation();
         if (evt.deltaY < 0) {
             pageNum1++;
+            ajax({
+                type: 'get',
+                url: '/wall/list',
+                data: {
+                    pageNum: pageNum1,
+                    pageSize: 4,
+                    flag: flag
+                },
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                success: function(data) {
+                    if (data.code === 200) {
+                        console.log(data);
+                        lcards.innerHTML += `
+                        <li>
+                            <div class="cover">
+                                <img src="${picList[data.data.list[0].cardId]}">
+                            </div>
+                            <div class="back">${data.data.list[0].content}</div>
+                        </li>
+                        `
+                    }
+                }
+            });
             lcards.style.left = lcards.offsetLeft - 1080 + 'px';
         } else {
             if (pageNum1 > 1) {
