@@ -255,9 +255,9 @@
     width: 140px;
     height: 50px;
     color:#fff;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     font-size: 15px;
-    line-height: 50px;
+    /* line-height: 50px; */
     text-align: center;
 }
 
@@ -536,4 +536,45 @@ ul li:nth-child(7) .list_circle{
 .adopt_inner ul li:nth-child(1){
     position: relative;
     left:-10px;
+}
+
+.title_low{
+    border-collapse: collapse; 
+}
+
+.table_page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom:50px;
+    width: 100%;
+    height: 80px;
+}
+
+.table_page .turn-page-wrapper{
+    margin-top: 0px;
+}
+
+.title_low .spe{
+    position: relative;
+    left:12px;
+}
+
+tr td .flow_span{
+    display: inline-block;
+    width: 120px;
+    height: 100%;
+    line-height:50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.pass_d,.not_pass_a{
+    display: inline-block;
+    width: 65px;
+    height: 100%;
+    /* background-color: slateblue; */
 }
