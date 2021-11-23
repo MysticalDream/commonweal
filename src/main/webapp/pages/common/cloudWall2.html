@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/recruit.css">
     <link rel="stylesheet" href="../../css/cloudWall2.css">
     <link rel="stylesheet" href="../../font/iconfont.css">
+    <script src="../../js/ajax.js"></script>
     <!-- <script src="../../js/cloudWall2.js"></script> -->
 </head>
 
@@ -538,6 +539,9 @@
         </div>
         <div class="output" contenteditable="true" placeholder="请输入你的祝福">
         </div>
+        <div class="sign">
+            From:<input type="text" placeholder="请输入署名">
+        </div>
         <button class="submit" type="submit">
             发表
             <input type="hidden" id="comments">
@@ -546,6 +550,8 @@
             返回
         </button>
     </div>
+    <!-- 发表失败 -->
+    <div class="warn">发表失败</div>
 </body>
 <script src="../../js/cloudWall2.js"></script>
 

@@ -28,6 +28,8 @@ body {
     letter-spacing: 5px;
     margin: 0px auto;
     transition: all 1s;
+    background: url(../images/cloudWall1.jpg);
+    background-size: 100%;
 }
 
 .wrap .middle>div {
@@ -41,7 +43,7 @@ body {
     align-items: center;
     width: 50%;
     height: 100%;
-    background-color: rgb(255, 238, 232);
+    /* background-color: rgb(255, 238, 232); */
 }
 
 .wrap .middle .child_hope .word {
@@ -59,7 +61,7 @@ body {
     align-items: center;
     width: 50%;
     height: 100%;
-    background-color: rgb(187, 88, 69);
+    /* background-color: rgb(187, 88, 69); */
 }
 
 .wrap .middle .contain {
@@ -108,6 +110,8 @@ body {
     background-color: pink;
     overflow: hidden;
     transition: all 1s;
+    background: url(../images/cloudWall2.jpg);
+    background-size: 100%;
 }
 
 .wrap .left span {
@@ -140,11 +144,42 @@ body {
 }
 
 .wrap .left .cards li {
+    position: relative;
     float: left;
     margin-right: 20px;
     width: 250px;
     height: 330px;
     background-color: #fff;
+}
+
+.wrap .left .cards li img {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap .left .cards li .cover,
+.wrap .left .cards li .back {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.wrap .left .cards li .cover {
+    transform: rotateY(0deg);
+}
+
+.wrap .left .cards li:hover .cover {
+    transform: rotateY(180deg);
+}
+
+.wrap .left .cards li .back {
+    transform: rotateY(180deg);
+}
+
+.wrap .left .cards li:hover .back {
+    transform: rotateY(0deg);
 }
 
 .wrap .left .write {
@@ -171,6 +206,18 @@ body {
     background-color: #fff;
 }
 
+.wrap .left .goBack {
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.wrap .left .goBack i {
+    font-size: 30px;
+}
+
 
 /* 点击右边图片后展示的页面 */
 
@@ -183,6 +230,8 @@ body {
     background-color: pink;
     overflow: hidden;
     transition: all 1s;
+    background: url(../images/cloudWall2.jpg);
+    background-size: 100%;
 }
 
 .wrap .right span {
@@ -216,11 +265,42 @@ body {
 }
 
 .wrap .right .cards li {
+    position: relative;
     float: left;
     margin-right: 20px;
     width: 250px;
     height: 330px;
     background-color: #fff;
+}
+
+.wrap .right .cards li img {
+    width: 100%;
+    height: 100%;
+}
+
+.wrap .right .cards li .cover,
+.wrap .right .cards li .back {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.wrap .right .cards li .cover {
+    transform: rotateY(0deg);
+}
+
+.wrap .right .cards li:hover .cover {
+    transform: rotateY(180deg);
+}
+
+.wrap .right .cards li .back {
+    transform: rotateY(180deg);
+}
+
+.wrap .right .cards li:hover .back {
+    transform: rotateY(0deg);
 }
 
 .wrap .right .write {
@@ -245,4 +325,16 @@ body {
     height: 6px;
     border-radius: 3px;
     background-color: #fff;
+}
+
+.wrap .right .goBack {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.wrap .right .goBack i {
+    font-size: 26px;
 }

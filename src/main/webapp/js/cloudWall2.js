@@ -11,6 +11,7 @@ window.addEventListener('load', () => {
     const text = document.querySelector('.text');
     const returnb = document.querySelector('.return');
     const back = document.querySelector('.back');
+    const sign = document.querySelector('.sign input');
     // 控制点击表情按钮会不会输出表情的
     let flag = false;
     // 控制点击表情按钮 那个表情的盒子出现不出现的
@@ -18,7 +19,24 @@ window.addEventListener('load', () => {
     let flag3 = true;
     let a;
     let font = 3;
+    let that;
+    let picList = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'];
+    // 获取拼接的参数
+    function isNumber(val) {
+        var reg = /^[0-9]+\.?[0-9]*$/;
+        return reg.test(val);
+    };
 
+    function getUrlParamObject(url) {
+        const params = url.slice(url.indexOf('?') + 1, url.length);
+        const group = params.split('&');
+        const data = new Object();
+        for (const index in group) {
+            const arr = group[index].split('=');
+            data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
+        }
+        return data;
+    };
     // 调节字体大小的
     // fontSize.addEventListener('click', () => {
     //         document.execCommand(fontSize.dataset.commad, false, 1);
@@ -109,6 +127,34 @@ window.addEventListener('load', () => {
         })
     }
     submit.addEventListener('click', () => {
+            ajax({
+                type: 'post',
+                url: '/wall',
+                data: {
+                    content: output.innerHTML,
+                    signature: sign.value,
+                    cardld: picList[that.dataset.cardId],
+                    flag: getUrlParamObject(window.location.href)['flag']
+                },
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                success: function(data) {
+                    if (data.code === 200) {
+                        console.log(data);
+                    } else {
+                        let warn = document.querySelector('.warn');
+                        warn.style.display = 'block';
+                        let timer_warn = setTimeout(() => {
+                            if (timer_warn) {
+                                clearTimeout(timer_warn);
+                            }
+                            warn.style.display = 'none';
+                        }, 2000);
+                    }
+                }
+            });
+            output.innerHTML = '';
             // 点击后返回刚刚我要写的页面
             window.location.href = 'cloudWall.html';
             comments.value = output.innerHTML;
@@ -116,28 +162,24 @@ window.addEventListener('load', () => {
         // ----------------------
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', () => {
-            console.log(i);
-            // 点击后其他的循环一次给隐藏掉 就这个是显示的  
-            for (let j = 0; j < cards.length; j++) {
-                // cards[j].style.display = 'none';
-                // cards[j].style.opacity = 0;
-                cards[j].classList.add('nochoice');
-            }
-            // cards[i].style.display = 'block';
-            // cards[i].style.transform = "translate(156%, -151px) rotate(0deg)";
-            // cards[i].style.opacity = 1;
-            cards[i].classList.remove('nochoice');
-            cards[i].classList.add('choice');
-            // 点击后让这个大盒子隐藏 显示出编辑页面 
-            setTimeout(() => {
-                // contain.style.display = 'none';
-                contain.style.opacity = 0;
-                contain.style.zIndex = 10;
-                // text.style.display = 'block';
-                text.style.opacity = 1;
-                text.style.zIndex = 11;
-            }, 2000);
-        })
+                that = cards[i];
+                console.log(i);
+                // 点击后其他的循环一次给隐藏掉 就这个是显示的  
+                for (let j = 0; j < cards.length; j++) {
+                    cards[j].classList.add('nochoice');
+                }
+                cards[i].classList.remove('nochoice');
+                cards[i].classList.add('choice');
+                // 点击后让这个大盒子隐藏 显示出编辑页面 
+                setTimeout(() => {
+                    contain.style.opacity = 0;
+                    contain.style.zIndex = 10;
+                    text.style.opacity = 1;
+                    text.style.zIndex = 11;
+                }, 2000);
+            })
+            // 给所有的卡片添加一个id
+        cards[i].dataset.cardId = i;
     }
     returnb.addEventListener('click', () => {
         // 让所有的小卡片恢复显示状态 然后要改变一开始被选中的卡片

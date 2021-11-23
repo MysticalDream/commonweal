@@ -8,19 +8,16 @@ window.addEventListener('load', () => {
     const rcards = document.querySelector('.right .cards');
     const lbox = document.querySelector('.left .box');
     const lcards = document.querySelector('.left .cards');
-    let pageNum = 1;
-    let pageSize = 4;
-    let flag = false;
-    var data = {
-            "1": ['11111', '2222222', '333333333', '10-'],
-            "2": ['4444444', '55555555', '66666666', '11-'],
-            "3": ['777777', '88888888', '999999999', '12-']
-        }
-        /**
-         * 节流函数 减少执行次数
-         * @param {*} func 业务代码
-         * @param {*} delay 延时
-         */
+    const lgoBack = document.querySelector('.left .goBack');
+    const rgoBack = document.querySelector('.right .goBack');
+    let pageNum1 = 1;
+    let pageNum2 = 1;
+
+    /**
+     * 节流函数 减少执行次数
+     * @param {*} func 业务代码
+     * @param {*} delay 延时
+     */
     function throttle(func, delay) {    
         var flag = true;    
         return function(e) {      
@@ -35,12 +32,12 @@ window.addEventListener('load', () => {
     }
 
     lwrite.addEventListener('click', () => {
-        flag = false;
-        window.location.href = 'cloudWall2.html';
+
+        window.location.href = 'cloudWall2.html?flag=false';
     })
     rwrite.addEventListener('click', () => {
-            flag = true;
-            window.location.href = 'cloudWall2.html';
+
+            window.location.href = 'cloudWall2.html?flag=true';
         })
         // 要判断是不是第一页 是第一页的话就不触发
 
@@ -53,62 +50,114 @@ window.addEventListener('load', () => {
         // console.log(left.offsetLeft);
         // console.log(right.offsetLeft);
         if (middle.offsetLeft === 0) {
-            if (eve.deltaY > 0) { //向下滚动
+            if (eve.deltaY > 0) { //向下滚动 左边的盒子 孩子们的愿望
                 console.info("向下滚动");
                 left.style.left = '0';
                 middle.style.left = '100%';
                 right.style.left = '200%';
+                flag = false;
+                ajax({
+                    type: 'get',
+                    url: '/wall/list?pageNum=1&pageSize=2&flag=false',
+                    data: {
+                        pageNum: pageNum1,
+                        pageSize: 4,
+                        flag: flag
+                    },
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function(data) {
+                        if (data.code === 200) {
+                            console.log(data);
+                            lcards.innerHTML += `
+                            <li>
+                                <div class="cover">
+                                    <img src="${data.data.list[0].cardId}">
+                                </div>
+                                <div class="back">${data.data.list[0].content}</div>
+                            </li>
+                            `
+                        }
+                    }
+                });
             } else { //向上滚动
                 console.info("向上滚动");
                 left.style.left = '-200%'
                 middle.style.left = '-100%';
                 right.style.left = '0';
-            }
-        } else if (left.offsetLeft === 0) { //这个时候展示左边的页面
-            if (eve.deltaY < 0) {
-                left.style.left = '-100%';
-                middle.style.left = '0';
-                right.style.left = '100%'
-            }
-        } else {
-            if (eve.deltaY > 0) { //这个时候展示右边的页面
-                left.style.left = '-100%';
-                middle.style.left = '0';
-                right.style.left = '100%';
+                flag = true;
+                ajax({
+                    type: 'get',
+                    url: '/wall/list?pageNum=1&pageSize=2&flag=false',
+                    data: {
+                        pageNum: pageNum2,
+                        pageSize: 4,
+                        flag: flag
+                    },
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function(data) {
+                        if (data.code === 200) {
+                            console.log(data);
+                            rcards.innerHTML += `
+                            <li>
+                                <div class="cover">
+                                    <img src="${data.data.list[0].cardId}">
+                                </div>
+                                <div class="back">${data.data.list[0].content}</div>
+                            </li>
+                            `
+                        }
+                    }
+                });
             }
         }
     }, { passive: false });
+    lgoBack.addEventListener('click', () => {
+        left.style.left = '-100%';
+        middle.style.left = '0';
+        right.style.left = '100%';
+    })
+    rgoBack.addEventListener('click', () => {
+        left.style.left = '-100%';
+        middle.style.left = '0';
+        right.style.left = '100%';
+    })
     rbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
         if (evt.deltaY < 0) { //鼠标滚轮向上滚动
+            pageNum2++;
             console.log(rcards.offsetLeft + 100);
             rcards.style.left = rcards.offsetLeft - 1080 + 'px';
-            pageNum++;
         } else { //鼠标滚轮向下滚动
-            console.log(2);
+            if (pageNum2 > 1) {
+                pageNum2--;
+            } else {
+                pageNum2 = 1;
+            }
             if (rcards.offsetLeft >= 0) {
                 rcards.style.left = '0px';
             } else {
                 rcards.style.left = rcards.offsetLeft + 1080 + 'px';
             }
-            pageNum--;
         }
     }, 3000))
-    for (let i in data) {
-        for (let j = 0; j < data[i].length; j++) {
-            rcards.innerHTML += `
-                <li>${data[i][j]}</li>
-            `;
-        }
-        // pageNum++;
-    }
+
     lbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
         if (evt.deltaY < 0) {
+            pageNum1++;
             lcards.style.left = lcards.offsetLeft - 1080 + 'px';
         } else {
+            if (pageNum1 > 1) {
+                pageNum1--;
+            } else {
+                pageNum1 = 1;
+            }
             console.log(lcards.offsetLeft);
             if (lcards.offsetLeft >= 0) {
                 lcards.style.left = '0px'
