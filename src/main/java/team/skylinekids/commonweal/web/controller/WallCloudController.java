@@ -9,7 +9,6 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.pojo.po.WallCloud;
 import team.skylinekids.commonweal.service.WallCloudService;
-import team.skylinekids.commonweal.utils.FillBeanUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.AccessLevel;

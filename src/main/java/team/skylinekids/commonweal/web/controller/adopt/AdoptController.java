@@ -1,4 +1,4 @@
-package team.skylinekids.commonweal.web.controller;
+package team.skylinekids.commonweal.web.controller.adopt;
 
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
@@ -71,6 +71,19 @@ public class AdoptController {
     }
 
     /**
+     * 获取用户领养的动物
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/adopt/user", type = {RequestMethod.GET})
+    @AccessLevel
+    public String getUserAdopt(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        return "";
+    }
+
+    /**
      * 签订协议
      *
      * @param httpInfoWrapper
@@ -81,7 +94,7 @@ public class AdoptController {
     public String signAgreement(HttpInfoWrapper httpInfoWrapper) {
         boolean status;
         try {
-            status = Boolean.getBoolean(httpInfoWrapper.getParameter("status"));
+            status = Boolean.valueOf(httpInfoWrapper.getParameter("status"));
         } catch (Exception e) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
@@ -140,14 +153,28 @@ public class AdoptController {
     }
 
     /**
-     * 添加领养反馈
+     * 添加领养评论
      *
      * @param httpInfoWrapper
      * @return
      */
     @AccessLevel
     @MyRequestPath(value = "/adopt/feedback", type = {RequestMethod.POST})
-    public String addFeedback(HttpInfoWrapper httpInfoWrapper) {
+    public String addAdoptComment(HttpInfoWrapper httpInfoWrapper) {
+
+        return "";
+    }
+
+    /**
+     * 获取领养评论
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @AccessLevel
+    @MyRequestPath(value = "/adopt/feedback", type = {RequestMethod.GET})
+    public String getAdoptComment(HttpInfoWrapper httpInfoWrapper) throws Exception {
         return "";
     }
 }

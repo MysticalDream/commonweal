@@ -18,17 +18,17 @@ window.addEventListener('load', () => {
      * @param {*} func 业务代码
      * @param {*} delay 延时
      */
-    function throttle(func, delay) {    
-        var flag = true;    
-        return function(e) {      
-            if (flag) {        
-                setTimeout(() => {          
-                    func.call(this, e);          
-                    flag = true;        
-                }, delay);      
-            }      
-            flag = false;    
-        };  
+    function throttle(func, delay) {
+        var flag = true;
+        return function(e) {
+            if (flag) {
+                setTimeout(() => {
+                    func.call(this, e);
+                    flag = true;
+                }, delay);
+            }
+            flag = false;
+        };
     }
 
     lwrite.addEventListener('click', () => {
@@ -58,7 +58,7 @@ window.addEventListener('load', () => {
                 flag = false;
                 ajax({
                     type: 'get',
-                    url: '/wall/list?pageNum=1&pageSize=2&flag=false',
+                    url: '/wall/list',
                     data: {
                         pageNum: pageNum1,
                         pageSize: 4,

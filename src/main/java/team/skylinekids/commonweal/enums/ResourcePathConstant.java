@@ -71,6 +71,10 @@ public interface ResourcePathConstant {
      * 直播
      */
     String DISK_LIVE_IMG_BASE = DISK_IMAGE_BASE + "live/";
+    /**
+     *
+     */
+    String FEEDBACK_TEMP_BASE = DISK_IMAGE_BASE + "temp/feedback";
 
     //--------------------------------------------------------------------------
     /**
