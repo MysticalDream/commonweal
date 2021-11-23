@@ -169,7 +169,7 @@ window.addEventListener('load', () => {
                 rcards.style.left = rcards.offsetLeft + 1080 + 'px';
             }
         }
-    }, 3000))
+    }, 2000))
 
     lbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
@@ -215,5 +215,5 @@ window.addEventListener('load', () => {
                 lcards.style.left = lcards.offsetLeft + 1080 + 'px';
             }
         }
-    }))
+    }, 2000))
 })
