@@ -718,3 +718,118 @@ var obj_adopted={
     } 
      
     }
+
+var obj_manager={
+    "code": 200, 
+     
+    "message": "操作成功", 
+     
+    "success": true, 
+     
+    "data": {
+    "pageSize": 9, 
+     
+    "pageNum": 1, 
+     
+    "total": 14654, 
+     
+    "size": 9, 
+     
+    "pages": 1629, 
+     
+    "list": [
+    {
+    "itemId": 1, 
+     
+    "itemTitle": "“幸福星”心理关爱热线服务", 
+     
+    "gmtCreate": "2021-10-30 16:33:23", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 2, 
+     
+    "itemTitle": "医心关怀”健康科普志愿服务", 
+     
+    "gmtCreate": "2021-10-30 16:57:38", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 3, 
+     
+    "itemTitle": "“绿色希望”流动儿童关爱", 
+     
+    "gmtCreate": "2021-10-30 17:25:34", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 4, 
+     
+    "itemTitle": "“吹响志愿集结号”海淀社区志愿日", 
+     
+    "gmtCreate": "2021-10-30 18:35:53", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 5, 
+     
+    "itemTitle": "北京市东城区“守望岗”", 
+     
+    "gmtCreate": "2021-10-30 18:42:34", 
+     
+    "username": "common" 
+     
+    }
+    // {
+    // "itemId": 6, 
+     
+    // "itemTitle": "低碳志愿行动", 
+     
+    // "gmtCreate": "2021-10-30 18:49:51", 
+     
+    // "username": "common" 
+     
+    // }
+    // {
+    // "itemId": 7, 
+     
+    // "itemTitle": "越秀山环保公益", 
+     
+    // "gmtCreate": "2021-10-30 18:56:43", 
+     
+    // "username": "common" 
+     
+    // }
+    // {
+    // "itemId": 8, 
+     
+    // "itemTitle": "义家读书会", 
+     
+    // "gmtCreate": "2021-10-30 19:01:19", 
+     
+    // "username": "common" 
+     
+    // },
+    // {
+    // "itemId": 9, 
+     
+    // "itemTitle": "“慢3秒”文明安全体验岗志愿服务活动", 
+     
+    // "gmtCreate": "2021-10-30 19:34:07", 
+     
+    // "username": "common" 
+     
+    // }
+    ] 
+     
+    } 
+     
+    }

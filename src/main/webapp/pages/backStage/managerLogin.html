@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="../../css/come.css">
     <link rel="stylesheet" href="../../css/managerLogin.css">
+    <script src="../../js/common.js"></script>
+    <script src="../../js/ajax.js"></script>
 </head>
 <body>
    <div class="main_center">
@@ -18,9 +20,9 @@
         <div class="right_one">
                 <h2>管理员登录</h2>
                 <form action="">
-                    <img src="../../images/Mlogin.png" alt="">
+                    <img src="../../images/Mlogin.png" alt="" class="Mlogin">
                     <input type="text" placeholder="请输入账号">
-                    <img src="../../images/锁.png" alt="">
+                    <img src="../../images/锁.png" alt="" class="Mpsw">
                     <input type="password" placeholder="请输入密码">
                 </form>
                 <button class="last_button">登录</button>
@@ -28,4 +30,36 @@
     </div>
    </div>
 </body>
+<script>
+    let login=$('.Mlogin')[0];
+    let psw=$('.Mpsw')[0];
+    let last_button=$('.last_button')[0];
+    last_button.addEventListener('click',()=>{
+        // /admin/sessions
+        if(login.value.trim()==''||psw.value.trim()==''){
+            alert('请输入完整信息');
+            return;
+        }
+       else{
+            ajax({
+                type:'post',
+                url:'/admin/sessions',
+                header:{
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                data:{
+                    username:login.value.trim(),
+                    password:psw.value.trim()
+                },
+                success:function(){
+
+                },
+                error:function(){
+
+                }
+            })
+       }
+       
+    })
+</script>
 </html>

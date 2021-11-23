@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/backStage.css">
     <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/project.css">
+    <script src="../../js/date.format.js"></script>
     <script src="../../js/common.js"></script>
     <script src="../../js/hash.js"></script>
     <script src="../../js/backStage.js"></script>
+    <script src="../../js/obj_wcj.js"></script>
+    <script src="../../js/ajax.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -61,8 +65,9 @@
             <div class="low_right">
                 <div class="page_1">
                     <div class="first_table">
-
+                        
                     </div>
+                    <div class="table_page"></div>
                 </div>
             </div>
         </div>
@@ -71,6 +76,7 @@
         let page_d=document.querySelectorAll('.page_1')[0];
         let page_table=document.querySelectorAll('.first_table')[0];
         let blue_cir=document.querySelectorAll('.blue_cir');
+        let table_page=document.querySelectorAll('.table_page')[0];
 
         let str_p=`    <h2>审核列表</h2>
                         <table class="title_low"  cellpadding="0" cellspacing="0">
@@ -305,12 +311,148 @@
                             </ul>
                         </div>`;
 
+        function renderDoms(data){
+            page_table.innerHTML='';
+            let h2=document.createElement('h2');
+                h2.innerText='审核列表';
+                page_table.appendChild(h2);
+                let table=document.createElement('table');
+                table.classList.add('title_low');
+                let tr=document.createElement('tr');
+                page_table.appendChild(table);
+                table.appendChild(tr);
+                for(let j=0;j<=4;j++){
+                    let td=document.createElement('td');
+                    switch(j){
+                        case 0:td.innerText='项目编号';td.classList.add('spe');break;
+                        case 1:td.innerText='项目名';break;
+                        case 2:td.innerText='创建人';break;
+                        case 3:td.innerText='申请时间';break;
+                        case 4:td.innerText='操作';
+                    }
+                    tr.appendChild(td);
+                }
+            for(let i=0;i<data.data.list.length;i++){
+                var trs=document.createElement('tr');
+                trs.classList.add('render_tr');
+                var str_pp=`   
+                                <td>${data.data.list[i].itemId}</td>
+                                <td>
+                                    <span class="flow_span"> ${data.data.list[i].itemTitle}</span>
+                                </td>
+                                <td>${data.data.list[i].username}</td>
+                                <td>${new Date(data.data.list[i].gmtCreate).Format('yyyy年MM月dd日')}</td>
+                                <td>
+                                    <div>
+                                        <div class="look_into pro_btn">
+                                            <img src="../../images/look.png" alt="" class="pro_btn">
+                                            <span class="look_span pro_btn">查看</span>
+                                        </div>
+                                        <div class="pass_d pass_this" id=${data.data.list[i].itemId}>
+                                            <img src="../../images/pass.png" alt="" class="pass_this">
+                                            <span class="pass_span pass_this">通过</span>
+                                        </div>
+                                        <div class="not_pass_a not_pass" id=${data.data.list[i].itemId}>
+                                            <img src="../../images/not_pass.png" alt="" class="not_pass">
+                                            <span class="not_pass">不通过</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            `
+                            trs.innerHTML=str_pp;
+            table.appendChild(trs);
+            }
+            // console.log(page_table.innerHTML);
+           
+        }
+
+
         function renderAll(box,str){
             box.innerHTML=str;
         }
 
         window.addEventListener('load',()=>{
-           renderAll(page_table,str_p);
+            
+            // renderDoms(obj_manager);
+            // render(obj_manager);
+
+            ajax({
+                        type:'get',
+                        url:'/admin/item',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageSize:5,
+                            pageNum:1
+                        },
+                        success:function(data){
+                           renderDoms(data);
+                           render(data);
+                        },
+                        error:function(){
+
+                        }
+                })
+
+            var  turnpage_m;
+            function render(data) {
+                if (!turnpage_m) {
+                    allpage = data.data.pages;
+                    turnpage_m = new TurnPage({
+                        currentPage: data.data.pageNum,
+                        allPage: data.data.pages,
+                        wrap:table_page,
+                        changePage: function (page) {
+                            ajax({
+                                    type:'get',
+                                    url:'/admin/item',
+                                    header:{
+                                        'Content-Type':'application/x-www-form-urlencoded'
+                                    },
+                                    data:{
+                                        pageSize:5,
+                                        pageNum:page
+                                    },
+                                    success:function(data){
+                                        renderDoms(data);
+                                    },
+                                    error:function(){
+
+                                    }
+                                })
+                        }
+                    });
+                }
+                else if (allpage != data.data.pages) {
+                    allpage = data.data.pages;
+                    turnpage_m = new TurnPage({
+                        currentPage: data.data.pageNum,
+                        allPage: data.data.pages,
+                        wrap:table_page,
+                        changePage: function (page) {
+                            ajax({
+                                    type:'get',
+                                    url:'/admin/item',
+                                    header:{
+                                        'Content-Type':'application/x-www-form-urlencoded'
+                                    },
+                                    data:{
+                                        pageSize:5,
+                                        pageNum:page
+                                    },
+                                    success:function(data){
+                                        renderDoms(data);
+                                    },
+                                    error:function(){
+
+                                    }
+                                })
+                        }
+                    });
+                }
+                turnpage_m.init();
+            }
         })
 
 
@@ -322,22 +464,44 @@
                 //     return;
 
                 case '/project_d':
-                    renderAll(page_table,str_p);
+                    ajax({
+                        type:'get',
+                        url:'/admin/item',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageSize:5,
+                            pageNum:1
+                        },
+                        success:function(data){
+                           renderDoms(data);
+                        // 这里需不需要再调用一次呢    
+                           render(data);
+                        },
+                        error:function(){
+
+                        }
+                    })
+                    // renderDoms(obj_manager);
                     return;
 
                 case '/team_d':
                     renderAll(page_table,str_t);
-                    blue_cir[0].style.display='none';
+                    hide(blue_cir[0]);
+                    hide(table_page);
                     return;
 
                 case '/show_d':
                     renderAll(page_table,str_s);
-                    blue_cir[1].style.display='none';
+                    hide(table_page);
+                    hide(blue_cir[1]);
                     return;
 
                 case '/adopt_d':
                     renderAll(page_table,str_a);
-                    blue_cir[2].style.display='none';
+                    hide(table_page);
+                    hide(blue_cir[2]);
             }
         })
 
@@ -345,9 +509,26 @@
         page_table.addEventListener('click',(e)=>{
             if(e.target.classList.contains('pro_btn')){
                 page_table.innerHTML=str_pInner;
+                hide(table_page);
             }
             if(e.target.classList.contains('pro_back')){
-                page_table.innerHTML=str_p;
+                ajax({
+                        type:'get',
+                        url:'/admin/item',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                            pageSize:5,
+                            pageNum:1
+                        },
+                        success:function(data){
+                           renderDoms(data);
+                        },
+                        error:function(){
+
+                        }
+                    })
             }
             if(e.target.classList.contains('team_btn')){
                 page_table.innerHTML=str_tInner;
@@ -359,7 +540,6 @@
                 page_table.innerHTML=str_s;
             }
             if(e.target.classList.contains('show_btn')){
-                // alert(222);
                 page_table.innerHTML=str_sInner;
             }
             if(e.target.classList.contains('adopt_btn')){
@@ -367,6 +547,44 @@
             }
             if(e.target.classList.contains('adopt_back')){
                 page_table.innerHTML=str_a;
+            }
+            if(e.target.classList.contains('pass_this')&&e.target.parentNode.id){
+                ajax({
+                        type:'post',
+                        url:'/admin/items/check',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                           option:true,
+                           itemId:e.target.parentNode.id
+                        },
+                        success:function(data){
+                          
+                        },
+                        error:function(){
+
+                        }
+                    })
+            }
+            if(e.target.classList.contains('not_pass')&&e.target.parentNode.id){
+                ajax({
+                        type:'post',
+                        url:'/admin/items/check',
+                        header:{
+                            'Content-Type':'application/x-www-form-urlencoded'
+                        },
+                        data:{
+                           option:false,
+                           itemId:e.target.parentNode.id
+                        },
+                        success:function(data){
+                          
+                        },
+                        error:function(){
+
+                        }
+                    })
             }
         })
 
