@@ -13,21 +13,28 @@ window.addEventListener('load', () => {
     let pageNum1 = 1;
     let pageNum2 = 1;
     let picList = ['theme.jpg', 'tree.png', 'tuichu.png', 'wu.png', 'wuli.png'];
+    let flag = true;
+    // 判断是不是第一次滑到左右页面
+    let lflag = true;
+    let rflag = true;
+    // 最大页数
+    let lpageNumMax = 1;
+    let rpageNumMax = 1;
     /**
      * 节流函数 减少执行次数
      * @param {*} func 业务代码
      * @param {*} delay 延时
      */
     function throttle(func, delay) {
-        var flag = true;
+        var flag1 = true;
         return function(e) {
-            if (flag) {
+            if (flag1) {
                 setTimeout(() => {
                     func.call(this, e);
-                    flag = true;
+                    flag1 = true;
                 }, delay);
             }
-            flag = false;
+            flag1 = false;
         };
     }
 
@@ -56,42 +63,93 @@ window.addEventListener('load', () => {
                 middle.style.left = '100%';
                 right.style.left = '200%';
                 flag = false;
-                ajax({
-                    type: 'get',
-                    url: '/wall/list',
-                    data: {
-                        pageNum: 1,
-                        pageSize: 4,
-                        flag: flag
-                    },
-                    header: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    success: function(data) {
-                        if (data.code === 200) {
-                            console.log(data);
-                            lcards.innerHTML += `
-                            <li>
-                                <div class="cover">
-                                    <img src="${picList[data.data.list[0].cardId]}">
-                                </div>
-                                <div class="back">${data.data.list[0].content}</div>
-                            </li>
-                            `
+                if (lflag) {
+                    lflag = false;
+                    ajax({
+                        type: 'get',
+                        url: '/wall/list',
+                        data: {
+                            pageNum: 1,
+                            pageSize: 4,
+                            flag: flag
+                        },
+                        header: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function(data) {
+                            if (data.code === 200) {
+                                console.log(data);
+                                lcards.innerHTML += `
+                                <li>
+                                    <div class="cover">
+                                        <img src="${picList[data.data.list[0].cardId]}">
+                                    </div>
+                                    <div class="back">${data.data.list[0].content}</div>
+                                </li>
+                                `
+                            }
                         }
-                    }
-                });
+                    });
+                }
             } else { //向上滚动
                 console.info("向上滚动");
                 left.style.left = '-200%'
                 middle.style.left = '-100%';
                 right.style.left = '0';
                 flag = true;
+                if (rflag) {
+                    rflag = false;
+                    ajax({
+                        type: 'get',
+                        url: '/wall/list',
+                        data: {
+                            pageNum: 1,
+                            pageSize: 4,
+                            flag: flag
+                        },
+                        header: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        success: function(data) {
+                            if (data.code === 200) {
+                                console.log(data);
+                                rcards.innerHTML += `
+                                <li>
+                                    <div class="cover">
+                                        <img src="${data.data.list[0].cardId}">
+                                    </div>
+                                    <div class="back">${data.data.list[0].content}</div>
+                                </li>
+                                `
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }, { passive: false });
+    lgoBack.addEventListener('click', () => {
+        left.style.left = '-100%';
+        middle.style.left = '0';
+        right.style.left = '100%';
+    })
+    rgoBack.addEventListener('click', () => {
+        left.style.left = '-100%';
+        middle.style.left = '0';
+        right.style.left = '100%';
+    })
+    rbox.addEventListener('mousewheel', throttle(function(e) {
+        let evt = e || window.event;
+        evt.stopPropagation();
+        if (evt.deltaY < 0) { //鼠标滚轮向上滚动
+            if (pageNum2++ > rpageNumMax) {
+                rpageNumMax = pageNum2;
+                // 判断是不是比最大页数大 是的话就发送请求 不是的话就不做处理
                 ajax({
                     type: 'get',
                     url: '/wall/list',
                     data: {
-                        pageNum: 1,
+                        pageNum: pageNum2,
                         pageSize: 4,
                         flag: flag
                     },
@@ -113,48 +171,6 @@ window.addEventListener('load', () => {
                     }
                 });
             }
-        }
-    }, { passive: false });
-    lgoBack.addEventListener('click', () => {
-        left.style.left = '-100%';
-        middle.style.left = '0';
-        right.style.left = '100%';
-    })
-    rgoBack.addEventListener('click', () => {
-        left.style.left = '-100%';
-        middle.style.left = '0';
-        right.style.left = '100%';
-    })
-    rbox.addEventListener('mousewheel', throttle(function(e) {
-        let evt = e || window.event;
-        evt.stopPropagation();
-        if (evt.deltaY < 0) { //鼠标滚轮向上滚动
-            pageNum2++;
-            ajax({
-                type: 'get',
-                url: '/wall/list',
-                data: {
-                    pageNum: pageNum2,
-                    pageSize: 4,
-                    flag: flag
-                },
-                header: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function(data) {
-                    if (data.code === 200) {
-                        console.log(data);
-                        rcards.innerHTML += `
-                        <li>
-                            <div class="cover">
-                                <img src="${data.data.list[0].cardId}">
-                            </div>
-                            <div class="back">${data.data.list[0].content}</div>
-                        </li>
-                        `
-                    }
-                }
-            });
             // console.log(rcards.offsetLeft + 100);
             rcards.style.left = rcards.offsetLeft - 1080 + 'px';
         } else { //鼠标滚轮向下滚动
@@ -175,32 +191,34 @@ window.addEventListener('load', () => {
         let evt = e || window.event;
         evt.stopPropagation();
         if (evt.deltaY < 0) {
-            pageNum1++;
-            ajax({
-                type: 'get',
-                url: '/wall/list',
-                data: {
-                    pageNum: pageNum1,
-                    pageSize: 4,
-                    flag: flag
-                },
-                header: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function(data) {
-                    if (data.code === 200) {
-                        console.log(data);
-                        lcards.innerHTML += `
-                        <li>
-                            <div class="cover">
-                                <img src="${picList[data.data.list[0].cardId]}">
-                            </div>
-                            <div class="back">${data.data.list[0].content}</div>
-                        </li>
-                        `
+            if (pageNum1++ > lpageNumMax) {
+                lpageNumMax = pageNum1;
+                ajax({
+                    type: 'get',
+                    url: '/wall/list',
+                    data: {
+                        pageNum: pageNum1,
+                        pageSize: 4,
+                        flag: flag
+                    },
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function(data) {
+                        if (data.code === 200) {
+                            console.log(data);
+                            lcards.innerHTML += `
+                            <li>
+                                <div class="cover">
+                                    <img src="${picList[data.data.list[0].cardId]}">
+                                </div>
+                                <div class="back">${data.data.list[0].content}</div>
+                            </li>
+                            `
+                        }
                     }
-                }
-            });
+                });
+            }
             lcards.style.left = lcards.offsetLeft - 1080 + 'px';
         } else {
             if (pageNum1 > 1) {

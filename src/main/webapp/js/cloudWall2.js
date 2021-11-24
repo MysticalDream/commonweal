@@ -131,7 +131,7 @@ window.addEventListener('load', () => {
     for (let i = 0; i < cards.length; i++) {
         cards[i].addEventListener('click', () => {
                 that = cards[i];
-                console.log(i);
+                // console.log(i);
                 // 点击后其他的循环一次给隐藏掉 就这个是显示的  
                 for (let j = 0; j < cards.length; j++) {
                     cards[j].classList.add('nochoice');
