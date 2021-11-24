@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="../../css/font.css">
     <link rel="stylesheet" href="../../css/adpot.css">
     <link rel="stylesheet" href="../../css/project.css">
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/ajax.js"></script>
 </head>
 <body>
      <!-- 导航栏 -->
@@ -65,7 +68,7 @@
                     <div class="remark_title">
                         <span></span><span>评论</span>
                     </div>
-                    <div class="remark_user">
+                    <!-- <div class="remark_user">
                         <div class="avator_pic">
                             <div class="red_ling">
                                 <img src="../../images/领.png" alt="">
@@ -75,7 +78,7 @@
                             <div class="id_box">喜欢喝可乐的阳阳</div>
                             <div class="remark_date">2021年6月16日反馈</div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="remark_main">
                         <p class="remark_text">他有一个好听的名字 叫做创意当风时小组的狗子，养的白白胖胖 快来看这只狗吧 
                             哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈 这狗一天吃3顿 每吨都吃2碗饭 长得很结实
@@ -219,11 +222,20 @@
                     <div class="remark_input">
                         <div class="inner_area">
                             <div class="first_line">
-                                <img src="../../images/img_up.png" alt="">
+                                 <label for="feed_file" class="feed_label">
+                                    <img src="../../images/img_up.png" alt="">
+                                </label>
+                                <form action="/cover" method="post" id="feedback_cover" enctype="multipart/form-data">
+                                    <input type="file" name="feedback_cover" class="feed_file" multiple>
+                                    <input type="hidden" name="feedback_cover" value="feedback_cover">
+                                    <input type="submit" name="提交图片" hidden class="feed_in">
+                                </form>
                                 <img src="../../images/express.png" alt="">
                                 <button>发布</button>
                             </div>
-                            <textarea class="words_input" placeholder="有什么看法想分享的吗~"></textarea>
+                            <div class="words_input" contenteditable="true">
+                                <span class="placeholder">有啥想分享的吗~</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -323,5 +335,75 @@
      <!-- 置顶 -->
      <a id="button_back" title="返回顶部"></a>
      <script src="../../js/backtop.js"></script>
+     <script>
+         window.addEventListener('load',()=>{
+             let feedback_cover=$('#feedback_cover')[0];
+             let words_input=$('.words_input')[0]; 
+             let feed_file=$('.feed_file')[0];
+             let feed_in=$('.feed_in')[0];
+             let imgArray=new Array();
+             let feed_label=$('.feed_label')[0];
+             let placeholder=$('.placeholder')[0];
+             words_input.onfocus=function(){
+                 hide(placeholder);
+             }
+
+             words_input.onblur=function(){
+                show(placeholder);
+             }
+
+             iframeAjax({
+                form:feedback_cover,
+                callback:function(data){
+                    for(let i=0;i<data.length;i++){
+                        let img_d=document.createElement('img');
+                        img_d.src=data[i];
+                        imgArray.push(img_d);
+                        img_d.classList.add('bottom_img');
+                        words_input.appendChild(img_d);
+                    }
+                }
+             })
+
+            feed_label.addEventListener('click',()=>{
+                feed_file.click();
+            })
+
+             feed_file.addEventListener('change',(e)=>{
+                if(feed_file.files.length){
+                    feed_in.click();
+                    // hide(placeholder);
+                }
+             })
+             
+            // let img_d=document.createElement('img');
+            // let img_dd=document.createElement('img');
+            // img_dd.src='../../images.dog.png';
+            // img_d.classList.add('bottom_img');
+            // img_dd.classList.add('bottom_img');
+            // img_d.src='../../images/dog.png'
+            // img_dd.src='../../images/dog.png';
+            // words_input.appendChild(img_d);
+            // words_input.appendChild(img_dd);
+            
+             ajax({
+                 type:'post',
+                 url:'/feedback',
+                 header:'application/json',
+                 data:{
+                    adoptId:getUrlParamObject(window.location.search).ddj,
+                    content:words_input.value.trim(),
+                    pics:imgArray
+                 },
+                 success:function(){
+                    words_input.innerHTML='';
+                    words_input.appendChild(placeholder);
+                 },
+                 error:function(){
+
+                 }
+             })
+        })
+    </script>
 </body>
 </html>

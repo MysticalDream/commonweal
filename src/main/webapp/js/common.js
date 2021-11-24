@@ -148,3 +148,44 @@ TurnPage.prototype.bindEvent = function() {
             }
     }
 }
+
+// 格式化时间
+Date.prototype.Format = function (fmt) {
+    var o = {
+         //月份 
+         "M+": this.getMonth() + 1,
+         //日 
+         "d+": this.getDate(),
+         //小时 
+         "h+": this.getHours(),
+         //分
+         "m+": this.getMinutes(),
+         //秒 
+         "s+": this.getSeconds(),
+         //季度 
+         "q+": Math.floor((this.getMonth() + 3) / 3),
+         //毫秒 
+         "S": this.getMilliseconds()
+       };
+       if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+       for (var k in o)
+         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[
+           k]).substr(("" + o[k]).length)));
+       return fmt;
+}
+
+function isNumber(val) {
+    var reg = /^[0-9]+\.?[0-9]*$/;
+    return reg.test(val);
+};
+
+function getUrlParamObject(url) {
+    const params = url.slice(url.indexOf('?') + 1, url.length);
+    const group = params.split('&');
+    const data = new Object();
+    for (const index in group) {
+        const arr = group[index].split('=');
+        data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
+    }
+    return data;
+};
