@@ -18,6 +18,7 @@ body {
 
 input, button, textarea, select, option {
     font-family: Arial, "Microsoft YaHei", "Microsoft Sans Serif", "Microsoft SanSerf";
+    font-family: Simsun;
 }
 
 main {
@@ -26,7 +27,14 @@ main {
     padding: 1em 1.5em 1.3em 1.5em;
     border-radius: 12px;
     border: 1px solid #e9eaec;
-    box-shadow: 1px 1px 1em #ececb4, -1em 0 0.4em #ececb4;
+    /* box-shadow: 1px 1px 1em #ececb4, -1em 0 0.4em #ececb4; */
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .1);
+}
+
+h1{
+    letter-spacing: 3px;
+    font-family: 'DOUYU-Font';
+    font-weight: 400;
 }
 
 h2 {
@@ -34,6 +42,10 @@ h2 {
     font-weight: 500;
     margin: 0 0 0.8em 0;
     padding: 0 0 0.2em 0;
+    font-family: Simsun;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 h2:not(:first-child) {
@@ -92,8 +104,15 @@ label.cover:hover span:not(:first-child) {
 }
 
 label:focus, label:hover {
-    border-color: #dbdb07;
-    color: #dbdb07;
+    /* border-color: #dbdb07;
+    color: #dbdb07; */
+    border-color: #2F3954;
+    color:#2F3954;
+}
+
+label span:nth-child(1){
+    font-family: Simsun;
+    letter-spacing: 2px;
 }
 
 .intro_wrap {
@@ -120,7 +139,7 @@ textarea {
 
 textarea:focus {
     outline: 0;
-    border-color: #e7e708;
+    border-color: #2F3954;
 }
 
 .sub_footer {
@@ -142,13 +161,13 @@ input[type=submit] {
     margin: 0;
     padding: 6px 12px;
     border: 0;
-    background-color: olive;
+    background-color: #2F3954;
     color: #fff;
     cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #a0a005;
+    background-color: #BC5844;
 }
 
 input#title {
@@ -162,7 +181,7 @@ input#title {
 }
 
 input#title:focus {
-    border-color: #ffff00;
+    border-color: #2F3954;
 }
 
 input[type=submit]:disabled {
@@ -177,10 +196,13 @@ select {
     padding: 5px;
     outline: none;
     border: 1px solid gainsboro;
+    letter-spacing: 2px;
+    font-family: Simsun;
+    font-weight: 600;
 }
 
 select:focus {
-    border-color: #ecec0d;
+    border-color: #2F3954;
 }
 
 h1 {
