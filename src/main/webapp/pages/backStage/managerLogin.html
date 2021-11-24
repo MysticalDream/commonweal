@@ -34,8 +34,6 @@
     let login=$('.Mlogin')[0];
     let psw=$('.Mpsw')[0];
     let last_button=$('.last_button')[0];
-    console.log(login);
-    console.log(psw);
     last_button.addEventListener('click',()=>{
         // /admin/sessions
         if(login.value.trim()==''||psw.value.trim()==''){
@@ -54,7 +52,7 @@
                     password:psw.value.trim()
                 },
                 success:function(){
-
+                    window.location.href='backStage.html';
                 },
                 error:function(){
 
