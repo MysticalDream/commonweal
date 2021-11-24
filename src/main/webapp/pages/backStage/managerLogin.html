@@ -20,8 +20,8 @@
         <div class="right_one">
                 <h2>管理员登录</h2>
                 <form action="">
-                    <img src="../../images/Mlogin.png" alt="" class="Mlogin">
-                    <input type="text" placeholder="请输入账号">
+                    <img src="../../images/Mlogin.png" alt="">
+                    <input type="text" placeholder="请输入账号"  class="Mlogin">
                     <img src="../../images/锁.png" alt="">
                     <input type="password" placeholder="请输入密码" class="Mpsw">
                 </form>
@@ -34,6 +34,8 @@
     let login=$('.Mlogin')[0];
     let psw=$('.Mpsw')[0];
     let last_button=$('.last_button')[0];
+    console.log(login);
+    console.log(psw);
     last_button.addEventListener('click',()=>{
         // /admin/sessions
         if(login.value.trim()==''||psw.value.trim()==''){
