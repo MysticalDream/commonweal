@@ -19,6 +19,13 @@ public class AdoptServiceImpl implements AdoptService {
     }
 
     @Override
+    public Adopt getAdoptById(Integer id) throws Exception {
+        Adopt adopt = new Adopt();
+        adopt.setAdoptId(id);
+        return adoptDao.getAdopt(adopt);
+    }
+
+    @Override
     public Page<Adopt> getAdoptList(Page<Adopt> page, boolean option) throws Exception {
         return adoptDao.getAdoptList(page, option);
     }

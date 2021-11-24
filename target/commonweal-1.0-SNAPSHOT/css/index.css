@@ -266,33 +266,50 @@ html {
     letter-spacing: 3px;
 }
 
-.slideshow .index_nav li {
+.slideshow .index_nav>li {
     float: left;
     margin: 5px 20px;
     padding-top: 8px;
 }
 
-.slideshow .index_nav li a {
+.slideshow .index_nav>li a {
     color: #fff;
 }
 
-.slideshow .index_nav li.choice {
+.slideshow .index_nav>li.choice {
     border-top: 2px solid #f3532f;
     padding-top: 6px;
 }
 
-.slideshow .index_nav li.choice a {
+.slideshow .index_nav>li.choice a {
     color: #f3532f;
 }
 
-.slideshow .index_nav li:hover {
+.slideshow .index_nav>li:hover {
     border-top: 2px solid #f3532f;
     padding-top: 6px;
 }
 
-.slideshow .index_nav li:hover a {
+.slideshow .index_nav>li:hover>a {
     color: #f3532f;
     text-decoration: none;
+}
+
+.slideshow .index_nav .child-li {
+    position: relative;
+}
+
+.slideshow .index_nav .child-li .child-ol {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    padding-left: 10px;
+    top: 35px;
+    left: 3px;
+    line-height: 30px;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, .4);
+    display: none;
 }
 
 .slideshow .slide_contain {

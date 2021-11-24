@@ -131,4 +131,13 @@ public class AdminController {
         Page<ItemReviewVO> list = itemReviewVOService.getList(pageSize, pageNum);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, list);
     }
+
+    /**
+     * @param httpInfoWrapper
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/admin", type = {RequestMethod.GET})
+    public void reDirect(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        httpInfoWrapper.getHttpServletResponse().sendRedirect("/pages/backStage/managerLogin.html");
+    }
 }

@@ -25,9 +25,9 @@ public class FeedbackComment {
      */
     private Integer userId;
     /**
-     * 领养动物id
+     * 反馈id
      */
-    private Integer feedback_id;
+    private Integer feedbackId;
     /**
      * 评论的内容
      */
@@ -55,10 +55,10 @@ public class FeedbackComment {
      */
     private LocalDateTime gmtModified;
 
-    public FeedbackComment(Integer id, Integer userId, Integer feedback_id, String content, Integer praiseNum, Integer top, Boolean available, LocalDateTime gmtCreate, LocalDateTime gmtModified) {
+    public FeedbackComment(Integer id, Integer userId, Integer feedbackId, String content, Integer praiseNum, Integer top, Boolean available, LocalDateTime gmtCreate, LocalDateTime gmtModified) {
         this.id = id;
         this.userId = userId;
-        this.feedback_id = feedback_id;
+        this.feedbackId = feedbackId;
         this.content = content;
         this.praiseNum = praiseNum;
         this.top = top;
@@ -86,12 +86,12 @@ public class FeedbackComment {
         this.userId = userId;
     }
 
-    public Integer getFeedback_id() {
-        return feedback_id;
+    public Integer getFeedbackId() {
+        return feedbackId;
     }
 
-    public void setFeedback_id(Integer feedback_id) {
-        this.feedback_id = feedback_id;
+    public void setFeedbackId(Integer feedbackId) {
+        this.feedbackId = feedbackId;
     }
 
     public String getContent() {

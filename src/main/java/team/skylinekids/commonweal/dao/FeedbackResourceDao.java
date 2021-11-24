@@ -18,7 +18,7 @@ public interface FeedbackResourceDao {
      * @return
      * @throws Exception
      */
-    int addResourceDao(FeedbackResource... feedbackResources) throws Exception;
+    int addResource(FeedbackResource... feedbackResources) throws Exception;
 
     /**
      * 根据反馈id获取反馈图片资源

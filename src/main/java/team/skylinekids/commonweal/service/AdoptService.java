@@ -19,6 +19,15 @@ public interface AdoptService {
     int addAdoptInfo(Adopt adopt) throws Exception;
 
     /**
+     * 获取领养信息
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    Adopt getAdoptById(Integer id) throws Exception;
+
+    /**
      * 获取领养动物列表
      *
      * @param page

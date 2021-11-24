@@ -19,6 +19,15 @@ public interface AdoptDao {
     int addAdoptInfo(Adopt adopt) throws Exception;
 
     /**
+     * 获取领养信息
+     *
+     * @param adopt
+     * @return
+     * @throws Exception
+     */
+    Adopt getAdopt(Adopt adopt) throws Exception;
+
+    /**
      * 获取领养动物列表
      *
      * @param page

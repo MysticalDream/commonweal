@@ -18,6 +18,11 @@ public class AdoptDaoImpl extends MyGenericBaseDao<Adopt> implements AdoptDao {
     }
 
     @Override
+    public Adopt getAdopt(Adopt adopt) throws Exception {
+        return this.selectOne(adopt);
+    }
+
+    @Override
     public Page<Adopt> getAdoptList(Page<Adopt> page, boolean option) throws Exception {
         List<Adopt> list;
         String condition = option
