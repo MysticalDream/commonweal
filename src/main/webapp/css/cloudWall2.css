@@ -104,6 +104,8 @@ body {
     /* display: none; */
     background: url(../images/cloud2.jpg);
     background-size: 100%;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: b 1s forwards;
 }
 
 .contain .cards .b.renew {
@@ -122,12 +124,22 @@ body {
     opacity: 0;
 }
 
+@keyframes b {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(51%, -107px) rotate(-12deg);
+    }
+}
+
 .contain .cards .c {
     transform: translate(105%, -140px) rotate(-5deg);
     background-color: rgb(243, 88, 88);
     /* display: none; */
     background: url(../images/cloud3.jpg);
     background-size: 100%;
+    animation: c 1s forwards;
 }
 
 .contain .cards .c.renew {
@@ -146,12 +158,22 @@ body {
     opacity: 0;
 }
 
+@keyframes c {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(105%, -140px) rotate(-5deg);
+    }
+}
+
 .contain .cards .d {
     transform: translate(156%, -151px) rotate(0deg);
     background-color: rgb(36, 132, 195);
     /* display: none; */
     background: url(../images/cloud4.jpg);
     background-size: 100%;
+    animation: d 1s forwards;
 }
 
 .contain .cards .d.renew {
@@ -170,12 +192,22 @@ body {
     opacity: 0;
 }
 
+@keyframes d {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(156%, -151px) rotate(0deg);
+    }
+}
+
 .contain .cards .e {
     transform: translate(212%, -136px) rotate(6deg);
     background-color: rgb(53, 184, 81);
     /* display: none; */
     background: url(../images/cloud20.jpg);
     background-size: 100%;
+    animation: e 1s forwards;
 }
 
 .contain .cards .e.renew {
@@ -194,12 +226,22 @@ body {
     opacity: 0;
 }
 
+@keyframes e {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(212%, -136px) rotate(6deg);
+    }
+}
+
 .contain .cards .f {
     transform: translate(264%, -109px) rotate(12deg);
     background-color: rgb(36, 22, 144);
     /* display: none; */
     background: url(../images/cloud21.jpg);
     background-size: 100%;
+    animation: f 1s forwards;
 }
 
 .contain .cards .f.renew {
@@ -218,12 +260,22 @@ body {
     opacity: 0;
 }
 
+@keyframes f {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(264%, -109px) rotate(12deg);
+    }
+}
+
 .contain .cards .g {
     transform: translate(312%, -67px) rotate(20deg);
     background-color: rgb(133, 19, 148);
     /* display: none; */
     background: url(../images/cloud25.jpg);
     background-size: 100%;
+    animation: g 1s forwards;
 }
 
 .contain .cards .g.renew {
@@ -240,6 +292,15 @@ body {
 .contain .cards .g.nochoice {
     display: none;
     opacity: 0;
+}
+
+@keyframes g {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(312%, -67px) rotate(20deg);
+    }
 }
 
 .contain .word {
