@@ -78,6 +78,8 @@ body {
 .contain .cards .a {
     transform: translate(0%, -56px) rotate(-20deg);
     background-color: #fff;
+    background: url(../images/cloud1.jpg);
+    background-size: 100%;
 }
 
 .contain .cards .a.renew {
@@ -100,6 +102,8 @@ body {
     transform: translate(51%, -107px) rotate(-12deg);
     background-color: rgb(27, 19, 19);
     /* display: none; */
+    background: url(../images/cloud2.jpg);
+    background-size: 100%;
 }
 
 .contain .cards .b.renew {
@@ -122,6 +126,8 @@ body {
     transform: translate(105%, -140px) rotate(-5deg);
     background-color: rgb(243, 88, 88);
     /* display: none; */
+    background: url(../images/cloud3.jpg);
+    background-size: 100%;
 }
 
 .contain .cards .c.renew {
@@ -144,6 +150,8 @@ body {
     transform: translate(156%, -151px) rotate(0deg);
     background-color: rgb(36, 132, 195);
     /* display: none; */
+    background: url(../images/cloud4.jpg);
+    background-size: 100%;
 }
 
 .contain .cards .d.renew {
@@ -166,6 +174,8 @@ body {
     transform: translate(212%, -136px) rotate(6deg);
     background-color: rgb(53, 184, 81);
     /* display: none; */
+    background: url(../images/cloud20.jpg);
+    background-size: 100%;
 }
 
 .contain .cards .e.renew {
@@ -188,6 +198,8 @@ body {
     transform: translate(264%, -109px) rotate(12deg);
     background-color: rgb(36, 22, 144);
     /* display: none; */
+    background: url(../images/cloud21.jpg);
+    background-size: 100%;
 }
 
 .contain .cards .f.renew {
@@ -210,6 +222,8 @@ body {
     transform: translate(312%, -67px) rotate(20deg);
     background-color: rgb(133, 19, 148);
     /* display: none; */
+    background: url(../images/cloud25.jpg);
+    background-size: 100%;
 }
 
 .contain .cards .g.renew {
