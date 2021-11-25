@@ -20,6 +20,11 @@ window.addEventListener('load', () => {
     let a;
     let font = 3;
     let that;
+    setTimeout(() => {
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].style.animation = 'unset';
+        }
+    }, 1000);
     // 获取拼接的参数
     function isNumber(val) {
         var reg = /^[0-9]+\.?[0-9]*$/;
