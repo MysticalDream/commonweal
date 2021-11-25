@@ -85,7 +85,7 @@
         const $mainForm = $('#main_form');
         const $save = $('#save');
         const $category = $('#category');
-        const listData = {1: "语文", 2: "数学", 3: "英语"};
+        const listData = {1: "语文", 2: "数学", 3: "英语", 4: "生物", 5: "物理", 6: "化学", 7: "政治"};
         const $coverInput = $("#cover_input");
         const $coverForm = $('#cover_form');
         const $coverLabel = $('#cover_label');

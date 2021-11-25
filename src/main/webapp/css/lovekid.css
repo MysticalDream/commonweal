@@ -282,7 +282,7 @@ body .cloud_footer{
     align-items: center;
     position: absolute;
     top:100px;
-    right:5px;
+    right:10px;
     width: 70px;
     height: 500px;
     z-index: 100;
