@@ -106,7 +106,7 @@ window.addEventListener('load', () => {
                 left.style.left = '-200%'
                 middle.style.left = '-100%';
                 right.style.left = '0';
-                flag = false;
+                flag = true;
                 if (rflag) {
                     rflag = false;
                     ajax({
@@ -158,8 +158,8 @@ window.addEventListener('load', () => {
     rbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
+        flag = true;
         if (evt.deltaY < 0) { //鼠标滚轮向上滚动 
-            flag = false;
             ajax({
                 type: 'get',
                 url: '/wall/list',
@@ -214,8 +214,8 @@ window.addEventListener('load', () => {
     lbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
+        flag = false;
         if (evt.deltaY < 0) {
-            flag = true;
             ajax({
                 type: 'get',
                 url: '/wall/list',
@@ -244,7 +244,7 @@ window.addEventListener('load', () => {
                                 `
                         }
                         if (data.data.page > lpageNumMax && data.data.size == 4) {
-                            lpageNumMax = pageNum1;
+                            lpageNumMax = pageNum1 + 1;
                             lcards.style.width = lcards.offsetWidth + 1080 + "px";
                         }
                     }
