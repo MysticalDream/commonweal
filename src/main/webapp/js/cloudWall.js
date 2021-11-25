@@ -12,7 +12,8 @@ window.addEventListener('load', () => {
     const rgoBack = document.querySelector('.right .goBack');
     let pageNum1 = 1;
     let pageNum2 = 1;
-    let picList = ['theme.jpg', 'tree.png', 'tuichu.png', 'wu.png', 'wuli.png'];
+    let picList = ['../../images/cloud24.jpg', '../../images/cloud25.jpg', '../../images/cloud26.jpg', '../../images/cloud27.jpg', '../../images/cloud28.jpg', '../../images/cloud29.jpg', '../../images/cloud30.jpg'];
+    let picList2 = ['../../images/cloud1.jpg', '../../images/cloud2.jpg', '../../images/cloud3.jpg', '../../images/cloud4.jpg', '../../images/cloud5.jpg', '../../images/cloud6.jpg', '../../images/cloud7.jpg'];
     let flag = true;
     // 判断是不是第一次滑到左右页面
     let lflag = true;
@@ -20,6 +21,7 @@ window.addEventListener('load', () => {
     // 最大页数
     let lpageNumMax = 1;
     let rpageNumMax = 1;
+
     /**
      * 节流函数 减少执行次数
      * @param {*} func 业务代码
@@ -82,7 +84,7 @@ window.addEventListener('load', () => {
                                     lcards.innerHTML += `
                                     <li>
                                         <div class="cover">
-                                            <img src="${picList[data.data.list[k].cardId]}">
+                                            <img src="${picList2[data.data.list[k].cardId]}">
                                         </div>
                                         <div class="back">
                                             <p>${data.data.list[k].content}</p>
@@ -101,6 +103,7 @@ window.addEventListener('load', () => {
                 middle.style.left = '-100%';
                 right.style.left = '0';
                 flag = false;
+
                 if (rflag) {
                     rflag = false;
                     ajax({
@@ -119,16 +122,16 @@ window.addEventListener('load', () => {
                                 console.log(data);
                                 for (let k = 0; k < data.data.list.length; k++) {
                                     rcards.innerHTML += `
-                                    <li>
-                                        <div class="cover">
-                                            <img src="${data.data.list[k].cardId}">
-                                        </div>
-                                        <div class="back">
-                                            <p>${data.data.list[k].content}</p>
-                                            <span>${data.data.list[k].signature}</span>
-                                        </div>
-                                    </li>
-                                    `
+                                                    <li>
+                                                        <div class="cover">
+                                                            <img src="${picList[data.data.list[k].cardId]}">
+                                                        </div>
+                                                        <div class="back">
+                                                            <p>${data.data.list[k].content}</p>
+                                                            <span>${data.data.list[k].signature}</span>
+                                                        </div>
+                                                    </li>
+                                                    `
                                 }
                             }
                         }
@@ -141,7 +144,7 @@ window.addEventListener('load', () => {
         left.style.left = '-100%';
         middle.style.left = '0';
         right.style.left = '100%';
-    })
+    });
     rgoBack.addEventListener('click', () => {
         left.style.left = '-100%';
         middle.style.left = '0';
@@ -176,7 +179,7 @@ window.addEventListener('load', () => {
                                 rcards.innerHTML += `
                                 <li>
                                     <div class="cover">
-                                        <img src="${data.data.list[k].cardId}">
+                                        <img src="${picList[data.data.list[k].cardId]}">
                                     </div>
                                     <div class="back">
                                             <p>${data.data.list[k].content}</p>
@@ -231,7 +234,7 @@ window.addEventListener('load', () => {
                                 lcards.innerHTML += `
                                 <li>
                                     <div class="cover">
-                                        <img src="${data.data.list[k].cardId}">
+                                        <img src="${picList2[data.data.list[k].cardId]}">
                                     </div>
                                     <div class="back">
                                             <p>${data.data.list[k].content}</p>
