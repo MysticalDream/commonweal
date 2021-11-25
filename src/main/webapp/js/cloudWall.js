@@ -160,43 +160,47 @@ window.addEventListener('load', () => {
         evt.stopPropagation();
         flag = true;
         if (evt.deltaY < 0) { //鼠标滚轮向上滚动 
-            ajax({
-                type: 'get',
-                url: '/wall/list',
-                data: {
-                    pageNum: pageNum2,
-                    pageSize: 4,
-                    flag: flag
-                },
-                header: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function(data) {
-                    if (data.code === 200) {
-                        console.log(data);
-                        for (let k = 0; k < data.data.list.length; k++) {
-                            rcards.innerHTML += `
-                                    <li>
-                                        <div class="cover">
-                                            <img src="${picList[data.data.list[k].cardId]}">
-                                        </div>
-                                        <div class="back">
-                                                <p>${data.data.list[k].content}</p>
-                                                <span>${data.data.list[k].signature}</span>
-                                        </div>
-                                    </li>
-                                    `
-                        }
-                        if (data.data.pages > rpageNumMax && data.data.size == 4) { //一滚动就发送请求 然后根据请求回来的数据来决定要不要pagenum++ 要不要扩展盒子的宽度
-                            rpageNumMax = pageNum2 + 1;
-                            rcards.style.width = rcards.offsetWidth + 1080 + "px";
+            if (++pageNum2 > rpageNumMax) {
+                rpageNumMax = pageNum2;
+                ajax({
+                    type: 'get',
+                    url: '/wall/list',
+                    data: {
+                        pageNum: pageNum2,
+                        pageSize: 4,
+                        flag: flag
+                    },
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function(data) {
+                        if (data.code === 200) {
+                            if (data.data.list.length > 0) {
+                                for (let k = 0; k < data.data.list.length; k++) {
+                                    rcards.innerHTML += `
+                                            <li>
+                                                <div class="cover">
+                                                    <img src="${picList[data.data.list[k].cardId]}">
+                                                </div>
+                                                <div class="back">
+                                                        <p>${data.data.list[k].content}</p>
+                                                        <span>${data.data.list[k].signature}</span>
+                                                </div>
+                                            </li>
+                                            `
+                                }
+                                rcards.style.width = rcards.offsetWidth + 1080 + "px";
+                            }
+
                         }
                     }
-                }
-            });
+                });
+            }
 
+            if (-rcards.offsetWidth < rcards.offsetLeft - 1080) {
+                rcards.style.left = rcards.offsetLeft - 1080 + 'px';
+            }
             // console.log(rcards.offsetLeft + 100);
-            rcards.style.left = rcards.offsetLeft - 1080 + 'px';
         } else { //鼠标滚轮向下滚动
             if (pageNum2 > 1) {
                 pageNum2--;
@@ -216,6 +220,9 @@ window.addEventListener('load', () => {
         evt.stopPropagation();
         flag = false;
         if (evt.deltaY < 0) {
+            if (++pageNum1 > lpageNumMax) {
+                lpageNumMax = pageNum1;
+            }
             ajax({
                 type: 'get',
                 url: '/wall/list',
@@ -230,28 +237,29 @@ window.addEventListener('load', () => {
                 success: function(data) {
                     if (data.code === 200) {
                         console.log(data);
-                        for (let k = 0; k < data.data.list.length; k++) {
-                            lcards.innerHTML += `
-                                <li>
-                                    <div class="cover">
-                                        <img src="${picList2[data.data.list[k].cardId]}">
-                                    </div>
-                                    <div class="back">
-                                            <p>${data.data.list[k].content}</p>
-                                            <span>${data.data.list[k].signature}</span>
-                                    </div>
-                                </li>
-                                `
-                        }
-                        if (data.data.page > lpageNumMax && data.data.size == 4) {
-                            lpageNumMax = pageNum1 + 1;
+                        if (data.data.list.length > 0) {
+                            for (let k = 0; k < data.data.list.length; k++) {
+                                lcards.innerHTML += `
+                                    <li>
+                                        <div class="cover">
+                                            <img src="${picList2[data.data.list[k].cardId]}">
+                                        </div>
+                                        <div class="back">
+                                                <p>${data.data.list[k].content}</p>
+                                                <span>${data.data.list[k].signature}</span>
+                                        </div>
+                                    </li>
+                                    `
+                            }
                             lcards.style.width = lcards.offsetWidth + 1080 + "px";
                         }
+
                     }
                 }
             });
-
-            lcards.style.left = lcards.offsetLeft - 1080 + 'px';
+            if (-lcards.offsetWidth < lcards.offsetLeft - 1080) {
+                lcards.style.left = lcards.offsetLeft - 1080 + 'px';
+            }
         } else {
             if (pageNum1 > 1) {
                 pageNum1--;
