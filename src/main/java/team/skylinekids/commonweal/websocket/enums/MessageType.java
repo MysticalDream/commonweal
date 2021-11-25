@@ -35,4 +35,8 @@ public interface MessageType {
      * 停止直播
      */
     String STOP_LIVE = "stop_live";
+    /**
+     * 镜像
+     */
+    String ROTATE = "rotate";
 }

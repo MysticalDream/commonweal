@@ -18,6 +18,8 @@ import team.skylinekids.commonweal.websocket.live.LiveChatServer;
 import team.skylinekids.commonweal.websocket.live.LiveManager;
 import team.skylinekids.commonweal.websocket.live.RoomVO;
 
+import java.io.IOException;
+
 /**
  * 直播
  *
@@ -65,5 +67,12 @@ public class LiveController {
         LiveRoom liveRoom1 = liveService.getLiveRoom(liveRoom);
         liveRoom1.setCoverUrl(ResourcePathConstant.VIRTUAL_LIVE_COVER_BASE + liveRoom1.getCoverUrl());
         return ResultUtils.getResult(ApiResultCode.SUCCESS, liveRoom1);
+    }
+
+    @MyRequestPath(value = "/live/?", type = {RequestMethod.GET})
+    public String toLive(HttpInfoWrapper httpInfoWrapper) throws IOException {
+        String pathVariable = httpInfoWrapper.getPathVariable(String.class);
+        httpInfoWrapper.getHttpServletResponse().sendRedirect("/mytest/p/see2.html?liveId=" + pathVariable);
+        return "";
     }
 }

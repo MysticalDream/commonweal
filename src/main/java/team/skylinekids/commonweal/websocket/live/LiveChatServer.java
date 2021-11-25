@@ -136,6 +136,9 @@ public class LiveChatServer {
                 }
                 MessageUtils.broadcast(GsonUtils.o2J(transportMessage), liveUsers.get(liveId));
                 break;
+            case MessageType.ROTATE:
+                MessageUtils.broadcast(data, liveUsers.get(liveId));
+                break;
             default:
                 logger.info("没有该消息处理:" + transportMessage.getType());
         }
