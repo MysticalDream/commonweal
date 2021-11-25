@@ -73,7 +73,7 @@ public class AdminController {
         userDTO.setAvatarUrl(ResourcePathConstant.VIRTUAL_USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
 
         httpInfoWrapper.setCookies(ConversionUtils.oToStringMap(userDTO), 86400);
-
+        httpInfoWrapper.getHttpServletResponse().sendRedirect("/pages/backStage/backStage.html");
         //登录成功
         return ResultUtils.getResult(ApiResultCode.SUCCESS, userDTO);
     }

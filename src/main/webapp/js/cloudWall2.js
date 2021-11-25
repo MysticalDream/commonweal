@@ -167,6 +167,7 @@ window.addEventListener('load', () => {
             success: function(data) {
                 if (data.code === 200) {
                     console.log(data);
+                    window.location.href = 'cloudWall.html';
                 } else {
                     let warn = document.querySelector('.warn');
                     warn.style.display = 'block';
@@ -182,7 +183,7 @@ window.addEventListener('load', () => {
         output.innerHTML = '';
         // 点击后返回刚刚我要写的页面
         comments.value = output.innerHTML;
-        window.location.href = 'cloudWall.html';
+
     })
     returnb.addEventListener('click', () => {
         output.innerHTML = '';

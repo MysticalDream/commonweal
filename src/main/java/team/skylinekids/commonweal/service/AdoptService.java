@@ -3,6 +3,8 @@ package team.skylinekids.commonweal.service;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Adopt;
 
+import java.util.List;
+
 /**
  * 领养
  *
@@ -45,4 +47,14 @@ public interface AdoptService {
      * @throws Exception
      */
     int updateAdoptUserId(Adopt adopt) throws Exception;
+
+    /**
+     * 获取用户已领养的动物
+     *
+     * @param userId
+     * @param adoptPage
+     * @return
+     * @throws Exception
+     */
+    List<Adopt> getUserAdopt(Integer userId, Page<Adopt> adoptPage) throws Exception;
 }

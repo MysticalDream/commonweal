@@ -25,7 +25,6 @@ import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 import team.skylinekids.commonweal.web.core.annotation.MyRequestPath;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -88,7 +87,21 @@ public class AdoptController {
     @MyRequestPath(value = "/adopt/user", type = {RequestMethod.GET})
     @AccessLevel
     public String getUserAdopt(HttpInfoWrapper httpInfoWrapper) throws Exception {
-        return "";
+        User user = httpInfoWrapper.getUser();
+        Integer pageSize;
+        Integer pageNum;
+        try {
+            pageSize = httpInfoWrapper.getParameter("pageSize", Integer.class);
+            pageNum = httpInfoWrapper.getParameter("pageNum", Integer.class);
+        } catch (ClassCastException e) {
+            logger.info("前端参数解析异常", e);
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        Page<Adopt> page = new Page<>();
+        page.setPageSize(pageSize);
+        page.setPageNum(pageNum);
+        adoptService.getUserAdopt(user.getUserId(), page);
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, page);
     }
 
     /**
@@ -215,5 +228,20 @@ public class AdoptController {
         }
         Page<CommentInfo> adoptCommentByAdoptId = commentInfoService.getAdoptCommentByAdoptId(adoptId, pageSize, pageNum);
         return ResultUtils.getResult(ApiResultCode.SUCCESS, adoptCommentByAdoptId);
+    }
+
+    /**
+     * 获取动物信息
+     *
+     * @param httpInfoWrapper
+     * @return
+     * @throws Exception
+     */
+    @MyRequestPath(value = "/adopt", type = {RequestMethod.GET})
+    public String getAdoptDetail(HttpInfoWrapper httpInfoWrapper) throws Exception {
+        Integer adoptId = httpInfoWrapper.getParameter("adoptId", Integer.class);
+        Adopt adoptById = adoptService.getAdoptById(adoptId);
+        adoptById.setCoverUrl(ResourcePathConstant.VIRTUAL_ADOPT_COVER_BASE + adoptById.getCoverUrl());
+        return ResultUtils.getResult(ApiResultCode.SUCCESS, adoptById);
     }
 }

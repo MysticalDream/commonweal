@@ -3,6 +3,8 @@ package team.skylinekids.commonweal.dao;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Adopt;
 
+import java.util.List;
+
 /**
  * 领养动物
  *
@@ -45,5 +47,15 @@ public interface AdoptDao {
      * @throws Exception
      */
     int updateAdoptUserId(Adopt adopt) throws Exception;
+
+    /**
+     * 获取用户已经领养的动物
+     *
+     * @param userId
+     * @param adoptPage
+     * @return
+     * @throws Exception
+     */
+    List<Adopt> getUserAdopt(Integer userId, Page<Adopt> adoptPage) throws Exception;
 
 }

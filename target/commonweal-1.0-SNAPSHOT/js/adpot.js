@@ -37,7 +37,7 @@ window.addEventListener('load',function(){
 
     // render(obj_pet);
     // renderDom(obj_pet);
-
+    //
     // render1(obj_pet);
     // renderDom1(obj_pet);
 
@@ -136,6 +136,7 @@ window.addEventListener('load',function(){
         for (let i = 0; i < data.data.list.length; i++) {
             let oDiv = document.createElement('div');
             oDiv.classList.add('pet_box');
+            oDiv.id=data.data.list[i].adoptId;
             // let url_1='../../images/beijing.jpg';
             let url='../../images/blue_foot.png';
             let str=`
@@ -149,7 +150,9 @@ window.addEventListener('load',function(){
                    <li>年龄：${data.data.list[i].age}</li>
                    <li>习性：${data.data.list[i].habit}</li>
                 </ul>
-                <button class="take_care adopted">了解近况</button>
+                <a href="adopt_know.html?ddj=${oDiv.id}">
+                    <button class="take_care adopted">了解近况</button>
+                </a>
             </div>
             `;
             oDiv.innerHTML=str;

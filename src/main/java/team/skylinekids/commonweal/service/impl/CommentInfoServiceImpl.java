@@ -1,14 +1,14 @@
 package team.skylinekids.commonweal.service.impl;
 
-import team.skylinekids.commonweal.dao.AdoptCommentDao;
-import team.skylinekids.commonweal.dao.FeedbackCommentDao;
-import team.skylinekids.commonweal.dao.FeedbackResourceDao;
-import team.skylinekids.commonweal.dao.UserDao;
+import team.skylinekids.commonweal.dao.*;
 import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.factory.DaoFactory2;
 import team.skylinekids.commonweal.pojo.bo.CommentInfo;
 import team.skylinekids.commonweal.pojo.bo.Page;
+import team.skylinekids.commonweal.pojo.dto.AdoptCommentDTO;
+import team.skylinekids.commonweal.pojo.dto.FeedbackCommentDTO;
 import team.skylinekids.commonweal.pojo.dto.UserDTO;
+import team.skylinekids.commonweal.pojo.po.Adopt;
 import team.skylinekids.commonweal.pojo.po.AdoptComment;
 import team.skylinekids.commonweal.pojo.po.FeedbackComment;
 import team.skylinekids.commonweal.pojo.po.FeedbackResource;
@@ -33,6 +33,7 @@ public class CommentInfoServiceImpl implements CommentInfoService {
     UserDao userDao = DaoFactory2.getDaoImpl(UserDao.class);
 
     FeedbackResourceDao feedbackResourceDao = DaoFactory2.getDaoImpl(FeedbackResourceDao.class);
+    AdoptDao adoptDao = DaoFactory2.getDaoImpl(AdoptDao.class);
 
     @Override
     public int addAdoptComment(AdoptComment adoptComment) throws Exception {
@@ -71,7 +72,17 @@ public class CommentInfoServiceImpl implements CommentInfoService {
             Integer userId = adoptComment.getUserId();
             UserDTO userDTO = ConversionUtils.convert(userDao.getUserById(userId), UserDTO.class);
             userDTO.setAvatarUrl(ResourcePathConstant.VIRTUAL_USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
-            CommentInfo commentInfo = new CommentInfo(adoptComment, userDTO);
+            AdoptCommentDTO adoptCommentDTO = ConversionUtils.convert(adoptComment, AdoptCommentDTO.class);
+            Adopt adoptCondition = new Adopt();
+            adoptCondition.setAdoptId(adoptComment.getAdoptId());
+            Adopt adopt = adoptDao.getAdopt(adoptCondition);
+
+            if (adopt.getAdoptUserId().equals(userId)) {
+                adoptCommentDTO.setAdopter(true);
+            } else {
+                adoptCommentDTO.setAdopter(false);
+            }
+            CommentInfo commentInfo = new CommentInfo(adoptCommentDTO, userDTO);
             if (adoptComment.getTop().equals(1)) {
                 commentInfo.setPicList(feedbackResourceDao.getFeedbackResourcesByFeedbackCommentId(adoptComment.getId()));
             }
@@ -94,8 +105,18 @@ public class CommentInfoServiceImpl implements CommentInfoService {
         for (FeedbackComment feedbackComment : list) {
             Integer userId = feedbackComment.getUserId();
             UserDTO userDTO = ConversionUtils.convert(userDao.getUserById(userId), UserDTO.class);
+            FeedbackCommentDTO feedbackCommentDTO = ConversionUtils.convert(feedbackComment, FeedbackCommentDTO.class);
+            AdoptComment adoptCommentById = adoptCommentDao.getAdoptCommentById(feedbackComment.getFeedbackId());
+            Adopt adoptCondition = new Adopt();
+            adoptCondition.setAdoptId(adoptCommentById.getAdoptId());
+            Adopt adopt = adoptDao.getAdopt(adoptCondition);
+            if (adopt.getAdoptUserId().equals(userId)) {
+                feedbackCommentDTO.setAdopter(true);
+            } else {
+                feedbackCommentDTO.setAdopter(false);
+            }
             userDTO.setAvatarUrl(ResourcePathConstant.VIRTUAL_USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
-            CommentInfo commentInfo = new CommentInfo(feedbackComment, userDTO);
+            CommentInfo commentInfo = new CommentInfo(feedbackCommentDTO, userDTO);
             commentInfoList.add(commentInfo);
         }
         page1.setList(commentInfoList);
