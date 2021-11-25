@@ -155,7 +155,7 @@ window.addEventListener('load', () => {
         let evt = e || window.event;
         evt.stopPropagation();
         if (evt.deltaY < 0) { //鼠标滚轮向上滚动
-            if (pageNum2++ > rpageNumMax) {
+            if (++pageNum2 > rpageNumMax) {
                 rpageNumMax = pageNum2;
                 flag = false;
                 rcards.style.width = rcards.offsetWidth + 1080 + "px";
@@ -212,7 +212,7 @@ window.addEventListener('load', () => {
         let evt = e || window.event;
         evt.stopPropagation();
         if (evt.deltaY < 0) {
-            if (pageNum1++ > lpageNumMax) {
+            if (++pageNum1 > lpageNumMax) {
                 flag = true;
                 lpageNumMax = pageNum1;
                 lcards.style.width = lcards.offsetWidth + 1080 + "px";
@@ -246,6 +246,7 @@ window.addEventListener('load', () => {
                         }
                     }
                 });
+
             }
             lcards.style.left = lcards.offsetLeft - 1080 + 'px';
         } else {
