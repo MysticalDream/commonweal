@@ -78,7 +78,7 @@ body {
 .contain .cards .a {
     transform: translate(0%, -56px) rotate(-20deg);
     background-color: #fff;
-    background: url(../images/cloud1.jpg);
+    background: url(../images/cloud24.jpg);
     background-size: 100%;
 }
 
@@ -102,7 +102,7 @@ body {
     transform: translate(51%, -107px) rotate(-12deg);
     background-color: rgb(27, 19, 19);
     /* display: none; */
-    background: url(../images/cloud2.jpg);
+    background: url(../images/cloud25.jpg);
     background-size: 100%;
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
     animation: b 1s forwards;
@@ -137,7 +137,7 @@ body {
     transform: translate(105%, -140px) rotate(-5deg);
     background-color: rgb(243, 88, 88);
     /* display: none; */
-    background: url(../images/cloud3.jpg);
+    background: url(../images/cloud26.jpg);
     background-size: 100%;
     animation: c 1s forwards;
 }
@@ -171,7 +171,7 @@ body {
     transform: translate(156%, -151px) rotate(0deg);
     background-color: rgb(36, 132, 195);
     /* display: none; */
-    background: url(../images/cloud4.jpg);
+    background: url(../images/cloud27.jpg);
     background-size: 100%;
     animation: d 1s forwards;
 }
@@ -205,7 +205,7 @@ body {
     transform: translate(212%, -136px) rotate(6deg);
     background-color: rgb(53, 184, 81);
     /* display: none; */
-    background: url(../images/cloud20.jpg);
+    background: url(../images/cloud28.jpg);
     background-size: 100%;
     animation: e 1s forwards;
 }
@@ -239,7 +239,7 @@ body {
     transform: translate(264%, -109px) rotate(12deg);
     background-color: rgb(36, 22, 144);
     /* display: none; */
-    background: url(../images/cloud21.jpg);
+    background: url(../images/cloud29.jpg);
     background-size: 100%;
     animation: f 1s forwards;
 }
@@ -273,8 +273,9 @@ body {
     transform: translate(312%, -67px) rotate(20deg);
     background-color: rgb(133, 19, 148);
     /* display: none; */
-    background: url(../images/cloud25.jpg);
+    background: url(../images/cloud30.jpg);
     background-size: 100%;
+    transition: all 0.5s !important;
     animation: g 1s forwards;
 }
 
@@ -286,7 +287,7 @@ body {
 .contain .cards .g.choice {
     display: block;
     opacity: 1;
-    transform: translate(156%, -151px) rotate(0deg);
+    transform: translate(156%, -151px) rotate(0deg) !important;
 }
 
 .contain .cards .g.nochoice {

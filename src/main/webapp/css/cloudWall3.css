@@ -1,0 +1,485 @@
+body {
+    height: auto;
+    width: 1280px;
+    overflow: hidden;
+    font-family: 'DOUYU Font';
+}
+
+.contain {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 100%;
+    height: 537px;
+    letter-spacing: 5px;
+    transition: all 1s;
+    z-index: 11;
+    background: url(../images/cloudWall3.jpg);
+    background-size: 100%;
+}
+
+.contain span {
+    position: absolute;
+    top: 35px;
+    left: 40px;
+    color: rgb(187, 88, 69);
+    background-color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.contain .cards {
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1000px;
+    height: 300px;
+    /* background-color: skyblue; */
+}
+
+.contain .cards li {
+    position: absolute;
+    top: 0px;
+    width: 250px;
+    height: 350px;
+    background-color: #fff;
+    border-radius: 8px;
+    transition: all 1s;
+}
+
+
+/* 
+.contain .cards li .cover,
+.contain .cards li .back {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    transition: all 0.8s ease-in-out;
+}
+
+.contain .cards li .cover {
+    transform: rotateY(0deg);
+}
+
+.contain .cards li:hover .cover {
+    transform: rotateY(180deg);
+}
+
+.contain .cards li .back {
+    transform: rotateY(180deg);
+}
+
+.contain .cards li:hover .back {
+    transform: rotateY(0deg);
+} */
+
+.contain .cards .a {
+    transform: translate(0%, -56px) rotate(-20deg);
+    background-color: #fff;
+    background: url(../images/cloud1.jpg);
+    background-size: 100%;
+}
+
+.contain .cards .a.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .a.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .a.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+.contain .cards .b {
+    transform: translate(51%, -107px) rotate(-12deg);
+    background-color: rgb(27, 19, 19);
+    /* display: none; */
+    background: url(../images/cloud2.jpg);
+    background-size: 100%;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: b 1s forwards;
+}
+
+.contain .cards .b.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .b.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .b.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes b {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(51%, -107px) rotate(-12deg);
+    }
+}
+
+.contain .cards .c {
+    transform: translate(105%, -140px) rotate(-5deg);
+    background-color: rgb(243, 88, 88);
+    /* display: none; */
+    background: url(../images/cloud3.jpg);
+    background-size: 100%;
+    animation: c 1s forwards;
+}
+
+.contain .cards .c.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .c.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .c.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes c {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(105%, -140px) rotate(-5deg);
+    }
+}
+
+.contain .cards .d {
+    transform: translate(156%, -151px) rotate(0deg);
+    background-color: rgb(36, 132, 195);
+    /* display: none; */
+    background: url(../images/cloud4.jpg);
+    background-size: 100%;
+    animation: d 1s forwards;
+}
+
+.contain .cards .d.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .d.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .d.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes d {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(156%, -151px) rotate(0deg);
+    }
+}
+
+.contain .cards .e {
+    transform: translate(212%, -136px) rotate(6deg);
+    background-color: rgb(53, 184, 81);
+    /* display: none; */
+    background: url(../images/cloud5.jpg);
+    background-size: 100%;
+    animation: e 1s forwards;
+}
+
+.contain .cards .e.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .e.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .e.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes e {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(212%, -136px) rotate(6deg);
+    }
+}
+
+.contain .cards .f {
+    transform: translate(264%, -109px) rotate(12deg);
+    background-color: rgb(36, 22, 144);
+    /* display: none; */
+    background: url(../images/cloud6.jpg);
+    background-size: 100%;
+    animation: f 1s forwards;
+}
+
+.contain .cards .f.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .f.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .f.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes f {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(264%, -109px) rotate(12deg);
+    }
+}
+
+.contain .cards .g {
+    transform: translate(312%, -67px) rotate(20deg);
+    background-color: rgb(133, 19, 148);
+    /* display: none; */
+    background: url(../images/cloud7.jpg);
+    background-size: 100%;
+    animation: g 1s forwards;
+}
+
+.contain .cards .g.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .g.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .g.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes g {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(312%, -67px) rotate(20deg);
+    }
+}
+
+.contain .word {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    line-height: 35px;
+    font-size: 22px;
+    color: #fff;
+    text-align: center;
+}
+
+.contain .back {
+    position: absolute;
+    bottom: 10px;
+    right: 37px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+
+/* 选卡片后显示的 */
+
+.text {
+    position: relative;
+    top: -537px;
+    left: 0px;
+    width: 100%;
+    height: 537px;
+    /* background-color: rgb(189, 87, 69); */
+    letter-spacing: 2px;
+    display: block;
+    transition: all 1s;
+    opacity: 0;
+    background: url(../images/cloudWall3.jpg);
+    background-size: 100%;
+}
+
+.text .options {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(247, 247, 247);
+    text-align: center;
+    line-height: 50px;
+}
+
+.text .options button {
+    border: none;
+    outline: none;
+    background-color: rgb(247, 247, 247);
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.text .options button:hover {
+    background-color: rgb(205, 235, 246);
+}
+
+.text .options button.choice {
+    background-color: rgb(205, 235, 246);
+}
+
+.text #fontSize {
+    border: none;
+    outline: none;
+}
+
+.text .emjoy {
+    position: relative;
+}
+
+.text .emjoy .emjoys {
+    position: absolute;
+    top: 32px;
+    left: -200px;
+    width: 500px;
+    height: 400px;
+    padding: 10px;
+    padding-left: 25px;
+    background-color: rgb(240, 235, 235);
+    border-radius: 5px;
+    z-index: 10;
+    overflow: auto;
+    display: none;
+}
+
+.text .emjoy .emjoys li {
+    float: left;
+    width: 25px;
+    height: 25px;
+    padding: 8px;
+    font-size: 20px;
+}
+
+.text .emjoy .emjoys li:hover {
+    background-color: rgb(182, 250, 255);
+}
+
+.text .output {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 450px;
+    background-color: #fff;
+    border-radius: 10px;
+    outline: none;
+    overflow: auto;
+    word-break: break-all;
+}
+
+.text .submit {
+    position: absolute;
+    top: 69px;
+    right: 300px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.text .return {
+    position: absolute;
+    bottom: 16px;
+    left: 300px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.text .sign {
+    position: absolute;
+    bottom: 40px;
+    left: 460px;
+    font-size: 18px;
+}
+
+.text .sign input {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+
+/* 发表失败 */
+
+.warn {
+    position: absolute;
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(243, 41, 0);
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 3px;
+    border-radius: 8px;
+    z-index: 11;
+    display: none;
+}

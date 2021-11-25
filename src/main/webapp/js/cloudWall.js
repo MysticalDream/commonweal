@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
 
     lwrite.addEventListener('click', () => {
 
-        window.location.href = 'cloudWall2.html?flag=false';
+        window.location.href = 'cloudWall3.html?flag=false';
     })
     rwrite.addEventListener('click', () => {
 
@@ -159,14 +159,16 @@ window.addEventListener('load', () => {
                     success: function(data) {
                         if (data.code === 200) {
                             console.log(data);
-                            rcards.innerHTML += `
-                            <li>
-                                <div class="cover">
-                                    <img src="${data.data.list[0].cardId}">
-                                </div>
-                                <div class="back">${data.data.list[0].content}</div>
-                            </li>
-                            `
+                            for (let k = 0; k < data.data.list.length; k++) {
+                                rcards.innerHTML += `
+                                <li>
+                                    <div class="cover">
+                                        <img src="${data.data.list[k].cardId}">
+                                    </div>
+                                    <div class="back">${data.data.list[k].content}</div>
+                                </li>
+                                `
+                            }
                         }
                     }
                 });
