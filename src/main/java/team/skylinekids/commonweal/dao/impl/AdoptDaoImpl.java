@@ -40,4 +40,9 @@ public class AdoptDaoImpl extends MyGenericBaseDao<Adopt> implements AdoptDao {
         return this.update(adopt);
     }
 
+    @Override
+    public List<Adopt> getUserAdopt(Integer userId, Page<Adopt> adoptPage) throws Exception {
+        return this.getListByPagination(" WHERE adopt_user_id=" + userId, adoptPage);
+    }
+
 }

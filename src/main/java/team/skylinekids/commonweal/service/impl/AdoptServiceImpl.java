@@ -6,6 +6,8 @@ import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Adopt;
 import team.skylinekids.commonweal.service.AdoptService;
 
+import java.util.List;
+
 /**
  * @author MysticalDream
  */
@@ -32,6 +34,11 @@ public class AdoptServiceImpl implements AdoptService {
 
     @Override
     public int updateAdoptUserId(Adopt adopt) throws Exception {
-       return adoptDao.updateAdoptUserId(adopt);
+        return adoptDao.updateAdoptUserId(adopt);
+    }
+
+    @Override
+    public List<Adopt> getUserAdopt(Integer userId, Page<Adopt> adoptPage) throws Exception {
+        return adoptDao.getUserAdopt(userId, adoptPage);
     }
 }

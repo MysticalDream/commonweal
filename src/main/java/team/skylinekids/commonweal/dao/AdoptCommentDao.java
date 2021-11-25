@@ -21,6 +21,15 @@ public interface AdoptCommentDao {
     int addAdoptComment(AdoptComment adoptComment) throws Exception;
 
     /**
+     * 领养评论
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    AdoptComment getAdoptCommentById(Integer id) throws Exception;
+
+    /**
      * 根据领养id获取评论列表
      *
      * @param adoptId

@@ -33,13 +33,13 @@ window.addEventListener('load',function(){
     },
   
     // 页面加载第一次发送数据
-    // ajax(pet_opt);
+    ajax(pet_opt);
 
-    render(obj_pet);
-    renderDom(obj_pet);
-
-    render1(obj_pet);
-    renderDom1(obj_pet);
+    // render(obj_pet);
+    // renderDom(obj_pet);
+    //
+    // render1(obj_pet);
+    // renderDom1(obj_pet);
 
     var turnpage_pet;
     var turnpage_pet1;
