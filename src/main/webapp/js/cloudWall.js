@@ -37,14 +37,13 @@ window.addEventListener('load', () => {
             flag1 = false;
         };
     }
-
     lwrite.addEventListener('click', () => {
 
-        window.location.href = 'cloudWall3.html?flag=false';
+        window.location.href = 'cloudWall3.html?flag=true';
     })
     rwrite.addEventListener('click', () => {
 
-            window.location.href = 'cloudWall2.html?flag=true';
+            window.location.href = 'cloudWall2.html?flag=false';
         })
         // 要判断是不是第一页 是第一页的话就不触发
 
@@ -79,14 +78,19 @@ window.addEventListener('load', () => {
                         success: function(data) {
                             if (data.code === 200) {
                                 console.log(data);
-                                lcards.innerHTML += `
-                                <li>
-                                    <div class="cover">
-                                        <img src="${picList[data.data.list[0].cardId]}">
-                                    </div>
-                                    <div class="back">${data.data.list[0].content}</div>
-                                </li>
-                                `
+                                for (let k = 0; k < data.data.list.length; k++) {
+                                    lcards.innerHTML += `
+                                    <li>
+                                        <div class="cover">
+                                            <img src="${picList[data.data.list[k].cardId]}">
+                                        </div>
+                                        <div class="back">
+                                            <p>${data.data.list[k].content}</p>
+                                            <span>${data.data.list[k].signature}</span>
+                                        </div>
+                                    </li>
+                                    `
+                                }
                             }
                         }
                     });
@@ -96,7 +100,7 @@ window.addEventListener('load', () => {
                 left.style.left = '-200%'
                 middle.style.left = '-100%';
                 right.style.left = '0';
-                flag = true;
+                flag = false;
                 if (rflag) {
                     rflag = false;
                     ajax({
@@ -113,14 +117,19 @@ window.addEventListener('load', () => {
                         success: function(data) {
                             if (data.code === 200) {
                                 console.log(data);
-                                rcards.innerHTML += `
-                                <li>
-                                    <div class="cover">
-                                        <img src="${data.data.list[0].cardId}">
-                                    </div>
-                                    <div class="back">${data.data.list[0].content}</div>
-                                </li>
-                                `
+                                for (let k = 0; k < data.data.list.length; k++) {
+                                    rcards.innerHTML += `
+                                    <li>
+                                        <div class="cover">
+                                            <img src="${data.data.list[k].cardId}">
+                                        </div>
+                                        <div class="back">
+                                            <p>${data.data.list[k].content}</p>
+                                            <span>${data.data.list[k].signature}</span>
+                                        </div>
+                                    </li>
+                                    `
+                                }
                             }
                         }
                     });
@@ -138,12 +147,16 @@ window.addEventListener('load', () => {
         middle.style.left = '0';
         right.style.left = '100%';
     })
+
     rbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
         if (evt.deltaY < 0) { //鼠标滚轮向上滚动
             if (pageNum2++ > rpageNumMax) {
                 rpageNumMax = pageNum2;
+                flag = false;
+                rcards.style.width = rcards.offsetWidth + 1080 + "px";
+                // rcards.style.width = rcards.offsetWidth 
                 // 判断是不是比最大页数大 是的话就发送请求 不是的话就不做处理
                 ajax({
                     type: 'get',
@@ -165,7 +178,10 @@ window.addEventListener('load', () => {
                                     <div class="cover">
                                         <img src="${data.data.list[k].cardId}">
                                     </div>
-                                    <div class="back">${data.data.list[k].content}</div>
+                                    <div class="back">
+                                            <p>${data.data.list[k].content}</p>
+                                            <span>${data.data.list[k].signature}</span>
+                                    </div>
                                 </li>
                                 `
                             }
@@ -194,7 +210,9 @@ window.addEventListener('load', () => {
         evt.stopPropagation();
         if (evt.deltaY < 0) {
             if (pageNum1++ > lpageNumMax) {
+                flag = true;
                 lpageNumMax = pageNum1;
+                lcards.style.width = lcards.offsetWidth + 1080 + "px";
                 ajax({
                     type: 'get',
                     url: '/wall/list',
@@ -209,14 +227,19 @@ window.addEventListener('load', () => {
                     success: function(data) {
                         if (data.code === 200) {
                             console.log(data);
-                            lcards.innerHTML += `
-                            <li>
-                                <div class="cover">
-                                    <img src="${picList[data.data.list[0].cardId]}">
-                                </div>
-                                <div class="back">${data.data.list[0].content}</div>
-                            </li>
-                            `
+                            for (let k = 0; k < data.data.list.length; k++) {
+                                lcards.innerHTML += `
+                                <li>
+                                    <div class="cover">
+                                        <img src="${data.data.list[k].cardId}">
+                                    </div>
+                                    <div class="back">
+                                            <p>${data.data.list[k].content}</p>
+                                            <span>${data.data.list[k].signature}</span>
+                                    </div>
+                                </li>
+                                `
+                            }
                         }
                     }
                 });
