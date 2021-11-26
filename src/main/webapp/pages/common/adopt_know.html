@@ -150,7 +150,7 @@
                                 </label>
                                 <form action="/cover" method="post" id="feedback_cover" enctype="multipart/form-data">
                                     <input type="file" name="feedback_cover" class="feed_file" multiple>
-                                    <input type="hidden" name="feedback_cover" value="feedback_cover">
+                                    <input type="hidden" name="part_name" value="feedback_cover">
                                     <input type="submit" name="提交图片" hidden class="feed_in">
                                 </form>
                                 <img src="../../images/express.png" alt="">
@@ -336,7 +336,7 @@
 
              feed_file.addEventListener('change',(e)=>{
                 if(feed_file.files.length){
-                    feed_in.click();
+                    fee_in.click();
                     // hide(placeholder);
                 }
              })
