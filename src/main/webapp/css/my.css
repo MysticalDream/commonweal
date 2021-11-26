@@ -1109,6 +1109,7 @@ li .line_div:nth-child(4) img {
     width: 100%;
     font-size: 0px;
     height: 60px;
+    cursor: pointer;
     /* display: table;
     word-spacing: -1em; */
 }

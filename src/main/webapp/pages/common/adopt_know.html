@@ -277,7 +277,7 @@
                         <li>品种：${data.data.variety}</li>
                         <li>外貌:${data.data.appearance}</li>
                         <li>性格：${data.data.characters}</li>
-                        <li>年龄：${data.data.age}{</li>
+                        <li>年龄：${data.data.age}</li>
                         <li>习性：${data.data.habit}</li>
                         <li>被领养时间：${new Date(data.data.gmtCreate).Format('yyyy年MM月dd日')}</li>`;
                   let aImg=document.createElement('img');
@@ -460,7 +460,7 @@
                     pageSize:4,
                     pageNum:1,
                     adoptId:getUrlParamObject(window.location.search).ddj,
-                    content:words_input.value.trim(),
+                    content:words_input.innerText,
                     pics:imgArray
                  },
                 //  success:function(){
