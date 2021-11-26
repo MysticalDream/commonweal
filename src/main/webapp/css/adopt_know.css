@@ -375,7 +375,7 @@ body .footer{
     justify-content: center;
     margin-top:50px;
     width: 100%;
-    height: 250px;
+    height: 310px;
     background-color: rgba(246, 245, 245, 1);
     margin-bottom: 70px;
     border-radius: 8px;
@@ -463,4 +463,39 @@ body .footer{
 #feedback_cover{
     display: inline-block;
     position: absolute;
+}
+
+.words_input textarea{
+    width: 90%;
+    height: 38%;
+    background-color: thistle;
+    resize: none;
+    outline: none;
+    border: none;
+    text-indent: 1rem;
+    padding-top: 2%;
+    font-family: Simsun;
+    letter-spacing: 2px;
+}
+
+.pic_append{
+    position: relative;
+    width: 90%;
+    height: 50%;
+    left:3%;
+    background-color: turquoise;
+}
+
+body .pic_append img{
+    width: 80px;
+    height: 80px;
+    position: relative;
+}
+
+body .main_center .left_long .avator_pic{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0px;
+    left:0px; 
 }

@@ -156,7 +156,10 @@
                                 <button class="feedback_btn">发布</button>
                             </div>
                             <div class="words_input" contenteditable="true">
-                                <span class="placeholder">有啥想分享的吗~</span>
+                                <!-- <span class="placeholder">有啥想分享的吗~</span> -->
+                                <textarea placeholder="有啥想分享的吗~" class="words_area"></textarea>
+                                <div class="pic_append">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -294,6 +297,7 @@
         // 发布反馈接口
              let feedback_cover=$('#feedback_cover')[0];
              let words_input=$('.words_input')[0]; 
+             let words_area=$('.words_area')[0];
              let feed_file=$('.feed_file')[0];
              let feed_in=$('.feed_in')[0];
              let imgArray=new Array();
@@ -301,18 +305,14 @@
              let placeholder=$('.placeholder')[0];
              let feedback_btn=$('.feedback_btn')[0];
              let more_wrap=$('.more_wrap')[0];
+             let pic_append=$('.pic_append')[0];
              words_input.onfocus=function(){
-                //  hide(placeholder);
-               words_input.innerHTML='';
+                words_area.placeholder='';
              }
 
              words_input.onblur=function(){
-                // show(placeholder);
-                if(words_input.innerText==''&&!words_input.childNodes){
-                    let placeholder_span=document.createElement('span');
-                    placeholder_span.classList.add('placeholder');
-                    placeholder_span.innerText='有啥要分享的吗~';
-                    words_input.appendChild(placeholder_span);
+                if(words_input.innerText==''){
+                    words_area.placeholder='有啥想分享的吗~';
                 }
              }
 
@@ -324,7 +324,7 @@
                         img_d.src=data[i];
                         imgArray.push(img_d);
                         img_d.classList.add('bottom_img');
-                        words_input.appendChild(img_d);
+                        pic_append.appendChild(img_d);
                     }
                 }
              })
@@ -350,12 +350,13 @@
                     },
                     data:{
                         adoptId:getUrlParamObject(window.location.search).ddj,
-                        content:words_input.innerText,
+                        content:words_area.innerText,
                         pics:imgArray
                     },
                     success:function(){
+                        words_area.innerHTML='';
                         words_input.innerHTML='';
-                        words_input.appendChild(placeholder);
+                        words_area.placeholder='有啥要分享的吗~';
                         let oDiv=document.createElement('div');
                         oDiv.classList.add('remark_part');
                         let remarks=$('.remark_area')[0];
@@ -368,7 +369,7 @@
                 })
             })
            
-            let src="../../images/dog.png";
+            // let src="../../images/dog.png";
             let remark_area=$('.remark_area')[0];
             // 从此处开始
             function feedback(data,picList,index,box){
@@ -377,7 +378,7 @@
                 // 用户头像信息等
                 let str=`  <div class="remark_user">
                             <div class="avator_pic">
-                                <img src="${src}" alt="">
+                                <img src="${data.data.list[index].userDTO.avatarUrl}" alt="">
                             </div>
                             <div>
                                 <div class="id_box">${data.data.list[index].userDTO.username}</div>
@@ -387,7 +388,7 @@
 
                 let str1=` <div class="remark_user">
                             <div class="avator_pic">
-                                <img src="${src}" alt="">
+                                <img src="${data.data.list[index].userDTO.avatarUrl}" alt="">
                                 <div class="red_ling">
                                     <img src="../../images/领.png" alt="">
                                 </div>
@@ -408,8 +409,8 @@
                 mDiv.appendChild(p);
                 for(let j=0;j<picList.length;j++){
                     let img=document.createElement('img');
-                    // img.src=picList[j].srcName;
-                    img.src='../../images/dog.png';
+                    img.src=picList[j].srcName;
+                    // img.src='../../images/dog.png';
                     mDiv.appendChild(img);
                 }
                 let divs=document.createElement('div');
@@ -433,7 +434,7 @@
                 for(let i=0;i<data.data.list.length;i++){
                     let div_1=document.createElement('div');
                     div_1.classList.add('follow_div');
-                    let str=`  <span class="follow_avator"><img src=${src}></span>
+                    let str=`  <span class="follow_avator"><img src=${data.data.list[index].userDTO.avatarUrl}></span>
                                 <div class="follow_text">
                                     <div>
                                         <span class="follow_name">${data.data.list[i].userDTO.username}</span>
@@ -467,7 +468,7 @@
                     pageSize:4,
                     pageNum:1,
                     adoptId:getUrlParamObject(window.location.search).ddj,
-                    content:words_input.innerText,
+                    content:words_area.innerText,
                     pics:imgArray
                  },
                 //  success:function(){
