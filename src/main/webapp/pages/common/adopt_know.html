@@ -430,6 +430,7 @@
                 divs.innerHTML=strs;
                 mDiv.appendChild(divs);
                 box.insertBefore(oDiv,more_wrap);
+                // box.appendChild(oDiv);
             }
 
             function remarkList(data,box){
@@ -503,6 +504,9 @@
                                 id:data.data.list[i].comment.id
                             },
                             success:function(data){
+                                if(data.data.list.length==0){
+                                    return;
+                                }
                                 remarkList(data,remark_area);
                             }
                         })
