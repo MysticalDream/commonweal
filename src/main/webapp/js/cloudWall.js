@@ -167,65 +167,14 @@ window.addEventListener('load', () => {
             pageNum2--;
             if (pageNum2 == 0) {
                 pageNum2 = 1;
+                scrolling = false;
                 return;
             }
             rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
             scrolling = false;
-            // if (++pageNum2 > rpageNumMax) {
-            //     rpageNumMax = pageNum2;
-            //     ajax({
-            //         type: 'get',
-            //         url: '/wall/list',
-            //         data: {
-            //             pageNum: pageNum2,
-            //             pageSize: 4,
-            //             flag: flag
-            //         },
-            //         header: {
-            //             'Content-Type': 'application/x-www-form-urlencoded'
-            //         },
-            //         success: function(data) {
-            //             if (data.code === 200) {
-            //                 if (data.data.list.length > 0) {
-            //                     for (let k = 0; k < data.data.list.length; k++) {
-            //                         rcards.innerHTML += `
-            //                                 <li>
-            //                                     <div class="cover">
-            //                                         <img src="${picList[data.data.list[k].cardId]}">
-            //                                     </div>
-            //                                     <div class="back">
-            //                                             <p>${data.data.list[k].content}</p>
-            //                                             <span>${data.data.list[k].signature}</span>
-            //                                     </div>
-            //                                 </li>
-            //                                 `
-            //                     }
-            //                     rcards.style.width = rcards.offsetWidth + 1080 + "px";
-            //                 } else {
-            //                     pageNum2 = pageNum2 - 1;
-            //                     rpageNumMax = pageNum2;
-            //                 }
 
-            //             }
-            //         }
-            //     });
-            // }
-
-            // if (-rcards.offsetWidth < rcards.offsetLeft - 1080) {
-            //     rcards.style.left = rcards.offsetLeft - 1080 + 'px';
-            // }
-            // console.log(rcards.offsetLeft + 100);
         } else { //鼠标滚轮向下滚动
-            // if (pageNum2 > 1) {
-            //     pageNum2--;
-            // } else {
-            //     pageNum2 = 1;
-            // }
-            // if (rcards.offsetLeft >= 0) {
-            //     rcards.style.left = '0px';
-            // } else {
-            //     rcards.style.left = rcards.offsetLeft + 1080 + 'px';
-            // }
+
             scrolling = true;
             pageNum2++;
             if (rpageNumMax < pageNum2) {
@@ -277,63 +226,60 @@ window.addEventListener('load', () => {
         if (scrolling2) {
             return
         }
-        // if (evt.deltaY < 0) {
-        //     if (++pageNum1 > lpageNumMax) {
-        //         lpageNumMax = pageNum1;
-        //     }
-        //     ajax({
-        //         type: 'get',
-        //         url: '/wall/list',
-        //         data: {
-        //             pageNum: pageNum1,
-        //             pageSize: 4,
-        //             flag: flag
-        //         },
-        //         header: {
-        //             'Content-Type': 'application/x-www-form-urlencoded'
-        //         },
-        //         success: function(data) {
-        //             if (data.code === 200) {
-        //                 console.log(data);
-        //                 if (data.data.list.length > 0) {
-        //                     for (let k = 0; k < data.data.list.length; k++) {
-        //                         lcards.innerHTML += `
-        //                             <li>
-        //                                 <div class="cover">
-        //                                     <img src="${picList2[data.data.list[k].cardId]}">
-        //                                 </div>
-        //                                 <div class="back">
-        //                                         <p>${data.data.list[k].content}</p>
-        //                                         <span>${data.data.list[k].signature}</span>
-        //                                 </div>
-        //                             </li>
-        //                             `
-        //                     }
-        //                     lcards.style.width = lcards.offsetWidth + 1080 + "px";
-        //                 } else {
-        //                     pageNum1 = pageNum1 - 1;
-        //                     lpageNumMax = pageNum1;
-        //                 }
-
-        //             }
-        //         }
-        //     });
-        //     if (-lcards.offsetWidth < lcards.offsetLeft - 1080) {
-        //         lcards.style.left = lcards.offsetLeft - 1080 + 'px';
-        //     }
-        // }
-        else {
-            if (pageNum1 > 1) {
-                pageNum1--;
-            } else {
+        if (evt.deltaY < 0) { //鼠标滚轮向上滚动
+            scrolling2 = true;
+            pageNum1--;
+            if (pageNum1 == 0) {
                 pageNum1 = 1;
+                scrolling2 = false;
+                return;
             }
-            console.log(lcards.offsetLeft);
-            if (lcards.offsetLeft >= 0) {
-                lcards.style.left = '0px'
-            } else {
-                lcards.style.left = lcards.offsetLeft + 1080 + 'px';
+            lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / rpageNumMax) * 100) + "%)";
+            scrolling2 = false;
+
+        } else { //鼠标滚轮向下滚动
+
+            scrolling2 = true;
+            pageNum1++;
+            if (lpageNumMax < pageNum1) {
+                ajax({
+                    type: 'get',
+                    url: '/wall/list',
+                    data: {
+                        pageNum: pageNum1,
+                        pageSize: 4,
+                        flag: flag
+                    },
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function(data) {
+                        if (data.code === 200) {
+                            if (data.data.list.length > 0) {
+                                lcards.style.width = pageNum1 * 100 + "%";
+                                for (let k = 0; k < data.data.list.length; k++) {
+                                    lcards.innerHTML += `
+                                                                        <li>
+                                                                            <div class="cover">
+                                                                                <img src="${picList[data.data.list[k].cardId]}">
+                                                                            </div>
+                                                                            <div class="back">
+                                                                                <p>${data.data.list[k].content}</p>
+                                                                                <span>${data.data.list[k].signature}</span>
+                                                                            </div>
+                                                                        </li>
+                                                                        `
+                                }
+                            } else {
+                                pageNum1--;
+                            }
+                            lpageNumMax = pageNum1;
+                            lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / lpageNumMax) * 100) + "%)";
+                        }
+                    }
+                })
             }
+            scrolling2 = false;
         }
     }, 1000))
 })
