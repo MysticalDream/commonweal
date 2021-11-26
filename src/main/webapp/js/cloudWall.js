@@ -91,7 +91,7 @@ window.addEventListener('load', () => {
                                             </div>
                                             <div class="back">
                                                 <p>${data.data.list[k].content}</p>
-                                                <span>${data.data.list[k].signature}</span>
+                                                <span>FROM: ${data.data.list[k].signature}</span>
                                             </div>
                                         </li>
                                         `
@@ -131,7 +131,7 @@ window.addEventListener('load', () => {
                                                             </div>
                                                             <div class="back">
                                                                 <p>${data.data.list[k].content}</p>
-                                                                <span>${data.data.list[k].signature}</span>
+                                                                <span>FROM:${data.data.list[k].signature}</span>
                                                             </div>
                                                         </li>
                                                         `
@@ -201,7 +201,7 @@ window.addEventListener('load', () => {
                                                                             </div>
                                                                             <div class="back">
                                                                                 <p>${data.data.list[k].content}</p>
-                                                                                <span>${data.data.list[k].signature}</span>
+                                                                                <span>FROM: ${data.data.list[k].signature}</span>
                                                                             </div>
                                                                         </li>
                                                                         `
@@ -215,7 +215,7 @@ window.addEventListener('load', () => {
                         }
                     }
                 })
-            }else {
+            } else {
                 rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
                 scrolling = false;
             }
@@ -268,7 +268,7 @@ window.addEventListener('load', () => {
                                                                             </div>
                                                                             <div class="back">
                                                                                 <p>${data.data.list[k].content}</p>
-                                                                                <span>${data.data.list[k].signature}</span>
+                                                                                <span>FROM: ${data.data.list[k].signature}</span>
                                                                             </div>
                                                                         </li>
                                                                         `
@@ -282,7 +282,7 @@ window.addEventListener('load', () => {
                         }
                     }
                 })
-            }else {
+            } else {
                 lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / lpageNumMax) * 100) + "%)";
                 scrolling2 = false;
             }
