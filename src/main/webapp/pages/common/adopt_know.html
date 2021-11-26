@@ -322,7 +322,7 @@
                 callback:function(data){
                     for(let i=0;i<data.data.length;i++){
                         let img_d=document.createElement('img');
-                        img_d.src=data[i];
+                        img_d.src=data.data[i];
                         imgArray.push(img_d);
                         img_d.classList.add('bottom_img');
                         pic_append.appendChild(img_d);
@@ -418,7 +418,7 @@
                 divs.classList.add('span_box');
                 let strs=` <span class="message_span remark_feedback">
                                 <img src="../../images/message_icon.png" alt="">
-                                <span>${data.data.total}</span>
+                                <span></span>
                             </span>
                             <span class="like_span">
                                 <img src="../../images/like_grey.png" alt="">
@@ -456,6 +456,7 @@
                     div_1.innerHTML=str;
                     oDiv.appendChild(div_1);
                 } 
+                sBox.querySelector('span.message_span.remark_feedback>span').innerText=data.data.total;
                 sBox.appendChild(oDiv);
             //    box.insertBefore(oDiv,more_wrap);
             }
@@ -493,6 +494,7 @@
                         oDiv.id=data.data.list[i].comment.id;
                         // 这里的picList再看一下
                         feedback(data,data.data.list[i].picList,i,oDiv);
+
                         ajax({
                             type:'get',
                             url:'/feedback/comment',
