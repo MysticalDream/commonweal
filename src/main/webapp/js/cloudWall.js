@@ -21,8 +21,7 @@ window.addEventListener('load', () => {
     // 最大页数
     let lpageNumMax = 1;
     let rpageNumMax = 1;
-    let lallpages = 1;
-    let rallpages = 1;
+    let scrolling = false;
 
 
     /**
@@ -159,9 +158,77 @@ window.addEventListener('load', () => {
         let evt = e || window.event;
         evt.stopPropagation();
         flag = true;
-        if (evt.deltaY < 0) { //鼠标滚轮向上滚动 
-            if (++pageNum2 > rpageNumMax) {
-                rpageNumMax = pageNum2;
+        if (scrolling) {
+            return;
+        }
+        if (evt.deltaY < 0) { //鼠标滚轮向上滚动
+            scrolling = true;
+            pageNum2--;
+            if (pageNum2 == 0) {
+                pageNum2 = 1;
+                return;
+            }
+            rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
+            scrolling = false;
+            // if (++pageNum2 > rpageNumMax) {
+            //     rpageNumMax = pageNum2;
+            //     ajax({
+            //         type: 'get',
+            //         url: '/wall/list',
+            //         data: {
+            //             pageNum: pageNum2,
+            //             pageSize: 4,
+            //             flag: flag
+            //         },
+            //         header: {
+            //             'Content-Type': 'application/x-www-form-urlencoded'
+            //         },
+            //         success: function(data) {
+            //             if (data.code === 200) {
+            //                 if (data.data.list.length > 0) {
+            //                     for (let k = 0; k < data.data.list.length; k++) {
+            //                         rcards.innerHTML += `
+            //                                 <li>
+            //                                     <div class="cover">
+            //                                         <img src="${picList[data.data.list[k].cardId]}">
+            //                                     </div>
+            //                                     <div class="back">
+            //                                             <p>${data.data.list[k].content}</p>
+            //                                             <span>${data.data.list[k].signature}</span>
+            //                                     </div>
+            //                                 </li>
+            //                                 `
+            //                     }
+            //                     rcards.style.width = rcards.offsetWidth + 1080 + "px";
+            //                 } else {
+            //                     pageNum2 = pageNum2 - 1;
+            //                     rpageNumMax = pageNum2;
+            //                 }
+
+            //             }
+            //         }
+            //     });
+            // }
+
+            // if (-rcards.offsetWidth < rcards.offsetLeft - 1080) {
+            //     rcards.style.left = rcards.offsetLeft - 1080 + 'px';
+            // }
+            // console.log(rcards.offsetLeft + 100);
+        } else { //鼠标滚轮向下滚动
+            // if (pageNum2 > 1) {
+            //     pageNum2--;
+            // } else {
+            //     pageNum2 = 1;
+            // }
+            // if (rcards.offsetLeft >= 0) {
+            //     rcards.style.left = '0px';
+            // } else {
+            //     rcards.style.left = rcards.offsetLeft + 1080 + 'px';
+            // }
+            scrolling = true;
+            pageNum2++;
+            if (rpageNumMax < pageNum2) {
+                rcards.style.width = pageNum2 * 100 + "%";
                 ajax({
                     type: 'get',
                     url: '/wall/list',
@@ -178,42 +245,24 @@ window.addEventListener('load', () => {
                             if (data.data.list.length > 0) {
                                 for (let k = 0; k < data.data.list.length; k++) {
                                     rcards.innerHTML += `
-                                            <li>
-                                                <div class="cover">
-                                                    <img src="${picList[data.data.list[k].cardId]}">
-                                                </div>
-                                                <div class="back">
-                                                        <p>${data.data.list[k].content}</p>
-                                                        <span>${data.data.list[k].signature}</span>
-                                                </div>
-                                            </li>
-                                            `
+                                                                        <li>
+                                                                            <div class="cover">
+                                                                                <img src="${picList[data.data.list[k].cardId]}">
+                                                                            </div>
+                                                                            <div class="back">
+                                                                                <p>${data.data.list[k].content}</p>
+                                                                                <span>${data.data.list[k].signature}</span>
+                                                                            </div>
+                                                                        </li>
+                                                                        `
                                 }
-                                rcards.style.width = rcards.offsetWidth + 1080 + "px";
-                            } else {
-                                pageNum2 = pageNum2 - 1;
-                                rpageNumMax = pageNum2;
                             }
-
+                        } else {
+                            pageNum2--;
                         }
+                        rpageNumMax = pageNum2;
                     }
-                });
-            }
-
-            if (-rcards.offsetWidth < rcards.offsetLeft - 1080) {
-                rcards.style.left = rcards.offsetLeft - 1080 + 'px';
-            }
-            // console.log(rcards.offsetLeft + 100);
-        } else { //鼠标滚轮向下滚动
-            if (pageNum2 > 1) {
-                pageNum2--;
-            } else {
-                pageNum2 = 1;
-            }
-            if (rcards.offsetLeft >= 0) {
-                rcards.style.left = '0px';
-            } else {
-                rcards.style.left = rcards.offsetLeft + 1080 + 'px';
+                })
             }
         }
     }, 1000))
