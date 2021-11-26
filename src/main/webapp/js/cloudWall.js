@@ -66,7 +66,7 @@ window.addEventListener('load', () => {
                 left.style.left = '0';
                 middle.style.left = '100%';
                 right.style.left = '200%';
-                flag = false;
+                flag = true;
                 if (lflag) { //最大页数 应该是大于等于pages的 如果小于
                     lflag = false;
                     ajax({
@@ -106,7 +106,7 @@ window.addEventListener('load', () => {
                 left.style.left = '-200%'
                 middle.style.left = '-100%';
                 right.style.left = '0';
-                flag = true;
+                flag = false;
                 if (rflag) {
                     rflag = false;
                     ajax({
