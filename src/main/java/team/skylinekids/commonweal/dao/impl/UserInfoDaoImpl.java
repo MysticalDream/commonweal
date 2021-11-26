@@ -10,6 +10,14 @@ import team.skylinekids.commonweal.pojo.po.UserInfo;
 public class UserInfoDaoImpl extends MyGenericBaseDao<UserInfo> implements UserInfoDao {
     @Override
     public int addUserInfo(UserInfo userInfo) throws Exception {
-        return this.insert(userInfo);
+        UserInfo userInfoCondition = new UserInfo();
+        userInfoCondition.setUserId(userInfo.getUserId());
+        UserInfo userInfo1 = this.selectOne(userInfoCondition);
+        if (userInfo1 == null) {
+            return this.insert(userInfo);
+        } else {
+            userInfo.setUserInfoId(userInfo1.getUserInfoId());
+            return this.update(userInfo);
+        }
     }
 }
