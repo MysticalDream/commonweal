@@ -283,6 +283,7 @@
                   let aImg=document.createElement('img');
                   aImg.src=data.data.coverUrl;
                   img_first.appendChild(aImg);
+                  frame_ul.innerHTML=str_li;
                  },
                  error:function(){
 
@@ -342,7 +343,7 @@
                     },
                     data:{
                         adoptId:getUrlParamObject(window.location.search).ddj,
-                        content:words_input.value.trim(),
+                        content:words_input.innerText,
                         pics:imgArray
                     },
                     success:function(){
