@@ -301,7 +301,7 @@
              let words_area=$('.words_area')[0];
              let feed_file=$('.feed_file')[0];
              let feed_in=$('.feed_in')[0];
-             let imgArray=new Array();
+             let imgArray=[];
              let feed_label=$('.feed_label')[0];
              let placeholder=$('.placeholder')[0];
              let feedback_btn=$('.feedback_btn')[0];
@@ -323,7 +323,7 @@
                     for(let i=0;i<data.data.length;i++){
                         let img_d=document.createElement('img');
                         img_d.src=data.data[i];
-                        imgArray.push(img_d);
+                        imgArray.push(data.data[i]);
                         img_d.classList.add('bottom_img');
                         pic_append.appendChild(img_d);
                     }
