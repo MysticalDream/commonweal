@@ -20,7 +20,7 @@
     width: 1000px;
     height: 500px;
     margin: 0px auto;
-    margin-top: 30px;
+    margin-top: 50px;
     border-radius: 8px;
     /* background-color: pink; */
     overflow: hidden;
@@ -52,7 +52,7 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120dpx;
+    /* width: 95px; */
     height: 20px;
     /* background-color: pink; */
 }

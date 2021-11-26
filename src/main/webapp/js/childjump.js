@@ -11,12 +11,12 @@ window.addEventListener('load', () => {
         child_all.style.display = 'none'
     })
     childteach.addEventListener('click', () => {
-        window.location.href = '/pages/lovekid.html';
+        window.location.href = 'lovekid.html';
     })
     childhelp.addEventListener('click', () => {
-        window.location.href = '/pages/cloudHelp.html';
+        window.location.href = 'cloudHelp.html';
     })
     childwall.addEventListener('click', () => {
-        window.location.href = '/pages/cloudWall.html';
+        window.location.href = 'cloudWall.html';
     })
 })
