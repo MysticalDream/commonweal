@@ -373,10 +373,7 @@
             // let src="../../images/dog.png";
             let remark_area=$('.remark_area')[0];
             // 从此处开始
-            function feedback(data,picList,index,box){
-                let oDiv=document.createElement('div');
-                oDiv.classList.add('remark_part');
-                oDiv.id=data.data.list[index].comment.id;
+            function feedback(data,picList,index,oDiv){
                 // 用户头像信息等
                 let str=`  <div class="remark_user">
                             <div class="avator_pic">
@@ -433,7 +430,7 @@
                 // box.appendChild(oDiv);
             }
 
-            function remarkList(data,box){
+            function remarkList(data,sBox){
                 let oDiv=document.createElement('div');
                 oDiv.classList.add('remark_follow');
                 for(let i=0;i<data.data.list.length;i++){
@@ -459,7 +456,8 @@
                     div_1.innerHTML=str;
                     oDiv.appendChild(div_1);
                 } 
-               box.insertBefore(oDiv,more_wrap);
+                sBox.appendChild(oDiv);
+            //    box.insertBefore(oDiv,more_wrap);
             }
 
         //   for(let i=0;i<obj1.data.list.length;i++){
@@ -490,8 +488,11 @@
                 // },
                 success:function(data){
                     for(let i=0;i<data.data.list.length;i++){
+                        let oDiv=document.createElement('div');
+                        oDiv.classList.add('remark_part');
+                        oDiv.id=data.data.list[i].comment.id;
                         // 这里的picList再看一下
-                        feedback(data,data.data.list[i].picList,i,remark_area);
+                        feedback(data,data.data.list[i].picList,i,oDiv);
                         ajax({
                             type:'get',
                             url:'/feedback/comment',
@@ -507,7 +508,7 @@
                                 if(data.data.list.length==0){
                                     return;
                                 }
-                                remarkList(data,remark_area);
+                                remarkList(data,oDiv);
                             }
                         })
                     }
