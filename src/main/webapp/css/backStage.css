@@ -580,6 +580,6 @@ tr td .flow_span{
     /* background-color: slateblue; */
 }
 /*添加效果*/
-div.low_part > div.low_right > div > div.first_table > table > tr{
+ div.first_table > table > tr{
     transition: all .5s;
 }
