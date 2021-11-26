@@ -264,6 +264,8 @@ window.addEventListener('load', () => {
                     }
                 })
             }
+            rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
+            scrolling = false;
         }
     }, 1000))
 
