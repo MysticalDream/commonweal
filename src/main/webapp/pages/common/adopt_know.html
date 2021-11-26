@@ -569,6 +569,11 @@
                    success:function(data){
                         count++;
                         for(let i=0;i<data.data.list.length;i++){
+                            let oDiv=document.createElement('div');
+                            oDiv.classList.add('remark_part');
+                            oDiv.id=data.data.list[i].comment.id;
+                            // 这里的picList再看一下
+                            feedback(data,data.data.list[i].picList,i,oDiv);
                             ajax({
                                     type:'get',
                                     url:'/feedback/comment',
@@ -581,8 +586,10 @@
                                         id:data.data.list[i].comment.id
                                     },
                                     success:function(data){
-                                        feedback(data,i,commentNumber);
-                                        remarkList(data);
+                                        if(data.data.list.length==0){
+                                            return;
+                                         }
+                                        remarkList(data,oDiv);
                                         // commentNumber=data.data.list.length;
                                     },
                                     error:function(){
