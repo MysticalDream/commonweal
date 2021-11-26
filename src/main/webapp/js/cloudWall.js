@@ -215,6 +215,9 @@ window.addEventListener('load', () => {
                         }
                     }
                 })
+            }else {
+                rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
+                scrolling = false;
             }
         }
     }, 200))
@@ -279,6 +282,9 @@ window.addEventListener('load', () => {
                         }
                     }
                 })
+            }else {
+                lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / lpageNumMax) * 100) + "%)";
+                scrolling2 = false;
             }
         }
     }, 200))
