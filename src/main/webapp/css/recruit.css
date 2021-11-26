@@ -98,8 +98,8 @@ li {
     padding-left: 0px;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, .4);
-    z-index: 12;
-    display: none;
+    z-index: 999;
+    display: block;
 }
 
 .nav_s .middle .child .child_all>div {

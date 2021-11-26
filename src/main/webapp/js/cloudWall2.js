@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
         for (let i = 0; i < cards.length; i++) {
             cards[i].style.animation = 'unset';
         }
-    }, 1000);
+    }, 500);
     // 获取拼接的参数
     function isNumber(val) {
         var reg = /^[0-9]+\.?[0-9]*$/;

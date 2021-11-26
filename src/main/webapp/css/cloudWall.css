@@ -148,7 +148,7 @@ body {
     width: 1080px;
     height: 330px;
     overflow: hidden;
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 
 .wrap .left .cards {
@@ -157,7 +157,7 @@ body {
     left: 0px;
     width: 1080px;
     height: 330px;
-    background-color: skyblue;
+    /* background-color: skyblue; */
     transition: all 0.5s ease;
 }
 
@@ -209,19 +209,20 @@ body {
 .wrap .left .cards li .back p {
     position: absolute;
     top: 10px;
-    left: 10px;
-    width: 230px;
+    left: 20px;
+    width: 210px;
     height: 300px;
     line-height: 20px;
-    font-size: 16px;
+    font-size: 18px;
     overflow: auto;
     word-wrap: break-word;
 }
 
 .wrap .left .cards li .back span {
     position: absolute;
-    width: 40px;
+    /* width: 40px; */
     height: 20px;
+    line-height: 20px;
     bottom: 11px;
     right: -8px;
 }
@@ -271,7 +272,7 @@ body {
     left: 100%;
     width: 1280px;
     height: 537px;
-    background-color: pink;
+    /* background-color: pink; */
     overflow: hidden;
     transition: all 1s;
     background: url(../images/cloudWall2.jpg);
@@ -300,7 +301,7 @@ body {
     width: 1080px;
     height: 330px;
     overflow: hidden;
-    background-color: pink;
+    /* background-color: pink; */
 }
 
 .wrap .right .cards {
@@ -309,7 +310,7 @@ body {
     left: 0px;
     width: 1080px;
     height: 330px;
-    background-color: skyblue;
+    /* background-color: skyblue; */
     transition: all 0.5s ease;
     /* overflow: hidden; */
 }
@@ -351,6 +352,27 @@ body {
 
 .wrap .right .cards li:hover .back {
     transform: rotateY(0deg);
+}
+
+.wrap .right .cards li .back p {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 210px;
+    height: 300px;
+    line-height: 20px;
+    font-size: 18px;
+    overflow: auto;
+    word-wrap: break-word;
+}
+
+.wrap .right .cards li .back span {
+    position: absolute;
+    /* width: 40px; */
+    height: 20px;
+    line-height: 20px;
+    bottom: 11px;
+    right: -8px;
 }
 
 .wrap .right .write {
