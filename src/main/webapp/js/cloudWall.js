@@ -211,13 +211,13 @@ window.addEventListener('load', () => {
                             }
                             rpageNumMax = pageNum2;
                             rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
+                            scrolling = false;
                         }
                     }
                 })
             }
-            scrolling = false;
         }
-    }, 1000))
+    }, 200))
 
     lbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
@@ -275,11 +275,11 @@ window.addEventListener('load', () => {
                             }
                             lpageNumMax = pageNum1;
                             lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / lpageNumMax) * 100) + "%)";
+                            scrolling2 = false;
                         }
                     }
                 })
             }
-            scrolling2 = false;
         }
-    }, 1000))
+    }, 200))
 })
