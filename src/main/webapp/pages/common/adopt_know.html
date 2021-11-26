@@ -409,11 +409,13 @@
                 p.classList.add('remark_text');
                 p.innerText=data.data.list[index].comment.content;
                 mDiv.appendChild(p);
-                for(let j=0;j<picList.length;j++){
-                    let img=document.createElement('img');
-                    img.src=picList[j].srcName;
-                    // img.src='../../images/dog.png';
-                    mDiv.appendChild(img);
+                if(picList!==undefined){
+                    for(let j=0;j<picList.length;j++){
+                        let img=document.createElement('img');
+                        img.src=picList[j].srcName;
+                        // img.src='../../images/dog.png';
+                        mDiv.appendChild(img);
+                        }
                 }
                 let divs=document.createElement('div');
                 divs.classList.add('span_box');
@@ -439,7 +441,7 @@
                     let str=`  <span class="follow_avator"><img src=${data.data.list[i].userDTO.avatarUrl}></span>
                                 <div class="follow_text">
                                     <div>
-                                        <span class="follow_name">${data.data.list[i].userDTO.username}</span>
+                                        <span class="follow_name">${data.data.list[i].userDTO.username}：</span>
                                         <p class="follow_content">${data.data.list[i].comment.content}</p>
                                     </div>
                                     <span>${new Date(data.data.list[i].comment.gmtCreate).Format('yyyy年MM月dd日')}</span>
@@ -459,11 +461,11 @@
                box.insertBefore(oDiv,more_wrap);
             }
 
-        //   for(let i=0;i<obj1.data.list.length;i++){
-        //       feedback(obj1,obj1.data.list[0].picList,i,remark_area);
-        //   }
+          for(let i=0;i<obj1.data.list.length;i++){
+              feedback(obj1,obj1.data.list[0].picList,i,remark_area);
+          }
 
-        //   remarkList(obj2,remark_area);
+          remarkList(obj2,remark_area);
 
              // 获取领养评论接口
              ajax({
