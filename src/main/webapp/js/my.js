@@ -1,6 +1,8 @@
 window.addEventListener('load', function () {
     let li_open = document.querySelectorAll('.bottom_left_d>ul>li');
     let show_box = document.querySelectorAll('.slide_ul_d');
+    console.log(li_open);
+    console.log(show_box);
     for (let i = 0; i < li_open.length; i++) {
         li_open[i].addEventListener('mouseover', function () {
             for (let j = 0; j < li_open.length; j++) {

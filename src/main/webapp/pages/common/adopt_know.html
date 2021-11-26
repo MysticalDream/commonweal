@@ -153,7 +153,7 @@
                                     <input type="submit" name="提交图片" hidden class="feed_in">
                                 </form>
                                 <img src="../../images/express.png" alt="">
-                                <button>发布</button>
+                                <button class="feedback_btn">发布</button>
                             </div>
                             <div class="words_input" contenteditable="true">
                                 <span class="placeholder">有啥想分享的吗~</span>
@@ -262,7 +262,7 @@
 
             // 领养动物的详细信息接口
             ajax({
-                 type:'post',
+                 type:'get',
                  url:'/adopt',
                  header:{
                      'Content-Type':'application/x-www-form-urlencoded'

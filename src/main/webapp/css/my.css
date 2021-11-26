@@ -1058,3 +1058,117 @@ li .line_div:nth-child(4) img {
     margin-left:33px;
 }
 
+
+/* 我的消息 */
+.first_table{
+    position: absolute;
+    top:-100px;
+    left:110px;
+    width: 85%;
+    height: 380px;
+    border-radius: 10px;
+    /* 三边阴影 */
+    box-shadow: 0px 0px 8px rgba(0,0,0,.14);
+    /* 上面设置了字体为0，这里要改回来 */
+    font-size: 0px;
+    font-family: SimSun;
+    overflow: hidden;
+}
+
+.first_table>div{
+    display: inline-block;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.left_friend{
+    width: 30%;
+    height: 100%;
+    background-color: thistle;
+}
+
+.right_send{
+    width: 70%;
+    height: 100%;
+    background-color: slateblue;
+}
+
+.left_friend ol{
+    width: 100%;
+}
+
+.friend_list{
+    width: 100%;
+    font-size: 0px;
+    height: 60px;
+    /* display: table;
+    word-spacing: -1em; */
+}
+
+/* .friend_list .friend_circle{
+    display: inline-block;
+    width: 24%;
+    height: 60px;
+    background-color: tomato;
+    overflow: hidden;
+}
+
+.friend_list>div{
+    width: 76%;
+    height: 60px;
+    background-color: turquoise;
+    display: inline-block;
+} */
+
+.friend_list>div{
+    display: inline-block;
+}
+
+.left_circle{
+    width: 30%;
+    height: 60px;
+    overflow: hidden;
+}
+
+.right_mea{
+    width: 70%;
+    height: 100%;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.right_mea h3{
+    position: relative;
+    left:5%;
+    top:5%;
+    width: 80%;
+    height: 20px;
+    overflow: hidden;
+    letter-spacing: 3px;
+}
+
+.left_circle>span{
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
+    background-color: violet;
+    margin-top: 5px;
+    margin-left: 18px;
+}
+
+.right_mea>p{
+    position: relative;
+    left:-12%;
+    top:5%;
+    width: 75%;
+    height: 30px;
+    line-height:30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:grey;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-family: Simsun;
+}
