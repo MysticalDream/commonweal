@@ -320,7 +320,7 @@
              iframeAjax({
                 form:feedback_cover,
                 callback:function(data){
-                    for(let i=0;i<data.length;i++){
+                    for(let i=0;i<data.data.length;i++){
                         let img_d=document.createElement('img');
                         img_d.src=data[i];
                         imgArray.push(img_d);
