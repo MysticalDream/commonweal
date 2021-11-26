@@ -268,4 +268,18 @@ window.addEventListener("load", function () {
         pic.style.backgroundSize = '100% 100%';
         location.innerText = getCookie("location");
     }
+
+    let friend_list=$('.friend_list');
+    let send_div=$('.send_div');
+    for(let i=0;i<friend_list.length;i++){
+        friend_list[i].addEventListener('click',()=>{
+            for(let j=0;j<friend_list.length;j++){
+                send_div[j].style.display='none';
+                if(friend_list[j].classList.contains('cur_message_li'))
+                    friend_list[j].classList.remove('cur_message_li');
+            }
+            friend_list[i].classList.add('cur_message_li');
+            send_div[i].style.display='block';
+        })
+    }
 });

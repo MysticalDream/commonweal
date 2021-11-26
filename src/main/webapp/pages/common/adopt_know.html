@@ -14,6 +14,7 @@
     <script src="../../js/utils.js"></script>
     <script src="../../js/common.js"></script>
     <script src="../../js/ajax.js"></script>
+    <script src="../../js/obj_wcj.js"></script>
 </head>
 <body>
      <!-- 导航栏 -->
@@ -375,6 +376,7 @@
             function feedback(data,picList,index,box){
                 let oDiv=document.createElement('div');
                 oDiv.classList.add('remark_part');
+                oDiv.id=data.data.list[index].comment.id;
                 // 用户头像信息等
                 let str=`  <div class="remark_user">
                             <div class="avator_pic">
@@ -415,7 +417,7 @@
                 }
                 let divs=document.createElement('div');
                 divs.classList.add('span_box');
-                let strs=` <span class="message_span">
+                let strs=` <span class="message_span remark_feedback">
                                 <img src="../../images/message_icon.png" alt="">
                                 <span>${data.data.total}</span>
                             </span>
@@ -434,7 +436,7 @@
                 for(let i=0;i<data.data.list.length;i++){
                     let div_1=document.createElement('div');
                     div_1.classList.add('follow_div');
-                    let str=`  <span class="follow_avator"><img src=${data.data.list[index].userDTO.avatarUrl}></span>
+                    let str=`  <span class="follow_avator"><img src=${data.data.list[i].userDTO.avatarUrl}></span>
                                 <div class="follow_text">
                                     <div>
                                         <span class="follow_name">${data.data.list[i].userDTO.username}</span>
@@ -456,6 +458,12 @@
                 } 
                box.insertBefore(oDiv,more_wrap);
             }
+
+        //   for(let i=0;i<obj1.data.list.length;i++){
+        //       feedback(obj1,obj1.data.list[0].picList,i,remark_area);
+        //   }
+
+        //   remarkList(obj2,remark_area);
 
              // 获取领养评论接口
              ajax({
@@ -502,6 +510,34 @@
 
                  }
              })
+
+            //评论反馈内容接口
+            // remark_area.addEventListener('click',(e)=>{
+            //     if(e.target.classList.contains('remark_feedback')){
+            //        let div=document.createElement('div');
+            //        div.isContentEditable=true;
+            //        div.classList.add('remark_div');
+            //         var feekbackId=e.target.parent.parent.parent.id;
+            //         ajax({
+            //             type:'POST',
+            //             url:'/feedback/comment',
+            //             header:{
+            //                 'Content-Type:':'application/json'
+            //             },
+            //             data:{
+            //                 feedbackId:feedbackId,
+            //                 content:div.innerText
+            //             },
+            //             success:function(){
+
+            //             },
+            //             error:function(){
+
+            //             }
+            //         })
+                   
+            //     }
+            // })
 
 
               // 查看更多评论    

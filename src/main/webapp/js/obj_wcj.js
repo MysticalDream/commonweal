@@ -833,3 +833,188 @@ var obj_manager={
     } 
      
     }
+
+    var obj1={
+        "code": 200, 
+         
+        "message": "操作成功", 
+         
+        "success": true, 
+         
+        "data": {
+        "pageSize": 4, 
+         
+        "pageNum": 1, 
+         
+        "total": 2, 
+         
+        "size": 2, 
+         
+        "pages": 1, 
+         
+        "list": [
+        {
+        "comment": {
+        "id": 1, 
+         
+        "userId": 1, 
+         
+        "adoptId": 1, 
+         
+        "content": "哈哈哈", 
+         
+        "praiseNum": 0, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "isAdopter": true 
+         
+        }, 
+         
+        "userDTO": {
+        "userId": 1, 
+         
+        "username": "common", 
+         
+        "tel": "13498765321", 
+         
+        "avatarUrl": "/upload/images/avatars/user/default-avatar.png", 
+         
+        "location": "北京市" 
+         
+        }, 
+         
+        "picList": [
+        {
+        "srcId": 1, 
+         
+        "srcName": "/upload/images/feedback/9d97bd4c72cc4760afca12851bbbec8c.jpg", 
+         
+        "feedbackId": 1, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "gmtModified": "2021-11-24 09:32:32" 
+         
+        },
+        {
+        "srcId": 2, 
+         
+        "srcName": "/upload/images/feedback/e137566e58c8424b97e37e347a610cca.png", 
+         
+        "feedbackId": 1, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "gmtModified": "2021-11-24 09:32:32" 
+         
+        },
+        {
+        "srcId": 3, 
+         
+        "srcName": "/upload/images/feedback/1a5a03cd71cc4bb7a9a48ec5799d7c46.png", 
+         
+        "feedbackId": 1, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "gmtModified": "2021-11-24 09:32:32" 
+         
+        }
+        ] 
+         
+        },
+        {
+        "comment": {
+        "id": 2, 
+         
+        "userId": 2, 
+         
+        "adoptId": 1, 
+         
+        "content": "我是路人评论已经领养的动物", 
+         
+        "praiseNum": 0, 
+         
+        "gmtCreate": "2021-11-24 09:55:11", 
+         
+        "isAdopter": false 
+         
+        }, 
+         
+        "userDTO": {
+        "userId": 2, 
+         
+        "username": "Java", 
+         
+        "tel": "10086", 
+         
+        "avatarUrl": "/upload/images/avatars/user/default-avatar.png", 
+         
+        "location": "广东省" 
+         
+        } 
+         
+        }
+        ] 
+         
+        } 
+         
+        }
+
+        var obj2={
+            "code": 200, 
+             
+            "message": "操作成功", 
+             
+            "success": true, 
+             
+            "data": {
+            "pageSize": 4, 
+             
+            "pageNum": 1, 
+             
+            "total": 1, 
+             
+            "size": 1, 
+             
+            "pages": 1, 
+             
+            "list": [
+            {
+            "comment": {
+            "id": 1, 
+             
+            "userId": 2, 
+             
+            "feedbackId": 1, 
+             
+            "content": "评论反馈的评论", 
+             
+            "praiseNum": 0, 
+             
+            "gmtCreate": "2021-11-24 14:12:59", 
+             
+            "isAdopter": false 
+             
+            }, 
+             
+            "userDTO": {
+            "userId": 2, 
+             
+            "username": "Java", 
+             
+            "tel": "10086", 
+             
+            "avatarUrl": "/upload/images/avatars/user/default-avatar.png", 
+             
+            "location": "广东省" 
+             
+            } 
+             
+            }
+            ] 
+             
+            } 
+             
+            }
