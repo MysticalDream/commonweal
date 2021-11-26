@@ -22,6 +22,7 @@ window.addEventListener('load', () => {
     let lpageNumMax = 1;
     let rpageNumMax = 1;
     let scrolling = false;
+    let scrolling2 = false;
 
 
     /**
@@ -260,11 +261,11 @@ window.addEventListener('load', () => {
                                 pageNum2--;
                             }
                             rpageNumMax = pageNum2;
+                            rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
                         }
                     }
                 })
             }
-            rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
             scrolling = false;
         }
     }, 1000))
@@ -273,51 +274,55 @@ window.addEventListener('load', () => {
         let evt = e || window.event;
         evt.stopPropagation();
         flag = false;
-        if (evt.deltaY < 0) {
-            if (++pageNum1 > lpageNumMax) {
-                lpageNumMax = pageNum1;
-            }
-            ajax({
-                type: 'get',
-                url: '/wall/list',
-                data: {
-                    pageNum: pageNum1,
-                    pageSize: 4,
-                    flag: flag
-                },
-                header: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function(data) {
-                    if (data.code === 200) {
-                        console.log(data);
-                        if (data.data.list.length > 0) {
-                            for (let k = 0; k < data.data.list.length; k++) {
-                                lcards.innerHTML += `
-                                    <li>
-                                        <div class="cover">
-                                            <img src="${picList2[data.data.list[k].cardId]}">
-                                        </div>
-                                        <div class="back">
-                                                <p>${data.data.list[k].content}</p>
-                                                <span>${data.data.list[k].signature}</span>
-                                        </div>
-                                    </li>
-                                    `
-                            }
-                            lcards.style.width = lcards.offsetWidth + 1080 + "px";
-                        } else {
-                            pageNum1 = pageNum1 - 1;
-                            lpageNumMax = pageNum1;
-                        }
+        if (scrolling2) {
+            return
+        }
+        // if (evt.deltaY < 0) {
+        //     if (++pageNum1 > lpageNumMax) {
+        //         lpageNumMax = pageNum1;
+        //     }
+        //     ajax({
+        //         type: 'get',
+        //         url: '/wall/list',
+        //         data: {
+        //             pageNum: pageNum1,
+        //             pageSize: 4,
+        //             flag: flag
+        //         },
+        //         header: {
+        //             'Content-Type': 'application/x-www-form-urlencoded'
+        //         },
+        //         success: function(data) {
+        //             if (data.code === 200) {
+        //                 console.log(data);
+        //                 if (data.data.list.length > 0) {
+        //                     for (let k = 0; k < data.data.list.length; k++) {
+        //                         lcards.innerHTML += `
+        //                             <li>
+        //                                 <div class="cover">
+        //                                     <img src="${picList2[data.data.list[k].cardId]}">
+        //                                 </div>
+        //                                 <div class="back">
+        //                                         <p>${data.data.list[k].content}</p>
+        //                                         <span>${data.data.list[k].signature}</span>
+        //                                 </div>
+        //                             </li>
+        //                             `
+        //                     }
+        //                     lcards.style.width = lcards.offsetWidth + 1080 + "px";
+        //                 } else {
+        //                     pageNum1 = pageNum1 - 1;
+        //                     lpageNumMax = pageNum1;
+        //                 }
 
-                    }
-                }
-            });
-            if (-lcards.offsetWidth < lcards.offsetLeft - 1080) {
-                lcards.style.left = lcards.offsetLeft - 1080 + 'px';
-            }
-        } else {
+        //             }
+        //         }
+        //     });
+        //     if (-lcards.offsetWidth < lcards.offsetLeft - 1080) {
+        //         lcards.style.left = lcards.offsetLeft - 1080 + 'px';
+        //     }
+        // }
+        else {
             if (pageNum1 > 1) {
                 pageNum1--;
             } else {
