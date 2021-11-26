@@ -303,14 +303,15 @@
              let more_wrap=$('.more_wrap')[0];
              words_input.onfocus=function(){
                 //  hide(placeholder);
-                placeholder.remove();
+               words_input.innerHTML='';
              }
 
              words_input.onblur=function(){
                 // show(placeholder);
-                if(words_input.innerText==''){
+                if(words_input.innerText==''&&!words_input.childNodes){
                     let placeholder_span=document.createElement('span');
                     placeholder_span.classList.add('placeholder');
+                    placeholder_span.innerText='有啥要分享的吗~';
                     words_input.appendChild(placeholder_span);
                 }
              }
@@ -478,7 +479,7 @@
                 success:function(data){
                     for(let i=0;i<data.data.list.length;i++){
                         // 这里的picList再看一下
-                        feedback(data,data.data.list.picList,i,remark_area);
+                        feedback(data,data.data.list[i].picList,i,remark_area);
                         ajax({
                             type:'get',
                             url:'/feedback/comment',
