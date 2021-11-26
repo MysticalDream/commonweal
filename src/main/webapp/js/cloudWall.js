@@ -158,7 +158,7 @@ window.addEventListener('load', () => {
     rbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
-        flag = true;
+        flag = false;
         if (scrolling) {
             return;
         }
@@ -225,7 +225,7 @@ window.addEventListener('load', () => {
     lbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
-        flag = false;
+        flag = true;
         if (scrolling2) {
             return
         }
