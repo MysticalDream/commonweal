@@ -90,7 +90,8 @@ window.addEventListener('load', () => {
                                                 <img src="${picList2[data.data.list[k].cardId]}">
                                             </div>
                                             <div class="back">
-                                                <p>${data.data.list[k].content}</p>
+                                                <h4>期望卡</h4>
+                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
                                                 <span>FROM: ${data.data.list[k].signature}</span>
                                             </div>
                                         </li>
@@ -130,7 +131,8 @@ window.addEventListener('load', () => {
                                                                 <img src="${picList[data.data.list[k].cardId]}">
                                                             </div>
                                                             <div class="back">
-                                                                <p>${data.data.list[k].content}</p>
+                                                                <h4>期望卡</h4>
+                                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
                                                                 <span>FROM:${data.data.list[k].signature}</span>
                                                             </div>
                                                         </li>
@@ -200,7 +202,8 @@ window.addEventListener('load', () => {
                                                                                 <img src="${picList[data.data.list[k].cardId]}">
                                                                             </div>
                                                                             <div class="back">
-                                                                                <p>${data.data.list[k].content}</p>
+                                                                                <h4>期望卡</h4>
+                                                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
                                                                                 <span>FROM: ${data.data.list[k].signature}</span>
                                                                             </div>
                                                                         </li>
@@ -267,7 +270,8 @@ window.addEventListener('load', () => {
                                                                                 <img src="${picList[data.data.list[k].cardId]}">
                                                                             </div>
                                                                             <div class="back">
-                                                                                <p>${data.data.list[k].content}</p>
+                                                                                <h4>期望卡</h4>
+                                                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
                                                                                 <span>FROM: ${data.data.list[k].signature}</span>
                                                                             </div>
                                                                         </li>
