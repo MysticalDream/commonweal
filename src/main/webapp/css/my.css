@@ -1178,7 +1178,7 @@ li .line_div:nth-child(4) img {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color:grey;
+    color:#fff;
     font-size: 14px;
     letter-spacing: 2px;
     font-family: Simsun;
@@ -1217,7 +1217,8 @@ li .line_div:nth-child(4) img {
     color:#000;
     font-family: Simsun;
     text-shadow: none;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid #F6F5F5;
+    line-height: 42px;
 }
 
 .center_block{
@@ -1254,7 +1255,7 @@ li .line_div:nth-child(4) img {
     width: 100%;
     height: 100px;
     cursor: pointer;
-    border-top: 2px solid grey;
+    border-top: 2px solid #F6F5F5;
 }
 
 .lasted img{
@@ -1281,7 +1282,7 @@ li .line_div:nth-child(4) img {
 
 .center_block .mingtian{
     padding:5px;
-    background-color: grey;
+    background-color:#F6F5F5;;
     font-family: Simsun;
     letter-spacing: 2px;
 }
