@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/backStage/backStage.html" value="file://$PROJECT_DIR$/src/main/webapp/pages/backStage" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/common/adopt_know.html" value="file://$PROJECT_DIR$/src/main/webapp/pages/common" />
       </map>
     </option>
   </component>

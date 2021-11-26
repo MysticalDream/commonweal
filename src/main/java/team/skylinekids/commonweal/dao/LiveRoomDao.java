@@ -2,6 +2,8 @@ package team.skylinekids.commonweal.dao;
 
 import team.skylinekids.commonweal.pojo.po.LiveRoom;
 
+import java.util.List;
+
 /**
  * 直播间DAO
  *
@@ -35,5 +37,13 @@ public interface LiveRoomDao {
      */
     int updateLiveRoom(LiveRoom liveRoom) throws Exception;
 
-    
+    /**
+     * 获取直播间列表
+     *
+     * @return
+     * @throws Exception
+     */
+    List<LiveRoom> getLiveRooms() throws Exception;
+
+
 }

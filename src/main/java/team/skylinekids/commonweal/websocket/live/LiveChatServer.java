@@ -1,7 +1,10 @@
 package team.skylinekids.commonweal.websocket.live;
 
 import org.apache.log4j.Logger;
+import team.skylinekids.commonweal.dao.LiveRoomDao;
+import team.skylinekids.commonweal.dao.UserDao;
 import team.skylinekids.commonweal.enums.SessionKeyConstant;
+import team.skylinekids.commonweal.factory.DaoFactory2;
 import team.skylinekids.commonweal.utils.gson.GsonUtils;
 import team.skylinekids.commonweal.websocket.Message;
 import team.skylinekids.commonweal.websocket.MessageUtils;
@@ -33,6 +36,9 @@ public class LiveChatServer {
     private static Map<String, Set<OnlineUser>> liveUsers = new ConcurrentHashMap<>();
 
     private static Map<String, Session> liveSession = new ConcurrentHashMap<>();
+
+    private static UserDao userDao = DaoFactory2.getDaoImpl(UserDao.class);
+    private static LiveRoomDao liveRoomDao = DaoFactory2.getDaoImpl(LiveRoomDao.class);
     /**
      * 线程池
      */
@@ -41,6 +47,24 @@ public class LiveChatServer {
             new LinkedBlockingQueue<>(), nameThreadFactory(), new ThreadPoolExecutor.AbortPolicy());
 
     private OnlineUser onlineUser;
+
+    static {
+//        try {
+//            List<LiveRoom> liveRooms = liveRoomDao.getLiveRooms();
+//            for (LiveRoom liveRoom :
+//                    liveRooms) {
+//                User user = userDao.getUserById(liveRoom.getUserId());
+//                UserDTO userDTO = ConversionUtils.convert(user, UserDTO.class);
+//                RoomVO roomVO = ConversionUtils.convert(liveRoom, RoomVO.class);
+//                roomVO.setUserDTO(userDTO);
+//                String uuid = liveRoom.getUuid();
+//                LiveManager.put(uuid, roomVO);
+//                LiveChatServer.initLiveUsers(uuid);
+//            }
+//        } catch (Exception e) {
+//            logger.error("数据库操作失败", e);
+//        }
+    }
 
     /**
      * 自定义threadfactory
@@ -200,7 +224,7 @@ public class LiveChatServer {
 
     @OnClose
     public void onClose(@PathParam("liveId") String liveId, Session session, CloseReason closeReason) {
-        System.out.println("关闭原因:" + closeReason.toString());
+//        System.out.println("关闭原因:" + closeReason.toString());
         Set<OnlineUser> userSet = liveUsers.get(liveId);
         if (userSet == null) {
             return;
