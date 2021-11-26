@@ -228,7 +228,6 @@ window.addEventListener('load', () => {
             scrolling = true;
             pageNum2++;
             if (rpageNumMax < pageNum2) {
-                rcards.style.width = pageNum2 * 100 + "%";
                 ajax({
                     type: 'get',
                     url: '/wall/list',
@@ -243,6 +242,7 @@ window.addEventListener('load', () => {
                     success: function(data) {
                         if (data.code === 200) {
                             if (data.data.list.length > 0) {
+                                rcards.style.width = pageNum2 * 100 + "%";
                                 for (let k = 0; k < data.data.list.length; k++) {
                                     rcards.innerHTML += `
                                                                         <li>
@@ -256,11 +256,11 @@ window.addEventListener('load', () => {
                                                                         </li>
                                                                         `
                                 }
+                            } else {
+                                pageNum2--;
                             }
-                        } else {
-                            pageNum2--;
+                            rpageNumMax = pageNum2;
                         }
-                        rpageNumMax = pageNum2;
                     }
                 })
             }
