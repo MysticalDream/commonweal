@@ -1,0 +1,95 @@
+.contain {
+    width: 1263px;
+    /* height: 2500px; */
+    background-color: rgb(247, 235, 235);
+    margin: 0 auto;
+    background: url(../images/cloudhelp.jpg);
+    background-size: 100%;
+}
+
+.slideshow {
+    width: 1000px;
+    height: 500px;
+    margin: 0px auto;
+    margin-top: 30px;
+    border-radius: 8px;
+    background-color: pink;
+}
+
+.main {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.main .help {
+    width: 640px;
+    height: 1490px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.main .help .top {
+    position: relative;
+}
+
+.main .help .top h2 {
+    top: 0px;
+    left: 5px;
+    width: 100px;
+    height: 50px;
+    padding-left: 5px;
+    line-height: 50px;
+    border-left: 5px solid rgb(188, 88, 68);
+}
+
+.main .help .top span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+}
+
+.main .help .bottom {
+    width: 600px;
+    padding: 20px;
+}
+
+.main .help .bottom .helpbox {
+    width: 600px;
+    height: 200px;
+}
+
+.main .help .bottom .helpbox>div {
+    float: left;
+}
+
+.main .help .bottom .helpbox .pic {
+    width: 220px;
+    height: 170px;
+}
+
+.main .help .bottom .helpbox .pic img {
+    width: 100%;
+    height: 100%;
+}
+
+.main .help .bottom .helpbox .text {
+    width: 360px;
+    height: 170px;
+    margin-left: 10px;
+    letter-spacing: 3px;
+}
+
+.main .help .bottom .helpbox .text h4 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 5px;
+    color: rgb(90, 90, 90);
+}
+
+.main .help .bottom .helpbox .text p {
+    font-size: 14px;
+    line-height: 18px;
+    color: rgb(146, 146, 146);
+}
