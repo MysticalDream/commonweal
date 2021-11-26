@@ -302,11 +302,17 @@
              let feedback_btn=$('.feedback_btn')[0];
              let more_wrap=$('.more_wrap')[0];
              words_input.onfocus=function(){
-                 hide(placeholder);
+                //  hide(placeholder);
+                placeholder.remove();
              }
 
              words_input.onblur=function(){
-                show(placeholder);
+                // show(placeholder);
+                if(words_input.innerText==''){
+                    let placeholder_span=document.createElement('span');
+                    placeholder_span.classList.add('placeholder');
+                    words_input.appendChild(placeholder_span);
+                }
              }
 
              iframeAjax({
