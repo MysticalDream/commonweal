@@ -37,27 +37,27 @@ window.addEventListener('load', () => {
                 point[j].classList.remove('choice');
             }
             point[index].classList.add('choice');
-        }, 3000);
+        }, 2000);
     }
     pre.addEventListener('click', () => {
         desc();
         position();
         clearInterval(time);
         timer();
-        // for (let j = 0; j < point.length; j++) {
-        //     point[j].classList.remove('choice');
-        // }
-        // point[i].classList.add('choice');
+        for (let j = 0; j < point.length; j++) {
+            point[j].classList.remove('choice');
+        }
+        point[index].classList.add('choice');
     })
     next.addEventListener('click', () => {
         add();
         position();
         clearInterval(time);
         timer();
-        // for (let j = 0; j < point.length; j++) {
-        //     point[j].classList.remove('choice');
-        // }
-        // point[i].classList.add('choice');
+        for (let j = 0; j < point.length; j++) {
+            point[j].classList.remove('choice');
+        }
+        point[index].classList.add('choice');
     })
     for (let i = 0; i < point.length; i++) {
         point[i].addEventListener('click', () => {
