@@ -27,6 +27,11 @@ public class LiveRoomDaoImpl extends MyGenericBaseDao<LiveRoom> implements LiveR
     }
 
     @Override
+    public List<LiveRoom> getLiveRooms() throws Exception {
+        return this.selectAll();
+    }
+
+    @Override
     public List<LiveRoom> getListByPagination(String conditionSql, Page<LiveRoom> page) throws Exception {
         return null;
     }
