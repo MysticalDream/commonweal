@@ -65,7 +65,7 @@
             <div class="low_right">
                 <div class="page_1">
                     <div class="first_table">
-                        
+
                     </div>
                     <div class="table_page"></div>
                 </div>
@@ -191,7 +191,7 @@
                                  </td>
                              </tr>
                          </table>`;
-      
+
         let str_pInner=` <div class="pro_inner">
                             <button class="pro_back">&lt;返回</button>
                             <div>
@@ -230,7 +230,7 @@
                                 </ul>
                             </div>
                         </div>`;
-        
+
         let str_tInner=` <div class="team_inner">
                             <button class="team_back">&lt;返回</button>
                             <div>
@@ -335,7 +335,7 @@
             for(let i=0;i<data.data.list.length;i++){
                 var trs=document.createElement('tr');
                 trs.classList.add('render_tr');
-                var str_pp=`   
+                var str_pp=`
                                 <td>${data.data.list[i].itemId}</td>
                                 <td>
                                     <span class="flow_span"> ${data.data.list[i].itemTitle}</span>
@@ -363,7 +363,7 @@
             table.appendChild(trs);
             }
             // console.log(page_table.innerHTML);
-           
+
         }
 
 
@@ -372,7 +372,7 @@
         }
 
         window.addEventListener('load',()=>{
-            
+
             // renderDoms(obj_manager);
             // render(obj_manager);
 
@@ -476,7 +476,7 @@
                         },
                         success:function(data){
                            renderDoms(data);
-                        // 这里需不需要再调用一次呢    
+                        // 这里需不需要再调用一次呢
                            render(data);
                         },
                         error:function(){
@@ -560,7 +560,7 @@
                            itemId:e.target.parentNode.id
                         },
                         success:function(data){
-                          
+
                         },
                         error:function(){
 
@@ -579,7 +579,7 @@
                            itemId:e.target.parentNode.id
                         },
                         success:function(data){
-                          
+
                         },
                         error:function(){
 
@@ -600,7 +600,7 @@
 
         // 注册其他试图回调函数
         router.register('/project_d',()=>
-            page_d.innerHTML='既是首页也是project'   
+            page_d.innerHTML='既是首页也是project'
         );
 
         router.register('/team_d',()=>
@@ -626,11 +626,11 @@
         router.registerError((e)=>
             page_d.innerHTML='页面异常，错误信息：<br>'+e.message
         );
-        
+
        window.addEventListener('hashchange',function(e){
            console.log(e.newURL);
        })
-        
+
     </script> -->
 </body>
 </html>
