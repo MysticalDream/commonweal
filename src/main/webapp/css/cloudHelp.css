@@ -1,6 +1,13 @@
+/* body {
+    overflow-x: hidden;
+} */
+
+
+/* 轮播图 */
+
 .contain {
-    width: 1263px;
-    /* height: 2500px; */
+    width: 1268px;
+    height: 2250px;
     background-color: rgb(247, 235, 235);
     margin: 0 auto;
     background: url(../images/cloudhelp.jpg);
@@ -8,6 +15,7 @@
 }
 
 .slideshow {
+    position: relative;
     width: 1000px;
     height: 500px;
     margin: 0px auto;
@@ -16,29 +24,57 @@
     background-color: pink;
 }
 
+.slideshow ul {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 600%;
+    height: 500px;
+}
+
+.slideshow ul li {
+    width: 1000px;
+    height: 500px;
+    float: left;
+}
+
+.slideshow ul li img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+
+/* 志愿帮扶 */
+
 .main {
     width: 1000px;
     margin: 0 auto;
+    overflow: hidden;
+}
+
+.main>div {
+    float: left;
 }
 
 .main .help {
     width: 640px;
-    height: 1490px;
-    background-color: #fff;
+    height: 1510px;
     border-radius: 8px;
 }
 
 .main .help .top {
     position: relative;
+    width: 640px;
+    height: 30px;
+    margin: 20px 0px 20px 0px;
 }
 
 .main .help .top h2 {
-    top: 0px;
-    left: 5px;
     width: 100px;
-    height: 50px;
-    padding-left: 5px;
-    line-height: 50px;
+    height: 30px;
+    padding-left: 8px;
+    line-height: 30px;
     border-left: 5px solid rgb(188, 88, 68);
 }
 
@@ -47,11 +83,18 @@
     top: 10px;
     right: 10px;
     font-size: 14px;
+    cursor: pointer;
+}
+
+.main .help .top span:hover {
+    color: rgb(188, 88, 68);
 }
 
 .main .help .bottom {
     width: 600px;
     padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
 }
 
 .main .help .bottom .helpbox {
@@ -71,6 +114,7 @@
 .main .help .bottom .helpbox .pic img {
     width: 100%;
     height: 100%;
+    border-radius: 8px;
 }
 
 .main .help .bottom .helpbox .text {
@@ -92,4 +136,83 @@
     font-size: 14px;
     line-height: 18px;
     color: rgb(146, 146, 146);
+}
+
+
+/* 物资需求 */
+
+.main .require {
+    width: 340px;
+    height: 1510px;
+    margin-left: 20px;
+}
+
+.main .require .top {
+    position: relative;
+    width: 340px;
+    height: 30px;
+    margin: 20px 0px 20px 0px;
+}
+
+.main .require .top h2 {
+    width: 100px;
+    height: 30px;
+    padding-left: 8px;
+    line-height: 30px;
+    border-left: 5px solid rgb(188, 88, 68);
+}
+
+.main .require .top span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.main .require .top span:hover {
+    color: rgb(188, 88, 68);
+}
+
+.main .require .bottom {
+    width: 340px;
+    height: 1440px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.main .require .bottom .requirebox {
+    width: 340px;
+    height: 180px;
+    /* background-color: pink; */
+}
+
+.main .require .bottom .requirebox>div {
+    float: left;
+}
+
+.main .require .bottom .requirebox .pic {
+    width: 150px;
+    height: 140px;
+    margin-top: 15px;
+}
+
+.main .require .bottom .requirebox .pic img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.main .require .bottom .requirebox .text {
+    width: 150px;
+    height: 142px;
+    margin-left: 15px;
+    margin-top: 15px;
+    letter-spacing: 2px;
+    font-size: 14px;
+}
+
+.footer {
+    bottom: -351px !important;
 }

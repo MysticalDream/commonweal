@@ -190,6 +190,9 @@ window.addEventListener('load', () => {
                                             `
                                 }
                                 rcards.style.width = rcards.offsetWidth + 1080 + "px";
+                            } else {
+                                pageNum2 = pageNum2 - 1;
+                                rpageNumMax = pageNum2;
                             }
 
                         }
@@ -252,6 +255,9 @@ window.addEventListener('load', () => {
                                     `
                             }
                             lcards.style.width = lcards.offsetWidth + 1080 + "px";
+                        } else {
+                            pageNum1 = pageNum1 - 1;
+                            lpageNumMax = pageNum1;
                         }
 
                     }
