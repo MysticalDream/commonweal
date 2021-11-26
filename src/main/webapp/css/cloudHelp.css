@@ -12,6 +12,7 @@
     margin: 0 auto;
     background: url(../images/cloudhelp.jpg);
     background-size: 100%;
+    overflow: hidden;
 }
 
 .slideshow {
@@ -31,7 +32,7 @@
     left: 0px;
     width: 500%;
     height: 500px;
-    transition: 0.2s;
+    transition: 1s;
 }
 
 .slideshow .slideshowUl li {
