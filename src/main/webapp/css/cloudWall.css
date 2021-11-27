@@ -53,12 +53,13 @@ body {
     width: 110px;
     height: 64px;
     text-align: center;
-    line-height: 64px;
+    line-height: 71px;
     font-size: 24px;
     font-weight: 700;
     color: rgb(187, 88, 69);
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
+    font-family: Simsun;
 }
 
 .wrap .middle .our_hope {
@@ -354,6 +355,7 @@ body {
     width: 100%;
     height: 100%;
     transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
 
 .wrap .right .cards li .cover {
@@ -372,6 +374,7 @@ body {
     box-sizing: border-box;
     transform: rotateY(180deg);
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 .wrap .right .cards li:hover .back {

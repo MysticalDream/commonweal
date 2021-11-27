@@ -183,7 +183,7 @@ body .footer{
 
 .remark_main p{
     width: 90%;
-    height: 50px;
+    height: 30px;
     line-height: 25px;
     margin-top:15px;
     margin-left: 20px;
@@ -203,6 +203,7 @@ body .footer{
     margin-top: 15px;
     margin-left:20px;
     cursor: pointer;
+    padding-bottom: 30px;
 }
 
 .remark_main span{
@@ -225,6 +226,8 @@ body .footer{
 
 .remark_main span span{
     font-size: 13px;
+    position: relative;
+    top: -30px;
 }
 
 .remark_main>div{
@@ -235,7 +238,7 @@ body .footer{
 
 .remark_follow{
     width: 100%;
-    min-height: 130px;
+    padding-bottom: 20px;
     background-color: RGBA(246, 245, 245, 1);
     border-radius: 6px;
     margin-top:20px;
@@ -473,7 +476,6 @@ body .footer{
 .words_input textarea{
     width: 90%;
     height: 38%;
-    background-color: thistle;
     resize: none;
     outline: none;
     border: none;
@@ -488,7 +490,6 @@ body .footer{
     width: 90%;
     height: 50%;
     left:3%;
-    background-color: turquoise;
 }
 
 body .pic_append img{
@@ -514,3 +515,16 @@ body .main_center .left_long .avator_pic{
     border-radius: 20px;
 }
 
+body .red_ling img{
+    position: relative !important;
+    top:-2px !important;
+    left:4px !important;
+    width: 9px !important;
+    height: 8px !important;
+}
+
+body .remark_main .span_box{
+   position:relative;
+    top:0px;
+    left:450px;
+}

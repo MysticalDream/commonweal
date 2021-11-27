@@ -210,7 +210,7 @@ window.addEventListener('load',function(){
                 moreDiv.style.display = "inline-block";
             });
             moreDiv.innerText = '更多';
-            moreDiv.style.cssText = 'display:inline-block;position:absolute;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;right:10px ; top:10px ;';
+            moreDiv.style.cssText = 'display:inline-block;position:absolute;font-size: 14px; display: inline-block; margin-left: 15 px ; font-family: SimSun; font-weight: 700; height: 30 px ; line-height: 30px; padding: 0 px 6 px ; cursor: pointer;background-color: #CD4140; color: #fff;border-radius:5px;margin-left:10px;padding:0 10px;right:18px ; top:10px ;';
 
             moreDiv.addEventListener("click", function (e) {
                 expand_p.style.maxHeight = 'initial';
