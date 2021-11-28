@@ -7,10 +7,13 @@ package team.skylinekids.commonweal.factory.exception;
  */
 public class BeanException extends RuntimeException {
     public BeanException() {
-        super("构造Bean异常");
-    }
+            super("构造Bean异常");
+        }
 
     public BeanException(String message) {
-        super("构造Bean异常:" + message);
+            super("构造Bean异常:" + message);
+        }
+    public BeanException(String message,Exception e){
+        super("构造Bean异常:"+message,e);
     }
 }

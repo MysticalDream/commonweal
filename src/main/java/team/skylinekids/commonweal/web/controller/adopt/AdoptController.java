@@ -119,6 +119,9 @@ public class AdoptController {
     @MyRequestPath(value = "/adopt", type = {RequestMethod.POST})
     public String addAdoptInfo(HttpInfoWrapper httpInfoWrapper) throws Exception {
         Adopt adopt = GsonUtils.j2O(httpInfoWrapper.getJsonString(), Adopt.class);
+        if (adopt == null) {
+            return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
         String fileName = FileUtils.getFileName(adopt.getCoverUrl());
         //把封面从暂存区放到真正的目录中
         if (!FileUtils.cutFile(ResourcePathConstant.DISK_ADOPT_TEMP_IMG_BASE + fileName, ResourcePathConstant.DISk_ADOPT_IMG_BASE + fileName)) {

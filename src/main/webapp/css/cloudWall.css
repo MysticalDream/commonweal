@@ -53,12 +53,15 @@ body {
     width: 110px;
     height: 64px;
     text-align: center;
-    line-height: 64px;
+    line-height: 80px;
     font-size: 24px;
     font-weight: 700;
     color: rgb(187, 88, 69);
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
+    font-family: 'DOUYU-Font';
+    font-size: 18px;
+    letter-spacing: 4px;
 }
 
 .wrap .middle .our_hope {
@@ -81,7 +84,8 @@ body {
     text-align: center;
     line-height: 50px;
     color: rgb(25, 39, 70);
-    font-size: 24px;
+    font-size: 19px;
+    font-family: 'DOUYU-Font';
 }
 
 .wrap .middle .contain .card {
@@ -95,6 +99,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 8px;
+    cursor:pointer;
 }
 
 .wrap .middle .contain h3 {
@@ -103,6 +108,14 @@ body {
     line-height: 30px;
     color: rgb(187, 88, 69);
     font-size: 18px;
+    font-family: 'DOUYU-Font';
+    width:371px;
+    position: relative;
+    left:-30px;
+}
+
+.wrap .middle .contain .today{
+    top:15px;
 }
 
 .wrap .middle .our_hope h2,
@@ -132,13 +145,16 @@ body {
     left: 32px;
     width: 110px;
     height: 65px;
-    line-height: 65px;
+    line-height: 76px;
     text-align: center;
     font-size: 24px;
     font-weight: 700;
     color: rgb(187, 88, 67);
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
+    font-family: 'DOUYU-Font';
+    letter-spacing: 3px;
+    font-size: 18px;
 }
 
 .wrap .left .box {
@@ -148,7 +164,7 @@ body {
     width: 1080px;
     height: 330px;
     overflow: hidden;
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 
 .wrap .left .cards {
@@ -157,7 +173,7 @@ body {
     left: 0px;
     width: 1080px;
     height: 330px;
-    background-color: skyblue;
+    /* background-color: skyblue; */
     transition: all 0.5s ease;
 }
 
@@ -168,11 +184,13 @@ body {
     width: 250px;
     height: 330px;
     background-color: #fff;
+    border-radius: 8px;
 }
 
 .wrap .left .cards li img {
     width: 100%;
     height: 100%;
+    border-radius: 8px;
 }
 
 .wrap .left .cards li .cover,
@@ -186,6 +204,7 @@ body {
 
 .wrap .left .cards li .cover {
     transform: rotateY(0deg);
+    cursor: pointer;
 }
 
 .wrap .left .cards li:hover .cover {
@@ -200,30 +219,46 @@ body {
     box-sizing: border-box;
     transform: rotateY(180deg);
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 .wrap .left .cards li:hover .back {
     transform: rotateY(0deg);
 }
 
+.wrap .left .cards li .back h4 {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    width: 210px;
+    height: 35px;
+    line-height: 30px;
+    padding-left: 13px;
+    background: url(../images/cloudhope.jpg) no-repeat -8px -9px;
+    background-size: 18%;
+}
+
 .wrap .left .cards li .back p {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 230px;
-    height: 300px;
+    top: 45px;
+    left: 20px;
+    width: 210px;
+    height: 250px;
     line-height: 20px;
-    font-size: 16px;
+    font-size: 18px;
     overflow: auto;
     word-wrap: break-word;
 }
 
 .wrap .left .cards li .back span {
     position: absolute;
-    width: 40px;
+    /* width: 40px; */
     height: 20px;
-    bottom: 11px;
-    right: -8px;
+    line-height: 20px;
+    bottom: 17px;
+    right: 3px;
 }
 
 .wrap .left .write {
@@ -237,6 +272,9 @@ body {
     background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-family: simsun;
+    letter-spacing: 3px;
+    font-weight: 600;
 }
 
 .wrap .left .line {
@@ -271,7 +309,7 @@ body {
     left: 100%;
     width: 1280px;
     height: 537px;
-    background-color: pink;
+    /* background-color: pink; */
     overflow: hidden;
     transition: all 1s;
     background: url(../images/cloudWall2.jpg);
@@ -284,13 +322,16 @@ body {
     right: 14px;
     width: 110px;
     height: 65px;
-    line-height: 65px;
+    line-height: 80px;
     text-align: center;
     font-size: 24px;
     font-weight: 700;
     color: rgb(187, 88, 67);
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
+    font-family: 'DOUYU-Font';
+    letter-spacing: 3px;
+    font-size: 18px;
 }
 
 .wrap .right .box {
@@ -300,7 +341,7 @@ body {
     width: 1080px;
     height: 330px;
     overflow: hidden;
-    background-color: pink;
+    /* background-color: pink; */
 }
 
 .wrap .right .cards {
@@ -309,7 +350,7 @@ body {
     left: 0px;
     width: 1080px;
     height: 330px;
-    background-color: skyblue;
+    /* background-color: skyblue; */
     transition: all 0.5s ease;
     /* overflow: hidden; */
 }
@@ -321,11 +362,13 @@ body {
     width: 250px;
     height: 330px;
     background-color: #fff;
+    border-radius: 8px;
 }
 
 .wrap .right .cards li img {
     width: 100%;
     height: 100%;
+    border-radius: 8px;
 }
 
 .wrap .right .cards li .cover,
@@ -335,6 +378,7 @@ body {
     width: 100%;
     height: 100%;
     transition: all 0.5s ease-in-out;
+    cursor: pointer;
 }
 
 .wrap .right .cards li .cover {
@@ -346,11 +390,53 @@ body {
 }
 
 .wrap .right .cards li .back {
+    position: relative;
+    width: 230px;
+    height: 330px;
+    padding: 10px;
+    box-sizing: border-box;
     transform: rotateY(180deg);
+    letter-spacing: 3px;
+    cursor: pointer;
 }
 
 .wrap .right .cards li:hover .back {
     transform: rotateY(0deg);
+}
+
+.wrap .right .cards li .back h4 {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    width: 210px;
+    height: 35px;
+    line-height: 30px;
+    padding-left: 13px;
+    background: url(../images/cloudhope.jpg) no-repeat -8px -9px;
+    background-size: 18%;
+}
+
+.wrap .right .cards li .back p {
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    width: 210px;
+    height: 250px;
+    line-height: 20px;
+    font-size: 18px;
+    overflow: auto;
+    word-wrap: break-word;
+}
+
+.wrap .right .cards li .back span {
+    position: absolute;
+    /* width: 40px; */
+    height: 20px;
+    line-height: 20px;
+    bottom: 17px;
+    right: 3px;
 }
 
 .wrap .right .write {
@@ -364,6 +450,9 @@ body {
     background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-family: simsun;
+    letter-spacing: 3px;
+    font-weight: 600;
 }
 
 .wrap .right .line {

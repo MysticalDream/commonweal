@@ -18,7 +18,7 @@ public class AdoptCommentDaoImpl extends MyGenericBaseDao<AdoptComment> implemen
 
     @Override
     public List<AdoptComment> getAdoptCommentListByAdoptId(Integer adoptId, Page<AdoptComment> page) throws Exception {
-        List<AdoptComment> listByPagination = this.getListByPagination(" WHERE adopt_id=" + adoptId + " ORDER BY is_top DESC,gmt_create ", page);
+        List<AdoptComment> listByPagination = this.getListByPagination(" WHERE adopt_id=" + adoptId + " ORDER BY is_top DESC,gmt_create DESC ", page);
         return listByPagination;
     }
 }

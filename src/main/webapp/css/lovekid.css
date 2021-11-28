@@ -166,10 +166,10 @@ body{
 
 .sub_part ul li{
     float: left;
-    width: 233px;
+    width: 227px;
     height: 100%;
     border-radius: 8px;
-    margin-right: 26px;
+    margin-right: 34px;
     cursor: pointer;
     overflow: hidden;
     background-color: #fff;
@@ -223,12 +223,15 @@ ul li .box_bottom .left_ava{
     font-family: Adobe Heiti Std;
     flex-direction: column;
     justify-content: center;
+    line-height: 28px;
 }
 
 .right_mes p{
    position: relative;
    /* top:6px; */
    font-size:15px;
+    font-family: Simsun;
+    font-weight: 600;
 }
 
 .right_mes div span{
@@ -281,7 +284,7 @@ body .cloud_footer{
     justify-content: center;
     align-items: center;
     position: absolute;
-    top:100px;
+    top:65px;
     right:10px;
     width: 70px;
     height: 500px;

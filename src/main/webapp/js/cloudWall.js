@@ -21,8 +21,8 @@ window.addEventListener('load', () => {
     // 最大页数
     let lpageNumMax = 1;
     let rpageNumMax = 1;
-    let lallpages = 1;
-    let rallpages = 1;
+    let scrolling = false;
+    let scrolling2 = false;
 
 
     /**
@@ -66,7 +66,7 @@ window.addEventListener('load', () => {
                 left.style.left = '0';
                 middle.style.left = '100%';
                 right.style.left = '200%';
-                flag = false;
+                flag = true;
                 if (lflag) { //最大页数 应该是大于等于pages的 如果小于
                     lflag = false;
                     ajax({
@@ -90,8 +90,9 @@ window.addEventListener('load', () => {
                                                 <img src="${picList2[data.data.list[k].cardId]}">
                                             </div>
                                             <div class="back">
-                                                <p>${data.data.list[k].content}</p>
-                                                <span>${data.data.list[k].signature}</span>
+                                                <h4>期望卡</h4>
+                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
+                                                <span>FROM: ${data.data.list[k].signature}</span>
                                             </div>
                                         </li>
                                         `
@@ -106,7 +107,7 @@ window.addEventListener('load', () => {
                 left.style.left = '-200%'
                 middle.style.left = '-100%';
                 right.style.left = '0';
-                flag = true;
+                flag = false;
                 if (rflag) {
                     rflag = false;
                     ajax({
@@ -130,8 +131,9 @@ window.addEventListener('load', () => {
                                                                 <img src="${picList[data.data.list[k].cardId]}">
                                                             </div>
                                                             <div class="back">
-                                                                <p>${data.data.list[k].content}</p>
-                                                                <span>${data.data.list[k].signature}</span>
+                                                                <h4>期望卡</h4>
+                                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
+                                                                <span>FROM:${data.data.list[k].signature}</span>
                                                             </div>
                                                         </li>
                                                         `
@@ -158,10 +160,26 @@ window.addEventListener('load', () => {
     rbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
-        flag = true;
-        if (evt.deltaY < 0) { //鼠标滚轮向上滚动 
-            if (++pageNum2 > rpageNumMax) {
-                rpageNumMax = pageNum2;
+        flag = false;
+        if (scrolling) {
+            return;
+        }
+        if (evt.deltaY < 0) { //鼠标滚轮向上滚动
+            scrolling = true;
+            pageNum2--;
+            if (pageNum2 == 0) {
+                pageNum2 = 1;
+                scrolling = false;
+                return;
+            }
+            rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
+            scrolling = false;
+
+        } else { //鼠标滚轮向下滚动
+
+            scrolling = true;
+            pageNum2++;
+            if (rpageNumMax < pageNum2) {
                 ajax({
                     type: 'get',
                     url: '/wall/list',
@@ -176,102 +194,102 @@ window.addEventListener('load', () => {
                     success: function(data) {
                         if (data.code === 200) {
                             if (data.data.list.length > 0) {
+                                rcards.style.width = pageNum2 * 100 + "%";
                                 for (let k = 0; k < data.data.list.length; k++) {
                                     rcards.innerHTML += `
-                                            <li>
-                                                <div class="cover">
-                                                    <img src="${picList[data.data.list[k].cardId]}">
-                                                </div>
-                                                <div class="back">
-                                                        <p>${data.data.list[k].content}</p>
-                                                        <span>${data.data.list[k].signature}</span>
-                                                </div>
-                                            </li>
-                                            `
+                                                                        <li>
+                                                                            <div class="cover">
+                                                                                <img src="${picList[data.data.list[k].cardId]}">
+                                                                            </div>
+                                                                            <div class="back">
+                                                                                <h4>期望卡</h4>
+                                                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
+                                                                                <span>FROM: ${data.data.list[k].signature}</span>
+                                                                            </div>
+                                                                        </li>
+                                                                        `
                                 }
-                                rcards.style.width = rcards.offsetWidth + 1080 + "px";
+                            } else {
+                                pageNum2--;
                             }
-
+                            rpageNumMax = pageNum2;
+                            rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
+                            scrolling = false;
                         }
                     }
-                });
-            }
-
-            if (-rcards.offsetWidth < rcards.offsetLeft - 1080) {
-                rcards.style.left = rcards.offsetLeft - 1080 + 'px';
-            }
-            // console.log(rcards.offsetLeft + 100);
-        } else { //鼠标滚轮向下滚动
-            if (pageNum2 > 1) {
-                pageNum2--;
+                })
             } else {
-                pageNum2 = 1;
-            }
-            if (rcards.offsetLeft >= 0) {
-                rcards.style.left = '0px';
-            } else {
-                rcards.style.left = rcards.offsetLeft + 1080 + 'px';
+                rcards.style.transform = "translateX(-" + (((pageNum2 - 1) / rpageNumMax) * 100) + "%)";
+                scrolling = false;
             }
         }
-    }, 1000))
+    }, 200))
 
     lbox.addEventListener('mousewheel', throttle(function(e) {
         let evt = e || window.event;
         evt.stopPropagation();
-        flag = false;
-        if (evt.deltaY < 0) {
-            if (++pageNum1 > lpageNumMax) {
-                lpageNumMax = pageNum1;
-            }
-            ajax({
-                type: 'get',
-                url: '/wall/list',
-                data: {
-                    pageNum: pageNum1,
-                    pageSize: 4,
-                    flag: flag
-                },
-                header: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                success: function(data) {
-                    if (data.code === 200) {
-                        console.log(data);
-                        if (data.data.list.length > 0) {
-                            for (let k = 0; k < data.data.list.length; k++) {
-                                lcards.innerHTML += `
-                                    <li>
-                                        <div class="cover">
-                                            <img src="${picList2[data.data.list[k].cardId]}">
-                                        </div>
-                                        <div class="back">
-                                                <p>${data.data.list[k].content}</p>
-                                                <span>${data.data.list[k].signature}</span>
-                                        </div>
-                                    </li>
-                                    `
-                            }
-                            lcards.style.width = lcards.offsetWidth + 1080 + "px";
-                        }
-
-                    }
-                }
-            });
-            if (-lcards.offsetWidth < lcards.offsetLeft - 1080) {
-                lcards.style.left = lcards.offsetLeft - 1080 + 'px';
-            }
-        } else {
-            if (pageNum1 > 1) {
-                pageNum1--;
-            } else {
+        flag = true;
+        if (scrolling2) {
+            return
+        }
+        if (evt.deltaY < 0) { //鼠标滚轮向上滚动
+            scrolling2 = true;
+            pageNum1--;
+            if (pageNum1 == 0) {
                 pageNum1 = 1;
+                scrolling2 = false;
+                return;
             }
-            console.log(lcards.offsetLeft);
-            if (lcards.offsetLeft >= 0) {
-                lcards.style.left = '0px'
+            lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / rpageNumMax) * 100) + "%)";
+            scrolling2 = false;
+
+        } else { //鼠标滚轮向下滚动
+
+            scrolling2 = true;
+            pageNum1++;
+            if (lpageNumMax < pageNum1) {
+                ajax({
+                    type: 'get',
+                    url: '/wall/list',
+                    data: {
+                        pageNum: pageNum1,
+                        pageSize: 4,
+                        flag: flag
+                    },
+                    header: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function(data) {
+                        if (data.code === 200) {
+                            if (data.data.list.length > 0) {
+                                lcards.style.width = pageNum1 * 100 + "%";
+                                for (let k = 0; k < data.data.list.length; k++) {
+                                    lcards.innerHTML += `
+                                                                        <li>
+                                                                            <div class="cover">
+                                                                                <img src="${picList[data.data.list[k].cardId]}">
+                                                                            </div>
+                                                                            <div class="back">
+                                                                                <h4>期望卡</h4>
+                                                                                <p>&nbsp;&nbsp;&nbsp;&nbsp;${data.data.list[k].content}</p>
+                                                                                <span>FROM: ${data.data.list[k].signature}</span>
+                                                                            </div>
+                                                                        </li>
+                                                                        `
+                                }
+                            } else {
+                                pageNum1--;
+                            }
+                            lpageNumMax = pageNum1;
+                            lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / lpageNumMax) * 100) + "%)";
+                            scrolling2 = false;
+                        }
+                    }
+                })
             } else {
-                lcards.style.left = lcards.offsetLeft + 1080 + 'px';
+                lcards.style.transform = "translateX(-" + (((pageNum1 - 1) / lpageNumMax) * 100) + "%)";
+                scrolling2 = false;
             }
         }
-    }, 1000))
+    }, 200))
 })

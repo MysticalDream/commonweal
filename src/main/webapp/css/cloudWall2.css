@@ -32,6 +32,9 @@ body {
     font-weight: 700;
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
+    font-family: 'DOUYU-Font';
+    line-height: 76px;
+    font-size: 18px;
 }
 
 .contain .cards {

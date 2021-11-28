@@ -8,6 +8,18 @@
     <title>云帮扶</title>
     <link rel="stylesheet" href="../../css/recruit.css">
     <link rel="stylesheet" href="../../css/cloudHelp.css">
+    <link rel="stylesheet" href="../../css/footer.css">
+    <link rel="stylesheet" href="../../css/error_exit.css">
+    <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/backtop.css">
+    <!-- <script src="../../js/backtop.js"></script> -->
+    <!-- <script src="../../js/isLog_in_adpot.js"></script> -->
+    <script src="../../js/cloudHelp.js"></script>
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/isLog_in_adpot.js"></script>
+    <script src="../../js/ajax.js"></script>
+    <script src="../../js/childjump.js"></script>
 </head>
 
 <body>
@@ -34,8 +46,13 @@
                 <li>
                     <a href="./adpot.html">领养动物</a>
                 </li>
-                <li class="pitch">
+                <li class="pitch child_s">
                     <a href="javascript:;">关爱儿童</a>
+                    <div class="child_all">
+                        <div class="childteach">云支教</div>
+                        <div class="childhelp">云帮扶</div>
+                        <div class="childwall">云墙</div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -47,34 +64,272 @@
     <div class="contain">
         <!-- 轮播图 -->
         <div class="slideshow">
-            <ul>
+            <ul class="slideshowUl">
                 <li>
-                    <img src="" alt="">
+                    <img src="../../images/cloudhelp1.jpg" alt="">
                 </li>
                 <li>
-                    <img src="" alt="">
+                    <img src="../../images/cloudhelp2.jpg" alt="">
                 </li>
                 <li>
-                    <img src="" alt="">
+                    <img src="../../images/cloudhelp3.jpg" alt="">
                 </li>
                 <li>
-                    <img src="" alt="">
+                    <img src="../../images/cloudhelp4.jpg" alt="">
                 </li>
-                <li>
-                    <img src="" alt="">
-                </li>
+
             </ul>
             <!-- 小圆点 -->
             <ul class="point">
-                <li></li>
-                <li></li>
+                <li class="choice"></li>
                 <li></li>
                 <li></li>
                 <li></li>
             </ul>
             <!-- 左右箭头 -->
-            <div class="next"></div>
-            <div class="pre"></div>
+            <div class="next iconfont icon-xiangyoujiantou"></div>
+            <div class="pre iconfont icon-xiangzuojiantou"></div>
+        </div>
+        <div class="main">
+            <!-- 志愿帮扶 -->
+            <div class="help">
+                <div class="top">
+                    <h2>志愿帮扶</h2>
+                    <span>更多</span>
+                </div>
+                <div class="bottom">
+                    <div class="helpbox">
+                        <div class="pic">
+                            <img src="../../images/helpbox1.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>“关爱儿童”志愿服务活动</h4>
+                            <p>安徽省煤田地质局赴定点帮扶村开展“关爱儿童”志愿服务活动：为进一步做好我局定点帮扶工作，提升成效，7月26日上午，20名青年党团员前往我局定点帮扶的太和县赵集乡双龙村开展“关爱儿童”志愿活动，在将捐赠物资和慰问品送给双龙村和金张社区的38名留守、贫困儿童的同时，丰富了他们的课外生活，给孩子们的暑假增添了一份美好的回忆。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="helpbox">
+                        <div class="pic">
+                            <img src="../../images/helpbox2.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>儿童志愿者现场招募活动</h4>
+                            <p>璧山区帮扶困境儿童志愿者现场招募活动 ：9月17日，由区各委等联合举办的“璧山区帮扶困境儿童爱心志愿者现场招募活动”在大宏鼎家居建材市场举行。活动现场，爱心志愿者向困境儿童赠送礼物，送去节日的关怀；工商联组织爱心企业家加入爱心志愿者的队伍与困境儿童结对帮扶，并颁发“爱心志愿者”荣誉证书。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="helpbox">
+                        <div class="pic">
+                            <img src="../../images/helpbox3.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>武大志愿者服务农民工子女学校</h4>
+                            <p>师生一对一帮扶：武汉大学信息管理学院青年志愿者协会开展的助学活动之一，协会的在校学生利用课余时间，每周到春苗学校为小学生们服务一次，在智慧阅读、安全教育、素质拓展等方面，帮助小学生们健康成长。据了解，江汉区春苗学校是一家没有政府背景，专门为武汉市农民工子弟服务的民办学校。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="helpbox">
+                        <div class="pic">
+                            <img src="../../images/helpbox4.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>青年志愿者点亮孩子们的“七彩假期”</h4>
+                            <p>常熟理工学院商学院青年志愿者点亮孩子们的“七彩假期”！常熟理工学院商学院“携手童心爱心扶智”希望班支教志愿服务团再次来到江苏省宿迁市泗洪县魏营镇中心小学。孩子们在志愿者的鼓励下，向远方的父母或者身边的好友写信，表达思念之情。志愿者说：“在陪伴中发自内心的快乐，即使在多年之后依旧火热而滚烫。”
+                            </p>
+                        </div>
+                    </div>
+                    <div class="helpbox">
+                        <div class="pic">
+                            <img src="../../images/helpbox5.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>关注留守儿童播洒爱心阳光</h4>
+                            <p>灵官殿镇三云小学：关注留守儿童播洒爱心阳光。灵官殿镇三云小学全体同学收到了一份特殊的礼物，在爱心人士献爱心下，为三云小学全体学生捐赠的冬装棉服。在操场上，一场隆重而简朴的爱心捐赠仪式开始啦！孩子们排着整齐的队伍，依次从校长秦秋云手中接过衣服。有些学生按耐不住内心的欣喜，刚领到衣服就穿上了，一个个脸上都笑开了花。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="helpbox">
+                        <div class="pic">
+                            <img src="../../images/helpbox6.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>开展爱心助学活动</h4>
+                            <p>濂溪区市监局新港分局、个私协会新港分会开展爱心助学活动。个私协会新港分会会长雷林平、新港分局局长等一行来到新港镇中心小学，为14名品学兼优的困难学生发放资助金7000元。在资助现场，雷林平详细询问困难学生的学习、生活情况，勉励他们自信自强，树立远大志向，把社会关爱转化为学习动力，以优异成绩回报社会。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="helpbox">
+                        <div class="pic">
+                            <img src="../../images/helpbox7.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <h4>公益捐赠活动</h4>
+                            <p>现代汽车“梦想之屋”公益捐赠活动在南宁市邕宁区中和镇方村小学举行。活动采取线上直播方式进行，主会场设在北京，分会场设在方村小学。当天，现代汽车（中国）投资有限公司为该校师生带来了价值近11万元的电教设备、音乐等教学物资，并设立“梦想奖学金”，为品行端正、成绩优异的在校生，通过资助让其顺利完成学业，实现自己的人生梦想。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 物资需求 -->
+            <div class="require">
+                <div class="top">
+                    <h2>物资需求</h2>
+                    <span>更多</span>
+                </div>
+                <div class="bottom">
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox1.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>西藏自治区拉妥乡拉玛村：66位成年人解决部分御寒衣物。牧民群众勤俭节约，平时放牧生活中对御寒衣物的需求量比较大。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox2.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>通辽市红十字会关于接收“通辽暴雪”灾害捐款捐物的公告，打破了有气象记录以来的历史极值，在很大范围形成严重灾害。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox3.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>为贵州偏远山区小学募捐物资，为孩子们献出您的爱心：为我们的孩子们捐赠你不需要的衣服、书籍、书包、文具等。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox4.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>为湖南夯卡村小学的贫困孩子们募捐物资：希望大家能够捐赠一些文具、学习用品和生活用品给他们。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox5.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>南宁市工商联系统积极捐款捐物支持疫情防控工作：继续加大跟踪服务工作。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox6.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>西藏自治区昌都市青年志愿者协会向社会各界爱心人士募集物资：现全面接受来自全国各地捐赠的爱心物资。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox7.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>爱佑慈善基金会发起“新冠抗疫”天使加油站计划为一线人员募集物资：为了抗击肺炎疫情，打赢这场没有硝烟的战争。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="requirebox">
+                        <div class="pic">
+                            <img src="../../images/requirebox8.jpg" alt="">
+                        </div>
+                        <div class="text">
+                            <p>文化帮扶捐书籍 乡民阅读有去处：为提高村民的文化知识水平，丰富村民的精神生活，村里筹建了图书阅览室，亟需各类图书。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 页脚部分 -->
+    <div class="footer left_foot">
+        <div class="footer_lf">
+            <h3>创益</h3>
+            <ul class="first">
+                <li>
+                    <a href="javascript:;">关于我们</a>
+                </li>
+                <li>
+                    <a href="javascript:;">联系我们</a>
+                </li>
+                <li>
+                    <a href="javascript:;">用户协议</a>
+                </li>
+                <li>
+                    <a href="javascript:;">加入我们</a>
+                </li>
+            </ul>
+            <ul class="second">
+                <li>
+                    <a href="javascript:;">友情链接</a>
+                </li>
+                <li>
+                    <a href="javascript:;">隐私政策</a>
+                </li>
+                <li>
+                    <a href="javascript:;">创益认证</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Investor Relations</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer_rg">
+            <h3>传送门</h3>
+            <ul class="first">
+                <li>
+                    <a href="javascript:;">协议汇总</a>
+                </li>
+                <li>
+                    <a href="javascript:;">活动中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">活动专题页</a>
+                </li>
+                <li>
+                    <a href="javascript:;">侵权申诉</a>
+                </li>
+            </ul>
+            <ul class="second">
+                <li>
+                    <a href="javascript:;">帮助中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">用户反馈论坛</a>
+                </li>
+                <li>
+                    <a href="javascript:;">壁纸站</a>
+                </li>
+                <li>
+                    <a href="javascript:;">广告合作</a>
+                </li>
+            </ul>
+            <ul class="third">
+                <li>
+                    <a href="javascript:;">名人堂</a>
+                </li>
+                <li>
+                    <a href="javascript:;">管理中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">高级评论</a>
+                </li>
+                <li>
+                    <a href="javascript:;">企业号官网</a>
+                </li>
+            </ul>
         </div>
         <div class="main">
             <!-- 志愿帮扶 -->
@@ -159,6 +414,12 @@
         </div>
         <!-- 物资需求 -->
     </div>
+    <!-- 置顶 -->
+    <a id="button_back" title="返回顶部"></a>
+    <!-- 退出错误信息 -->
+    <div class="error_exit">
+        退出账号异常
+    </div>
 </body>
-
+<script src="../../js/backtop.js"></script>
 </html>
