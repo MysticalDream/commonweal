@@ -1,5 +1,7 @@
+# commonweal
+第十届软件设计大赛
 ##  **直播的实现**
-## 涉及技术WebRTC、WebSocket
+## 涉及技术WebRTC、WebSocket 
 ##### 简介：
 1. **WebRTC是HTML5规范，可以帮助建立一个互联网浏览器之间的音视频和数据实时通信的平台，WebRTC在无需安装任何插件和第三方的软件，创建点对点的连接**
 > - **使用到的api:**
@@ -134,7 +136,7 @@ BaseDao 抽象类封装了 dao 层的重复基本操作（**预编译语句和�
 
 #### **web 层：**
 
-该层主要是通过 HandOutServlet 分发请求，调用对应的 controller 层的处理方法
+该层主要是通过 HandOutServlet 分发请求，调用对应的 contoller 层的处理方法
 
 ##### 使用的自定义注解：
 
