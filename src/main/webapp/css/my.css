@@ -1084,7 +1084,7 @@ li .line_div:nth-child(4) img {
 .left_friend{
     width: 30%;
     height: 100%;
-    background-color: thistle;
+    background-color: #fab1372b;
 }
 
 .right_send{
@@ -1178,7 +1178,7 @@ li .line_div:nth-child(4) img {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color:#fff;
+    color:#000;
     font-size: 14px;
     letter-spacing: 2px;
     font-family: Simsun;
@@ -1195,7 +1195,7 @@ li .line_div:nth-child(4) img {
 }
 
 .cur_message_li{
-    background-color: grey;
+    background-color: #f3f3f3;
 }
 
 .send_div{
@@ -1314,9 +1314,10 @@ body .center_block .busy{
     overflow: hidden;
     height: 30px;
     border-radius: 5px;
-    background-color: gray;
+    /*background-color: gray;*/
     letter-spacing: 2px;
     font-family: Simsun;
     text-align: center;
     line-height: 30px;
+    border:2px solid #e3e3e3;
 }

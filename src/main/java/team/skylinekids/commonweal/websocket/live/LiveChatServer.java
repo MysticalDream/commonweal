@@ -120,7 +120,7 @@ public class LiveChatServer {
         message.setFromUsername(onlineUser.getUsername());
 
         TransportMessage transportMessage = new TransportMessage(message, MessageType.MESSAGE);
-        MessageUtils.broadcast(GsonUtils.o2J(transportMessage), userSet);
+//        MessageUtils.broadcast(GsonUtils.o2J(transportMessage), userSet);
     }
 
 
@@ -237,7 +237,7 @@ public class LiveChatServer {
         message.setFromUsername(onlineUser.getUsername());
         TransportMessage transportMessage = new TransportMessage(message, MessageType.INFO);
 
-        MessageUtils.broadcast(GsonUtils.o2J(transportMessage), userSet);
+//        MessageUtils.broadcast(GsonUtils.o2J(transportMessage), userSet);
     }
 
     @OnError

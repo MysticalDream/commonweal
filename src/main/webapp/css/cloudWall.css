@@ -53,13 +53,15 @@ body {
     width: 110px;
     height: 64px;
     text-align: center;
-    line-height: 71px;
+    line-height: 80px;
     font-size: 24px;
     font-weight: 700;
     color: rgb(187, 88, 69);
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
-    font-family: Simsun;
+    font-family: 'DOUYU-Font';
+    font-size: 18px;
+    letter-spacing: 4px;
 }
 
 .wrap .middle .our_hope {
@@ -82,7 +84,8 @@ body {
     text-align: center;
     line-height: 50px;
     color: rgb(25, 39, 70);
-    font-size: 24px;
+    font-size: 19px;
+    font-family: 'DOUYU-Font';
 }
 
 .wrap .middle .contain .card {
@@ -96,6 +99,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 8px;
+    cursor:pointer;
 }
 
 .wrap .middle .contain h3 {
@@ -104,6 +108,14 @@ body {
     line-height: 30px;
     color: rgb(187, 88, 69);
     font-size: 18px;
+    font-family: 'DOUYU-Font';
+    width:371px;
+    position: relative;
+    left:-30px;
+}
+
+.wrap .middle .contain .today{
+    top:15px;
 }
 
 .wrap .middle .our_hope h2,
@@ -133,13 +145,16 @@ body {
     left: 32px;
     width: 110px;
     height: 65px;
-    line-height: 65px;
+    line-height: 76px;
     text-align: center;
     font-size: 24px;
     font-weight: 700;
     color: rgb(187, 88, 67);
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
+    font-family: 'DOUYU-Font';
+    letter-spacing: 3px;
+    font-size: 18px;
 }
 
 .wrap .left .box {
@@ -189,6 +204,7 @@ body {
 
 .wrap .left .cards li .cover {
     transform: rotateY(0deg);
+    cursor: pointer;
 }
 
 .wrap .left .cards li:hover .cover {
@@ -203,6 +219,7 @@ body {
     box-sizing: border-box;
     transform: rotateY(180deg);
     letter-spacing: 3px;
+    cursor: pointer;
 }
 
 .wrap .left .cards li:hover .back {
@@ -255,6 +272,9 @@ body {
     background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-family: simsun;
+    letter-spacing: 3px;
+    font-weight: 600;
 }
 
 .wrap .left .line {
@@ -302,13 +322,16 @@ body {
     right: 14px;
     width: 110px;
     height: 65px;
-    line-height: 65px;
+    line-height: 80px;
     text-align: center;
     font-size: 24px;
     font-weight: 700;
     color: rgb(187, 88, 67);
     background: url(../images/cloudword.png) no-repeat;
     background-size: 100%;
+    font-family: 'DOUYU-Font';
+    letter-spacing: 3px;
+    font-size: 18px;
 }
 
 .wrap .right .box {
@@ -427,6 +450,9 @@ body {
     background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-family: simsun;
+    letter-spacing: 3px;
+    font-weight: 600;
 }
 
 .wrap .right .line {

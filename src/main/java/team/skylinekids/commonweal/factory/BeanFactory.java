@@ -46,7 +46,7 @@ public final class BeanFactory {
                     o = tClass.getConstructor().newInstance();
                     BEAN_CACHE.put(key, o);
                 } catch (Exception e) {
-                    throw new BeanException("反射构造bean异常");
+                    throw new BeanException("反射构造bean异常",e);
                 }
             }
         }

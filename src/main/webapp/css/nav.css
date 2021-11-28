@@ -72,6 +72,10 @@ a {
     height: 70px;
     background: var(--inner-color);
     background-color: #fff;
+    background-image: url("../images/menu.png");
+    background-repeat: no-repeat;
+    background-size: 70% 70%;
+    background-position: 50% 50% ;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

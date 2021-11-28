@@ -238,7 +238,7 @@ button.back {
     outline: 0;
     z-index: 1000;
     justify-content: center;
-    align-content: center;
+    align-items: center;
 }
 
 .model_content_wrap .content {
