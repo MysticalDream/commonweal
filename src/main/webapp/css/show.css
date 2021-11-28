@@ -256,3 +256,129 @@ body .big_pic_show {
     top: -5px;
 }
 
+.show_box{
+    transform: scale(.85);
+    position: relative;
+    top:-85px;
+    left:-125px;
+}
+
+.wrap_show{
+    position: relative;
+    height: 1150px;
+}
+
+.show_chat{
+    position: absolute;
+    top:5px;
+    right:-96px;
+    width: 240px;
+    height: 370px;
+}
+
+.show_page{
+    position: relative;
+    top:-190px;
+}
+
+body .show_footer{
+    margin-top: -135px;
+}
+
+.show_chat{
+    cursor: pointer;
+}
+
+.show_chat .chat_title{
+    position: relative;
+    margin-top: 4px;
+}
+
+.show_chat .chat_title>div{
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    line-height: 50px;
+    border-radius: 23px;
+    background: url(../images/hongyuan.png) center center no-repeat;
+    overflow: hidden;
+    margin-left: 11px;
+    text-align: center;
+    color:#fff;
+    font-family: 'DOUYU-Font';
+    font-size: 19px;
+}
+
+.show_chat .chat_title img{
+    position: relative;
+    width: 22px;
+    top:-12px;
+}
+
+.show_chat .chat_title img:nth-child(1){
+    left:0px;
+}
+
+.show_chat .chat_title .adjust_img{
+    left:8px;
+}
+
+.wrap_show .show_chat .chat_title .xie{
+    position: absolute;
+    width: 32px;
+    top:-20px;
+    left:191px;
+}
+
+.di_table{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color:#F8F8F8;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-family: SimSun;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    box-shadow:0px 3px 0px #CD4140;
+}
+
+.di_table table{
+    margin-top: 5px;
+    padding: 5px;
+    width: 90%;
+    height: 90%;
+}
+
+.di_table table tr td:first-child{
+    background: url(../images/first_guan.png) center center no-repeat;
+    text-align: center;
+    font-size: 12px;
+    color:#fff;
+    text-shadow: 1px 1px 1px #68201F; 
+    padding-top:4px;
+}
+
+body .di_table table tr .theads{
+    text-shadow: none; 
+    padding-top:0px;
+    color: #000; 
+    background: none;
+}
+
+.di_table table tr{
+    height: 29px;
+}
+
+.di_table table tr td:nth-child(2){
+    text-align: center;
+    transform: scale(.9);
+}
+
+.di_table table tr td:nth-child(3){
+    text-align: right;
+}

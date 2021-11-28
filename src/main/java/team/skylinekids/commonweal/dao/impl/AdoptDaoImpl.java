@@ -6,7 +6,6 @@ import team.skylinekids.commonweal.enums.ResourcePathConstant;
 import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.pojo.po.Adopt;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,15 +18,31 @@ public class AdoptDaoImpl extends MyGenericBaseDao<Adopt> implements AdoptDao {
     }
 
     @Override
-    public Page<Adopt> getAdoptList(Page<Adopt> page) throws Exception {
-        String sql = " LIMIT " + page.getStartRow() + "," + page.getPageSize();
-        Integer count = this.selectAllCount();
-        List<Adopt> adopts = this.selectListByConditionString(sql, new ArrayList<>());
-        adopts.forEach(adopt -> adopt.setCoverUrl(ResourcePathConstant.VIRTUAL_ADOPT_COVER_BASE + adopt.getCoverUrl()));
-        page.setList(adopts);
-        page.setSize(adopts.size());
-        page.setTotal(count);
-        page.setPagesAuto();
+    public Adopt getAdopt(Adopt adopt) throws Exception {
+        return this.selectOne(adopt);
+    }
+
+    @Override
+    public Page<Adopt> getAdoptList(Page<Adopt> page, boolean option) throws Exception {
+        List<Adopt> list;
+        String condition = option
+                //已领养
+                ? " WHERE IFNULL(adopt_user_id,'null')!='null' AND status=1 "
+                //未领养
+                : " WHERE IF(ISNULL(adopt_user_id),status=0,status=2) ";
+        list = this.getListByPagination(condition, page);
+        list.forEach(adopt -> adopt.setCoverUrl(ResourcePathConstant.VIRTUAL_ADOPT_COVER_BASE + adopt.getCoverUrl()));
         return page;
     }
+
+    @Override
+    public int updateAdoptUserId(Adopt adopt) throws Exception {
+        return this.update(adopt);
+    }
+
+    @Override
+    public List<Adopt> getUserAdopt(Integer userId, Page<Adopt> adoptPage) throws Exception {
+        return this.getListByPagination(" WHERE adopt_user_id=" + userId, adoptPage);
+    }
+
 }

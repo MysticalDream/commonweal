@@ -1,0 +1,103 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_center{
+    width: 600px;
+    height: 380px;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 3px 3px 3px rgba(5, 29, 85, 0.27);
+    overflow: hidden;
+}
+
+h1{
+    width: 253px;
+    height: 26px;
+    font-size: 18px;
+    font-family: FZCuHeiSongS-B-GB;
+    font-weight: 400;
+    color: #323648;
+    letter-spacing: 2px;
+    margin-left:35px;
+    margin-top:20px;
+}
+
+.middle{
+    width: 100%;
+    height: 85%;
+    overflow: hidden;
+}
+
+.middle>div{
+    position: relative;
+    width: 49%;
+    height: 85%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.middle>div:nth-child(1) img{
+    position: absolute;
+    width: 250px;
+    top:22%;
+}
+
+.middle div h2{
+    width: 280px;
+    font-size: 18px;
+    font-family: FZCuHeiSongS-B-GB;
+    font-weight: 400;
+    color: #323648;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.middle div input{
+    width: 260px;
+    height: 35px;
+    border-radius:20px;
+    margin-top:30px;
+    outline: none;
+    letter-spacing: 2px;
+    border: 2px solid rgba(184, 184, 184, 1);
+    color:rgba(184, 184, 184, 1);
+    text-indent: 3em;
+    margin-left: 10px;
+}
+
+.middle div form{
+    position: relative;
+}
+
+.middle div img{
+    width: 24px;
+    position: absolute;
+    left:22px;
+}
+
+.middle .right_one img:nth-child(1){
+    top:37px;
+}
+
+
+/* 查一下这个nth-child，理解有误 */
+.middle .right_one img:nth-child(3){
+    top:109px;
+}
+
+
+.last_button{
+    width: 85px;
+    height: 35px;
+    font-family: FZCuHeiSongS-B-GB;
+    background-color: rgba(48, 55, 83, 1);
+    color:#fff;
+    letter-spacing: 3px;
+    border-radius: 6px;
+    margin-top:35px;
+    margin-left:98px;
+    cursor: pointer;
+}

@@ -600,3 +600,421 @@ var obj_expand={
     } 
      
     }
+
+
+var obj_adopted={
+    "code": 200, 
+     
+    "message": "操作成功", 
+     
+    "success": true, 
+     
+    "data": {
+    "pageSize": 9, 
+     
+    "pageNum": 1, 
+     
+    "total": 2, 
+     
+    "size": 2, 
+     
+    "pages": 1, 
+     
+    "list": [
+    {
+       
+        // 再来一个领养者的昵称 领养日期 领养者头像就可以渲染了
+        // 反馈信息 反馈图片（可以多张）
+         // 用这个Id来记录已被领养的宠物Id
+    "adoptId": 1, 
+     
+    "variety": "拉布拉多", 
+     
+    "appearance": "棕色", 
+     
+    "age": 10, 
+     
+    "characters": "调皮", 
+     
+    "habit": "喜欢外出", 
+     
+    "introduction": "这个是一只狗", 
+     
+    "coverUrl": "/upload/images/adopt/af5df61d7f4d4297c9cc3b58870403.png", 
+     
+    "gmtCreate": "2021-10-23 14:15:02", 
+     
+    "gmtModified": "2021-10-23 14:17:53" 
+     
+    },
+    {
+    "adoptId": 2, 
+     
+    "variety": "拉布拉多", 
+     
+    "appearance": "白色", 
+     
+    "age": 5, 
+     
+    "characters": "安静", 
+     
+    "habit": "喜欢外出", 
+     
+    "introduction": "这个是一只狗", 
+     
+    "coverUrl": "/upload/images/adopt/a57f5df61d7f4d4297c9cc3b58870403.png", 
+     
+    "gmtCreate": "2021-10-23 14:16:51", 
+     
+    "gmtModified": "2021-10-23 14:17:40" 
+     
+    },
+    {
+        "adoptId": 1, 
+         
+        "variety": "拉布拉多", 
+         
+        "appearance": "黑色", 
+         
+        "age": 10, 
+         
+        "characters": "调皮", 
+         
+        "habit": "喜欢外出", 
+         
+        "introduction": "这个是一只狗", 
+         
+        "coverUrl": "/upload/images/adopt/af5df61d7f4d4297c9cc3b58870403.png", 
+         
+        "gmtCreate": "2021-10-23 14:15:02", 
+         
+        "gmtModified": "2021-10-23 14:17:53" 
+         
+    },
+    {
+        "adoptId": 1, 
+         
+        "variety": "拉布拉多", 
+         
+        "appearance": "黑色", 
+         
+        "age": 10, 
+         
+        "characters": "调皮", 
+         
+        "habit": "喜欢外出", 
+         
+        "introduction": "这个是一只狗", 
+         
+        "coverUrl": "/upload/images/adopt/af5df61d7f4d4297c9cc3b58870403.png", 
+         
+        "gmtCreate": "2021-10-23 14:15:02", 
+         
+        "gmtModified": "2021-10-23 14:17:53" 
+         
+    }
+    ] 
+     
+    } 
+     
+    }
+
+var obj_manager={
+    "code": 200, 
+     
+    "message": "操作成功", 
+     
+    "success": true, 
+     
+    "data": {
+    "pageSize": 9, 
+     
+    "pageNum": 1, 
+     
+    "total": 14654, 
+     
+    "size": 9, 
+     
+    "pages": 1629, 
+     
+    "list": [
+    {
+    "itemId": 1, 
+     
+    "itemTitle": "“幸福星”心理关爱热线服务", 
+     
+    "gmtCreate": "2021-10-30 16:33:23", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 2, 
+     
+    "itemTitle": "医心关怀”健康科普志愿服务", 
+     
+    "gmtCreate": "2021-10-30 16:57:38", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 3, 
+     
+    "itemTitle": "“绿色希望”流动儿童关爱", 
+     
+    "gmtCreate": "2021-10-30 17:25:34", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 4, 
+     
+    "itemTitle": "“吹响志愿集结号”海淀社区志愿日", 
+     
+    "gmtCreate": "2021-10-30 18:35:53", 
+     
+    "username": "common" 
+     
+    },
+    {
+    "itemId": 5, 
+     
+    "itemTitle": "北京市东城区“守望岗”", 
+     
+    "gmtCreate": "2021-10-30 18:42:34", 
+     
+    "username": "common" 
+     
+    }
+    // {
+    // "itemId": 6, 
+     
+    // "itemTitle": "低碳志愿行动", 
+     
+    // "gmtCreate": "2021-10-30 18:49:51", 
+     
+    // "username": "common" 
+     
+    // }
+    // {
+    // "itemId": 7, 
+     
+    // "itemTitle": "越秀山环保公益", 
+     
+    // "gmtCreate": "2021-10-30 18:56:43", 
+     
+    // "username": "common" 
+     
+    // }
+    // {
+    // "itemId": 8, 
+     
+    // "itemTitle": "义家读书会", 
+     
+    // "gmtCreate": "2021-10-30 19:01:19", 
+     
+    // "username": "common" 
+     
+    // },
+    // {
+    // "itemId": 9, 
+     
+    // "itemTitle": "“慢3秒”文明安全体验岗志愿服务活动", 
+     
+    // "gmtCreate": "2021-10-30 19:34:07", 
+     
+    // "username": "common" 
+     
+    // }
+    ] 
+     
+    } 
+     
+    }
+
+    var obj1={
+        "code": 200, 
+         
+        "message": "操作成功", 
+         
+        "success": true, 
+         
+        "data": {
+        "pageSize": 4, 
+         
+        "pageNum": 1, 
+         
+        "total": 2, 
+         
+        "size": 2, 
+         
+        "pages": 1, 
+         
+        "list": [
+        {
+        "comment": {
+        "id": 1, 
+         
+        "userId": 1, 
+         
+        "adoptId": 1, 
+         
+        "content": "哈哈哈", 
+         
+        "praiseNum": 0, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "isAdopter": true 
+         
+        }, 
+         
+        "userDTO": {
+        "userId": 1, 
+         
+        "username": "common", 
+         
+        "tel": "13498765321", 
+         
+        "avatarUrl": "/upload/images/avatars/user/default-avatar.png", 
+         
+        "location": "北京市" 
+         
+        }, 
+         
+        "picList": [
+        {
+        "srcId": 1, 
+         
+        "srcName": "/upload/images/feedback/9d97bd4c72cc4760afca12851bbbec8c.jpg", 
+         
+        "feedbackId": 1, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "gmtModified": "2021-11-24 09:32:32" 
+         
+        },
+        {
+        "srcId": 2, 
+         
+        "srcName": "/upload/images/feedback/e137566e58c8424b97e37e347a610cca.png", 
+         
+        "feedbackId": 1, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "gmtModified": "2021-11-24 09:32:32" 
+         
+        },
+        {
+        "srcId": 3, 
+         
+        "srcName": "/upload/images/feedback/1a5a03cd71cc4bb7a9a48ec5799d7c46.png", 
+         
+        "feedbackId": 1, 
+         
+        "gmtCreate": "2021-11-24 09:32:32", 
+         
+        "gmtModified": "2021-11-24 09:32:32" 
+         
+        }
+        ] 
+         
+        },
+        {
+        "comment": {
+        "id": 2, 
+         
+        "userId": 2, 
+         
+        "adoptId": 1, 
+         
+        "content": "我是路人评论已经领养的动物", 
+         
+        "praiseNum": 0, 
+         
+        "gmtCreate": "2021-11-24 09:55:11", 
+         
+        "isAdopter": false 
+         
+        }, 
+         
+        "userDTO": {
+        "userId": 2, 
+         
+        "username": "Java", 
+         
+        "tel": "10086", 
+         
+        "avatarUrl": "/upload/images/avatars/user/default-avatar.png", 
+         
+        "location": "广东省" 
+         
+        } 
+         
+        }
+        ] 
+         
+        } 
+         
+        }
+
+        var obj2={
+            "code": 200, 
+             
+            "message": "操作成功", 
+             
+            "success": true, 
+             
+            "data": {
+            "pageSize": 4, 
+             
+            "pageNum": 1, 
+             
+            "total": 1, 
+             
+            "size": 1, 
+             
+            "pages": 1, 
+             
+            "list": [
+            {
+            "comment": {
+            "id": 1, 
+             
+            "userId": 2, 
+             
+            "feedbackId": 1, 
+             
+            "content": "评论反馈的评论", 
+             
+            "praiseNum": 0, 
+             
+            "gmtCreate": "2021-11-24 14:12:59", 
+             
+            "isAdopter": false 
+             
+            }, 
+             
+            "userDTO": {
+            "userId": 2, 
+             
+            "username": "Java", 
+             
+            "tel": "10086", 
+             
+            "avatarUrl": "/upload/images/avatars/user/default-avatar.png", 
+             
+            "location": "广东省" 
+             
+            } 
+             
+            }
+            ] 
+             
+            } 
+             
+            }

@@ -1,5 +1,7 @@
 package team.skylinekids.commonweal.dao.core;
 
+import team.skylinekids.commonweal.pojo.bo.Page;
+
 import java.util.List;
 
 /**
@@ -110,4 +112,14 @@ public interface GenericBaseDao<T> {
      * @return
      */
     Integer selectAllCount() throws Exception;
+
+    /**
+     * 分页获取
+     *
+     * @param conditionSql 带有where
+     * @param page
+     * @return
+     * @throws Exception
+     */
+    public List<T> getListByPagination(String conditionSql, Page<T> page) throws Exception;
 }

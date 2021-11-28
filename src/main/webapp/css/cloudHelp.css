@@ -1,0 +1,296 @@
+body {
+    overflow-x: hidden;
+}
+
+
+/* 轮播图 */
+
+.contain {
+    width: 1268px;
+    height: 2250px;
+    background-color: rgb(247, 235, 235);
+    margin: 0 auto;
+    background: url(../images/cloudhelp.jpg);
+    background-size: 100%;
+    overflow: hidden;
+}
+
+.slideshow {
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    margin: 0px auto;
+    margin-top: 50px;
+    border-radius: 8px;
+    /* background-color: pink; */
+    overflow: hidden;
+}
+
+.slideshow .slideshowUl {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 500%;
+    height: 500px;
+    transition: 1s;
+}
+
+.slideshow .slideshowUl li {
+    width: 1000px;
+    height: 500px;
+    float: left;
+}
+
+.slideshow .slideshowUl li img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.slideshow .point {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* width: 95px; */
+    height: 20px;
+    /* background-color: pink; */
+}
+
+.slideshow .point li {
+    float: left;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .4);
+    margin: 0px 5px;
+}
+
+.slideshow .point li.choice {
+    background-color: #fff;
+}
+
+.slideshow .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+    width: 25px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, .4);
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.slideshow .pre {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+    width: 25px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, .4);
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* 志愿帮扶 */
+
+.main {
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.main>div {
+    float: left;
+}
+
+.main .help {
+    width: 640px;
+    height: 1510px;
+    border-radius: 8px;
+}
+
+.main .help .top {
+    position: relative;
+    width: 640px;
+    height: 30px;
+    margin: 20px 0px 20px 0px;
+}
+
+.main .help .top h2 {
+    width: 130px;
+    height: 30px;
+    padding-left: 15px;
+    line-height: 30px;
+    border-left: 5px solid rgb(188, 88, 68);
+    font-family: simsun;
+    letter-spacing: 3px;
+}
+
+.main .help .top span {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.main .help .top span:hover {
+    color: rgb(188, 88, 68);
+}
+
+.main .help .bottom {
+    width: 580px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.main .help .bottom .helpbox {
+    width: 600px;
+    height: 200px;
+    margin-top: 35px;
+}
+
+.main .help .bottom .helpbox>div {
+    float: left;
+}
+
+.main .help .bottom .helpbox .pic {
+    width: 220px;
+    height: 170px;
+}
+
+.main .help .bottom .helpbox .pic img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.main .help .bottom .helpbox .text {
+    width: 360px;
+    height: 170px;
+    margin-left: 10px;
+    letter-spacing: 3px;
+}
+
+.main .help .bottom .helpbox .text h4 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    color: rgb(90, 90, 90);
+    color:#000;
+    font-family: Simsun;
+    font-weight: 600;
+}
+
+.main .help .bottom .helpbox .text p {
+    width: 310px;
+    height: 100px;
+    font-size: 14px;
+    line-height: 24px;
+    margin-top: 25px;
+    margin-left: 15px;
+    color: rgb(146, 146, 146);
+    overflow: hidden;
+    white-space: wrap;
+    text-overflow: ellipsis;
+}
+
+
+/* 物资需求 */
+
+.main .require {
+    width: 340px;
+    height: 1510px;
+    margin-left: 20px;
+}
+
+.main .require .top {
+    position: relative;
+    width: 340px;
+    height: 30px;
+    margin: 20px 0px 20px 0px;
+}
+
+.main .require .top h2 {
+    width: 130px;
+    height: 30px;
+    padding-left: 15px;
+    line-height: 30px;
+    border-left: 5px solid rgb(188, 88, 68);
+    font-family: Simsun;
+    letter-spacing: 3px;
+}
+
+.main .require .top span {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.main .require .top span:hover {
+    color: rgb(188, 88, 68);
+}
+
+.main .require .bottom {
+    width: 340px;
+    height: 1440px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.main .require .bottom .requirebox {
+    width: 340px;
+    height: 180px;
+    margin-top: 25px;
+    /* background-color: pink; */
+}
+
+.main .require .bottom .requirebox>div {
+    float: left;
+}
+
+.main .require .bottom .requirebox .pic {
+    width: 150px;
+    height: 130px;
+    margin-top: 15px;
+}
+
+.main .require .bottom .requirebox .pic img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.main .require .bottom .requirebox .text {
+    width: 130px;
+    height: 122px;
+    margin-left: 25px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    line-height: 24px;
+    overflow: hidden;
+    color: rgb(146, 146, 146);
+}
+
+.footer {
+    bottom: -351px !important;
+}

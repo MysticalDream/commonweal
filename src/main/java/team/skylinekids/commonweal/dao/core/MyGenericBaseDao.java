@@ -2,12 +2,14 @@ package team.skylinekids.commonweal.dao.core;
 
 
 import team.skylinekids.commonweal.dao.core.annotaion.TableName;
+import team.skylinekids.commonweal.pojo.bo.Page;
 import team.skylinekids.commonweal.utils.JDBCUtils;
 import team.skylinekids.commonweal.utils.reflect.ReflectUtils;
 import team.skylinekids.commonweal.utils.SqlUtils;
 
 import java.sql.Connection;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -320,4 +322,18 @@ public abstract class MyGenericBaseDao<T> extends BaseDao<T> implements GenericB
         return bean;
     }
 
+    @Override
+    public List<T> getListByPagination(String conditionSql, Page<T> page) throws Exception {
+        //总数
+        Integer count = this.selectCountByCondition(conditionSql, new ArrayList<>());
+        page.setTotal(count);
+        page.setPagesAuto();
+        //分页语句
+        String pagination = conditionSql + " LIMIT " + page.getStartRow() + "," + page.getPageSize();
+        //获取分页列表
+        List<T> list = this.selectListByConditionString(pagination, new ArrayList<>());
+        page.setList(list);
+        page.setSize(list.size());
+        return list;
+    }
 }

@@ -153,8 +153,8 @@ function postJson(opt) {
     //定时器
     let timer;
     //直播计时
-    const $living = $('.living>span>span');
-    const $livingText = $('.living>span');
+    const $living = $('.living>span:nth-child(2)');
+    const $livingText = $('.living>span:nth-child(1)');
     //侧边选择
     const $li1 = $('aside > ul > li:nth-child(1)');
     const $li2 = $('aside > ul > li:nth-child(2)');
@@ -197,24 +197,53 @@ function postJson(opt) {
         });
     }).catch(e => win.console.log(e));
 
-    //计时开始
+    // //计时开始
+    // const clocker = () => {
+    //     clearTimer();
+    //     let hour, minute, second;
+    //     hour = minute = second = 0;
+    //     $livingText.innerText = "直播中";
+    //     timer = win.setInterval(function () {
+    //         second += 1;
+    //         if (second >= 60) {
+    //             second = 0;
+    //             minute += 1;
+    //         }
+    //         if (minute >= 60) {
+    //             hour += 1;
+    //         }
+    //         $living.textContent = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute) + ':' + (second < 10 ? '0' + second : second);
+    //     }, 1000);
+    // };
+
     const clocker = () => {
-        clearTimer();
-        let hour, minute, second;
-        hour = minute = second = 0;
+        // video.addEventListener("timeupdate", () => {
+        //     $living.textContent = getTimeText(video.currentTime);
+        // });
+        let second = 0;
         $livingText.innerText = "直播中";
-        timer = win.setInterval(function () {
-            second += 1;
-            if (second >= 60) {
-                second = 0;
-                minute += 1;
-            }
-            if (minute >= 60) {
-                hour += 1;
-            }
-            $living.textContent = (hour < 10 ? '0' + hour : hour) + ':' + (minute < 10 ? '0' + minute : minute) + ':' + (second < 10 ? '0' + second : second);
+        timer = setInterval(() => {
+            second++;
+            $living.textContent = getTimeText(second);
         }, 1000);
     };
+    // video.addEventListener("timeupdate", () => {
+    //     $living.textContent = getTimeText(video.currentTime);
+    // });
+
+    /**
+     * 获取时间
+     * @param val second 秒
+     * @returns {string}
+     */
+    function getTimeText(val) {
+        const floor = win.Math.floor(val);
+        let minute = win.Math.floor(floor / 60);
+        minute = minute.toString().padStart(2, "0");
+        let second = floor % 60;
+        second = second.toString().padStart(2, "0");
+        return minute + ":" + second;
+    }
 
     function clearTimer() {
         win.clearInterval(timer);
@@ -383,6 +412,7 @@ function postJson(opt) {
             $button.innerText = "开始直播";
             $button.style.backgroundColor = "#2e78f3";
             audioStreamState = systemAudioState = videoStreamState = false;
+            change = false;
             return;
         }
         //开始直播
@@ -436,9 +466,13 @@ function postJson(opt) {
     });
 
     $li5.addEventListener("click", function () {
-        this.className = (flip ? "normal" : "muted")
+        this.className = (flip ? "normal" : "muted");
         video.style.transform = flip ? "rotateY(0)" : "rotateY(180deg)";
         flip = !flip;
+        ws && ws.ws.readyState === 1 && ws.send(win.JSON.stringify({
+            type: "rotate",
+            data: {}
+        }));
     });
 
     /**
@@ -535,7 +569,7 @@ function postJson(opt) {
             if (msg.remark === 'live_own') {
                 str = '主播';
             }
-            this.el.innerHTML += `<div class="chat_item" style="text-align: ${msg.fromId==cookieManager.getCookie("userId")?"right":"left"} ">
+            this.el.innerHTML += `<div class="chat_item" style="text-align: ${msg.fromId == cookieManager.getCookie("userId") ? "right" : "left"} ">
 <div class="username">${msg.fromUsername}(${str})</div>
 <div class="message_text">${msg.content}</div>
 </div>`;

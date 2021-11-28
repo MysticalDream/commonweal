@@ -4,6 +4,14 @@ window.addEventListener('load', () => {
     const fontSize = document.querySelector('#fontSize');
     const emjoy = document.querySelector('.emjoy');
     const emjoys = document.querySelector('.emjoys');
+    const submit = document.querySelector('.submit');
+    let comments = document.querySelector('#comments');
+    const cards = document.querySelector('.cards').children;
+    const contain = document.querySelector('.contain');
+    const text = document.querySelector('.text');
+    const returnb = document.querySelector('.return');
+    const back = document.querySelector('.back');
+    const sign = document.querySelector('.sign input');
     // 控制点击表情按钮会不会输出表情的
     let flag = false;
     // 控制点击表情按钮 那个表情的盒子出现不出现的
@@ -11,6 +19,28 @@ window.addEventListener('load', () => {
     let flag3 = true;
     let a;
     let font = 3;
+    let that;
+    setTimeout(() => {
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].style.animation = 'unset';
+        }
+    }, 500);
+    // 获取拼接的参数
+    function isNumber(val) {
+        var reg = /^[0-9]+\.?[0-9]*$/;
+        return reg.test(val);
+    };
+
+    function getUrlParamObject(url) {
+        const params = url.slice(url.indexOf('?') + 1, url.length);
+        const group = params.split('&');
+        const data = new Object();
+        for (const index in group) {
+            const arr = group[index].split('=');
+            data[arr[0]] = isNumber(arr[1]) ? parseFloat(arr[1]) : arr[1];
+        }
+        return data;
+    };
     // 调节字体大小的
     // fontSize.addEventListener('click', () => {
     //         document.execCommand(fontSize.dataset.commad, false, 1);
@@ -19,7 +49,7 @@ window.addEventListener('load', () => {
             // buttons[2].click();
             // alert(1);
             // console.log(buttons[2]);
-            console.log(parseInt(fontSize.options[fontSize.selectedIndex].text));
+            // console.log(parseInt(fontSize.options[fontSize.selectedIndex].text));
             if (parseInt(fontSize.options[fontSize.selectedIndex].text) === 12) {
                 font = 1;
             } else if (parseInt(fontSize.options[fontSize.selectedIndex].text) === 18) {
@@ -61,33 +91,7 @@ window.addEventListener('load', () => {
         }
     })
 
-    // console.log(String.fromCodePoint('😀'.codePointAt()));
-    // buttons.forEach((button, index) => {
-    //     button.addEventListener('click', () => {
-    //         let theEvent = button.dataset.commad;
-    //         // 点击后给个背景颜色
-    //         if ((index >= 3 && index <= 5) || index == 10) {
-    //             // if (!flag3) {
-    //             //     button.style.backgroundColor = 'rgb(205, 235, 246)';
-    //             //     flag3 = true;
-    //             // } else {
-    //             //     button.style.backgroundColor = 'rgb(247, 247, 247)';
-    //             //     flag3 = false;
-    //             // }
-    //             buttons.forEach(button => {
-    //                 // 先遍历全部 去除choice类
-    //                 console.log();
-    //             })
-    //         }
-    //         if (theEvent === 'xiaolian' && flag) {
-    //             // output.innerHTML += a;
-    //             document.execCommand('insertText', false, a);
-    //             // expression.insertText(a);
-    //         } else {
-    //             document.execCommand(theEvent, false, null);
-    //         }
-    //     })
-    // })
+
     for (let i = 0; i < buttons.length; i++) {
         // 加粗和斜体不能同时选中 如果flag3为false的话 就说明 那个按钮只点了一次 点完后给它给为true 如果为true说明是再次点击 就要
         buttons[i].addEventListener('click', () => {
@@ -126,4 +130,85 @@ window.addEventListener('load', () => {
             }
         })
     }
+
+
+    // ----------------------
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener('click', () => {
+                that = cards[i];
+                // console.log(i);
+                // 点击后其他的循环一次给隐藏掉 就这个是显示的  
+                for (let j = 0; j < cards.length; j++) {
+                    cards[j].classList.add('nochoice');
+                }
+                cards[i].classList.remove('nochoice');
+                cards[i].classList.add('choice');
+                // 点击后让这个大盒子隐藏 显示出编辑页面 
+                setTimeout(() => {
+                    contain.style.opacity = 0;
+                    contain.style.zIndex = 10;
+                    text.style.opacity = 1;
+                    text.style.zIndex = 11;
+                }, 2000);
+            })
+            // 给所有的卡片添加一个id
+        cards[i].dataset.cardId = i;
+    }
+
+    submit.addEventListener('click', () => {
+
+        ajax({
+            type: 'post',
+            url: '/wall',
+            data: {
+                content: output.innerHTML,
+                signature: sign.value,
+                cardId: that.dataset.cardId,
+                flag: getUrlParamObject(window.location.href)['flag']
+            },
+            header: {
+                'Content-Type': 'application/json'
+            },
+            success: function(data) {
+                if (data.code === 200) {
+                    console.log(data);
+                    window.location.href = 'cloudWall.html';
+                } else {
+                    let warn = document.querySelector('.warn');
+                    warn.style.display = 'block';
+                    let timer_warn = setTimeout(() => {
+                        if (timer_warn) {
+                            clearTimeout(timer_warn);
+                        }
+                        warn.style.display = 'none';
+                    }, 2000);
+                }
+            }
+        });
+        output.innerHTML = '';
+        // 点击后返回刚刚我要写的页面
+        comments.value = output.innerHTML;
+
+    })
+    returnb.addEventListener('click', () => {
+        output.innerHTML = '';
+        // 让所有的小卡片恢复显示状态 然后要改变一开始被选中的卡片
+        for (let j = 0; j < cards.length; j++) {
+            // cards[j].style.display = 'block';
+            // cards[j].style.opacity = 1;
+            cards[j].classList.remove('nochoice');
+            cards[j].classList.add('renew');
+            if (cards[j].classList.contains('choice')) {
+                cards[j].classList.remove('choice');
+            }
+        }
+        contain.style.opacity = 1;
+        contain.style.zIndex = 11;
+        text.style.opacity = 0;
+        text.style.zIndex = 10;
+
+    })
+    back.addEventListener('click', () => {
+        window.location.href = 'cloudWall.html';
+    })
 })

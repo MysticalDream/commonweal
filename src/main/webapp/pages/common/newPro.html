@@ -23,298 +23,304 @@
     <script src="../../js/isLog_in_adpot.js"></script>
     <script src="../../js/join_in.js"></script>
     <script src="../../js/join_in_box.js"></script>
+    <script src="../../js/childjump.js"></script>
 </head>
 
 <body>
-<!-- 导航栏 -->
-<div class="nav_s">
-    <div class="left"><span>创</span>益</div>
-    <div class="middle">
-        <ul class="nav_ul_s">
-            <li>
-                <a href="../../index.html">首页</a>
-            </li>
-            <li class="pitch">
-                <a href="./newPro.html">志愿项目</a>
-            </li>
-            <li>
-                <a href="./expand.html">招募志愿者</a>
-            </li>
-            <li>
-                <a href="./show.html">风采展示</a>
-                <span></span>
-            </li>
-            <li>
-                <a href="./agriculture.html">助农</a>
-            </li>
-            <li>
-                <a href="./adpot.html">领养动物</a>
-            </li>
-            <li>
-                <a href="javascript:void(0)">关爱儿童</a>
-            </li>
+    <!-- 导航栏 -->
+    <div class="nav_s">
+        <div class="left"><span>创</span>益</div>
+        <div class="middle">
+            <ul class="nav_ul_s">
+                <li>
+                    <a href="../../index.html">首页</a>
+                </li>
+                <li class="pitch">
+                    <a href="./newPro.html">志愿项目</a>
+                </li>
+                <li>
+                    <a href="./expand.html">招募志愿者</a>
+                </li>
+                <li>
+                    <a href="./show.html">风采展示</a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="./agriculture.html">助农</a>
+                </li>
+                <li>
+                    <a href="./adpot.html">领养动物</a>
+                </li>
+                <li class="child_s">
+                    <a href="./lovekid.html">关爱儿童</a>
+                    <div class="child_all">
+                        <div class="childteach">云支教</div>
+                        <div class="childhelp">云帮扶</div>
+                        <div class="childwall">云墙</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="right username">
+            <!-- <div class="pic"></div>
+    <span>command</span> -->
+        </div>
+    </div>
+    <!-- 大照片 -->
+    <div class="big_pic_s">
+        <div class="big_pic_left_line"></div>
+        <span class="center_title">志愿项目</span>
+        <div class="big_pic_right_line"></div>
+    </div>
+    <!-- 切换栏 -->
+    <div class="pro_box">
+        <ul>
+            <li class="pro_li_cur">志愿项目</li>
+            <li>志愿队伍</li>
         </ul>
     </div>
-    <div class="right username">
-        <!-- <div class="pic"></div>
-    <span>command</span> -->
-    </div>
-</div>
-<!-- 大照片 -->
-<div class="big_pic_s">
-    <div class="big_pic_left_line"></div>
-    <span class="center_title">志愿项目</span>
-    <div class="big_pic_right_line"></div>
-</div>
-<!-- 切换栏 -->
-<div class="pro_box">
-    <ul>
-        <li class="pro_li_cur">志愿项目</li>
-        <li>志愿队伍</li>
-    </ul>
-</div>
-<!-- 中间的大盒子 -->
-<div class="pro_main">
-    <div class="main_top_d">
-        <span>首页</span>
-        <span>></span>
-        <span>志愿项目</span>
-        <span>></span>
-        <span>志愿队伍</span>
-    </div>
-    <div class="sele_wrapper">
-        <div class="province_d">
-            <img src="../../images/diqu.png" alt="">
-            <span class="area_c">项目地区</span>
-            <span class="red_bg fir_d">全国</span>
+    <!-- 中间的大盒子 -->
+    <div class="pro_main">
+        <div class="main_top_d">
+            <span>首页</span>
+            <span>></span>
+            <span>志愿项目</span>
+            <span>></span>
+            <span>志愿队伍</span>
         </div>
-        <div class="theme_d">
-            <img src="../../images/theme (1).png" alt="">
-            <span>项目主题</span>
-            <span class=" item_d red_bg">全部</span>
-            <span class="item_d">社区服务</span>
-            <span class="item_d">卫生健康</span>
-            <span class="item_d">法律服务</span>
-            <span class="item_d">环境保护</span>
-            <span class="item_d">科技科普</span>
-            <span class="item_d">文化艺术</span>
-            <span class="item_d">交通引导</span>
-            <span class="item_d">志愿消防</span>
-            <span class="item_d">禁毒宣传</span>
-            <span class="item_d">海外志愿服务</span>
-            <span class="item_d">体育健身</span>
-        </div>
-        <div class="people_d">
-            <img src="../../images/people.png" alt="">
-            <span class="peo_c">项目人数</span>
-            <span class="peo_d red_bg">全部</span>
-            <span class="peo_d">0-20</span>
-            <span class="peo_d">21-40</span>
-            <span class="peo_d">41-60</span>
-            <span class="peo_d">61-80</span>
-            <span class="peo_d">80-100</span>
-            <span class="peo_d">100以上</span>
-        </div>
-        <div class="tagged_box">
-            <input type="text" class="pro_search">
-            <div class="left_em">
+        <div class="sele_wrapper">
+            <div class="province_d">
+                <img src="../../images/diqu.png" alt="">
+                <span class="area_c">项目地区</span>
+                <span class="red_bg fir_d">全国</span>
+            </div>
+            <div class="theme_d">
+                <img src="../../images/theme (1).png" alt="">
+                <span>项目主题</span>
+                <span class=" item_d red_bg">全部</span>
+                <span class="item_d">社区服务</span>
+                <span class="item_d">卫生健康</span>
+                <span class="item_d">法律服务</span>
+                <span class="item_d">环境保护</span>
+                <span class="item_d">科技科普</span>
+                <span class="item_d">文化艺术</span>
+                <span class="item_d">交通引导</span>
+                <span class="item_d">志愿消防</span>
+                <span class="item_d">禁毒宣传</span>
+                <span class="item_d">海外志愿服务</span>
+                <span class="item_d">体育健身</span>
+            </div>
+            <div class="people_d">
+                <img src="../../images/people.png" alt="">
+                <span class="peo_c">项目人数</span>
+                <span class="peo_d red_bg">全部</span>
+                <span class="peo_d">0-20</span>
+                <span class="peo_d">21-40</span>
+                <span class="peo_d">41-60</span>
+                <span class="peo_d">61-80</span>
+                <span class="peo_d">80-100</span>
+                <span class="peo_d">100以上</span>
+            </div>
+            <div class="tagged_box">
+                <input type="text" class="pro_search">
+                <div class="left_em">
                     <span>
                         项目名称
                     </span>
-                <img src="../../images/down.png" alt="" class="vis_down">
-                <ul class="inner_ul_d">
-                    <li>项目名称</li>
-                    <li>项目编号</li>
-                </ul>
-            </div>
-            <div class="center_em">
-                <img src="../../images/搜索.png" alt="">
-                <span>项目名称</span>
-            </div>
-            <div class="box"></div>
-            <div class="wrapper">
-            </div>
-            <!-- 页脚部分 -->
-            <div class="left_foot footer">
-                <div class="footer_lf">
-                    <h3>创益</h3>
-                    <ul class="first">
-                        <li>
-                            <a href="javascript:;">关于我们</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">联系我们</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">用户协议</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">加入我们</a>
-                        </li>
-                    </ul>
-                    <ul class="second">
-                        <li>
-                            <a href="javascript:;">友情链接</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">隐私政策</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">创益认证</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Investor Relations</a>
-                        </li>
+                    <img src="../../images/down.png" alt="" class="vis_down">
+                    <ul class="inner_ul_d">
+                        <li>项目名称</li>
+                        <li>项目编号</li>
                     </ul>
                 </div>
-                <div class="footer_rg">
-                    <h3>传送门</h3>
-                    <ul class="first">
-                        <li>
-                            <a href="javascript:;">协议汇总</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">活动中心</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">活动专题页</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">侵权申诉</a>
-                        </li>
-                    </ul>
-                    <ul class="second">
-                        <li>
-                            <a href="javascript:;">帮助中心</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">用户反馈论坛</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">壁纸站</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">广告合作</a>
-                        </li>
-                    </ul>
-                    <ul class="third">
-                        <li>
-                            <a href="javascript:;">名人堂</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">管理中心</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">高级评论</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">企业号官网</a>
-                        </li>
-                    </ul>
+                <div class="center_em">
+                    <img src="../../images/搜索.png" alt="">
+                    <span>项目名称</span>
+                </div>
+                <div class="box"></div>
+                <div class="wrapper">
+                </div>
+                <!-- 页脚部分 -->
+                <div class="left_foot footer">
+                    <div class="footer_lf">
+                        <h3>创益</h3>
+                        <ul class="first">
+                            <li>
+                                <a href="javascript:;">关于我们</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">联系我们</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">用户协议</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">加入我们</a>
+                            </li>
+                        </ul>
+                        <ul class="second">
+                            <li>
+                                <a href="javascript:;">友情链接</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">隐私政策</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">创益认证</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Investor Relations</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer_rg">
+                        <h3>传送门</h3>
+                        <ul class="first">
+                            <li>
+                                <a href="javascript:;">协议汇总</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">活动中心</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">活动专题页</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">侵权申诉</a>
+                            </li>
+                        </ul>
+                        <ul class="second">
+                            <li>
+                                <a href="javascript:;">帮助中心</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">用户反馈论坛</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">壁纸站</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">广告合作</a>
+                            </li>
+                        </ul>
+                        <ul class="third">
+                            <li>
+                                <a href="javascript:;">名人堂</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">管理中心</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">高级评论</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">企业号官网</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="tagged_box tagged_copy">
-            <input type="text" class="pro_search">
-            <div class="left_em">
+            <div class="tagged_box tagged_copy">
+                <input type="text" class="pro_search">
+                <div class="left_em">
                     <span>
                         队伍名称
                     </span>
-                <img src="../../images/down.png" alt="" class="vis_down">
-                <ul class="inner_ul_d">
-                    <li>队伍名称</li>
-                    <li>队伍编号</li>
-                </ul>
-            </div>
-            <div class="center_em">
-                <img src="../../images/搜索.png" alt="">
-                <span>队伍名称</span>
-            </div>
-            <div class="box"></div>
-            <div class="wrapper_n">
-            </div>
-            <!-- 页脚部分 -->
-            <div class="left_foot footer">
-                <div class="footer_lf">
-                    <h3>创益</h3>
-                    <ul class="first">
-                        <li>
-                            <a href="javascript:;">关于我们</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">联系我们</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">用户协议</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">加入我们</a>
-                        </li>
-                    </ul>
-                    <ul class="second">
-                        <li>
-                            <a href="javascript:;">友情链接</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">隐私政策</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">创益认证</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">Investor Relations</a>
-                        </li>
+                    <img src="../../images/down.png" alt="" class="vis_down">
+                    <ul class="inner_ul_d">
+                        <li>队伍名称</li>
+                        <li>队伍编号</li>
                     </ul>
                 </div>
-                <div class="footer_rg">
-                    <h3>传送门</h3>
-                    <ul class="first">
-                        <li>
-                            <a href="javascript:;">协议汇总</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">活动中心</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">活动专题页</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">侵权申诉</a>
-                        </li>
-                    </ul>
-                    <ul class="second">
-                        <li>
-                            <a href="javascript:;">帮助中心</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">用户反馈论坛</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">壁纸站</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">广告合作</a>
-                        </li>
-                    </ul>
-                    <ul class="third">
-                        <li>
-                            <a href="javascript:;">名人堂</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">管理中心</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">高级评论</a>
-                        </li>
-                        <li>
-                            <a href="javascript:;">企业号官网</a>
-                        </li>
-                    </ul>
+                <div class="center_em">
+                    <img src="../../images/搜索.png" alt="">
+                    <span>队伍名称</span>
+                </div>
+                <div class="box"></div>
+                <div class="wrapper_n">
+                </div>
+                <!-- 页脚部分 -->
+                <div class="left_foot footer">
+                    <div class="footer_lf">
+                        <h3>创益</h3>
+                        <ul class="first">
+                            <li>
+                                <a href="javascript:;">关于我们</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">联系我们</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">用户协议</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">加入我们</a>
+                            </li>
+                        </ul>
+                        <ul class="second">
+                            <li>
+                                <a href="javascript:;">友情链接</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">隐私政策</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">创益认证</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">Investor Relations</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer_rg">
+                        <h3>传送门</h3>
+                        <ul class="first">
+                            <li>
+                                <a href="javascript:;">协议汇总</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">活动中心</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">活动专题页</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">侵权申诉</a>
+                            </li>
+                        </ul>
+                        <ul class="second">
+                            <li>
+                                <a href="javascript:;">帮助中心</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">用户反馈论坛</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">壁纸站</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">广告合作</a>
+                            </li>
+                        </ul>
+                        <ul class="third">
+                            <li>
+                                <a href="javascript:;">名人堂</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">管理中心</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">高级评论</a>
+                            </li>
+                            <li>
+                                <a href="javascript:;">企业号官网</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- <div class="tagged_box">
+        <!-- <div class="tagged_box">
 <input type="text" class="pro_search">
 <div class="left_em">
     <span>
@@ -354,46 +360,46 @@
 <div class="wrapper">
 </div>
 </div> -->
-    <!-- <div class="wrapper">
+        <!-- <div class="wrapper">
 
 </div> -->
-</div>
-<div class="body_full">
-    <div class="mask_join">
-        <h2>加入形式</h2>
-        <button class="first">个人</button>
-        <button class="second">团队</button>
     </div>
-    <div class="exit_icon"></div>
-    <div class="wait">申请成功 审核中</div>
-    <div class="mask_join_in">
-        <h2>请选择你要加入的队伍</h2>
-        <p>(仅能选择一个队伍)</p>
-        <div>
-            <hr>
-            <ul class="header">
-                <li class="left">队伍名称</li>
-                <li class="middle">队伍人数</li>
-                <li class="right">选择</li>
-            </ul>
-            <ul class="content">
-                <hr>
-                <li class="left">创益当风时</li>
-                <li class="middle">15</li>
-                <li class="right circle spc"></li>
-            </ul>
+    <div class="body_full">
+        <div class="mask_join">
+            <h2>加入形式</h2>
+            <button class="first">个人</button>
+            <button class="second">团队</button>
         </div>
-        <button>确定</button>
-        <button id="button_back_to">返回</button>
+        <div class="exit_icon"></div>
+        <div class="wait">申请成功 审核中</div>
+        <div class="mask_join_in">
+            <h2>请选择你要加入的队伍</h2>
+            <p>(仅能选择一个队伍)</p>
+            <div>
+                <hr>
+                <ul class="header">
+                    <li class="left">队伍名称</li>
+                    <li class="middle">队伍人数</li>
+                    <li class="right">选择</li>
+                </ul>
+                <ul class="content">
+                    <hr>
+                    <li class="left">创益当风时</li>
+                    <li class="middle">15</li>
+                    <li class="right circle spc"></li>
+                </ul>
+            </div>
+            <button>确定</button>
+            <button id="button_back_to">返回</button>
+        </div>
     </div>
-</div>
-<!-- 置顶 -->
-<a id="button_back" title="返回顶部"></a>
-<!-- 退出错误信息 -->
-<div class="error_exit">
-    退出账号异常
-</div>
-<script src="../../js/backtop.js"></script>
+    <!-- 置顶 -->
+    <a id="button_back" title="返回顶部"></a>
+    <!-- 退出错误信息 -->
+    <div class="error_exit">
+        退出账号异常
+    </div>
+    <script src="../../js/backtop.js"></script>
 </body>
 
 </html>

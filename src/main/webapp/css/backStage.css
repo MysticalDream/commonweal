@@ -1,0 +1,585 @@
+/* 使用100vw和100vh的时候一定要写这个，清空间隙 */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.full_cover{
+    width: 100vw;
+    height: 100vh;
+}
+
+.top_part{
+    width: 100%;
+    height: 55px;
+    overflow: hidden;
+}
+
+.top_part div:nth-child(1){
+    display: inline-block;
+    margin-left: 2rem;
+    line-height: 55px;
+}
+
+.top_part div:last-child{
+    float: right;
+    margin-right: 1.5rem;
+    line-height: 55px;
+    cursor: pointer;
+}
+
+
+.top_part .go_out{
+    font-size:20px;
+}
+
+.top_part .right_box .go_out{
+    position: relative;
+    font-size:16px;
+    color:#3C3A67;
+    letter-spacing: 3px;
+    top:3px;
+    left:-4px;
+}
+
+.top_part .right_box img{
+    vertical-align:middle;
+}
+
+.top_part div span{
+    font-family: 'DOUYU-Font';
+    font-size: 28px;
+}
+
+.top_part div span:nth-child(1){
+    color:rgba(214, 90, 61, 1);
+}
+
+.top_part div span:nth-child(2){
+    color:rgba(255, 187, 47, 1);
+    margin-left: 5px;
+}
+
+.low_part{
+    width: 100%;
+    min-height: 532px;
+    /* font-size:0放在盒子上 可以解决子盒子之间的空隙问题（很重要） */
+    font-size:0;
+}
+
+.low_part .low_left{
+    width: 21%;
+    min-height: 532px;
+    background-color: #D65A3D;
+}
+
+.low_part>div{
+    display: inline-block;
+}
+
+.avator_area{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 155px;
+    overflow: hidden;
+}
+
+.avator_area .avator_circle{
+    position: absolute;
+    top:10%;
+    left:36%;
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: thistle;
+    cursor: pointer;
+}
+
+.avator_area .center_middle{
+    width: 45%;
+    height: 100%;
+}
+
+.avator_area .center_middle div{
+    position: absolute;
+    font-family: SimSun;
+}
+
+.avator_area .center_middle .username{
+    top:60%;
+    left:38%;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size:18px;
+}
+
+.avator_area .center_middle .sign{
+    top:80%;
+    left:39%;
+    color:#fff;
+    letter-spacing: 2px;
+    font-size:16px;
+}
+
+.hash_click{
+    overflow: hidden;
+    width: 100%;
+    min-height: 377px;
+}
+
+.hash_click ul{
+    width: 100%;
+    height: 200px;
+    margin-top: 15px;
+}
+
+.hash_click ul li{
+    position: relative;
+    width: 90%;
+    height: 45px;
+    margin-left: 5%;
+    list-style: none;
+    margin-top:10px;
+    border-radius: 8px;
+    line-height: 45px;
+    cursor: pointer;
+}
+
+.hash_click ul .cur_li_d{
+    background-color: #fff;
+}
+
+.hash_click ul li a{
+    display: inline-block;
+    width: 170px;
+    height: 45px;
+    margin-left:10px;
+    color:#fff;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-family: SimSun;
+    font-size:16px;
+}
+
+.hash_click ul .cur_li_d a{
+    color:#D65A3D;
+}
+
+.small_cir{
+    position: relative;
+    top:-2px;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-left: 12px;
+}
+
+.cur_li_d .small_cir{
+    background-color: #D65A3D;
+}
+
+.blue_cir{
+    display: inline-block;
+    position: absolute;
+    right:20px;
+    top:16px;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+    border-radius: 7px;
+    background-color: #3C3A67;
+    font-family: SimSun;
+    color:#fff;
+    font-size:12px;
+    text-align: center;
+}
+
+
+/* .first_page{
+    width: 79%;
+    min-height: 532px;
+    background-color:cadetblue;
+} */
+
+.low_right{
+    overflow: hidden;
+    width: 79%;
+    min-height: 532px;
+    /* 内阴影要设置inset值 */
+    box-shadow: 0px 10px 15px rgba(0,0,0,.1) inset;
+}
+
+.low_right .page_1{
+    position: relative;
+    width: 100%;
+    min-height: 532px;
+}
+
+.first_table{
+    position: absolute;
+    left:6%;
+    top:7%;
+    width: 89%;
+    height: 450px;
+    border-radius: 10px;
+    /* 三边阴影 */
+    box-shadow: 0px 0px 8px rgba(0,0,0,.14);
+    /* 上面设置了字体为0，这里要改回来 */
+    font-size: 20px;
+    font-family: SimSun;
+    overflow: hidden;
+}
+
+.first_table h2{
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    margin-left:25px;
+    line-height: 45px;
+}
+
+.title_low{
+    width: 100%;
+    height: 50px;
+    background-color: rgba(214, 90, 61, 1);
+}
+
+.title_low td{
+    width: 140px;
+    height: 50px;
+    color:#fff;
+    letter-spacing: 1px;
+    font-size: 15px;
+    /* line-height: 50px; */
+    text-align: center;
+}
+
+.title_low td:last-child{
+    width: 310px;
+}
+
+.title_low .render_tr td{
+    background-color: #fff;
+    color:#000;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(218, 218, 218, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    letter-spacing: 2px;
+}
+
+.render_tr td:last-child{
+    cursor: pointer;
+}
+
+
+.render_tr td:last-child img{
+    position: relative;
+    top:-2px;
+    width: 26px;
+    vertical-align: middle;
+}
+
+.render_tr td:last-child span{
+    position: relative;
+    left:-6px;
+}
+
+.look_span{
+    color:#3D3A68;
+}
+
+.pass_span{
+    color:#61A658;
+}
+
+.not_pass{
+    color:#D65A3D;
+}
+
+
+.render_tr td:last-child>div{
+    position: relative;
+    left:14px;
+}
+
+
+.pro_inner button,.team_inner button,.show_inner button,.adopt_inner button{
+    width: 85px;
+    height: 40px;
+    background-color: #fff;
+    letter-spacing: 4px;
+    border: none;
+    color:#3C3A67;
+    font-family: SimSun;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pro_inner>div,.team_inner>div{
+    margin-left:150px;
+}
+
+.pro_inner>div img,.team_inner>div img{
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+}
+
+.pro_inner>div ul,.team_inner>div ul{
+    list-style: none;
+    margin-top: 7px;
+}
+
+.first_table .team_inner>div ul{
+    margin-top:12px;
+}
+
+.first_table .team_inner>div ul li{
+    height: 42px;
+    line-height: 42px;
+}
+
+.pro_inner>div ul li,.team_inner>div ul li{
+    width: 450px;
+    height: 38px;
+    font-size: 16px;
+    font-family: SimSun;
+    letter-spacing: 3px;
+    font-weight: 600;
+    line-height: 38px;
+}
+
+/* .pro_inner>div ul li>span:last-child{
+    font-weight: 600;
+} */
+
+.pro_inner>div ul li>p,.team_inner>div ul li>p{
+    width: 420px;
+    height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.list_circle{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+ul li:nth-child(1) .list_circle{
+    background-color: #D65A3D;
+}
+
+ul li:nth-child(2) .list_circle{
+    background-color: #FC8B38;
+}
+
+ul li:nth-child(3) .list_circle{
+    background-color: #F8EC34;
+}
+
+ul li:nth-child(4) .list_circle{
+    background-color:#61A658;
+}
+
+ul li:nth-child(5) .list_circle{
+    background-color:#58A691;
+}
+
+.team_inner>div ul li:nth-child(5) .list_circle{
+    position: relative;
+    top:-15px;
+}
+
+ul li:nth-child(6) .list_circle{
+    background-color: #3DB2E3;
+}
+
+ul li:nth-child(7) .list_circle{
+    position: relative;
+    top:-15px;
+    background-color: #843DE3;
+}
+
+.look_into{
+    display: inline-block;
+    width: 65px;
+    height: 100%;
+}
+
+.show_inner .up_main{
+    width: 100%;
+    height: 195px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show_inner .up_main img{
+    width: 340px;
+    height: 205px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.show_inner .down_main{
+    display: flex;
+    width: 100%;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+}
+
+.show_inner .down_main span{
+    display: block;
+    width: 85px;
+    height: 23px;
+    border:2px solid #D65A3D;
+    border-radius: 17px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 23px;
+    text-align: center;
+    color:#D65A3D;
+    margin-top: 10px;
+}
+
+.down_main .down_center{
+    width: 70%;
+    height: 100%;
+}
+
+.down_main .p_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 55%;
+    margin-top: 15px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    border-radius: 12px;
+    border:2px solid #DADADA;
+}
+
+.p_box p{
+    width: 90%;
+    height: 75%;
+    text-indent: 2em;
+    overflow: hidden;
+    line-height: 25px;
+    font-family: SimSun;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+.adopt_inner ul{
+    margin-left: 150px;
+    margin-top:20px;
+}
+
+.adopt_inner ul li{
+    width: 500px;
+    height: 55px;
+    line-height: 55px;
+    list-style: none;
+    font-family: SimSun;
+    letter-spacing: 3px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.adopt_inner ul li:nth-child(2) .adopt_circle{
+    background-color: #D65A3D;
+}
+
+.adopt_inner ul li:nth-child(3) .adopt_circle{
+    background-color: #E7944A;
+}
+
+.adopt_inner ul li:nth-child(4) .adopt_circle{
+    background-color: #E5E74A;
+}
+
+.adopt_inner ul li:nth-child(5) .adopt_circle{
+    background-color: #3CBC51;
+}
+
+.adopt_inner ul li:nth-child(6) .adopt_circle{
+    background-color: #37B8D8;
+}
+
+.tag_img{
+    position: relative;
+    top:11px;
+    left:4px;
+}
+
+.adopt_inner ul li:nth-child(1){
+    position: relative;
+    left:-10px;
+}
+
+.title_low{
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.table_page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom:50px;
+    width: 100%;
+    height: 80px;
+}
+
+.table_page .turn-page-wrapper{
+    margin-top: 0px;
+}
+
+.title_low .spe{
+    position: relative;
+    left:12px;
+}
+
+tr td .flow_span{
+    display: inline-block;
+    width: 120px;
+    height: 100%;
+    line-height:50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.pass_d,.not_pass_a{
+    display: inline-block;
+    width: 65px;
+    height: 100%;
+    /* background-color: slateblue; */
+}
+/*添加效果*/
+ div.first_table > table > tr{
+    transition: all .5s;
+}

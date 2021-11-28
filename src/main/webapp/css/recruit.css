@@ -56,6 +56,9 @@ li {
     position: relative;
     float: left;
     margin: 0 20px;
+    font-family: Simsun;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .nav_s .middle li:hover a {
@@ -75,6 +78,44 @@ li {
     border-top: 3px solid #CD4140;
     height: 47px;
     line-height: 43px;
+}
+
+.nav_s .middle .child_s {
+    position: relative;
+}
+
+
+/* .nav_s .middle .child_s:hover .child_all {
+    display: block;
+} */
+
+.nav_s .middle .child_s .child_all {
+    position: absolute;
+    top: 47px;
+    left: -5px;
+    width: 85px;
+    height: 100px;
+    padding: 5px;
+    padding-left: 0px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 999;
+    display: none;
+}
+
+.nav_s .middle .child_s .child_all>div {
+    width: 80px;
+    padding-left: 5px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.nav_s .middle .child_s .child_all>div:hover {
+    background-color: rgba(0, 0, 0, .6);
+    color: #CD4140;
 }
 
 

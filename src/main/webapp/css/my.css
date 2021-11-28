@@ -58,7 +58,9 @@
 
 .bottom_dd {
     width: 100%;
-    height: 515px;
+    /* height原来是515px */
+    height: 514px;
+    /* height: 515px; */
     overflow: hidden;
     background-color: rgba(242, 240, 240, 1);
     /* background-color:#F8EDED; */
@@ -498,13 +500,26 @@ form span {
     overflow: hidden;
 }
 
-.bottom_right_d .manager_box h1 {
+.bottom_right_d .manager_box h1{
     width: 200px;
     font-size: 24px;
     font-weight: normal;
     font-family: 'STHupo';
     position: relative;
     top: 25px;
+    left: 70px;
+    letter-spacing: 4px;
+    color: rgba(32, 30, 75, 1);
+    text-shadow: 3px 3px 3px rgb(216 39 35 / 40%);
+}
+
+.bottom_right_d .blue_title{
+    width: 200px;
+    font-size: 24px;
+    font-weight: normal;
+    font-family: 'STHupo';
+    position: relative;
+    /* top: 25px; */
     left: 70px;
     letter-spacing: 4px;
     color: rgba(32, 30, 75, 1);
@@ -885,4 +900,424 @@ li .line_div:nth-child(4) img {
 
 .left_move_d {
     left: 5px;
+}
+
+/* 调整 */
+.adjust_li_1:hover img{
+    top:15.5px !important;
+    left:-4px !important;
+}
+
+.adjust_li_2:hover i{
+    position: relative;
+    left:-4px !important;
+}
+
+/* 个人中心 */
+
+.self_center{
+    top:73px;
+    height: 87%;
+    background-color: #F2F0F0;
+}
+
+.center_area{
+    position: relative;
+    width: 55%;
+    height: 100%;
+    left:25%;
+}
+
+.center_area .avator_circle{
+    position: relative;
+    top:4%;
+    left:45%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.center_area .avator_circle img{
+    width: 68px;
+    height: 68px;
+}
+
+.center_area textarea{
+    resize:none;
+    outline: none;
+    margin-left:11px;
+    width: 400px;
+    height: 93px;
+    padding-top: 7px;
+    border: 1px solid #DAD5D5;
+    border-radius: 8px;
+    text-indent: 1em;
+}
+
+.bottom_form{
+    margin-top: 35px;
+}
+
+.bottom_form span{
+    position: relative;
+    top:0px;
+    left:0px;
+    font-family: SimSun;
+    color:#000;
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.bottom_form input{
+    border: 1px solid #DAD5D5;
+    outline: none;
+    margin-left:11px;
+}
+
+/* .input_name{
+    width: 160px;
+    height: 30px;
+    border-radius: 6px;
+} */
+
+.bottom_form input{
+    width: 160px;
+    height: 30px;
+    border-radius: 6px;
+}
+
+.bottom_form .self_sign{
+    top:-75px;
+}
+
+.bottom_form button{
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #fff;
+    color:#000;
+    border: none;
+    font-family: SimSun;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bottom_form .mimi{
+    letter-spacing: 2px;
+    width: 50px;
+    text-align: center;
+}
+
+.bottom_form ol li{
+    margin-top: 20px;
+}
+
+.input_name{
+    position: relative;
+    left:33px;
+}
+
+.bottom_form ol li span{
+    position: relative;
+}
+
+.bottom_form ol li:nth-child(1) span{
+    left:33px;
+}
+
+.bottom_form ol li:nth-child(3) span{
+  left:33px;
+}
+
+.bottom_form ol li:nth-child(3) button{
+    position: relative;
+    left:41px;
+    margin-right: 12px;
+}
+
+.bottom_form ol li:nth-child(3) .girl{
+    color:#fff;
+    background-color: #CD4140;
+    font-weight: 400;
+}
+
+.bottom_form ol li:nth-child(4) .area_live{
+    margin-left: 55px;
+}
+
+.bottom_form ol li:nth-child(5) span{
+   margin-left:33px;
+}
+
+.bottom_form ol li:nth-child(5) .phone_number_span{
+    margin-left: 52px;
+}
+
+.bottom_form ol li:nth-child(6) span{
+    margin-left:33px;
+}
+
+
+/* 我的消息 */
+.first_table{
+    position: absolute;
+    top:-100px;
+    left:110px;
+    width: 85%;
+    height: 380px;
+    border-radius: 10px;
+    /* 三边阴影 */
+    box-shadow: 0px 0px 8px rgba(0,0,0,.14);
+    /* 上面设置了字体为0，这里要改回来 */
+    font-size: 0px;
+    font-family: SimSun;
+    overflow: hidden;
+}
+
+.first_table>div{
+    display: inline-block;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+.left_friend{
+    width: 30%;
+    height: 100%;
+    background-color: #fab1372b;
+}
+
+.right_send{
+    width: 70%;
+    height: 100%;
+    background-color: slateblue;
+}
+
+.left_friend ol{
+    width: 100%;
+    border-top:2px solid #fff;
+}
+
+.left_friend>div:nth-child(1){
+    width: 90%;
+    height: 40px;
+    line-height:40px;
+    letter-spacing: 2px;
+    padding-left: 10%;
+}
+
+.friend_list{
+    width: 100%;
+    font-size: 0px;
+    height: 60px;
+    cursor: pointer;
+    /* display: table;
+    word-spacing: -1em; */
+}
+
+/* .friend_list .friend_circle{
+    display: inline-block;
+    width: 24%;
+    height: 60px;
+    background-color: tomato;
+    overflow: hidden;
+}
+
+.friend_list>div{
+    width: 76%;
+    height: 60px;
+    background-color: turquoise;
+    display: inline-block;
+} */
+
+.friend_list>div{
+    display: inline-block;
+}
+
+.left_circle{
+    width: 30%;
+    height: 60px;
+    overflow: hidden;
+}
+
+.right_mea{
+    width: 70%;
+    height: 100%;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.right_mea h3{
+    position: relative;
+    left:5%;
+    top:5%;
+    width: 80%;
+    height: 20px;
+    overflow: hidden;
+    letter-spacing: 3px;
+}
+
+.left_circle>span{
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
+    background-color: violet;
+    margin-top: 5px;
+    margin-left: 18px;
+}
+
+.right_mea>p{
+    position: relative;
+    left:-12%;
+    top:5%;
+    width: 75%;
+    height: 30px;
+    line-height:30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color:#000;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-family: Simsun;
+}
+
+
+.circle_dd img{
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+
+.cur_message_li{
+    background-color: #f3f3f3;
+}
+
+.send_div{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.send_div h1{
+    position: relative;
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 42px;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color:#000;
+    font-family: Simsun;
+    text-shadow: none;
+    border-bottom: 2px solid #F6F5F5;
+    line-height: 42px;
+}
+
+.center_block{
+    width: 100%;
+    height: 60%;
+}
+
+.center_block>div>span{
+    width: 50px;
+    height: 50px;
+}
+
+.my_send{
+    position: absolute;
+    bottom: 15px;
+    right:15px;
+    display: inline-block;
+    width: 65px;
+    height: 25px;
+    font-family: Simsun;
+    letter-spacing: 2px;
+    background-color: #CD4140;
+    text-align: center;
+    border-radius: 8px;
+    line-height:25px;
+    color:#fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.lasted{
+    outline: none;
+    border:none;
+    width: 100%;
+    height: 100px;
+    cursor: pointer;
+    border-top: 2px solid #F6F5F5;
+}
+
+.lasted img{
+    width: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.center_block>div:nth-child(1){
+    width: 100%;
+    text-align: center;
+    color:#7F7C7C;
+    font-size: 13px;
+    margin-top: 5px;
+    letter-spacing: 2px;
+}
+
+.center_block .wanshang .diyi{
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: lawngreen;
+}
+
+.center_block .mingtian{
+    padding:5px;
+    background-color:#F6F5F5;;
+    font-family: Simsun;
+    letter-spacing: 2px;
+}
+
+.center_block .kuai{
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.center_block .kuai img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left:0px;
+}
+
+body .center_block .busy{
+    position: relative;
+    top:-10px;
+    left:5px;
+    display: inline-block;
+    width: 100px;
+    overflow: hidden;
+    height: 30px;
+    border-radius: 5px;
+    /*background-color: gray;*/
+    letter-spacing: 2px;
+    font-family: Simsun;
+    text-align: center;
+    line-height: 30px;
+    border:2px solid #e3e3e3;
 }

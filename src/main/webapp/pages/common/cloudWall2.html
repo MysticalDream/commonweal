@@ -10,7 +10,12 @@
     <link rel="stylesheet" href="../../css/recruit.css">
     <link rel="stylesheet" href="../../css/cloudWall2.css">
     <link rel="stylesheet" href="../../font/iconfont.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <script src="../../js/ajax.js"></script>
     <!-- <script src="../../js/cloudWall2.js"></script> -->
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/isLog_in_adpot.js"></script>
+    <script src="../../js/childjump.js"></script>
 </head>
 
 <body>
@@ -37,8 +42,13 @@
                 <li>
                     <a href="./adpot.html">领养动物</a>
                 </li>
-                <li class="pitch">
+                <li class="pitch child_s">
                     <a href="javascript:;">关爱儿童</a>
+                    <div class="child_all">
+                        <div class="childteach">云支教</div>
+                        <div class="childhelp">云帮扶</div>
+                        <div class="childwall">云墙</div>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -51,20 +61,41 @@
     <div class="contain">
         <span>云墙</span>
         <ul class="cards">
-            <li class="a"></li>
-            <li class="b"></li>
-            <li class="c"></li>
-            <li class="d"></li>
-            <li class="e"></li>
-            <li class="f"></li>
-            <li class="g"></li>
-            <li class="h"></li>
-            <li class="i"></li>
-            <li class="j"></li>
+            <li class="a">
+                <!-- <div class="cover">前面</div>
+                <div class="back">后面</div> -->
+            </li>
+            <li class="b">
+                <!-- <div class="cover">前面</div>
+                <div class="back">后面</div> -->
+            </li>
+            <li class="c">
+                <!-- <div class="cover">前面</div>
+                <div class="back">后面</div> -->
+            </li>
+            <li class="d">
+                <!-- <div class="cover">前面</div>
+                <div class="back">后面</div> -->
+            </li>
+            <li class="e">
+                <!-- <div class="cover">前面</div>
+                <div class="back">后面</div> -->
+            </li>
+            <li class="f">
+                <!-- <div class="cover">前面</div>
+                <div class="back">后面</div> -->
+            </li>
+            <li class="g">
+                <!-- <div class="cover">前面</div>
+                <div class="back">后面</div> -->
+            </li>
+
         </ul>
+
         <div class="word">
             选一张喜欢的卡片<br> 写下你的祝福吧
         </div>
+        <button class="back">返回</button>
     </div>
     <!-- 选卡片后显示的 -->
     <div class="text">
@@ -515,9 +546,21 @@
                 </i>
             </button>
         </div>
-        <div class="output" contenteditable="true">
+        <div class="output" contenteditable="true" placeholder="请输入你的祝福">
         </div>
+        <div class="sign">
+            From:<input type="text" placeholder="请输入署名">
+        </div>
+        <button class="submit" type="submit">
+            发表
+            <input type="hidden" id="comments">
+        </button>
+        <button class="return">
+            返回
+        </button>
     </div>
+    <!-- 发表失败 -->
+    <div class="warn">发表失败</div>
 </body>
 <script src="../../js/cloudWall2.js"></script>
 

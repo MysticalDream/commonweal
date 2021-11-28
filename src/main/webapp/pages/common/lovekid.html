@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../../css/recruit.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/lovekid.css">
+    <link rel="stylesheet" href="../../css/project.css">
+    <link rel="stylesheet" href="../../css/error_exit.css">
+    <script src="../../js/common.js"></script>
+    <script src="../../js/animate.js"></script>
+    <script src="../../js/isLog_in_adpot.js"></script>
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/ajax.js"></script>
+    <script src="../../js/childjump.js"></script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="nav_s">
+        <div class="left"><span>创</span>益</div>
+        <div class="middle">
+            <ul class="nav_ul_s">
+                <li>
+                    <a href="../../index.html">首页</a>
+                </li>
+                <li>
+                    <a href="./newPro.html">志愿项目</a>
+                </li>
+                <li>
+                    <a href="./expand.html">招募志愿者</a>
+                </li>
+                <li>
+                    <a href="./show.html">风采展示</a>
+                </li>
+                <li>
+                    <a href="./agriculture.html">助农</a>
+                </li>
+                <li>
+                    <a href="./adpot.html">领养动物</a>
+                </li>
+                <li class="pitch child_s">
+                    <a href="javascript:;">关爱儿童</a>
+                    <div class="child_all">
+                        <div class="childteach">云支教</div>
+                        <div class="childhelp">云帮扶</div>
+                        <div class="childwall">云墙</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="right username">
+            <!-- <div class="pic">
+            <img src="../../images/cat1.jpg" alt="" class="user_img">
+        </div>
+        <span>common</span>
+        <div class="operation">
+            <div class="my"><i class="iconfont icon-wode"></i>我的</div>
+            <div class="exit"><i class="iconfont icon-tuichu"></i>退出</div>
+        </div>
+        <div class="triangle"></div> -->
+            <!-- <div class="log_in">登录 | 注册</div> -->
+        </div>
+    </div>
+    <div class="teach_main">
+        <div class="cloud">
+            <span>云支教</span>
+        </div>
+        <div class="teach_center">
+            <div class="first_line_d">
+                <img src="../../images/fenlei.png" alt="">
+                <span>直播分类</span>
+            </div>
+            <div class="subjects">
+                <div class="check_m">查看更多分类&gt;</div>
+                <ul>
+                    <li>
+                        <div>
+                            <div>
+                                <img src="../../images/chinese.png" alt="">
+                            </div>
+                            <div>
+                                <span class="sub">语文</span>
+                            </div>
+                            <div class="last_time">
+                                <span class="times">18场直播</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div>
+                                <img src="../../images/shuxue.png" alt="">
+                            </div>
+                            <div>
+                                <span class="sub">数学</span>
+                            </div>
+                            <div class="last_time">
+                                <span class="times">10场直播</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div>
+                                <img src="../../images/yingyu.png" alt="">
+                            </div>
+                            <div>
+                                <span class="sub">英语</span>
+                            </div>
+                            <div class="last_time">
+                                <span class="times">23场直播</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div>
+                                <img src="../../images/shengwu-.png" alt="">
+                            </div>
+                            <div>
+                                <span class="sub">生物</span>
+                            </div>
+                            <div class="last_time">
+                                <span class="times">29场直播</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div>
+                                <img src="../../images/wuli.png" alt="">
+                            </div>
+                            <div>
+                                <span class="sub">物理</span>
+                            </div>
+                            <div class="last_time">
+                                <span class="times">16场直播</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <div>
+                                <img src="../../images/huaxueshiji-.png" alt="">
+                            </div>
+                            <div>
+                                <span class="sub">化学</span>
+                            </div>
+                            <div class="last_time">
+                                <span class="times">16场直播</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub_part first_sub">
+                <div>
+                    <span class="red_small"></span>
+                    <span class="sub_name">语文</span>
+                    <span class="check_m">查看更多&gt;</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">224人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        java
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">783人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">918人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">289人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub_part">
+                <div>
+                    <span class="red_small"></span>
+                    <span class="sub_name">数学</span>
+                    <span class="check_m">查看更多&gt;</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub_part">
+                <div>
+                    <span class="red_small"></span>
+                    <span class="sub_name">英语</span>
+                    <span class="check_m">查看更多&gt;</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub_part">
+                <div>
+                    <span class="red_small"></span>
+                    <span class="sub_name">生物</span>
+                    <span class="check_m">查看更多&gt;</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub_part">
+                <div>
+                    <span class="red_small"></span>
+                    <span class="sub_name">化学</span>
+                    <span class="check_m">查看更多&gt;</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="sub_part">
+                <div>
+                    <span class="red_small"></span>
+                    <span class="sub_name">物理</span>
+                    <span class="check_m">查看更多&gt;</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pic_box">
+                            <img src="../../images/study.jpg" alt="">
+                        </div>
+                        <div class="box_bottom">
+                            <div class="left_ava">
+                                <img src="../../images/dog.png" alt="">
+                            </div>
+                            <div class="right_mes">
+                                <p>帮助孩子学习知识</p>
+                                <div class="lan">
+                                    <span>
+                                        common
+                                    </span>
+                                    <span class="second_spans">
+                                        <img src="../../images/groups.png" alt="">
+                                        <span class="maji_span">225人</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!-- 页脚部分 -->
+    <div class="footer cloud_footer">
+        <div class="footer_lf">
+            <h3>创益</h3>
+            <ul class="first">
+                <li>
+                    <a href="javascript:;">关于我们</a>
+                </li>
+                <li>
+                    <a href="javascript:;">联系我们</a>
+                </li>
+                <li>
+                    <a href="javascript:;">用户协议</a>
+                </li>
+                <li>
+                    <a href="javascript:;">加入我们</a>
+                </li>
+            </ul>
+            <ul class="second">
+                <li>
+                    <a href="javascript:;">友情链接</a>
+                </li>
+                <li>
+                    <a href="javascript:;">隐私政策</a>
+                </li>
+                <li>
+                    <a href="javascript:;">创益认证</a>
+                </li>
+                <li>
+                    <a href="javascript:;">Investor Relations</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer_rg">
+            <h3>传送门</h3>
+            <ul class="first">
+                <li>
+                    <a href="javascript:;">协议汇总</a>
+                </li>
+                <li>
+                    <a href="javascript:;">活动中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">活动专题页</a>
+                </li>
+                <li>
+                    <a href="javascript:;">侵权申诉</a>
+                </li>
+            </ul>
+            <ul class="second">
+                <li>
+                    <a href="javascript:;">帮助中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">用户反馈论坛</a>
+                </li>
+                <li>
+                    <a href="javascript:;">壁纸站</a>
+                </li>
+                <li>
+                    <a href="javascript:;">广告合作</a>
+                </li>
+            </ul>
+            <ul class="third">
+                <li>
+                    <a href="javascript:;">名人堂</a>
+                </li>
+                <li>
+                    <a href="javascript:;">管理中心</a>
+                </li>
+                <li>
+                    <a href="javascript:;">高级评论</a>
+                </li>
+                <li>
+                    <a href="javascript:;">企业号官网</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 侧边栏 -->
+    <div class="kid_side">
+        <ul>
+            <li>
+                <a href="../../mytest/p/startLive.html">
+                    <img src="../../images/zhibo.png" alt="">
+                    <span>我要开播</span>
+                </a>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/yuyu.png" alt="">
+                <span>语文</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/shu.png" alt="">
+                <span>数学</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/ying.png" alt="">
+                <span>英语</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/sheng-.png" alt="">
+                <span>生物</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/hua.png" alt="">
+                <span>化学</span>
+            </li>
+            <li class="kid_part">
+                <img src="../../images/wu.png" alt="">
+                <span>物理</span>
+            </li>
+            <li>
+                <img src="../../images/huidao.png" alt="">
+                <span>置顶</span>
+            </li>
+        </ul>
+    </div>
+    <!-- 退出错误信息 -->
+    <div class="error_exit">
+        退出账号异常
+    </div>
+</body>
+<script>
+    let kid_side = $('.kid_side')[0];
+    let kid_li = $('.kid_part');
+    let sub_part = $('.sub_part');
+
+    // window.scrollTo({
+    //     top: sub_part[i].offsetTop,
+    //     behavior: 'smooth'
+    // })
+    for (let i = 0; i < sub_part.length; i++) {
+        kid_li[i].addEventListener('click', () => {
+            window.scrollTo({
+                top: sub_part[i].offsetTop,
+                behavior: 'smooth'
+            })
+        })
+    }
+
+    // 刚刚没加【0】，导致is not a function 粗心
+    let last_kid = $('.kid_side>ul>li:last-child')[0];
+
+    last_kid.addEventListener('click', () => {
+        // window.scroll(0, window.pageYOffset + step);
+        animateY(window, 0);
+    })
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset >= 200) {
+            kid_side.style.visibility = 'visible';
+            kid_side.style.position = 'fixed';
+        } else {
+            kid_side.style.visibility = 'hidden';
+        }
+    })
+</script>
+
+</html>

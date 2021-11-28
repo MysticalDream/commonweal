@@ -1,31 +1,45 @@
 body {
-    height: 100vh;
+    height: auto;
+    width: 1280px;
+    overflow: hidden;
 }
 
 .contain {
     position: relative;
     top: 0px;
     left: 0px;
-    display: none;
+    display: block;
     width: 100%;
     height: 537px;
-    background-color: rgb(189, 87, 69);
     letter-spacing: 5px;
+    transition: all 1s;
+    z-index: 11;
+    background: url(../images/cloudWall2.jpg);
+    background-size: 100%;
 }
 
 .contain span {
     position: absolute;
-    top: 35px;
-    left: 40px;
+    top: 27px;
+    left: 32px;
+    width: 110px;
+    height: 65px;
+    line-height: 65px;
+    text-align: center;
     color: rgb(187, 88, 69);
     background-color: #fff;
     font-size: 24px;
     font-weight: 700;
+    background: url(../images/cloudword.png) no-repeat;
+    background-size: 100%;
+    font-family: 'DOUYU-Font';
+    line-height: 76px;
+    font-size: 18px;
 }
 
 .contain .cards {
     position: absolute;
-    top: 160px;
+    top: 170px;
     left: 50%;
     transform: translateX(-50%);
     width: 1000px;
@@ -36,69 +50,267 @@ body {
 .contain .cards li {
     position: absolute;
     top: 0px;
-    width: 200px;
-    height: 300px;
+    width: 250px;
+    height: 350px;
     background-color: #fff;
     border-radius: 8px;
+    transition: all 1s;
 }
 
+
+/* 
+.contain .cards li .cover,
+.contain .cards li .back {
+    position: absolute;
+    backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    transition: all 0.8s ease-in-out;
+}
+
+.contain .cards li .cover {
+    transform: rotateY(0deg);
+}
+
+.contain .cards li:hover .cover {
+    transform: rotateY(180deg);
+}
+
+.contain .cards li .back {
+    transform: rotateY(180deg);
+}
+
+.contain .cards li:hover .back {
+    transform: rotateY(0deg);
+} */
+
 .contain .cards .a {
-    transform: rotate(-25deg);
+    transform: translate(0%, -56px) rotate(-20deg);
     background-color: #fff;
+    background: url(../images/cloud24.jpg);
+    background-size: 100%;
+}
+
+.contain .cards .a.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .a.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .a.nochoice {
+    display: none;
+    opacity: 0;
 }
 
 .contain .cards .b {
-    transform: translate(37%, -38px) rotate(-17deg);
+    transform: translate(51%, -107px) rotate(-12deg);
     background-color: rgb(27, 19, 19);
     /* display: none; */
+    background: url(../images/cloud25.jpg);
+    background-size: 100%;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: b 1s forwards;
+}
+
+.contain .cards .b.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .b.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .b.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes b {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(51%, -107px) rotate(-12deg);
+    }
 }
 
 .contain .cards .c {
-    transform: translate(90%, -71px) rotate(-9deg);
+    transform: translate(105%, -140px) rotate(-5deg);
     background-color: rgb(243, 88, 88);
     /* display: none; */
+    background: url(../images/cloud26.jpg);
+    background-size: 100%;
+    animation: c 1s forwards;
+}
+
+.contain .cards .c.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .c.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .c.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes c {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(105%, -140px) rotate(-5deg);
+    }
 }
 
 .contain .cards .d {
-    transform: translate(140%, -88px) rotate(-2deg);
+    transform: translate(156%, -151px) rotate(0deg);
     background-color: rgb(36, 132, 195);
     /* display: none; */
+    background: url(../images/cloud27.jpg);
+    background-size: 100%;
+    animation: d 1s forwards;
+}
+
+.contain .cards .d.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .d.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .d.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes d {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(156%, -151px) rotate(0deg);
+    }
 }
 
 .contain .cards .e {
-    transform: translate(185%, -93px) rotate(3deg);
+    transform: translate(212%, -136px) rotate(6deg);
     background-color: rgb(53, 184, 81);
     /* display: none; */
+    background: url(../images/cloud28.jpg);
+    background-size: 100%;
+    animation: e 1s forwards;
+}
+
+.contain .cards .e.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .e.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .e.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes e {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(212%, -136px) rotate(6deg);
+    }
 }
 
 .contain .cards .f {
-    transform: translate(230%, -90px) rotate(8deg);
+    transform: translate(264%, -109px) rotate(12deg);
     background-color: rgb(36, 22, 144);
     /* display: none; */
+    background: url(../images/cloud29.jpg);
+    background-size: 100%;
+    animation: f 1s forwards;
+}
+
+.contain .cards .f.renew {
+    display: block;
+    opacity: 1;
+}
+
+.contain .cards .f.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg);
+}
+
+.contain .cards .f.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes f {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(264%, -109px) rotate(12deg);
+    }
 }
 
 .contain .cards .g {
-    transform: translate(280%, -77px) rotate(13deg);
+    transform: translate(312%, -67px) rotate(20deg);
     background-color: rgb(133, 19, 148);
     /* display: none; */
+    background: url(../images/cloud30.jpg);
+    background-size: 100%;
+    transition: all 0.5s !important;
+    animation: g 1s forwards;
 }
 
-.contain .cards .h {
-    transform: translate(330%, -54px) rotate(19deg);
-    background-color: rgb(240, 112, 187);
-    /* display: none; */
+.contain .cards .g.renew {
+    display: block;
+    opacity: 1;
 }
 
-.contain .cards .i {
-    transform: translate(380%, -20px) rotate(25deg);
-    background-color: rgb(34, 109, 128);
-    /* display: none; */
+.contain .cards .g.choice {
+    display: block;
+    opacity: 1;
+    transform: translate(156%, -151px) rotate(0deg) !important;
 }
 
-.contain .cards .j {
-    transform: translate(416%, 12px) rotate(34deg);
-    background-color: rgb(98, 199, 224);
-    /* display: none; */
+.contain .cards .g.nochoice {
+    display: none;
+    opacity: 0;
+}
+
+@keyframes g {
+    0% {
+        transform: translate(0%, -56px) rotate(-20deg)
+    }
+    100% {
+        transform: translate(312%, -67px) rotate(20deg);
+    }
 }
 
 .contain .word {
@@ -113,17 +325,35 @@ body {
     text-align: center;
 }
 
+.contain .back {
+    position: absolute;
+    bottom: 10px;
+    right: 37px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
 
 /* 选卡片后显示的 */
 
 .text {
     position: relative;
-    top: 0px;
+    top: -537px;
     left: 0px;
     width: 100%;
     height: 537px;
-    background-color: rgb(189, 87, 69);
+    /* background-color: rgb(189, 87, 69); */
     letter-spacing: 2px;
+    display: block;
+    transition: all 1s;
+    opacity: 0;
+    background: url(../images/cloudWall2.jpg);
+    background-size: 100%;
 }
 
 .text .options {
@@ -201,4 +431,64 @@ body {
     outline: none;
     overflow: auto;
     word-break: break-all;
+}
+
+.text .submit {
+    position: absolute;
+    top: 69px;
+    right: 300px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.text .return {
+    position: absolute;
+    bottom: 16px;
+    left: 300px;
+    width: 70px;
+    height: 35px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.text .sign {
+    position: absolute;
+    bottom: 40px;
+    left: 460px;
+    font-size: 18px;
+}
+
+.text .sign input {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+
+/* 发表失败 */
+
+.warn {
+    position: absolute;
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(243, 41, 0);
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 3px;
+    border-radius: 8px;
+    z-index: 11;
+    display: none;
 }

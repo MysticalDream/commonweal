@@ -23,6 +23,7 @@
     <script src="./js/skip.js"></script>
     <script src="./js/slide.js"></script>
     <script src="./js/ajax.js"></script>
+    <script src="./js/child.js"></script>
 
 </head>
 
@@ -52,7 +53,16 @@
                 <li><a href="pages/common/show.html">风采展示</a></li>
                 <li><a href="pages/common/agriculture.html">助农</a></li>
                 <li><a href="pages/common/adpot.html">领养动物</a></li>
-                <li><a href="#">关爱儿童</a></li>
+                <li class="child-li">
+                    <a href="pages/common/lovekid.html">
+                        关爱儿童
+                    </a>
+                    <!-- <div class="child-ol">
+                        <div class="cloudteach">云支教</div>
+                        <div class="cloudhelp">云帮扶</div>
+                        <div class="cloudwall">云墙</div>
+                    </div> -->
+                </li>
             </ul>
             <!-- 轮播图的内容 -->
             <div class="slide_contain">
@@ -95,10 +105,18 @@
                 </div> -->
                 <div class="intro_nd">
                     <div class="intro_nd_lf">
-                        <h2>创益简介</h2>
+                        <h2>大学生志愿公益平台</h2>
                         <p class="nd_p">
-                            &nbsp;&nbsp;&nbsp;这是一个为大学生提供的平台，让大学生可以自由组队，创建项目，并把成就展示在网站上，通过为社会提供帮助得到社会爱心人士以及公司的认可和支持，通过申请项目资金，专项专款继续进行公益活动，达到持久性和优化。同时，此网站也会提供公益项目和志愿服务活动，供青年志愿者参加。志愿者们除了参加“招募志愿者”中的活动以外，还可以通过线下实地考察，线上帮助农民、农户、农商，将他们的农产品放在网站上进行宣传推广；搭建领养动物的服务中心，让高校中流浪的猫猫狗狗有个安稳的家；关心偏远山区以及农村儿童、青少年，通过“云支教”，“云帮扶”和“云墙”进行“线上+线下”结合的模式给予他们精神和物质上的鼓励与爱护。
+                            &nbsp;&nbsp;&nbsp;大学生可以自由组队，创建公益项目，并把成就展示在网站上。同时，此网站也会提供公益项目和志愿服务活动，供青年志愿者参加。本网站还有助农、领养动物、关爱儿童等服务。
                         </p>
+                        <span class="first">
+                            <i></i>
+                            <i></i>
+                        </span>
+                        <span class="second">
+                            <i></i>
+                            <i></i>
+                        </span>
                         <!-- <div class="bottom">
                             <button class="creat_project">
                                 创建项目
@@ -504,7 +522,9 @@
     <nav class="menu" id="floating_menu">
         <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
         <label class="menu-open-button" for="menu-open">
-            <span class="inner_circle"></span>
+            <span class="inner_circle">
+<!--                <img src="images/menu.png" alt="">-->
+            </span>
             <span class="hamburger hamburger-1"></span>
             <span class="hamburger hamburger-2"></span>
             <span class="hamburger hamburger-3"></span>

@@ -16,6 +16,10 @@ public enum LevelCode {
      */
     COMMON_LOGIN_LEVEL(0),
     /**
+     * 普通管理员
+     */
+    COMMON_ADMIN_LEVEL(1),
+    /**
      * 特别登录等级 10
      */
     SPECIAL_LOGIN_LEVEL(10);

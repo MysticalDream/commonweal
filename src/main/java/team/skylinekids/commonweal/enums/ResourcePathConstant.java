@@ -71,6 +71,14 @@ public interface ResourcePathConstant {
      * 直播
      */
     String DISK_LIVE_IMG_BASE = DISK_IMAGE_BASE + "live/";
+    /**
+     * 反馈暂存
+     */
+    String DISK_FEEDBACK_TEMP_BASE = DISK_IMAGE_BASE + "temp/feedback/";
+    /**
+     * 反馈
+     */
+    String DISK_FEEDBACK_IMG_BASE = DISK_IMAGE_BASE + "feedback/";
 
     //--------------------------------------------------------------------------
     /**
@@ -142,5 +150,13 @@ public interface ResourcePathConstant {
      * 直播
      */
     String VIRTUAL_LIVE_COVER_BASE = VIRTUAL_IMAGE_BASE + "live/";
+    /**
+     * 反馈暂存
+     */
+    String VIRTUAL_FEEDBACK_TEMP_BASE = VIRTUAL_IMAGE_BASE + "temp/feedback/";
+    /**
+     * 反馈
+     */
+    String VIRTUAL_FEEDBACK_BASE = VIRTUAL_IMAGE_BASE + "feedback/";
 
 }

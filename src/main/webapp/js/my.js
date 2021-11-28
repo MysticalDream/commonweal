@@ -1,9 +1,11 @@
 window.addEventListener('load', function () {
     let li_open = document.querySelectorAll('.bottom_left_d>ul>li');
     let show_box = document.querySelectorAll('.slide_ul_d');
-    for (let i = 0; i < 2; i++) {
+    console.log(li_open);
+    console.log(show_box);
+    for (let i = 0; i < li_open.length; i++) {
         li_open[i].addEventListener('mouseover', function () {
-            for (let j = 0; j < 2; j++) {
+            for (let j = 0; j < li_open.length; j++) {
                 show_box[j].style.width = '0px';
                 li_open[j].classList.remove('cur_li');
             }
@@ -14,45 +16,6 @@ window.addEventListener('load', function () {
             show_box[i].style.width = '0px';
         })
     }
-
-    // function getLi(data,box){
-    //     let oLi=document.createElement('li');
-    //     for(let i=0;i<data.data.length;i++){
-    //         box.innerHTML='';
-    //         let str=` <div class="inner_box inner_hide"></div>
-    //         <div class="out_box">
-    //             <div class="out_circle_d">
-    //                 <div></div>
-    //             </div>
-    //             <div class="pink_bottom">
-
-    //             </div>
-    //             <p class="left_icon_d">
-    //                 <span>
-    //                     <img src="../../images/peo.png" alt="">
-    //                     <span class="number_change">${data.data[i].nowMen}/${data.data[i].maximumNumberLimit}</span>
-    //                 </span>
-    //             </p>
-    //             <p class="right_icon_d">
-    //                 <span>
-    //                     <img src="../../images/管理员_角色管理.png" alt="">
-    //                     <span class="number_change manager_btn">管理团队</span>
-    //                 </span>
-    //             </p>
-    //         </div>`;
-    //         oLi.innerHTML=str;
-    //         box.appendChild(oLi);
-    //     }
-    //     let li=document.createElement('li');
-    //     let str=`
-    //     <div class="inner_box inner_hide"></div>
-    //     <div class="out_box">
-    //         <img src="../../images/jia.png" alt="" class="plus_rota">
-    //     </div>
-    //     `;
-    //     li.innerHTML=str;
-    //     box.appendChild(li);
-    // }
 
     // 获取我创建的项目列表
 
@@ -304,5 +267,19 @@ window.addEventListener("load", function () {
         pic.style.backgroundImage = `url(${getCookie('avatarUrl')}`;
         pic.style.backgroundSize = '100% 100%';
         location.innerText = getCookie("location");
+    }
+
+    let friend_list=$('.friend_list');
+    let send_div=$('.send_div');
+    for(let i=0;i<friend_list.length;i++){
+        friend_list[i].addEventListener('click',()=>{
+            for(let j=0;j<friend_list.length;j++){
+                send_div[j].style.display='none';
+                if(friend_list[j].classList.contains('cur_message_li'))
+                    friend_list[j].classList.remove('cur_message_li');
+            }
+            friend_list[i].classList.add('cur_message_li');
+            send_div[i].style.display='block';
+        })
     }
 });

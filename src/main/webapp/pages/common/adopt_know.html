@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/backtop.css">
+    <link rel="stylesheet" href="../../css/recruit.css">
+    <link rel="stylesheet" href="../../css/adopt_know.css">
+    <link rel="stylesheet" href="../../css/font.css">
+    <link rel="stylesheet" href="../../css/adpot.css">
+    <link rel="stylesheet" href="../../css/project.css">
+    <link rel="stylesheet" href="../../css/error_exit.css">
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../js/ajax.js"></script>
+    <script src="../../js/obj_wcj.js"></script>
+    <script src="../../js/isLog_in_adpot.js"></script>
+    <script src="../../js/cookie.js"></script>
+    <script src="../../js/childjump.js"></script>
+</head>
+
+<body>
+<!-- 导航栏 -->
+<div class="nav_s">
+    <div class="left"><span>创</span>益</div>
+    <div class="middle">
+        <ul class="nav_ul_s">
+            <li>
+                <a href="../../index.html">首页</a>
+            </li>
+            <li>
+                <a href="./newPro.html">志愿项目</a>
+            </li>
+            <li>
+                <a href="./expand.html">招募志愿者</a>
+            </li>
+            <li>
+                <a href="./show.html">风采展示</a>
+            </li>
+            <li>
+                <a href="./agriculture.html">助农</a>
+            </li>
+            <li class="pitch">
+                <a href="./adpot.html">领养动物</a>
+            </li>
+            <li class="child_s">
+                <a href="./lovekid.html">关爱儿童</a>
+                <div class="child_all">
+                    <div class="childteach">云支教</div>
+                    <div class="childhelp">云帮扶</div>
+                    <div class="childwall">云墙</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="right username">
+        <!-- <div class="pic">
+        <img src="../../images/cat1.jpg" alt="" class="user_img">
+    </div>
+    <span>common</span>
+    <div class="operation">
+        <div class="my"><i class="iconfont icon-wode"></i>我的</div>
+        <div class="exit"><i class="iconfont icon-tuichu"></i>退出</div>
+    </div>
+    <div class="triangle"></div> -->
+        <!-- <div class="log_in">登录 | 注册</div> -->
+    </div>
+</div>
+<!-- 主体内容 -->
+<div class="pink_main">
+    <div class="main_center">
+        <div class="left_long">
+            <div class="img_first">
+                <!-- <img src="../../images/dog.png" alt=""> -->
+            </div>
+            <div class="remark_area">
+                <div class="remark_title">
+                    <span></span><span>评论</span>
+                </div>
+                <!-- <div class="remark_user">
+                    <div class="avator_pic">
+                        <div class="red_ling">
+                            <img src="../../images/领.png" alt="">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="id_box">喜欢喝可乐的阳阳</div>
+                        <div class="remark_date">2021年6月16日反馈</div>
+                    </div>
+                </div> -->
+                <!-- <div class="remark_main">
+                    <p class="remark_text">他有一个好听的名字 叫做创意当风时小组的狗子，养的白白胖胖 快来看这只狗吧
+                        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈 这狗一天吃3顿 每吨都吃2碗饭 长得很结实
+                    </p>
+                    <img src="../../images/fc1.jpg" alt="">
+                    <div>
+                        <span class="message_span">
+                            <img src="../../images/message_icon.png" alt="">
+                            <span>2</span>
+                        </span>
+                        <span class="like_span">
+                            <img src="../../images/like_grey.png" alt="">
+                            <span>12</span>
+                        </span>
+                    </div>
+                </div> -->
+                <!-- <div class="remark_follow"> -->
+                <!-- 这里应该是动态创建的 先写2个做样式 -->
+                <!-- <div class="follow_div">
+                        <span class="follow_avator"></span>
+                        <div class="follow_text">
+                            <div>
+                                <span class="follow_name">是天才小鱼儿:</span>
+                                <p class="follow_content">我以后也想养金毛，好蠢萌啊</p>
+                            </div>
+                            <span>2021年6月16日</span>
+                        </div>
+                        <div class="follow_right">
+                            <span class="message_span">
+                                <img src="../../images/message_icon.png" alt="">
+                            </span>
+                            <span class="like_span">
+                                <img src="../../images/like_grey.png" alt="">
+                                <span>12</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="follow_div">
+                        <span class="follow_avator"></span>
+                        <div class="follow_text">
+                            <div>
+                                <span class="follow_name">是天才小鱼儿:</span>
+                                <p class="follow_content">我以后也想养金毛，好蠢萌啊</p>
+                            </div>
+                            <span>2021年6月16日</span>
+                        </div>
+                        <div class="follow_right">
+                            <span class="message_span">
+                                <img src="../../images/message_icon.png" alt="">
+                            </span>
+                            <span class="like_span">
+                                <img src="../../images/like_grey.png" alt="">
+                                <span>12</span>
+                            </span>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="more_wrap">
+                    <div class="click_more">
+                        <span>查看更多评论</span>
+                    </div>
+                </div>
+                <div class="remark_input">
+                    <div class="inner_area">
+                        <div class="first_line">
+                            <label for="feed_file" class="feed_label">
+                                <img src="../../images/img_up.png" alt="">
+                            </label>
+                            <form action="/cover" method="post" id="feedback_cover" enctype="multipart/form-data">
+                                <input type="file" name="feedback_cover" class="feed_file" multiple>
+                                <input type="hidden" name="part_name" value="feedback_cover">
+                                <input type="submit" name="提交图片" hidden class="feed_in">
+                            </form>
+                            <img src="../../images/express.png" alt="">
+                            <button class="feedback_btn">发布</button>
+                        </div>
+                        <div class="words_input" contenteditable="true">
+                            <!-- <span class="placeholder">有啥想分享的吗~</span> -->
+                            <textarea placeholder="有啥想分享的吗~" class="words_area"></textarea>
+                            <div class="pic_append">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right_up">
+            <div class="frame_inner">
+                <ul>
+                    <!-- <li>品种：萨摩耶</li>
+                    <li>外貌:中型犬</li>
+                    <li>性格：活泼</li>
+                    <li>年龄：2岁</li>
+                    <li>习性：喜欢睡觉</li>
+                    <li>被领养时间：2021年5月26日</li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="footer_lf">
+        <h3>创益</h3>
+        <ul class="first">
+            <li>
+                <a href="javascript:;">关于我们</a>
+            </li>
+            <li>
+                <a href="javascript:;">联系我们</a>
+            </li>
+            <li>
+                <a href="javascript:;">用户协议</a>
+            </li>
+            <li>
+                <a href="javascript:;">加入我们</a>
+            </li>
+        </ul>
+        <ul class="second">
+            <li>
+                <a href="javascript:;">友情链接</a>
+            </li>
+            <li>
+                <a href="javascript:;">隐私政策</a>
+            </li>
+            <li>
+                <a href="javascript:;">创益认证</a>
+            </li>
+            <li>
+                <a href="javascript:;">Investor Relations</a>
+            </li>
+        </ul>
+    </div>
+    <div class="footer_rg">
+        <h3>传送门</h3>
+        <ul class="first">
+            <li>
+                <a href="javascript:;">协议汇总</a>
+            </li>
+            <li>
+                <a href="javascript:;">活动中心</a>
+            </li>
+            <li>
+                <a href="javascript:;">活动专题页</a>
+            </li>
+            <li>
+                <a href="javascript:;">侵权申诉</a>
+            </li>
+        </ul>
+        <ul class="second">
+            <li>
+                <a href="javascript:;">帮助中心</a>
+            </li>
+            <li>
+                <a href="javascript:;">用户反馈论坛</a>
+            </li>
+            <li>
+                <a href="javascript:;">壁纸站</a>
+            </li>
+            <li>
+                <a href="javascript:;">广告合作</a>
+            </li>
+        </ul>
+        <ul class="third">
+            <li>
+                <a href="javascript:;">名人堂</a>
+            </li>
+            <li>
+                <a href="javascript:;">管理中心</a>
+            </li>
+            <li>
+                <a href="javascript:;">高级评论</a>
+            </li>
+            <li>
+                <a href="javascript:;">企业号官网</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 置顶 -->
+<a id="button_back" title="返回顶部"></a>
+<!-- 退出错误信息 -->
+<div class="error_exit">
+    退出账号异常
+</div>
+<script src="../../js/backtop.js"></script>
+<script>
+    window.addEventListener('load', () => {
+
+        // 领养动物的详细信息接口
+        ajax({
+            type: 'get',
+            url: '/adopt',
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                adoptId: getUrlParamObject(window.location.search).ddj,
+            },
+            success: function (data) {
+                let img_first = $('.img_first')[0];
+                let frame_ul = $('.frame_inner>ul')[0];
+                let str_li = `
+                        <li>品种：${data.data.variety}</li>
+                        <li>外貌:${data.data.appearance}</li>
+                        <li>性格：${data.data.characters}</li>
+                        <li>年龄：${data.data.age}</li>
+                        <li>习性：${data.data.habit}</li>
+                        <li>被领养时间：${new Date(data.data.gmtCreate).Format('yyyy年MM月dd日')}</li>`;
+                let aImg = document.createElement('img');
+                aImg.src = data.data.coverUrl;
+                img_first.appendChild(aImg);
+                frame_ul.innerHTML = str_li;
+            },
+            error: function () {
+
+            }
+        })
+
+
+        // 发布反馈接口
+        let feedback_cover = $('#feedback_cover')[0];
+        let words_input = $('.words_input')[0];
+        let words_area = $('.words_area')[0];
+        let feed_file = $('.feed_file')[0];
+        let feed_in = $('.feed_in')[0];
+        let imgArray = [];
+        let feed_label = $('.feed_label')[0];
+        let placeholder = $('.placeholder')[0];
+        let feedback_btn = $('.feedback_btn')[0];
+        let more_wrap = $('.more_wrap')[0];
+        let pic_append = $('.pic_append')[0];
+        words_input.onfocus = function () {
+            words_area.placeholder = '';
+        }
+
+        words_input.onblur = function () {
+            if (words_input.innerText == '') {
+                words_area.placeholder = '有啥想分享的吗~';
+            }
+        }
+
+        iframeAjax({
+            form: feedback_cover,
+            callback: function (data) {
+                if (typeof data.data === "string") {
+                    let img_d = document.createElement('img');
+                    img_d.src = data.data;
+                    imgArray.push(data.data);
+                    img_d.classList.add('bottom_img');
+                    pic_append.appendChild(img_d);
+                } else {
+                    for (let i = 0; i < data.data.length; i++) {
+                        let img_d = document.createElement('img');
+                        img_d.src = data.data[i];
+                        imgArray.push(data.data[i]);
+                        img_d.classList.add('bottom_img');
+                        pic_append.appendChild(img_d);
+                    }
+                }
+            }
+        })
+
+        feed_label.addEventListener('click', () => {
+            feed_file.click();
+        })
+
+        feed_file.addEventListener('change', (e) => {
+            if (feed_file.files.length) {
+                feed_in.click();
+                // hide(placeholder);
+            }
+        })
+
+
+        feedback_btn.addEventListener('click', () => {
+            ajax({
+                type: 'post',
+                url: '/feedback',
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    adoptId: getUrlParamObject(window.location.search).ddj,
+                    content: words_area.value,
+                    pics: imgArray
+                },
+                success: function () {
+                    words_area.innerHTML = '';
+                    words_input.innerHTML = '';
+                    words_area.placeholder = '有啥要分享的吗~';
+                    let oDiv = document.createElement('div');
+                    oDiv.classList.add('remark_part');
+                    let remarks = $('.remark_area')[0];
+                    let firstChild = remarks.firstChild;
+                    remarks.insertBefore(oDiv, firstChild);
+                    window.location.reload();
+                },
+                error: function () {
+
+                }
+            })
+        })
+
+        // let src="../../images/dog.png";
+        let remark_area = $('.remark_area')[0];
+
+        // 从此处开始
+        function feedback(data, picList, index, oDiv) {
+            // 用户头像信息等
+            let str = `  <div class="remark_user">
+                            <div class="avator_pic">
+                                <img src="${data.data.list[index].userDTO.avatarUrl}" alt="">
+                            </div>
+                            <div>
+                                <div class="id_box">${data.data.list[index].userDTO.username}</div>
+                                <div class="remark_date">${new Date(data.data.list[index].comment.gmtCreate).Format('yyyy年MM月dd日')}</div>
+                            </div>
+                        </div>`;
+
+            let str1 = ` <div class="remark_user">
+                            <div class="avator_pic">
+                                <img src="${data.data.list[index].userDTO.avatarUrl}" alt="">
+                                <div class="red_ling">
+                                    <img src="../../images/领.png" alt="">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="id_box">${data.data.list[index].userDTO.username}</div>
+                                <div class="remark_date">${new Date(data.data.list[index].comment.gmtCreate).Format('yyyy年MM月dd日')}</div>
+                            </div>
+                        </div>`;
+            data.data.list[index].comment.isAdopter ? oDiv.innerHTML = str1 : oDiv.innerHTML = str;
+            // 主体评论
+            let mDiv = document.createElement('div');
+            mDiv.classList.add('remark_main');
+            oDiv.appendChild(mDiv);
+            let p = document.createElement('p');
+            p.classList.add('remark_text');
+            p.innerText = data.data.list[index].comment.content;
+            mDiv.appendChild(p);
+            if (picList !== undefined) {
+                for (let j = 0; j < picList.length; j++) {
+                    let img = document.createElement('img');
+                    img.src = picList[j].srcName;
+                    // img.src='../../images/dog.png';
+                    mDiv.appendChild(img);
+                }
+            }
+            let divs = document.createElement('div');
+            divs.classList.add('span_box');
+            let strs = ` <span class="message_span remark_feedback">
+                                <img src="../../images/message_icon.png" alt="">
+                                <span></span>
+                            </span>
+                            <span class="like_span">
+                                <img src="../../images/like_grey.png" alt="">
+                                <span>${data.data.list[index].comment.praiseNum}</span>
+                            </span>`
+            divs.innerHTML = strs;
+            mDiv.appendChild(divs);
+            remark_area.insertBefore(oDiv, more_wrap);
+            // box.appendChild(oDiv);
+        }
+
+        function remarkList(data, sBox) {
+            let oDiv = document.createElement('div');
+            oDiv.classList.add('remark_follow');
+            for (let i = 0; i < data.data.list.length; i++) {
+                let div_1 = document.createElement('div');
+                div_1.classList.add('follow_div');
+                let str = `  <span class="follow_avator"><img src=${data.data.list[i].userDTO.avatarUrl}></span>
+                                <div class="follow_text">
+                                    <div>
+                                        <span class="follow_name">${data.data.list[i].userDTO.username}：</span>
+                                        <p class="follow_content">${data.data.list[i].comment.content}</p>
+                                    </div>
+                                    <span>${new Date(data.data.list[i].comment.gmtCreate).Format('yyyy年MM月dd日')}</span>
+                                </div>
+                                <div class="follow_right">
+                                    <span class="message_span">
+                                        <img src="../../images/message_icon.png" alt="">
+                                    </span>
+                                    <span class="like_span">
+                                        <img src="../../images/like_grey.png" alt="">
+                                        <span>${data.data.list[i].comment.praiseNum}</span>
+                                    </span>
+                                </div>`;
+                div_1.innerHTML = str;
+                oDiv.appendChild(div_1);
+            }
+            sBox.querySelector('span.message_span.remark_feedback>span').innerText = data.data.total;
+            sBox.appendChild(oDiv);
+            //    box.insertBefore(oDiv,more_wrap);
+        }
+
+        //   for(let i=0;i<obj1.data.list.length;i++){
+        //       feedback(obj1,obj1.data.list[0].picList,i,remark_area);
+        //   }
+
+        //   remarkList(obj2,remark_area);
+
+        // 获取领养评论接口
+        ajax({
+            type: 'get',
+            url: '/adopt/feedback',
+            header: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: {
+                pageSize: 4,
+                pageNum: 1,
+                adoptId: getUrlParamObject(window.location.search).ddj,
+                content: words_area.innerText,
+                pics: imgArray
+            },
+            //  success:function(){
+            //     words_input.innerHTML='';
+            //     words_input.appendChild(placeholder);
+            //  },
+            //  error:function(){
+            // },
+            success: function (data) {
+                for (let i = 0; i < data.data.list.length; i++) {
+                    let oDiv = document.createElement('div');
+                    oDiv.classList.add('remark_part');
+                    oDiv.id = data.data.list[i].comment.id;
+                    // 这里的picList再看一下
+                    feedback(data, data.data.list[i].picList, i, oDiv);
+
+                    ajax({
+                        type: 'get',
+                        url: '/feedback/comment',
+                        header: {
+                            'Content-Type': 'multipart/form-data'
+                        },
+                        data: {
+                            pageNum: 1,
+                            pageSize: 3,
+                            id: data.data.list[i].comment.id
+                        },
+                        success: function (data) {
+                            if (data.data.list.length == 0) {
+                                return;
+                            }
+                            remarkList(data, oDiv);
+                        }
+                    })
+                }
+            },
+            error: function () {
+
+            }
+        })
+
+        //评论反馈内容接口
+        // remark_area.addEventListener('click',(e)=>{
+        //     if(e.target.classList.contains('remark_feedback')){
+        //        let div=document.createElement('div');
+        //        div.isContentEditable=true;
+        //        div.classList.add('remark_div');
+        //         var feekbackId=e.target.parent.parent.parent.id;
+        //         ajax({
+        //             type:'POST',
+        //             url:'/feedback/comment',
+        //             header:{
+        //                 'Content-Type:':'application/json'
+        //             },
+        //             data:{
+        //                 feedbackId:feedbackId,
+        //                 content:div.innerText
+        //             },
+        //             success:function(){
+
+        //             },
+        //             error:function(){
+
+        //             }
+        //         })
+
+        //     }
+        // })
+
+
+        // 查看更多评论
+        var count = 2;
+        let look_more = $('.click_more>span')[0];
+        look_more.addEventListener('click', () => {
+            //    let count=2;
+            ajax({
+                type: 'get',
+                url: '/adopt/feedback',
+                header: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: {
+                    pageSize: 4,
+                    pageNum: count,
+                    adoptId: getUrlParamObject(window.location.search).ddj
+                },
+                success: function (data) {
+                    count++;
+                    for (let i = 0; i < data.data.list.length; i++) {
+                        let oDiv = document.createElement('div');
+                        oDiv.classList.add('remark_part');
+                        oDiv.id = data.data.list[i].comment.id;
+                        // 这里的picList再看一下
+                        feedback(data, data.data.list[i].picList, i, oDiv);
+                        ajax({
+                            type: 'get',
+                            url: '/feedback/comment',
+                            header: {
+                                'Content-Type': 'multipart/form-data'
+                            },
+                            data: {
+                                pageNum: 1,
+                                pageSize: 3,
+                                id: data.data.list[i].comment.id
+                            },
+                            success: function (data) {
+                                if (data.data.list.length == 0) {
+                                    return;
+                                }
+                                remarkList(data, oDiv);
+                                // commentNumber=data.data.list.length;
+                            },
+                            error: function () {
+
+                            }
+                        })
+
+                        // feedback(data,i,commentNumber);
+                    }
+                }
+            })
+        })
+    })
+</script>
+</body>
+
+</html>

@@ -63,6 +63,9 @@ public class UserController {
         if (user2 == null) {
             return ResultUtils.getResult(ApiResultCode.PASSWORD_OR_USER_NAME_IS_INCORRECT);
         }
+        if (user2.getLevelNum().equals(1)) {
+            return ResultUtils.getResult(ApiResultCode.UNAUTHORIZED_ACCESS);
+        }
         //设置登录用户到session会话
         httpWrapper.setUserToSession(user2);
 
@@ -71,7 +74,6 @@ public class UserController {
         userDTO.setAvatarUrl(ResourcePathConstant.VIRTUAL_USER_AVATAR_URL_BASE + userDTO.getAvatarUrl());
 
         httpWrapper.setCookies(ConversionUtils.oToStringMap(userDTO), 86400);
-
         //登录成功
         return ResultUtils.getResult(ApiResultCode.SUCCESS, userDTO);
     }

@@ -43,7 +43,7 @@ public class Adopt implements Serializable {
      */
     private String introduction;
     /**
-     * 领养的用户id
+     * 发布的用户id
      */
     private Integer userId;
     /**
@@ -55,25 +55,40 @@ public class Adopt implements Serializable {
      */
     private LocalDateTime gmtCreate;
     /**
-     * 最后修改信息时间
+     * 最后修改信息时间(可以作为被领养的时间)
      */
     private LocalDateTime gmtModified;
+    /**
+     * 是否同意被领养
+     */
+    private Integer status;
+    /**
+     * 领养的用户的id
+     */
+    private Integer adoptUserId;
 
-    public Adopt(Integer adoptId, String variety, String appearance, Integer age, String character, String habit, String introduction, Integer userId, String coverUrl, LocalDateTime gmtCreate, LocalDateTime gmtModified) {
+    public Adopt(Integer adoptId, String variety, String appearance, Integer age, String characters, String habit, String introduction, Integer userId, String coverUrl, LocalDateTime gmtCreate, LocalDateTime gmtModified, Integer status, Integer adoptUserId) {
         this.adoptId = adoptId;
         this.variety = variety;
         this.appearance = appearance;
         this.age = age;
-        this.characters = character;
+        this.characters = characters;
         this.habit = habit;
         this.introduction = introduction;
         this.userId = userId;
         this.coverUrl = coverUrl;
         this.gmtCreate = gmtCreate;
         this.gmtModified = gmtModified;
+        this.status = status;
+        this.adoptUserId = adoptUserId;
     }
 
     public Adopt() {
+    }
+
+    public Adopt(Integer adoptId, Integer adoptUserId) {
+        this.adoptId = adoptId;
+        this.adoptUserId = adoptUserId;
     }
 
     public Integer getAdoptId() {
@@ -108,12 +123,12 @@ public class Adopt implements Serializable {
         this.age = age;
     }
 
-    public String getCharacter() {
+    public String getCharacters() {
         return characters;
     }
 
-    public void setCharacter(String character) {
-        this.characters = character;
+    public void setCharacters(String characters) {
+        this.characters = characters;
     }
 
     public String getHabit() {
@@ -162,5 +177,21 @@ public class Adopt implements Serializable {
 
     public void setGmtModified(LocalDateTime gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Integer getAdoptUserId() {
+        return adoptUserId;
+    }
+
+    public void setAdoptUserId(Integer adoptUserId) {
+        this.adoptUserId = adoptUserId;
     }
 }

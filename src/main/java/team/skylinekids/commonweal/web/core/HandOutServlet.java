@@ -3,21 +3,17 @@ package team.skylinekids.commonweal.web.core;
 import org.apache.log4j.Logger;
 import team.skylinekids.commonweal.enums.ApiResultCode;
 import team.skylinekids.commonweal.enums.LevelCode;
-import team.skylinekids.commonweal.enums.SessionKeyConstant;
 import team.skylinekids.commonweal.pojo.bo.HttpInfoWrapper;
-import team.skylinekids.commonweal.pojo.po.User;
 import team.skylinekids.commonweal.utils.ClassUtils;
 import team.skylinekids.commonweal.utils.ResultUtils;
 import team.skylinekids.commonweal.web.core.annotation.AccessLevel;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -105,7 +101,10 @@ public class HandOutServlet extends HttpServlet {
             LevelCode levelCode = accessLevel.value();
             //当前请求的等级
             LevelCode currentAccessLevel = getCurrentAccessLevel(request, response);
-            if (currentAccessLevel != null && currentAccessLevel.getLevel() < levelCode.getLevel()) {
+            if (currentAccessLevel == null) {
+                return;
+            }
+            if (currentAccessLevel.getLevel() < levelCode.getLevel()) {
                 logger.info("无权访问");
                 response.setContentType("application/json");
                 response.getWriter().write(ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED));
@@ -177,7 +176,10 @@ public class HandOutServlet extends HttpServlet {
             return LevelCode.COMMON_LOGIN_LEVEL;
         } else if (levelNum == 10) {
             return LevelCode.SPECIAL_LOGIN_LEVEL;
+        } else if (levelNum == 1) {
+            return LevelCode.COMMON_ADMIN_LEVEL;
         } else {
+            logger.info("未知等级");
             response.setContentType("application/json");
             response.getWriter().write(ResultUtils.getResult(ApiResultCode.UNAUTHENTICATED));
             return null;
