@@ -31,6 +31,8 @@ class UserDaoImplTest {
     @Test
     void getUserById() throws Exception {
         User user = userDao.getUserById(2);
+        Thread.sleep(10000);
+        userDao.getUserById(1);
     }
 
     @Test
