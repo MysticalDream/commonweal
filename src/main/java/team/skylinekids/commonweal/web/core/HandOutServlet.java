@@ -111,6 +111,8 @@ public class HandOutServlet extends HttpServlet {
                 return;
             }
         }
+        System.out.println("------------------Referer:"+request.getHeader("Referer"));
+        System.out.println("------------------Origin:"+request.getHeader("Origin"));
         Object object = handleInfo.getObject();
         Object result = null;
         try {
