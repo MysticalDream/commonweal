@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 上传图片控制器
@@ -28,6 +29,8 @@ import java.util.List;
 public class UploadController extends HttpServlet {
 
     private final Logger logger = Logger.getLogger(UploadController.class);
+
+    private final static String[] ACCEPT = {".png", ".jpg", ".jpeg", ".gif", ".bmp", ".mp4"};
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -85,6 +88,7 @@ public class UploadController extends HttpServlet {
                 return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
         }
         List<Part> parts = httpInfoWrapper.getPart(partName);
+
         if (parts.size() == 1) {
             return handleCover(parts.get(0), tempPath, virtualPath);
         } else {
@@ -101,8 +105,13 @@ public class UploadController extends HttpServlet {
      * @return
      */
     private String handleCover(Part coverPart, String diskTempPath, String virtualTempPath) {
+
         if (coverPart == null) {
             return ResultUtils.getResult(ApiResultCode.REQUEST_SYNTAX_ERROR);
+        }
+        //判断文件类型是否被允许
+        if (!FileUtils.isAcceptedSuffix(Objects.requireNonNull(FileUtils.getFileName(coverPart)), ACCEPT)) {
+            return ResultUtils.getResult(ApiResultCode.DISALLOWED_TYPE);
         }
         try {
             String fileName = FileUtils.saveResourceByPart(coverPart, diskTempPath);
@@ -129,6 +138,10 @@ public class UploadController extends HttpServlet {
             List<String> url = new ArrayList<>(partList.size());
             for (Part part :
                     partList) {
+                //判断文件类型是否被允许
+                if (!FileUtils.isAcceptedSuffix(Objects.requireNonNull(FileUtils.getFileName(part)), ACCEPT)) {
+                    return ResultUtils.getResult(ApiResultCode.DISALLOWED_TYPE);
+                }
                 String fileName = FileUtils.saveResourceByPart(part, diskTempPath);
                 url.add(virtualTempPath + fileName);
             }

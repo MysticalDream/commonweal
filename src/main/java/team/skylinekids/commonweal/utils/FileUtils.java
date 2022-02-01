@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
 import java.util.UUID;
 
 
@@ -319,6 +320,23 @@ public class FileUtils {
         } else {
             return false;
         }
+    }
+
+    /**
+     * 判断文件名是否在提供的允许得类型列表中
+     *
+     * @param filename 文件名
+     * @param suffixes 允许的后缀列表
+     * @return
+     */
+    public static boolean isAcceptedSuffix(String filename, String... suffixes) {
+        String suffix = filename.substring(filename.lastIndexOf('.'));
+        for (int i = 0; i < suffixes.length; i++) {
+            if (suffixes[i].equalsIgnoreCase(suffix)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
