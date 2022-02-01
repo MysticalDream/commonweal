@@ -143,7 +143,7 @@ public class ItemController {
      * @return
      */
     @AccessLevel
-    @MyRequestPath(value = "/items/user", type = {RequestMethod.GET})
+    @MyRequestPath(value = "/items/user", type = {RequestMethod.POST, RequestMethod.GET})
     public String getItemsByUserId(HttpInfoWrapper httpInfoWrapper) throws Exception {
         Integer userId = httpInfoWrapper.getUser().getUserId();
         Page<ItemDTO> page = new Page<>();

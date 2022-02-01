@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -27,6 +28,8 @@ public class EncodingFilter implements Filter {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         chain.doFilter(request, response);
+        ((HttpServletResponse) response).setHeader("Access-Control-Allow-Origin", request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort());
+        //((HttpServletResponse) response).setHeader("Access-Control-Allow-Origin", "*");
     }
 
     @Override

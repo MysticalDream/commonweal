@@ -11,6 +11,7 @@ class FileUtilsTest {
 
     @Test
     void getFile() {
+
     }
 
     @Test
@@ -23,11 +24,13 @@ class FileUtilsTest {
 
     @Test
     void getFileName() {
+        String[] s = {".png", ".jpg"};
+        System.out.println(FileUtils.isAcceptedSuffix("p1.png", s));
     }
 
     @Test
     void getRandomFileName() {
-        String randomFileName = FileUtils.getRandomFileName("1231.png");
+        String randomFileName = FileUtils.getRandomFileName("1312.png");
         System.out.println(randomFileName);
     }
 
