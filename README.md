@@ -1,5 +1,22 @@
 # commonweal
 第十届软件设计大赛
+
+## 部分效果展示
+
+![img_0.png](images/img_0.png)
+
+![img_1.png](images/img_1.png)
+
+![img_2.png](images/img_2.png)
+
+![img_3.png](images/img_3.png)
+
+![img.png](images/img.png)
+
+![img_4.png](images/img_4.png)
+
+
+
 ##  **直播的实现**
 ## 涉及技术WebRTC、WebSocket 
 ##### 简介：
